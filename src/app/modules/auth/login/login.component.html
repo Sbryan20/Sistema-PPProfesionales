@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema PPP</title>
+</head>
+<body class="bst-body-content" [ngStyle]="{'background-image': 'url('+fondo+')'}" *ngIf="!islogged">
+    <style type="text/css">  </style>
+    <div  *ngIf="habilitar == true">
+      <div id="divisor">
+        <fieldset class="bst-fieldset-content">
+            <h1 style="text-align: center; font-size: larger;"><strong>Ingreso</strong></h1>
+            <p style="text-align: center;"> Para ingresar en este aplicativo necesitas 
+            <br>ser mienbro de la comunidad educativa
+            <br>@tecazuay.edu.ec
+            <br>
+            <div id="imagen">
+              <img [src]="logog" class="mx-auto d-block" width="40px" height="40px" />
+            </div>
+          <div id="boton">
+            <button (click)="signInWithGoogle()" type="button" class="btn btn-primary">Ingresar</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div *ngIf="habilitar == false">
+      <div id="divisor" class="container">
+        <fieldset class="bst-fieldset-content">
+            <h1 style="text-align: center; font-size: larger;"><strong>Ingreso</strong></h1>
+            <pre>OHH!! Al paracer eres nuevo.</pre>
+            <pre>Para continuar debes,</pre>
+            <pre>ingresar su CI para su correspondiente</pre>
+            <pre>validación</pre>
+            <form #form="ngForm" ngNativeValidate> 
+            <br>
+              <div class="form-group row">
+                  <div class="col-sm-6">
+                    <input class="form-control" [(ngModel)]="userRequest.cedula" name="cedula" type="text" style="text-align: center;" maxlength="10" onkeypress='return event.charCode >= 10 && event.charCode <= 57' #cedula="ngModel" />
+                  </div>
+              </div>
+           <br>
+            </form>
+          <div id="boton">
+            <button (click)="create()">Continuar</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </body>
+  <!-- <app-estructure *ngIf="islogged" ></app-estructure> -->
+</html>

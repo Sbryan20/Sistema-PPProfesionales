@@ -1,0 +1,9 @@
+
+<section class="dsc-{{$theme}} {{showLeftNav ? 'dsc-main-container':'dsc-main-container-full' }}">
+    <app-header class="dsc-header"(showMenu)="showMenu()"></app-header>
+    <app-left-nav class="dsc-left-nav" *ngIf="showLeftNav" showMenu="showMenu()"></app-left-nav>
+    <main class="dsc-main-content">
+        <router-outlet></router-outlet>
+    </main>
+    <app-footer class="dsc-footer"></app-footer>
+</section>

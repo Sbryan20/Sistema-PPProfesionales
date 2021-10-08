@@ -1,0 +1,56 @@
+.bst {
+  &-body-content {
+    background-size: auto;
+    background-position: center;
+    background-attachment: fixed;
+    max-height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+  }
+  }
+
+.bst {
+  &-fieldset-content
+        {width: 35%;
+        background:#ffffff;
+        padding: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 4px;
+        font-family: 'calibri';
+        border: 1px solid rgb(36, 138, 206);
+      }
+        
+        
+    }
+    #divisor{
+      width: auto;
+      height: auto;
+      vertical-align: middle;
+      padding-top: 14%;
+      
+    }
+  .button{
+           width: 200px;
+           background: rgb(36, 138, 206);
+           padding: 10px;
+           margin: auto;
+           border-radius: 4px;
+           font-family: 'calibri';
+           color:#f6f6f6;}
+  .pre{
+    text-align: center;
+    margin: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  #imagen{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #boton{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+  }

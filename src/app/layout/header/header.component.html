@@ -1,0 +1,9 @@
+<div class="dsc-header__brand">
+    <fa-icon [icon]="faBars" class="dsc-header__brand-menu" (click)="showMenu.emit()"></fa-icon>
+    <div class="dsc-header__brand-logo">
+        <span>{{nombres}}</span>
+    </div>
+</div>
+<div class="dsc-header__submenu">
+    <div class="dsc-header__submenu-usr" [ngStyle]="{'background-image': 'url('+logo+')'}"></div>
+</div>

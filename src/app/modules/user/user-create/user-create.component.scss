@@ -1,0 +1,40 @@
+.input-group{
+    margin-bottom: 20px;
+}
+
+.botones{
+    margin-bottom: 20px;
+    margin-top: 600px;
+    margin-right: 60px;
+}
+
+.btn.mod{
+    margin-left: 20px;
+}
+
+.bss{
+    &-borderless{
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+}}
+    table {
+      /* Para centrar usamos "auto" en la alineación horizontal */
+      margin: 0 auto;
+      /*Lo siguiente es para los bordes*/
+      border-collapse: collapse;
+  }
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+.sinborde {
+    border: 0;
+  }
+
+  .formulario{
+      margin-top: 60px;
+  }

@@ -1,0 +1,24 @@
+    <div
+      class="card border-primary mb-3"
+      style="max-width: 18rem"
+      *ngIf="data" routerLink="/panel/user/{{data.id}}"
+    >
+      <div class="card-header">
+        <h5>{{data.nombre}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="card-text">
+          Email: {{data.emailEntidad}} 
+          <br/>Telefono: {{data.telefonoEntidad}} 
+          <br/>Fecha creacion: {{data.fechaCreacion}}
+          <br>Creado por: {{data.idCoordinador}}
+        </p>
+      </div>
+      <div class="card-footer bg-transparent border-success">
+        Representante: {{data.representante}}
+        <br>Email: {{data.emailRepresentante}}
+        <br>Telefono: {{data.celularRepresentante}}
+      </div>
+    </div>
+  
+  

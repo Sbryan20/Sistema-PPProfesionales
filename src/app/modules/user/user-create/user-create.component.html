@@ -1,0 +1,76 @@
+<!--------------------------------------------------FORMULARIO----------------------------------------------------------------------- -->
+<!-- table table-borderless -->
+<!-- table table-bordered -->
+<form class="formulario" ngNativeValidate (ngSubmit)="crearEntidad()">
+    <table style="width:1000px; height:20px;" class="bss-table-borderless">
+        <thead class="thead-dark center-block">
+          <tr class="active">
+            <div class="row-fluid">
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                  <img [src]="ista" alt="Logo" />
+                </div>
+                
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                  <img [src]="secretaria" alt="Logo" width="180" height="70" class="bss-img-content" />
+                </div>
+              </div>
+            </div>
+          </tr>
+        </thead>
+        <tbody>
+          <tr colspan="2" class="d-flex" class="text-center">
+            <h2 class="bss-txt-content" style="font-size: 22px;">
+              (FORMULARIO ENTIDAD BENEFICIARIA) <br />INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY <br />
+              COORDINACIÓN DE VINCULACIÓN CON LA SOCIEDAD <br />
+              REGISTRO DE BENEFICIARIOS / CAPACITACIONES
+            </h2>
+          </tr>
+          <tr>
+            <table style="width:950px; height:20px;" class="table table-bordered">
+              <thead>
+                <tr>
+                  <td colspan="4" scope="col " ><strong>CÓDIGO COORDINADOR:</strong> <input type="number" class="form-control"value="" class="col-md-5" style="background-color:transparent; " [(ngModel)]="entity.idCoordinador" name="idCoordinador" required /></td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th colspan="4" scope="col " ><strong>FECHA CREACIÓN:</strong>
+                    <input type="date" [(ngModel)]="entity.fechaCreacion" name="fechaCreacion" required>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>INFORMACIÓN DE ENTIDAD BENEFICIARIA: </strong> 
+                  </th>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA: </strong> <input type="text" class="form-control"value=""class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.nombre" name="nombre" required />
+                  </th>
+                </tr>
+                <tr>
+                  <td > <strong>TELÉFONO:</strong><input type="text" class="form-control"value="" class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.telefonoEntidad" name="telefonoEntidad" required/></td>
+                  <td colspan="3"> <strong>E-MAIL: </strong><input type="email" class="form-control"value="" class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.emailEntidad" name="emailEntidad" required/></td>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>INFORMACIÓN DEL REPRESENTANTE DE LA ENTIDAD BENEFICIARIA:</strong> 
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row"> <strong>REPRESENTANTE: </strong><input type="text" class="form-control"value="" class="col-md-10" style="background-color:transparent; " [(ngModel)]="entity.representante" name="representante" required/></th>
+                  <td colspan="2"> <strong>CELULAR</strong><input type="text" class="form-control"value="" class="col-md-10" style="background-color:transparent; " [(ngModel)]="entity.celularRepresentante" name="celularRepresentante" required/></td>
+                  <td colspan="2"> <strong>E-MAIL: </strong><input type="email" class="form-control"value="" class="col-md-12" style="background-color:transparent; " [(ngModel)]="entity.emailRepresentante" name="emailRepresentante" required/></td>
+                </tr>
+              </tbody>
+            </table>
+            <br> <br>
+          </tr>
+        </tbody>
+      </table> <br>
+    <div class="col text-center"> 
+      <button class="btn btn-primary">GUARDAR</button>&nbsp;&nbsp;
+      </div>
+    
+    </form>
+    
+      
+      
+    

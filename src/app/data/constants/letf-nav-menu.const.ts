@@ -1,0 +1,42 @@
+import { ILeftNavMenu } from '../interfaces/ileft-nav-menu.metadata';
+export const LEFT_NAV_MENUS: ILeftNavMenu[]=[
+    {
+        title:'CV',
+        links:[
+            {
+                name:'crear'
+            },
+            {
+                name:'listar'
+            },
+            {
+                name:'informacion'
+            }
+        ]
+    },
+    {
+        title:'AUT',
+        links:[
+            {
+                name:'crear'
+            },
+            {
+                name:'listar'
+            }
+        ]
+    },
+    {
+        title:'est',
+        links:[
+            {
+                name:'convocatoria'
+            },
+            {
+                name:'listar'
+            },
+            {
+                name:'informacion'
+            }
+        ]
+    }
+]
