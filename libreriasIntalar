@@ -9,7 +9,7 @@ crear interfaz de rector(Autoridad)
 *materias
 --asignar coordinador de vinculacion
 
-***************crear nodes
+***************crear nodes con estilos SCSS
 
 ****************librerias a utilizar/intalar
 npm i angularx-social-login
