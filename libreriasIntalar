@@ -1,0 +1,22 @@
+crear interfaz de rector(Autoridad)
+--listar docentes 
+*cedula
+*nombre
+*apellido
+*carreras
+*jordana laboral
+*estado
+*materias
+--asignar coordinador de vinculacion
+
+***************crear nodes
+
+****************librerias a utilizar/intalar
+npm i angularx-social-login
+ng add @angular/material
+npm i @angular/animations
+npm install @fortawesome/fontawesome-svg-core
+npm install @fortawesome/free-solid-svg-icons
+npm install @fortawesome/angular-fontawesome@0.5
+npm install --save @fortawesome/free-brands-svg-icons
+npm install --save @fortawesome/free-regular-svg-icons
