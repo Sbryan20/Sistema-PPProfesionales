@@ -10,6 +10,7 @@ crear interfaz de rector(Autoridad)
 --asignar coordinador de vinculacion
 
 ***************crear nodes con estilos SCSS
+npm install
 
 ****************librerias a utilizar/intalar
 npm i angularx-social-login
@@ -20,3 +21,4 @@ npm install @fortawesome/free-solid-svg-icons
 npm install @fortawesome/angular-fontawesome@0.5
 npm install --save @fortawesome/free-brands-svg-icons
 npm install --save @fortawesome/free-regular-svg-icons
+npm install sweetalert2
