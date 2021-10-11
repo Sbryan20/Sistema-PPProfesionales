@@ -18,6 +18,8 @@ import { CordinadorvinculacionComponent } from '@modules/cordinadorvinculacion/c
 import { CordinadorcvexistComponent } from '@modules/cordinadorvinculacion/cordinadorcvexist/cordinadorcvexist.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 
+import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proyectocreate.component';
+
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { LoginComponent } from './modules/auth/login/login.component';
     LeftNavMenuComponent,
     AuthorityComponent,
     CordinadorvinculacionComponent,
-    CordinadorcvexistComponent
+    CordinadorcvexistComponent,
+    ProyectocreateComponent
   ],
   imports: [
     

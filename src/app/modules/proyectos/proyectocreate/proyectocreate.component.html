@@ -1,0 +1,112 @@
+<!--------------------------------------------------FORMULARIO----------------------------------------------------------------------- -->
+<!-- table table-borderless -->
+<!-- table table-bordered -->
+
+<form class="formulario" ngNativeValidate>
+    <table style="width:1000px; height:20px;" class="bss-table-borderless">
+        <thead class="thead-dark center-block">
+          <tr class="active">
+            <div class="row-fluid">
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                  <img [src]="ista" alt="Logo" />
+                </div>
+                
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                  <img [src]="secretaria" alt="Logo" width="180" height="70" class="bss-img-content" />
+                </div>
+              </div>
+            </div>
+          </tr>
+        </thead>
+        <tbody>
+          <tr colspan="2" class="d-flex" class="text-center">
+            <h2 class="bss-txt-content" style="font-size: 22px;">
+              (CREACIÓN DE PROYECTO) <br />INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY <br />
+              CORDINADOR DE CARRERA <br />
+              REGISTRO DE BENEFICIARIOS / PARTICIPANTES
+            </h2>
+          </tr>
+          <tr>
+            <table style="width:950px; height:20px;" class="table table-bordered">
+              <thead>
+                <tr>
+                  <td colspan="4" scope="col " ><strong>CÓDIGO PROYECTO:</strong><input type="text" class="form-control" value="codigo" placeholder="codigo" class="col-md-5" style="background-color:transparent; " name="idCoordinador" required /> </td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th colspan="4" scope="col " ><strong>FECHA CREACIÓN:</strong>
+                    <input type="date"  name="fechaCreacion" required>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>NOMBRE:</strong> <input type="text" class="form-control" value="codigo" class="col-md-5" style="background-color:transparent; " name="idCoordinador" required /> 
+                  </th>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>LINEA DE ACCIÓN:</strong> <select style="width: 100%;" name="select">
+                    <option value="value1">TRUE</option>
+                    <option value="value2" selected>FALSE</option>
+                  </select>
+                  </th>
+                </tr>
+                <tr>
+                  <td > <strong>CARRERA:</strong><select style="width: 100%;" name="select">
+                    <option value="value1">Value 1fdgfd</option>
+                    <option value="value2" selected>Value 2</option>
+                    <option value="value3">Value 3</option>
+                  </select></td>
+                  <td colspan="3"> <strong>Estado: </strong><select style="width: 100%;" name="select">
+                    <option value="value1">TRUE</option>
+                    <option value="value2" selected>FALSE</option>
+                  </select></td>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA</strong>
+                    <select style="width: 100%;" name="select">
+                        <option value="value1">TRUE</option>
+                        <option value="value2" selected>FALSE</option>
+                      </select> 
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row"> <strong>DIRECTOR DE PROYECTO: </strong><select style="width: 100%;" name="select">
+                    <option value="value1">TRUE</option>
+                    <option value="value2" selected>FALSE</option>
+                  </select> </th>
+                  <td colspan="2"> <strong>DOCENTENTE DE APOYO</strong><select style="width: 100%;" name="select">
+                    <option value="value1">TRUE</option>
+                    <option value="value2" selected>FALSE</option>
+                  </select> </td>
+                  <td colspan="2"> <strong>RESPONSABLE PPP</strong><select style="width: 100%;" name="select">
+                    <option value="value1">TRUE</option>
+                    <option value="value2" selected>FALSE</option>
+                  </select> </td>
+                </tr>
+                <tr>
+                    <th scope="row"> <strong>DIRECTOR DE PROYECTO: </strong><select style="width: 100%;" name="select">
+                      <option value="value1">TRUE</option>
+                      <option value="value2" selected>FALSE</option>
+                    </select> </th>
+                    <td colspan="2"> <strong>DOCENTENTE DE APOYO</strong><select style="width: 100%;" name="select">
+                      <option value="value1">TRUE</option>
+                      <option value="value2" selected>FALSE</option>
+                    </select> </td>
+                    <td colspan="2"> <strong>RESPONSABLE PPP</strong><select style="width: 100%;" name="select">
+                      <option value="value1">TRUE</option>
+                      <option value="value2" selected>FALSE</option>
+                    </select> </td>
+                  </tr>
+                
+              </tbody>
+            </table>
+            
+            <br> <br>
+          </tr>
+        </tbody>
+      </table> <br>
+    <div class="col text-center"> 
+      <button class="btn btn-primary">GUARDAR</button>&nbsp;&nbsp;
+      </div>
+    
+    </form>

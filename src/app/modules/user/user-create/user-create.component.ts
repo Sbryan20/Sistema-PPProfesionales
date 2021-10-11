@@ -35,7 +35,7 @@ export class UserCreateComponent implements OnInit {
      },err=>{
       Swal.fire({
         icon: 'warning',
-        title: 'Al paracer hubo un problema',
+        title: 'Al paracer huvo un problema',
         text: err.error.message,
         confirmButtonColor: "#0c3255"   
       }) 

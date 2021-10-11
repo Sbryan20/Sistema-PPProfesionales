@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CordinadorVinculacion } from '@shared/models/cordinadorvinculacion';
@@ -9,11 +9,18 @@ import { CordinadorvinculacionService } from '@data/services/api/cordinadorvincu
   templateUrl: './cordinadorvinculacion.component.html',
   styleUrls: ['./cordinadorvinculacion.component.scss']
 })
-export class CordinadorvinculacionComponent implements OnInit {
+export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
+  loader='assets/images/loader.gif'
+  issloading=true;
 
   listacvinculacion: CordinadorVinculacion[]=[];
 
   constructor(private cvservice:CordinadorvinculacionService,private router:Router) { }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+    this.issloading=false;
+    },1000)
+  }
 
   ngOnInit(): void {
     this.cvservice.getCvinculacion().subscribe(data=>{

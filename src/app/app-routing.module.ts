@@ -28,6 +28,11 @@ const routes: Routes = [
       path: 'cvinculacion',
       loadChildren: () =>
       import ('@modules/cordinadorvinculacion/cordinadorvinculacion-routing.module').then((m)=>m.CVinculacionRoutinModule)
+    },
+    {
+      path: 'proyecto',
+      loadChildren: () =>
+      import ('@modules/proyectos/proecto-routing.module').then((m)=>m.ProyectoRoutingModule)
     }
     
   ]

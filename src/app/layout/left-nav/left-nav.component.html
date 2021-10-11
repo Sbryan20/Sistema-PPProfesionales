@@ -30,53 +30,6 @@
                </a>
             </div>
     
-            <!--Administrador-->
-            <div class="list-group" *ngSwitchCase="'admin'">
-              <a
-                [routerLink]="['/admin']" routerLinkActive="active"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                Asignacion Docente
-              </a>
-    
-              <a
-                [routerLink]="['/docenteapoyo']" routerLinkActive="active"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-              Docente de apoyo
-              </a>
-    
-              <a
-              [routerLink]="['/responsable']" routerLinkActive="active"
-              class="list-group-item list-group-item-action bg-dark text-light"
-            >
-            Responsable de PPP
-            </a>
-    
-            <a
-              [routerLink]="['/director_p']" routerLinkActive="active"
-              class="list-group-item list-group-item-action bg-dark text-light"
-            >
-            Directores de Proyecto
-            </a>
-    
-            <a
-              [routerLink]="['/coordinador']" routerLinkActive="active"
-              class="list-group-item list-group-item-action bg-dark text-light"
-            >
-            Coordinadores de Vinculación
-            </a>
-              <a
-                href="nav-link"
-                routerLink="/estudiantes"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                Estudiantes
-              </a>
-            </div>
-    
             <!--estudiante-->
             <div class="list-group" *ngSwitchCase="'EST'">
               <a class="list-group-item list-group-item-action bg-dark text-light">
@@ -315,198 +268,19 @@
     
             <!--Coordinador de carrear -->
             <div class="list-group" *ngSwitchCase="'CC'">
-              <a class="list-group-item list-group-item-action bg-dark text-light">
-                <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Inicio
-              </a>
-    
-              <a
-                href="#dashboard-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>Generar
-                proyecto
-              </a>
-              <div
-                id="dashboard-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  href=""
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Seleccion
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Informe
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 3
-                </a>
-              </div>
-    
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>Docentes
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  href=""
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
-    
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>Soporte TIC
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
-    
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>Correo secretaria
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
-    
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>Crear proyecto
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
-            </div>
+              <a [routerLink]="['/panel/proyecto/create']" routerLinkActive="active" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+            >  Crear nuevo Proyecto
+            </a>
+            <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light">
+              Ver proyecto Actuales
+            </a>
+            <a [routerLink]="['/crear_cv']" routerLinkActive="active"
+               class="list-group-item list-group-item-action bg-dark text-light">
+               Documentacion
+             </a>
+          </div>
     
             <!--Coordinador de vinculacion -->
             <div class="list-group" *ngSwitchCase="'CV'">
