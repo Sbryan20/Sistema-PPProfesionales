@@ -16,6 +16,7 @@ import { LeftNavMenuComponent } from './layout/left-nav/left-nav-menu/left-nav-m
 import { AuthorityComponent } from './modules/super-user/authority/authority.component';
 import { CordinadorvinculacionComponent } from '@modules/cordinadorvinculacion/cordinadorvlist/cordinadorvinculacion.component';
 import { CordinadorcvexistComponent } from '@modules/cordinadorvinculacion/cordinadorcvexist/cordinadorcvexist.component';
+import { LoginComponent } from './modules/auth/login/login.component';
 
 
 

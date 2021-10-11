@@ -17,8 +17,8 @@ import { Title } from '@angular/platform-browser';
 export class LoginComponent implements OnInit, AfterViewInit{
   public fondo='assets/images/fondo.png';
   public logog='assets/images/logog.png'
-  public loader='assets/images/fondo.png'
-  public isloadin=true;
+  loader='assets/images/loader.gif'
+  issloading=true;
 
 
   
@@ -39,7 +39,9 @@ export class LoginComponent implements OnInit, AfterViewInit{
 
   constructor(private authService: SocialAuthService,private router: Router, private loginServiceService: LoginServiceService,private title: Title) { }
   ngAfterViewInit(): void {
-    setTimeout(()=>{this.isloadin=false;},1000)
+    setTimeout(()=>{
+    this.issloading=false;
+    },1000)
   }
 
   ngOnInit(): void {

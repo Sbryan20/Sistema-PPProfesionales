@@ -8,12 +8,14 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class SkaletonComponent implements OnInit ,AfterViewInit{
   public showLeftNav=true;
   public $theme='blue-dark'
-  public loader='assets/images/loader.gif'
-  public isloadin=true;
+  loader='assets/images/loader.gif'
+  issloading=true;
 
   constructor() { }
   ngAfterViewInit(): void {
-    setTimeout(()=>{this.isloadin=false},1000)
+    setTimeout(()=>{
+    this.issloading=false;
+    },1000)
   }
 
   ngOnInit(): void {

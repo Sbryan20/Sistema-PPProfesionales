@@ -7,4 +7,8 @@
     </main>
     <app-footer class="dsc-footer"></app-footer>
 </section>
-<ng-container *ngIf="isloadin"><div class="bss-loader"></div><img src="loader"></ng-container>
+<ng-container *ngIf="issloading">
+    <div class="bss-loader">
+       <img [src]="loader" alt=""> 
+    </div>
+  </ng-container>
