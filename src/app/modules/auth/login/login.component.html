@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="">
     <title>Sistema PPP</title>
 </head>
-<body class="bst-body-content" [ngStyle]="{'background-image': 'url('+fondo+')'}" *ngIf="!islogged">
+<body class="bst-body-content" [ngStyle]="{'background-image': 'url('+fondo+')'}">
     <style type="text/css">  </style>
     <div  *ngIf="habilitar == true">
       <div id="divisor">
         <fieldset class="bst-fieldset-content">
-            <h1 style="text-align: center; font-size: larger;"><strong>Ingreso</strong></h1>
+            <h1 style="text-align: center; font-size: larger;"><strong>INGRESO</strong></h1>
             <p style="text-align: center;"> Para ingresar en este aplicativo necesitas 
             <br>ser mienbro de la comunidad educativa
             <br>@tecazuay.edu.ec
@@ -19,6 +20,7 @@
             <div id="imagen">
               <img [src]="logog" class="mx-auto d-block" width="40px" height="40px" />
             </div>
+            <br>
           <div id="boton">
             <button (click)="signInWithGoogle()" type="button" class="btn btn-primary">Ingresar</button>
           </div>
@@ -28,26 +30,25 @@
     <div *ngIf="habilitar == false">
       <div id="divisor" class="container">
         <fieldset class="bst-fieldset-content">
-            <h1 style="text-align: center; font-size: larger;"><strong>Ingreso</strong></h1>
-            <pre>OHH!! Al paracer eres nuevo.</pre>
-            <pre>Para continuar debes,</pre>
-            <pre>ingresar su CI para su correspondiente</pre>
-            <pre>validación</pre>
-            <form #form="ngForm" ngNativeValidate> 
-            <br>
-              <div class="form-group row">
-                  <div class="col-sm-6">
-                    <input class="form-control" [(ngModel)]="userRequest.cedula" name="cedula" type="text" style="text-align: center;" maxlength="10" onkeypress='return event.charCode >= 10 && event.charCode <= 57' #cedula="ngModel" />
+            <h1 style="text-align: center; font-size: larger;"><strong>RESGISTRO</strong></h1>
+            <p style="text-align: center;">
+              <p style="text-align: center;"> OHH!! Al paracer es nuevo.
+                <br>Para continuar debe
+                <br>ingresar su CI para su correspondiente validación
+                <div>
+                  <form #form="ngForm" ngNativeValidate> 
+                    <br>
+                       <input  placeholder="Cédula de identidad" class="form-control" [(ngModel)]="userRequest.cedula" name="cedula" type="text" style="text-align: center;" pattern="[0-9]{10}" #cedula="ngModel" required/>
+                   <br>
+                   <div *ngIf="!form.valid"  class="alert alert-danger">Cédula no valida</div>
+                   <div id="boton">
+                    <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!form.valid">Continuar</button>
                   </div>
-              </div>
-           <br>
-            </form>
-          <div id="boton">
-            <button (click)="create()">Continuar</button>
-          </div>
+                  </form>                 
+                </div> 
         </fieldset>
       </div>
     </div>
   </body>
-  <!-- <app-estructure *ngIf="islogged" ></app-estructure> -->
 </html>
+<ng-container *ngIf="isloadin"><div class="bss-loader"></div><img [src]="loader" alt=""></ng-container>

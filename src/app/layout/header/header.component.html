@@ -1,9 +1,19 @@
 <div class="dsc-header__brand">
     <fa-icon [icon]="faBars" class="dsc-header__brand-menu" (click)="showMenu.emit()"></fa-icon>
     <div class="dsc-header__brand-logo">
-        <span>{{nombres}}</span>
+        <span>{{persona.nombrescompletos}}</span>
     </div>
 </div>
 <div class="dsc-header__submenu">
-    <div class="dsc-header__submenu-usr" [ngStyle]="{'background-image': 'url('+logo+')'}"></div>
+    <nav class="navegacion">
+        <ul class="menu">
+            <li> <a>
+                <div class="dsc-header__submenu-usr" [ngStyle]="{'background-image': 'url('+persona.urlFoto+')'}"></div>
+            </a>
+                <ul  class="submenu">
+                    <li><a (click)="logout()"  style="cursor: pointer">SALIR</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 </div>

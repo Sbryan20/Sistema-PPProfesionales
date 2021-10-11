@@ -24,7 +24,7 @@
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;
-                    border-bottom: map-get($map: $theme, $key: 'border_secondary');
+                    border-bottom: map-get($map: $yellow_theme, $key: 'border_primary');
                 }
                 &__name {
                     color: map-get($map: $theme, $key: 'light');

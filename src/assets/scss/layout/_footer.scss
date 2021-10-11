@@ -11,8 +11,8 @@
             padding: 0.25rem;
             margin: 0 1rem 0.5rem 1rem;
             border-radius: 3px;
-            background: map-get($map: $theme, $key: 'primary');
-            color: map-get($map: $theme, $key: 'light');
+            background: map-get($map: $yellow_theme, $key: 'primary');
+            color: map-get($map: $yellow_theme, $key: 'light');
             &-text {
                 font-weight: 400;
                 margin-right: 0.5rem;

@@ -11,7 +11,7 @@ export const components: any[]=[
     CardUserComponent,
     SearchEntityComponent,
     PipeEntityPipe,
-    FormCreateUserComponent
+    FormCreateUserComponent,
 
 
 ];

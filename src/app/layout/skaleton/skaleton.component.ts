@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-skaleton',
   templateUrl: './skaleton.component.html',
   styleUrls: ['./skaleton.component.scss']
 })
-export class SkaletonComponent implements OnInit {
+export class SkaletonComponent implements OnInit ,AfterViewInit{
   public showLeftNav=true;
   public $theme='blue-dark'
+  public loader='assets/images/loader.gif'
+  public isloadin=true;
 
   constructor() { }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{this.isloadin=false},1000)
+  }
 
   ngOnInit(): void {
   }

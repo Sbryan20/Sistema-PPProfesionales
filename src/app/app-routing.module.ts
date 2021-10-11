@@ -23,7 +23,13 @@ const routes: Routes = [
       path: 'create',
       loadChildren:()=>
       import('@modules/user/user.module').then( (m) => m.UserModule)
+    },
+    {
+      path: 'cvinculacion',
+      loadChildren: () =>
+      import ('@modules/cordinadorvinculacion/cordinadorvinculacion-routing.module').then((m)=>m.CVinculacionRoutinModule)
     }
+    
   ]
 },{
   path:'**',redirectTo:'/panel/user',pathMatch:'full'

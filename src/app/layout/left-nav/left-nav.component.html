@@ -1,13 +1,13 @@
 <div class="dsc-left-nav-brand">
-    <div class="dsc-left-nav-brand__logo">
-        <img [src]="logo" alt="designicode-logo"/>
-        <span></span>
-    </div>
+  <div class="dsc-left-nav-brand__logo">
+      <img [src]="logo" alt="designicode-logo"/>
+      <span></span>
+  </div>
 </div>
 <div class="dsc-left-nav-usr">
-    <div class="dsc-left-nav-usr__avatar" [ngStyle]="{'background-image': 'url('+persona.urlFoto+')'}">
-    </div>
-    <h6 class="dsc-left-nav-usr__position">{{persona.rol}}</h6>
+  <div class="dsc-left-nav-usr__avatar"  [ngStyle]="{'background-image': 'url('+persona.urlFoto+')'}">
+  </div>
+  <h6 class="dsc-left-nav-usr__position">{{rolnombre}}</h6>
 </div>
 
 <ng-container >
@@ -16,19 +16,18 @@
     
             <!--Autoridad-->
             <div class="list-group" *ngSwitchCase="'AUT'">
-              <a
-                [routerLink]="['/crear_cv']" routerLinkActive="active"
+              <a [routerLink]="['/panel/cvinculacion/listcv']" routerLinkActive="active" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                Crear Coordinador
-                <br> de Vinculacion
+              >  Convocar a Docentes como Cordinadores de Vinculacion
               </a>
-    
-              <a
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-              Documentacion
+              <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light">
+                Condinadores de Vinculacion Actuales
               </a>
+              <a [routerLink]="['/crear_cv']" routerLinkActive="active"
+                 class="list-group-item list-group-item-action bg-dark text-light">
+                 Documentacion
+               </a>
             </div>
     
             <!--Administrador-->
@@ -513,7 +512,7 @@
             <div class="list-group" *ngSwitchCase="'CV'">
               
               <a
-                [routerLink]="['/panel/user/create']" routerLinkActive="active"
+                [routerLink]="['/panel/user/create',persona.id]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >
                 Crear entidad beneficiaria

@@ -14,6 +14,8 @@ import { HeaderComponent } from './layout/header/header.component';
 import { LeftNavComponent } from './layout/left-nav/left-nav.component';
 import { LeftNavMenuComponent } from './layout/left-nav/left-nav-menu/left-nav-menu.component';
 import { AuthorityComponent } from './modules/super-user/authority/authority.component';
+import { CordinadorvinculacionComponent } from '@modules/cordinadorvinculacion/cordinadorvlist/cordinadorvinculacion.component';
+import { CordinadorcvexistComponent } from '@modules/cordinadorvinculacion/cordinadorcvexist/cordinadorcvexist.component';
 
 
 
@@ -26,7 +28,9 @@ import { AuthorityComponent } from './modules/super-user/authority/authority.com
     HeaderComponent,
     LeftNavComponent,
     LeftNavMenuComponent,
-    AuthorityComponent
+    AuthorityComponent,
+    CordinadorvinculacionComponent,
+    CordinadorcvexistComponent
   ],
   imports: [
     
