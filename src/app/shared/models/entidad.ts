@@ -8,4 +8,5 @@ export class Ientity{
     celularRepresentante?:String;
     fechaCreacion?:String;
     idCoordinador?:number;
+    nombreCoordinador?:string;
 }

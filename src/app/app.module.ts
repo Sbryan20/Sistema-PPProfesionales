@@ -19,7 +19,7 @@ import { CordinadorcvexistComponent } from '@modules/cordinadorvinculacion/cordi
 import { LoginComponent } from './modules/auth/login/login.component';
 
 import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proyectocreate.component';
-
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -34,7 +34,8 @@ import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proy
     AuthorityComponent,
     CordinadorvinculacionComponent,
     CordinadorcvexistComponent,
-    ProyectocreateComponent
+    ProyectocreateComponent,
+    
   ],
   imports: [
     
@@ -44,6 +45,7 @@ import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proy
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [
     {
