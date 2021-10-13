@@ -20,6 +20,7 @@ import { LoginComponent } from './modules/auth/login/login.component';
 
 import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proyectocreate.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ProyectoresponComponent } from '@modules/proyectos/proyectorespon/proyectorespon.component';
 
 
 @NgModule({
@@ -35,6 +36,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     CordinadorvinculacionComponent,
     CordinadorcvexistComponent,
     ProyectocreateComponent,
+    ProyectoresponComponent
+    
     
   ],
   imports: [
@@ -45,7 +48,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
   ],
   providers: [
     {
