@@ -1,38 +1,55 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
 
-<div class="card border-primary mb-3">
-    <div class="card-header">Convocar a Docentes</div>
-    <div class="card-body text-primary">
-        <h5 class="card-title">Listado de Docentes</h5>
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>Cédula</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Titulo</th>
-                    <th>Carga Laboral</th>
-                    <th>Convocar como CV</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let docentes of listacvinculacion">
-                    <ng-container *ngIf="docentes.estado==false">
-                    <td>{{docentes.cedula}}</td>
-                    <td>{{docentes.nombres}}</td>
-                    <td>{{docentes.apellidos}}</td>
-                    <td>{{docentes.titulo}}</td>
-                    <td>{{docentes.carga}}</td>
-                    <td>
-                        <button (click)="guardarcv(docentes)" type="button" class="btn btn-success" >CONVOCAR</button>
-                    </td>
-                    </ng-container>               
-                </tr>
-            </tbody>
-        </table>
+  <mat-table #table [dataSource]="dataSource">
 
-    </div>
+    <!-- Position Column -->
+    <ng-container matColumnDef="cedula">
+      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombres">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombres}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="apellidos">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.apellidos}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="titulo">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="carga">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.carga}} </mat-cell>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="boton">
+      <mat-header-cell *matHeaderCellDef> v </mat-header-cell>
+      <mat-cell *matCellDef="let element"><button (click)="guardarcv(element)" type="button"  mat-raised-button color="primary">DAR DE BAJA</button> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>
-
 <ng-container *ngIf="issloading">
     <div class="bss-loader">
        <img [src]="loader" alt=""> 

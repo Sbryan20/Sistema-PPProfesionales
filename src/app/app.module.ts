@@ -17,12 +17,25 @@ import { AuthorityComponent } from './modules/super-user/authority/authority.com
 import { CordinadorvinculacionComponent } from '@modules/cordinadorvinculacion/cordinadorvlist/cordinadorvinculacion.component';
 import { CordinadorcvexistComponent } from '@modules/cordinadorvinculacion/cordinadorcvexist/cordinadorcvexist.component';
 import { LoginComponent } from './modules/auth/login/login.component';
-
 import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proyectocreate.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProyectoresponComponent } from '@modules/proyectos/proyectorespon/proyectorespon.component';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 
-
+const modules = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule,
+  MatSortModule,
+  MatTableModule,
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +49,7 @@ import { ProyectoresponComponent } from '@modules/proyectos/proyectorespon/proye
     CordinadorvinculacionComponent,
     CordinadorcvexistComponent,
     ProyectocreateComponent,
-    ProyectoresponComponent
-    
+    ProyectoresponComponent,
     
   ],
   imports: [
@@ -49,6 +61,8 @@ import { ProyectoresponComponent } from '@modules/proyectos/proyectorespon/proye
     AppRoutingModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
+    MatSliderModule,
+    modules
   ],
   providers: [
     {

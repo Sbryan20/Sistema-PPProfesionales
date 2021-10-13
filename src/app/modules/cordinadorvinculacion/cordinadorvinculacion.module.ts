@@ -4,8 +4,17 @@ import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinc
 import { SharedModule } from '@shared/shared.module';
 import { CVinculacionRoutinModule } from './cordinadorvinculacion-routing.module';
 import { CordinadorcvexistComponent } from './cordinadorcvexist/cordinadorcvexist.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
 
-
+const modules = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatRippleModule
+];
 
 @NgModule({
   declarations: [
@@ -14,8 +23,8 @@ import { CordinadorcvexistComponent } from './cordinadorcvexist/cordinadorcvexis
   ],
   imports: [
     CommonModule,
-    SharedModule,
-    CVinculacionRoutinModule
+    CVinculacionRoutinModule,
+    modules
   ]
 })
 export class CordinadorvinculacionModule { }
