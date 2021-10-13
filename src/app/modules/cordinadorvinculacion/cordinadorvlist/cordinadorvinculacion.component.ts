@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { CordinadorVinculacion } from '@shared/models/cordinadorvinculacion';
 import { CordinadorvinculacionService } from '@data/services/api/cordinadorvinculacion.service';
 
+
 @Component({
   selector: 'app-cordinadorvinculacion',
   templateUrl: './cordinadorvinculacion.component.html',

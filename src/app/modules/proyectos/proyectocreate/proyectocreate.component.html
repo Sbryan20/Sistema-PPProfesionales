@@ -2,8 +2,8 @@
 <!-- table table-borderless -->
 <!-- table table-bordered -->
 
-<form class="formulario" ngNativeValidate>
-    <table style="width:1000px; height:20px;" class="bss-table-borderless">
+<form class="formulario" ngNativeValidate (ngSubmit)="crearEntidad()">
+    <table style="width:100%; height:100%;" class="bss-table-borderless">
         <thead class="thead-dark center-block">
           <tr class="active">
             <div class="row-fluid">
@@ -28,74 +28,115 @@
             </h2>
           </tr>
           <tr>
-            <table style="width:950px; height:20px;" class="table table-bordered">
+            <table style="width:95%; height:90%;" class="table table-bordered">
               <thead>
                 <tr>
-                  <td colspan="4" scope="col " ><strong>CÓDIGO PROYECTO:</strong><input type="text" class="form-control" value="codigo" placeholder="codigo" class="col-md-5" style="background-color:transparent; " name="idCoordinador" required /> </td>
+                  <td colspan="4" scope="col " ><strong>CÓDIGO PROYECTO:</strong><input type="text" class="form-control" value="" placeholder="codigo" class="col-md-5" style="background-color:transparent; " [(ngModel)]="proyectos.codigo" name="codigoproyecyo" required /> </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th colspan="4" scope="col " ><strong>FECHA CREACIÓN:</strong>
-                    <input type="date"  name="fechaCreacion" required>
+                    <input type="date"  [(ngModel)]="proyectos.fechaat" name="fechaat"  required>
                 </tr>
                 <tr> 
-                  <th colspan="4" scope="col"><strong>NOMBRE:</strong> <input type="text" class="form-control" value="codigo" class="col-md-5" style="background-color:transparent; " name="idCoordinador" required /> 
+                  <th colspan="4" scope="col"><strong>NOMBRE:</strong> <input type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.nombre" name="nombre" required /> 
                   </th>
                 </tr>
                 <tr> 
-                  <th colspan="4" scope="col"><strong>LINEA DE ACCIÓN:</strong> <select style="width: 100%;" name="select">
-                    <option value="value1">TRUE</option>
-                    <option value="value2" selected>FALSE</option>
+                  <th colspan="4" scope="col"><strong>LINEA DE ACCIÓN:</strong> <select class="form-control" (change)="selectLineaAccion($event)" style="width: 100%;" name="select">
+                    <option value="p1">TRUE</option>
+                    <option value="p2" selected>FALSE</option>
+                    <option value="p3" selected>FALSE</option>
                   </select>
                   </th>
                 </tr>
                 <tr>
-                  <td > <strong>CARRERA:</strong><select style="width: 100%;" name="select">
-                    <option value="value1">Value 1fdgfd</option>
-                    <option value="value2" selected>Value 2</option>
-                    <option value="value3">Value 3</option>
+                  <td > <strong>CARRERA:</strong><select class="form-control" (change)="selectCarreta($event)" style="width: 100%;" name="select">
+                    <option value="SL">Seleccione</option>
+                      <option *ngFor="let item of listacarrera" [value]="item.codigo" [value]="item.nombre"> {{item.codigo}}-{{item.nombre}}</option>
                   </select></td>
-                  <td colspan="3"> <strong>Estado: </strong><select style="width: 100%;" name="select">
-                    <option value="value1">TRUE</option>
-                    <option value="value2" selected>FALSE</option>
+                  <td colspan="3"> <strong>Estado: </strong><select class="form-control" (change)="selectEstado($event)" style="width: 100%;" name="select">
+                    <option value="true">TRUE</option>
+                    <option value="false" selected>FALSE</option>
                   </select></td>
                 </tr>
                 <tr> 
                   <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA</strong>
-                    <select style="width: 100%;" name="select">
-                        <option value="value1">TRUE</option>
-                        <option value="value2" selected>FALSE</option>
+                    <select class="form-control" (change)="selectEntidadBeneficaria($event)" style="width: 100%;" name="select">
+                      <option value="SL">Seleccione</option>
+                      <option *ngFor="let item of entity" [value]="item.idEntidad"> {{item.idEntidad}}-{{item.nombre}} {{item.representante}}</option>
                       </select> 
                   </th>
                 </tr>
                 <tr>
-                  <th scope="row"> <strong>DIRECTOR DE PROYECTO: </strong><select style="width: 100%;" name="select">
-                    <option value="value1">TRUE</option>
-                    <option value="value2" selected>FALSE</option>
+                  <th scope="row"> <strong>DIRECTOR DE PROYECTO: </strong><select  class="form-control" (change)="selectDirectorProyecto($event)" style="width: 100%;" name="select">
+                    <option value="SL">Seleccione</option>
+                    <option *ngFor="let item of listacvinculacion" [value]="item.cedula"> {{item.cedula}}-{{item.nombres}}{{item.apellidos}}</option>
                   </select> </th>
-                  <td colspan="2"> <strong>DOCENTENTE DE APOYO</strong><select style="width: 100%;" name="select">
-                    <option value="value1">TRUE</option>
-                    <option value="value2" selected>FALSE</option>
+
+                  <td colspan="2"> <strong>DOCENTENTE DE APOYO</strong> <select class="form-control" (change)="selectDocenteApoyo($event)" style="width: 100%;" name="select">
+                    <option value="SL">Seleccione</option>
+                    <option *ngFor="let item of listacvinculacion" [value]="item.cedula"> {{item.cedula}}-{{item.nombres}}{{item.apellidos}}</option>
                   </select> </td>
-                  <td colspan="2"> <strong>RESPONSABLE PPP</strong><select style="width: 100%;" name="select">
-                    <option value="value1">TRUE</option>
-                    <option value="value2" selected>FALSE</option>
+
+                  <td colspan="2"> <strong>RESPONSABLE PPP</strong><select  class="form-control" (change)="selectResponsablePPP($event)" style="width: 100%;" name="select">
+                    <option value="SL">Seleccione</option>
+                    <option *ngFor="let item of listacvinculacion" [value]="item.cedula"> {{item.cedula}}-{{item.nombres}}{{item.apellidos}}</option>
                   </select> </td>
                 </tr>
-                <tr>
-                    <th scope="row"> <strong>DIRECTOR DE PROYECTO: </strong><select style="width: 100%;" name="select">
-                      <option value="value1">TRUE</option>
-                      <option value="value2" selected>FALSE</option>
-                    </select> </th>
-                    <td colspan="2"> <strong>DOCENTENTE DE APOYO</strong><select style="width: 100%;" name="select">
-                      <option value="value1">TRUE</option>
-                      <option value="value2" selected>FALSE</option>
-                    </select> </td>
-                    <td colspan="2"> <strong>RESPONSABLE PPP</strong><select style="width: 100%;" name="select">
-                      <option value="value1">TRUE</option>
-                      <option value="value2" selected>FALSE</option>
-                    </select> </td>
+                <tr >
+                    <th scope="row" style="width:50%;"> <strong>REQUISTOS: </strong>
+                      <div class="bss-table-borderless" [formGroup]="addForm">
+                        <div class="form-group">
+                          <br>	
+                          <table class="table table-bordered table-striped" style="border: transparent;">
+                            <thead>
+                              <button class="btn btn-primary" (click)="onAddRow()" *ngIf="addForm.get('rows')">NUEVO REQUISTO</button>
+                            </thead>
+                            <br>
+                            <tbody>
+                              <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                                <td>
+                                  descripcion : <input type="text" class="form-control" [formControl]="row.get('description')">
+                                </td>
+                                <td>
+                                  <button class="btn btn-primary" (click)="onRemoveRow(index)" >REMOVER</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      
+                      <pre>{{rows.value | json}}</pre>
+                    </th>
+                    <td colspan="3" style="width:50%;"> <strong>ACTIVIDADES</strong>
+                      <div class="bss-table-borderless" [formGroup]="addFormd">
+                        <div class="form-group">
+                          <br>	
+                          <table class="table table-bordered table-striped" style="border: transparent;">
+                            <thead>
+                              <button class="btn btn-primary" (click)="onAddRowd()" *ngIf="addFormd.get('rowsd')">NUEVA ACTIVIDAD</button>
+                            </thead>
+                            <br>
+                            <tbody>
+                              <tr *ngFor="let row of addFormd.get('rowsd')?.controls;let index = index;">
+                                <td>
+                                  descripcion : <input type="text" class="form-control" [formControl]="row.get('description')">
+                                </td>
+                                <td>
+                                  <button class="btn btn-primary" (click)="onRemoveRowd(index)" >REMOVER</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      
+                      <pre>{{rowsd.value | json}}</pre>
+
+                     </td>
                   </tr>
                 
               </tbody>

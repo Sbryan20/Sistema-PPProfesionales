@@ -5,3 +5,6 @@
 @import './layout/left-nav.scss';
 @import './layout/footer.scss';
 @import './layout.scss';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

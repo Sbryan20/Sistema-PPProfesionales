@@ -10,14 +10,14 @@ import { map } from 'rxjs/operators';
 export class ProyectoService {
   private urlEndPoint:string='http://localhost:8080/api/vinculacion';
   
-  private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
-  htpp: any;
+  private httpHeaders = new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+JSON.parse(sessionStorage.user).token})
+ 
 
   constructor(private http:HttpClient) { }
 
 
   getProyectos():Observable<Proyectos[]>{
-    return this.htpp.get(this.urlEndPoint).pipe(map(Response => Response as Proyectos[]))
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Proyectos[]))
   }
 
   savePr(proyectos: Proyectos):Observable<Proyectos>{

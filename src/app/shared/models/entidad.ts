@@ -1,5 +1,5 @@
 export class Ientity{
-    id?:number;
+    idEntidad?:number;
     nombre?:String;
     representante?:String;
     emailEntidad?:String;

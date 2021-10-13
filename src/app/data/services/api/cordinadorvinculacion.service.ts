@@ -11,17 +11,19 @@ export class CordinadorvinculacionService {
 
   private urlEndPoint:string='http://localhost:8080/api/vinculacion';
   
-  private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
+  private httpHeaders = new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+JSON.parse(sessionStorage.user).token})
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) {
+    console.log(JSON.parse(sessionStorage.user).token)
+   }
 
  getCvinculacion():Observable<CordinadorVinculacion[]>{
-  return this.http.get(this.urlEndPoint+"/all/docentes").pipe(map(
+  return this.http.get(this.urlEndPoint+"/all/docentes",{headers: this.httpHeaders}).pipe(map(
     data => data as CordinadorVinculacion[]
   )); }
 
   getCvinculacionExist():Observable<CordinadorVinculacion[]>{
-    return this.http.get(this.urlEndPoint+"/all").pipe(map(
+    return this.http.get(this.urlEndPoint+"/all",{headers: this.httpHeaders}).pipe(map(
       data => data as CordinadorVinculacion[]
     )); }
 

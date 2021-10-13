@@ -13,13 +13,13 @@ export class UserDetailComponent {
 
 
   public users: Ientity[] = USERS_ENTITY;
-  public id: number;
+  public idEntidad: number;
   public currentUser?:Ientity;
   constructor(
     private route: ActivatedRoute) 
     {
-    this.id = this.route.snapshot.params.id;
-    this.currentUser= this.users.find(user => user.id === this.id);
+    this.idEntidad = this.route.snapshot.params.idEntidad;
+    this.currentUser= this.users.find(user => user.idEntidad === this.idEntidad);
   }
 
 }

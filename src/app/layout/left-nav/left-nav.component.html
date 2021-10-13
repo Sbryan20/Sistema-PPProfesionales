@@ -268,9 +268,17 @@
     
             <!--Coordinador de carrear -->
             <div class="list-group" *ngSwitchCase="'CC'">
-              <a [routerLink]="['/panel/proyecto/create']" routerLinkActive="active" routerLinkActive="active"
+            <a [routerLink]="['/panel/proyecto/createrespon']" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
-            >  Crear nuevo Proyecto
+            >  Asignar Responsable PPP
+            </a>
+              <a [routerLink]="['/panel/proyecto/create']" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+            >  Crear Nuevo Proyecto
+            </a>
+            <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light">
+              Asignar Miebros del Proyecto
             </a>
             <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light">
@@ -284,7 +292,6 @@
     
             <!--Coordinador de vinculacion -->
             <div class="list-group" *ngSwitchCase="'CV'">
-              
               <a
                 [routerLink]="['/panel/user/create',persona.id]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"

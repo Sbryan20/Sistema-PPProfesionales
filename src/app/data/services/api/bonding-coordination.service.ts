@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Ientity } from '../../../shared/models/entidad';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class BondingCoordinationService {
 
   nombre?:String;
   private urlEndPoint:string='http://localhost:8080/api/entidad';
+  private httpHeaders = new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+JSON.parse(sessionStorage.user).token})
 
   constructor(private http:HttpClient) { }
 
@@ -23,13 +24,13 @@ export class BondingCoordinationService {
   }
 
   getEntity():Observable<Ientity[]>{
-    return this.http.get(this.urlEndPoint+"/all").pipe(map(
+    return this.http.get(this.urlEndPoint+"/all",{headers: this.httpHeaders}).pipe(map(
       data => data as Ientity[]
     ));
   }
 
   getEntidadNombre(nombre?:String){
-    return this.http.get<Ientity>(this.urlEndPoint+"/all/"+nombre).pipe(map(data=>data as Ientity[]))
+    return this.http.get<Ientity>(this.urlEndPoint+"/all/"+nombre,{headers: this.httpHeaders}).pipe(map(data=>data as Ientity[]))
   }
 
 }

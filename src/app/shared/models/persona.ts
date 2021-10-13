@@ -5,5 +5,6 @@ export class Personas {
     urlFoto?: string;
     cedula?: string;
     rol?: string;
+    token?:string
     
 }

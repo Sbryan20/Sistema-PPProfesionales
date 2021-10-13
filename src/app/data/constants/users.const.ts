@@ -4,7 +4,7 @@ import { Ientity } from '../../shared/models/entidad';
 
 export const USERS_ENTITY:Ientity[]=[
   {
-    id:1,
+    idEntidad:1,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -15,7 +15,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:2,
+    idEntidad:2,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -26,7 +26,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:3,
+    idEntidad:3,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -37,7 +37,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:3,
+    idEntidad:3,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -48,7 +48,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:3,
+    idEntidad:3,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -59,7 +59,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:3,
+    idEntidad:3,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -70,7 +70,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:3,
+    idEntidad:3,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",
@@ -81,7 +81,7 @@ export const USERS_ENTITY:Ientity[]=[
     idCoordinador:1
   },
   {
-    id:3,
+    idEntidad:3,
     nombre: "GRAIMAN",
     representante: "Marco Santander",
     emailEntidad: "n@hotmail.com",

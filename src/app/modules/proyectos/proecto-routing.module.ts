@@ -2,12 +2,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
+import { ProyectoresponComponent } from './proyectorespon/proyectorespon.component';
 
 const routes: Routes = [
     {
         path: 'create',
         component: ProyectocreateComponent
-    }    
+    },
+    {
+      path: 'createrespon',
+      component: ProyectoresponComponent
+    }   
 ];
 
 @NgModule({
