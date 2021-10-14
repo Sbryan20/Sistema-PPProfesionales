@@ -4,6 +4,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserCreateComponent } from './user-create/user-create.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { UserCreateComponent } from './user-create/user-create.component';
   ],
   imports: [
     SharedModule,
-    UserRoutingModule
+    UserRoutingModule,
+    MatFormFieldModule,
+    MatInputModule
   ]
 })
 export class UserModule { }

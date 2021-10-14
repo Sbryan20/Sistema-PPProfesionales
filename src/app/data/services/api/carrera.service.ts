@@ -16,7 +16,7 @@ export class CarreraService {
   getCarreras():Observable<Carreras[]>{
     return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(
       data => data as Carreras[]
-    )); }
+  )); }
 
 
   

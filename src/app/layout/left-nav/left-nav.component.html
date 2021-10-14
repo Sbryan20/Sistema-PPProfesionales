@@ -20,10 +20,6 @@
                 class="list-group-item list-group-item-action bg-dark text-light"
               >  Convocar a Docentes como Cordinadores de Vinculacion
               </a>
-              <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                Condinadores de Vinculacion Actuales
-              </a>
               <a [routerLink]="['/crear_cv']" routerLinkActive="active"
                  class="list-group-item list-group-item-action bg-dark text-light">
                  Documentacion
@@ -268,7 +264,7 @@
     
             <!--Coordinador de carrear -->
             <div class="list-group" *ngSwitchCase="'CC'">
-            <a [routerLink]="['/panel/proyecto/createrespon']" routerLinkActive="active"
+            <a [routerLink]="['/panel/proyecto/createrespon',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
             >  Asignar Responsable PPP
             </a>

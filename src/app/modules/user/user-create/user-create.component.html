@@ -30,13 +30,13 @@
             <table style="width:950px; height:20px;" class="table table-bordered">
               <thead>
                 <tr>
-                  <td colspan="4" scope="col " ><strong>CÓDIGO COORDINADOR:</strong><input type="text" class="form-control" value="codigo" placeholder="codigo" class="col-md-5" style="background-color:transparent; " [(ngModel)]="entity.idCoordinador" name="idCoordinador" required /> {{codigo}} </td>
+                  <td colspan="4" scope="col " ><strong>CÓDIGO COORDINADOR:</strong> {{codigo}} </td>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th colspan="4" scope="col " ><strong>FECHA CREACIÓN:</strong>
-                    <input type="date" [(ngModel)]="entity.fechaCreacion" name="fechaCreacion" required>
+                    {{sysdate}}
                 </tr>
                 <tr> 
                   <th colspan="4" scope="col"><strong>INFORMACIÓN DE ENTIDAD BENEFICIARIA: </strong> 

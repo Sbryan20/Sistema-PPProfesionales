@@ -25,14 +25,19 @@ export class CordinadorvinculacionService {
   getCvinculacionExist():Observable<CordinadorVinculacion[]>{
     return this.http.get(this.urlEndPoint+"/all",{headers: this.httpHeaders}).pipe(map(
       data => data as CordinadorVinculacion[]
-    )); }
+    )); 
+  }
+
+  getCvnexiste(cedula:String):Observable<CordinadorVinculacion>{
+    return this.http.get(this.urlEndPoint+"/exists/"+cedula,{headers: this.httpHeaders})
+  }
 
   saveCv(cordinadorVinculacion: CordinadorVinculacion):Observable<CordinadorVinculacion>{
     console.log(cordinadorVinculacion);
-    return this.http.post<CordinadorVinculacion>(this.urlEndPoint+"/save",cordinadorVinculacion,{headers: this.httpHeaders})
+    return this.http.post<CordinadorVinculacion>(this.urlEndPoint,cordinadorVinculacion,{headers: this.httpHeaders})
   }
   updateCv(cordinadorVinculacion: CordinadorVinculacion):Observable<CordinadorVinculacion>{
     console.log(cordinadorVinculacion);
-    return this.http.put<CordinadorVinculacion>(this.urlEndPoint+"/update",cordinadorVinculacion,{headers: this.httpHeaders})
+    return this.http.put<CordinadorVinculacion>(this.urlEndPoint,cordinadorVinculacion,{headers: this.httpHeaders})
   }
 }

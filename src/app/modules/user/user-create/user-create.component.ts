@@ -3,6 +3,8 @@ import { Ientity } from '../../../shared/models/entidad';
 import { BondingCoordinationService } from '../../../data/services/api/bonding-coordination.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { SysdateService } from '@data/services/api/sysdate.service';
+import { Sysdate } from '@shared/models/sysdate';
 
 @Component({
   selector: 'app-user-create',
@@ -14,24 +16,32 @@ export class UserCreateComponent implements OnInit {
   public secretaria='assets/images/Secretaria.png'  
   public ista='assets/images/ISTA.png'
   public codigo: number=0;
- 
-
-  constructor( private BondingCoordinationService:BondingCoordinationService, private router:Router,private activatedRoute: ActivatedRoute) { }
+  public sysdate?:Date;
+  constructor( private sysdateservice:SysdateService,private BondingCoordinationService:BondingCoordinationService, private router:Router,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let id = params['id']
       this.codigo=id;
     })
-    console.log(this.codigo)
-
+    this.sysdateservice.getSysdate().subscribe(date=>{
+      this.sysdate=date.fecha;
+    })
   }
 
   crearEntidad(){
     console.log(this.entity)
+     this.entity.idCoordinador=this.codigo;
+     this.entity.fechaCreacion=this.sysdate+"";
      this.BondingCoordinationService.postCreate(this.entity).subscribe(data =>{
        console.log(data)
        this.router.navigate(['panel/user/list'])
+       Swal.fire({
+        icon: 'success',
+        title: 'Exito',
+        text: 'Entidad Guardada',
+        confirmButtonColor: "#0c3255"   
+      })
      },err=>{
       Swal.fire({
         icon: 'warning',

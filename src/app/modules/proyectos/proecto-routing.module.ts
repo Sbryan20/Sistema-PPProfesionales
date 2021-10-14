@@ -10,7 +10,7 @@ const routes: Routes = [
         component: ProyectocreateComponent
     },
     {
-      path: 'createrespon',
+      path: 'createrespon/:cedula',
       component: ProyectoresponComponent
     }   
 ];

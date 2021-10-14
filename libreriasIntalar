@@ -22,4 +22,5 @@ npm install @fortawesome/angular-fontawesome@0.5
 npm install --save @fortawesome/free-brands-svg-icons
 npm install --save @fortawesome/free-regular-svg-icons
 npm install sweetalert2
+npm install @angular/material @angular/cdk @angular/animations --save
 

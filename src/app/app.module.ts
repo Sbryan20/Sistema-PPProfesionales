@@ -15,7 +15,6 @@ import { LeftNavComponent } from './layout/left-nav/left-nav.component';
 import { LeftNavMenuComponent } from './layout/left-nav/left-nav-menu/left-nav-menu.component';
 import { AuthorityComponent } from './modules/super-user/authority/authority.component';
 import { CordinadorvinculacionComponent } from '@modules/cordinadorvinculacion/cordinadorvlist/cordinadorvinculacion.component';
-import { CordinadorcvexistComponent } from '@modules/cordinadorvinculacion/cordinadorcvexist/cordinadorcvexist.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proyectocreate.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,7 +46,6 @@ const modules = [
     LeftNavMenuComponent,
     AuthorityComponent,
     CordinadorvinculacionComponent,
-    CordinadorcvexistComponent,
     ProyectocreateComponent,
     ProyectoresponComponent,
     
