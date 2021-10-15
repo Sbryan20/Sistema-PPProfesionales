@@ -29,237 +29,20 @@
             <!--estudiante-->
             <div class="list-group" *ngSwitchCase="'EST'">
               <a class="list-group-item list-group-item-action bg-dark text-light">
-                <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>Solicitud
+                <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>
+                Ver convocatorias Actuales
               </a>
-    
-              <a
-                href="#dashboard-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-tachometer mr-3" aria-hidden="true"></i>mis
-                solicitudes
+              <a class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>
+                Realizar Solicitud
               </a>
-              <div
-                id="dashboard-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  href=""
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  href=""
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-                <a
-                  href=""
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 3
-                </a>
-              </div>
-    
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                <i class="fa fa-user mr-3" aria-hidden="true"></i>notificacciones
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
             </div>
     
             <!--Responsable PPP -Convocatoria -->
             <div class="list-group" *ngSwitchCase="'RPPP'">
-              <a  href="nav-link"
-              routerLink="/convocatoria" class="list-group-item list-group-item-action bg-dark text-light">
-                Convocatoria
+              <a  [routerLink]="['/panel/proyecto/actrqs']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+                Asignar actividades a Proyectos
               </a>
-              <a
-                href="#dashboard-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                Seleccion e
-                informe
-              </a>
-              <div
-                id="dashboard-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  href="nav-link" routerLink="/seleccion-e"
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Seleccion
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Informe
-                </a>
-                
-              </div>
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                Respuesta al
-                estudiante
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                Recepcion de
-                solicitud
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
-              <a
-                href="#profile-items"
-                data-toggle="collapse"
-                aria-expanded="false"
-                class="list-group-item list-group-item-action bg-dark text-light">
-                Generar informe
-              </a>
-              <div
-                id="profile-items"
-                class="collapse"
-                data-parent="#sidebar-accordion"
-              >
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 1
-                </a>
-                <a
-                  class="
-                    list-group-item list-group-item-action
-                    bg-dark
-                    text-light
-                    pl-5
-                  "
-                >
-                  Item 2
-                </a>
-              </div>
             </div>
     
             <!--Coordinador de carrear -->
@@ -272,11 +55,11 @@
               class="list-group-item list-group-item-action bg-dark text-light"
             >  Crear Nuevo Proyecto
             </a>
-            <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
+            <a [routerLink]="['/panel/proyecto/createmienbros',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light">
               Asignar Miebros del Proyecto
             </a>
-            <a [routerLink]="['/panel/cvinculacion/listcvexist']" routerLinkActive="active"
+            <a [routerLink]="['/panel/proyecto/listar']" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light">
               Ver proyecto Actuales
             </a>

@@ -1,0 +1,82 @@
+<ng-container>
+    <div class="bss-loader">
+       <img  alt=""> 
+    </div>
+  </ng-container>
+  <div class="card border-primary mb-3">
+    <div class="card-header">Cordinadores de Vinculacion</div>
+    <div class="card-body text-primary">
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            </mat-form-field>
+          </div>
+        
+          <mat-table #table [dataSource]="dataSource" >
+        
+            <!-- Position Column -->
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef> Cédula. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="codigo">
+              <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.codigo}} </mat-cell>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="nombre">
+              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="carrera">
+              <mat-header-cell *matHeaderCellDef> Tiulo </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.carrera}} </mat-cell>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="fechaat">
+              <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.fechaat}} </mat-cell>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="actividadeslistProyectos">
+              <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <select class="btn btn-outline-ligth dropdown-toggle">
+                    <option  matNativeControl class="" *ngFor="let carrera  of element.actividadeslistProyectos" disabled selected>{{carrera.descripcion}}</option>
+                  </select>
+              </mat-cell>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="requisitoslistProyectos">
+                <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <select class="btn btn-outline-ligth dropdown-toggle">
+                        <option  matNativeControl class="" *ngFor="let carrera  of element.requisitoslistProyectos" disabled selected>{{carrera.descripcion}}</option>
+                      </select>
+                </mat-cell>
+              </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="boton">
+              <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <div class="col-sm-6">
+                  <button  mat-raised-button color="warn" *ngIf="element.estado else button_asignar" (click)="quitarcv(element)">QUITAR CARGO</button>
+                  <ng-template #button_asignar>
+                      <button  mat-raised-button color="primary" (click)="guardarcv(element)" >DAR CARGO</button> 
+                  </ng-template>
+              </div> </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
+        </div>
+
+    </div>
+</div>

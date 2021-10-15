@@ -1,19 +1,50 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">RESPONSABLES DE PRACTICAS PRE PROFECIONALES</div>
+  <div class="card-body text-primary">
+      <h5 class="card-title">Docente que actualmente lleva el cargo</h5>
+      <table class="table table-bordered table-striped">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Cédula</th>
+                  <th>Fecha Final</th>
+                  <th>Estado</th>
+                  <th>Eliminar</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let resppp of resPPP">
+                <ng-container *ngIf="resppp.estado==true" >
+                  <td>{{resppp.id}}</td>
+                  <td>{{resppp.cedula}}</td>
+                  <td>{{resppp.fecha_fin}}</td>
+                  <td>{{resppp.estado}}</td>
+                  <td>
+                      <button type="button" class="btn btn-danger" >Eliminar</button>
+                  </td>  
+                </ng-container>   
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
 <ng-container>
   <div class="bss-loader">
      <img  alt=""> 
   </div>
 </ng-container>
 <div class="card border-primary mb-3">
-  <div class="card-header">Cordinadores de Vinculacion</div>
-  <div class="card-body text-primary">
+  <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES COMO RESPONSABLES DE PRACTICAS PRE PROFECIONALES </div>
+  <div class="card-body text-primary" *ngIf="habilitar == true">
       <div class="example-container mat-elevation-z8">
         <div class="example-header">
           <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILRAR">
           </mat-form-field>
         </div>
       
-        <mat-table #table [dataSource]="dataSource" >
+        <mat-table #table [dataSource]="dataSourcedoc" >
       
           <!-- Position Column -->
           <ng-container matColumnDef="cedula">
@@ -54,6 +85,13 @@
               <select class="btn btn-outline-ligth dropdown-toggle">
                 <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>
               </select>
+            </mat-cell>
+          </ng-container>
+           <!-- Symbol Column -->
+           <ng-container matColumnDef="fecha">
+            <mat-header-cell *matHeaderCellDef> FECHA FINAL </mat-header-cell>
+            <mat-cell *matCellDef="let element"> 
+              <input type="date" [(ngModel)]="fecha_final">
             </mat-cell>
           </ng-container>
           <!-- Symbol Column -->

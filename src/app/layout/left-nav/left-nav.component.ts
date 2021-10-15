@@ -17,7 +17,7 @@ export class LeftNavComponent implements OnInit {
  
   public faBars=faBars;
   public logo='assets/images/logo.png'  
-  foto=sessionStorage.getItem('photo')
+  public foto?:string;
 
   public menus:ILeftNavMenu[]=LEFT_NAV_MENUS;
   constructor(private title:Title) { }
@@ -25,6 +25,11 @@ export class LeftNavComponent implements OnInit {
   ngOnInit(): void {
     this.persona=JSON.parse(sessionStorage.user);
     this.rolnombre=this.geRolName(JSON.parse(sessionStorage.user).rol);
+    if(JSON.parse(sessionStorage.user).urlFoto==null){
+      this.foto=JSON.parse(sessionStorage.user).urlFoto;
+    }else{
+      this.foto='assets/images/pngwing.com.png'
+    }
     sessionStorage.clear;
     this.title.setTitle('Inicio');
   }

@@ -12,9 +12,17 @@ import { saveAs } from 'file-saver';
 import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
+import { ProyectoService } from '@data/services/api/proyecto.service';
+import Swal from 'sweetalert2';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
+}
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min; 
+}
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 @Component({
@@ -30,109 +38,33 @@ export class ProyectocreateComponent implements OnInit {
   entity:Ientity[]=[];
   listacarrera:Carreras[]=[];
   
-  //Director
-  addForm: FormGroup;
-  rows: FormArray;
-  itemForm?: FormGroup;
-  ////
-  //Docente
-  addFormd: FormGroup;
-  rowsd: FormArray;
-  itemFormd?: FormGroup;
-  ////
 
-  constructor(private fb: FormBuilder,private cvservice:CordinadorvinculacionService,private BondingCoordinationService:BondingCoordinationService,private router:Router,private carreraService:CarreraService) { 
+
+  constructor(private proyectoService:ProyectoService,private cvservice:CordinadorvinculacionService,private BondingCoordinationService:BondingCoordinationService,private router:Router,private carreraService:CarreraService) { 
     this.cvservice.getCvinculacion().subscribe(data=>{
       this.listacvinculacion=data
       console.log(data)
-    })  
+    }) 
 
-    //Director
-    this.addForm = this.fb.group({
-      items: [null, Validators.required],
-      items_value: ['no', Validators.required]
-    });
-    this.rows = this.fb.array([]);
-    ////
-    //Docente
-    this.addFormd = this.fb.group({
-      itemsD: [null, Validators.required],
-      items_valueD: ['no', Validators.required]
-    });
-    this.rowsd = this.fb.array([]);
-    ////
   }
 
   ngOnInit(): void {
     this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
     this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data)
 
-    //DIRECTOR
-    this.addForm.get("items_value")?.setValue("yes");
-    this.addForm.addControl('rows', this.rows);
-    ////
-
-    //DIRECTOR
-    this.addFormd.get("items_valued")?.setValue("yes");
-    this.addFormd.addControl('rowsd', this.rowsd);
-    ////
-
   }
 
-  //DIRECTOR
-  onAddRow() {
-    this.rows.push(this.createItemFormGroup());
-  }
-
-  onRemoveRow(rowIndex:number){
-    this.rows.removeAt(rowIndex);
-  }
-
-  createItemFormGroup(): FormGroup {
-    return this.fb.group({
-      description: null,
-    });
-  }
-  ////
-   //DOCENTE
-   onAddRowd() {
-    this.rowsd.push(this.createItemFormGroupd());
-  }
-
-  onRemoveRowd(rowIndex:number){
-    this.rowsd.removeAt(rowIndex);
-  }
-
-  createItemFormGroupd(): FormGroup {
-    return this.fb.group({
-      description: null,
-    });
-  }
-  ////
-  crearEntidad(){
-
-    
-  }
+ 
   titulo?:string;
  
 
 
-
-  ///
-  selectResponsablePPP (event: any) {
-    
-  }
-  selectDirectorProyecto (event: any) {
-    this.proyectos.directorProyecto=event.target.value;
-  }
-  selectDocenteApoyo (event: any) {
-    this.proyectos.responsablePPP= event.target.value;
-  }
   selectEntidadBeneficaria(event: any) {
     this.proyectos.entidadbeneficiaria= event.target.value;
   }
   selectCarreta(event: any) {
     this.proyectos.codigocarrera= event.target.value;
+    console.log(getRandomArbitrary(0,1000000000000))
   }
   selectEstado(event: any) {
     this.proyectos.estado= event.target.value;
@@ -140,12 +72,25 @@ export class ProyectocreateComponent implements OnInit {
   selectLineaAccion(event: any) {
     this.proyectos.lineaaccion= event.target.value;
   }
-
-
-
-
-
-
+  crearproyecto(){ 
+    console.log(this.proyectos)
+     this.proyectoService.savePr(this.proyectos).subscribe(data =>{
+       Swal.fire({
+        icon: 'success',
+        title: 'Exito',
+        text: 'Proyecto guardado',
+        confirmButtonColor: "#0c3255"   
+      })
+     },err=>{
+      Swal.fire({
+        icon: 'warning',
+        title: 'Al paracer hubo un problema',
+        text: err.error.message,
+        confirmButtonColor: "#0c3255"   
+      }) 
+     }
+     )
+  }
 
 
 

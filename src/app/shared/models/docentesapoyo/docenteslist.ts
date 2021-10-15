@@ -1,6 +1,4 @@
-export class ResponsablePPP {
-    id?:Number;
-    coordinador_id?:string;
+export class DocentesList {
     cedula?:string
     cargo?:string;
     fecha_fin?:Date;

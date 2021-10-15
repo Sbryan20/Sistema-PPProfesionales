@@ -4,13 +4,17 @@ import { ProyectoRoutingModule } from './proecto-routing.module';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProyectoresponComponent } from './proyectorespon/proyectorespon.component';
+import { ProyectomiembrosComponent } from './proyectomiembros/proyectomiembros.component';
+import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
 
 
 
 @NgModule({
   declarations: [
     ProyectocreateComponent,
-    ProyectoresponComponent
+    ProyectoresponComponent,
+    ProyectomiembrosComponent,
+    ProyectolistarComponent
   ],
   imports: [
     CommonModule,

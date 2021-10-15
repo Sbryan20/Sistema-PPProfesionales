@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProyectoService {
-  private urlEndPoint:string='http://localhost:8080/api/vinculacion';
+  private urlEndPoint:string='http://localhost:8080/api/proyectos';
   
   private httpHeaders = new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+JSON.parse(sessionStorage.user).token})
  
@@ -17,7 +17,7 @@ export class ProyectoService {
 
 
   getProyectos():Observable<Proyectos[]>{
-    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Proyectos[]))
+    return this.http.get(this.urlEndPoint+"/all",{headers: this.httpHeaders}).pipe(map(Response => Response as Proyectos[]))
   }
 
   savePr(proyectos: Proyectos):Observable<Proyectos>{

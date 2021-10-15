@@ -4,6 +4,7 @@ export class Proyectos {
     nombre?:string;
     lineaaccion?:string;
     codigocarrera?:string;
+    carrera?:string;
     estado?:boolean;
     fechaat?:string;
     entidadbeneficiaria?:number;

@@ -1,10 +1,10 @@
-export interface Docentes {
-    cedula:              string;
-    nombres_completo:    string;
-    titulo:              string;
-    docente_tipo_tiempo: string;
-    materias:            Materia[];
-    carreas:            Carrera[];
+export class Docentes {
+    cedula?:              string;
+    nombres_completo?:    string;
+    titulo?:              string;
+    docente_tipo_tiempo?: string;
+    materias?:            Materia[];
+    carreas?:            Carrera[];
 }
 
  interface Carrera {

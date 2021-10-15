@@ -26,6 +26,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRippleModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { ProyectomiembrosComponent } from '@modules/proyectos/proyectomiembros/proyectomiembros.component';
+import { ProyectolistarComponent } from '@modules/proyectos/proyectolistar/proyectolistar.component';
+import { ProyectoatvrqsComponent } from '@modules/proyectos/proyectoatvrqs/proyectoatvrqs.component';
+
 
 const modules = [
   MatButtonModule,
@@ -48,6 +52,9 @@ const modules = [
     CordinadorvinculacionComponent,
     ProyectocreateComponent,
     ProyectoresponComponent,
+    ProyectomiembrosComponent,
+    ProyectolistarComponent,
+    ProyectoatvrqsComponent
     
   ],
   imports: [
