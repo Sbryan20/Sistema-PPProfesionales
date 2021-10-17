@@ -29,6 +29,7 @@ import { MatTableModule } from '@angular/material/table';
 import { ProyectomiembrosComponent } from '@modules/proyectos/proyectomiembros/proyectomiembros.component';
 import { ProyectolistarComponent } from '@modules/proyectos/proyectolistar/proyectolistar.component';
 import { ProyectoatvrqsComponent } from '@modules/proyectos/proyectoatvrqs/proyectoatvrqs.component';
+import { AlumnoconvocatoriaComponent } from '@modules/proyectos/alumnoconvocatoria/alumnoconvocatoria.component';
 
 
 const modules = [
@@ -54,7 +55,9 @@ const modules = [
     ProyectoresponComponent,
     ProyectomiembrosComponent,
     ProyectolistarComponent,
-    ProyectoatvrqsComponent
+    ProyectoatvrqsComponent,
+    AlumnoconvocatoriaComponent
+    
     
   ],
   imports: [

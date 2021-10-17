@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="dsc-left-nav-usr">
-  <div class="dsc-left-nav-usr__avatar"  [ngStyle]="{'background-image': 'url('+persona.urlFoto+')'}">
+  <div class="dsc-left-nav-usr__avatar"  [ngStyle]="{'background-image': 'url('+foto+')'}">
   </div>
   <h6 class="dsc-left-nav-usr__position">{{rolnombre}}</h6>
 </div>
@@ -27,8 +27,8 @@
             </div>
     
             <!--estudiante-->
-            <div class="list-group" *ngSwitchCase="'EST'">
-              <a class="list-group-item list-group-item-action bg-dark text-light">
+            <div class="list-group" *ngSwitchCase="'EST'">     
+              <a [routerLink]="['/panel/proyecto/convocatoria',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light">
                 <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>
                 Ver convocatorias Actuales
               </a>
@@ -43,7 +43,7 @@
               <a  [routerLink]="['/panel/proyecto/actrqs']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Asignar actividades a Proyectos
               </a>
-              <a  [routerLink]="['/panel/proyecto/convoprecticas']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+              <a  [routerLink]="['/panel/proyecto/convopracticas']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Crear convocatorias
               </a>
             </div>

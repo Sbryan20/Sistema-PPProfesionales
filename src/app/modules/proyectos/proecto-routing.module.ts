@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
@@ -30,9 +31,13 @@ const routes: Routes = [
       component: ProyectoatvrqsComponent
     },
     {
-      path: 'convoprecticas',
+      path: 'convopracticas',
       component: CompracticasComponent
-    }    
+    },
+    {
+      path: 'convocatoria/:cedula',
+      component: AlumnoconvocatoriaComponent
+    }     
 ];
 
 @NgModule({

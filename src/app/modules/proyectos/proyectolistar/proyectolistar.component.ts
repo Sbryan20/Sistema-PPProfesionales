@@ -10,7 +10,7 @@ import { Proyectos } from '@shared/models/proyecto';
 })
 export class ProyectolistarComponent implements OnInit {
 //Filtrar
-public displayedColumns = ['id', 'codigo', 'nombre', 'carrera','fechaat','actividadeslistProyectos','requisitoslistProyectos','boton'];
+public displayedColumns = ['id', 'codigo', 'nombre', 'carrera','fechaat','actividadeslistProyectos','requisitoslistProyectos'];
 public dataSource
 public listaproyctos: Proyectos[]=[];
 applyFilter(filterValue: string) {

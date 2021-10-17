@@ -7,6 +7,7 @@ import { ProyectoresponComponent } from './proyectorespon/proyectorespon.compone
 import { ProyectomiembrosComponent } from './proyectomiembros/proyectomiembros.component';
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
+import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 
 
 
@@ -16,7 +17,8 @@ import { CompracticasComponent } from './compracticas/compracticas.component';
     ProyectoresponComponent,
     ProyectomiembrosComponent,
     ProyectolistarComponent,
-    CompracticasComponent
+    CompracticasComponent,
+    AlumnoconvocatoriaComponent
   ],
   imports: [
     CommonModule,

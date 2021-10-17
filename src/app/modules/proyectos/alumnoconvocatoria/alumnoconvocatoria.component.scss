@@ -1,0 +1,12 @@
+.float-container {
+    float: left;
+    width: 400px;
+    height: min-content;
+    padding: 3px;
+  }
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  

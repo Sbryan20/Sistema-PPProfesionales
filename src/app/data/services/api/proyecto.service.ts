@@ -30,6 +30,11 @@ export class ProyectoService {
 
   }
 
+  updatePr(proyectos: Proyectos):Observable<Proyectos>{
+    console.log(proyectos);
+    return this.http.put<Proyectos>(this.urlEndPoint+"/update",proyectos,{headers: this.httpHeaders})
+  }
+
 
 
 }

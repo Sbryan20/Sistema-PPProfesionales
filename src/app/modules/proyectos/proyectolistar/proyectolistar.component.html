@@ -61,18 +61,7 @@
                       </select>
                 </mat-cell>
               </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="boton">
-              <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                <div class="col-sm-6">
-                  <button  mat-raised-button color="warn" *ngIf="element.estado else button_asignar" (click)="quitarcv(element)">QUITAR CARGO</button>
-                  <ng-template #button_asignar>
-                      <button  mat-raised-button color="primary" (click)="guardarcv(element)" >DAR CARGO</button> 
-                  </ng-template>
-              </div> </mat-cell>
-            </ng-container>
-        
+          
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>

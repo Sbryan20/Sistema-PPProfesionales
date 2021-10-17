@@ -11,8 +11,79 @@
         <option></option>
       </select>
   </tr>
-  </table>
-  <h5>DOCENTES SELECIONADOS</h5>
+</table>
+   <!-- table -->
+<ng-container>
+  <div class="bss-loader">
+     <img  alt=""> 
+  </div>
+</ng-container>
+<div class="card border-primary mb-3">
+  <div class="card-header">Cordinadores de Vinculacion</div>
+  <div class="card-body text-primary">
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+      
+        <mat-table #table [dataSource]="dataSource" >
+      
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="codigo">
+            <mat-header-cell *matHeaderCellDef> CODGO </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.codigo}} </mat-cell>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="nombre">
+            <mat-header-cell *matHeaderCellDef> NOMBRES </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nombre}} </mat-cell>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="boton">
+            <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div class="col-sm-6">
+                <button  mat-raised-button color="primary" mat-raised-button color="primary"  (click)="onAddRowR(element.nombre)" *ngIf="addFormR.get('rowsR')">Agregar</button>
+            </div> </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+  </div>
+</div>
+  <!-- Array requisitos -->
+  <h5>REQUISITOS</h5>
+  <div class="bss-table-borderless" [formGroup]="addFormR">
+    <div class="form-group">
+      <br>	
+      <table class="table table-bordered table-striped" style="border: transparent;">
+        <thead>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of addFormR.get('rowsR')?.controls;let index = index;">
+            <td>
+              descripcion : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+            </td>
+            <td>
+              <button mat-raised-button color="warn" (click)="onRemoveRowR(index)">QUITAR</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <!-- table -->
+  <h5>ACTIVIDADES</h5>
   <div class="bss-table-borderless" [formGroup]="addForm">
     <div class="form-group">
       <br>	
@@ -23,12 +94,17 @@
         <tbody>
           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
             <td>
-              descripciones : <input type="text" class="form-control" [formControl]="row.get('descripciones')">
+              descripcion : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+            </td>
+            <td>
+              <button mat-raised-button color="warn" (click)="onRemoveRow(index)">QUITAR</button>
             </td>
           </tr>
         </tbody>
-
       </table>
     </div>
-    <pre> {{rows.value | json}}</pre>
+
+<ng-container >
+  <button mat-raised-button color="primary" (click)=" update()">GUARDAR</button>
+</ng-container>
    
