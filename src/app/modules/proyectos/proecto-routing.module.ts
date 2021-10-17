@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CompracticasComponent } from './compracticas/compracticas.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
@@ -9,7 +10,7 @@ import { ProyectoresponComponent } from './proyectorespon/proyectorespon.compone
 
 const routes: Routes = [
     {
-        path: 'create',
+        path: 'create/:cedula',
         component: ProyectocreateComponent
     },
     {
@@ -17,7 +18,7 @@ const routes: Routes = [
       component: ProyectoresponComponent
     },
     {
-      path: 'createmienbros/:cedula',
+      path: 'createmienbros/:cedula/:nombrescompletos',
       component: ProyectomiembrosComponent
     },
     {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
       path: 'actrqs',
       component: ProyectoatvrqsComponent
+    },
+    {
+      path: 'convoprecticas',
+      component: CompracticasComponent
     }    
 ];
 

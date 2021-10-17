@@ -29,11 +29,6 @@
           </tr>
           <tr>
             <table style="width:95%; height:90%;" class="table table-bordered">
-              <thead>
-                <tr>
-                  <td colspan="4" scope="col " ><strong>CÓDIGO PROYECTO:</strong><input type="text" class="form-control" value="" placeholder="codigo" class="col-md-5" style="background-color:transparent; " [(ngModel)]="proyectos.codigo" name="codigoproyecyo" required /> </td>
-                </tr>
-              </thead>
               <tbody>
                 <tr>
                   <th colspan="4" scope="col " ><strong>FECHA CREACIÓN:</strong>
@@ -54,7 +49,7 @@
                 <tr>
                   <td > <strong>CARRERA:</strong><select class="form-control" (change)="selectCarreta($event)" style="width: 100%;" name="select">
                     <option value="SL">Seleccione</option>
-                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> {{item.codigo}}-{{item.nombre}}</option>
+                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> <ng-container *ngIf="item.codigo==carrera"> {{item.codigo}}-{{item.nombre}}</ng-container></option>
                   </select></td>
                   <td colspan="3"> <strong>Estado: </strong><select class="form-control" (change)="selectEstado($event)" style="width: 100%;" name="select">
                     <option value="true">TRUE</option>
@@ -68,7 +63,15 @@
                       <option *ngFor="let item of entity" [value]="item.idEntidad"> {{item.idEntidad}}-{{item.nombre}} {{item.representante}}</option>
                       </select> 
                   </th>
-                </tr>  
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>Responsables</strong>
+                    <select class="form-control" (change)="selectResposablepp($event)" style="width: 100%;" name="select">
+                      <option value="SL">Seleccione</option>
+                      <option *ngFor="let resppp of resPPP"  [value]="resppp.id"> <ng-container *ngIf="resppp.estado==true" >{{resppp.id}}-{{resppp.cedula}}</ng-container></option>
+                      </select> 
+                  </th>
+                </tr>    
               </tbody>
             </table>
             

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarreraService } from '@data/services/api/carrera.service';
 import { CordinadorvinculacionService } from '@data/services/api/cordinadorvinculacion.service';
 import { Carreras } from '@shared/models/carrera';
@@ -14,6 +14,9 @@ import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
 import { ProyectoService } from '@data/services/api/proyecto.service';
 import Swal from 'sweetalert2';
+import { ResposablepppService } from '@data/services/api/resposableppp.service';
+import { ResponsablePPP } from '@shared/models/responsableppp';
+import { CarreasDoc } from '@shared/models/dto/carrerasdo';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -35,12 +38,15 @@ export class ProyectocreateComponent implements OnInit {
   public secretaria='assets/images/Secretaria.png'  
   listacvinculacion: CordinadorVinculacion[]=[];
   proyectos:Proyectos = new Proyectos();
+  resPPP:ResponsablePPP[]=[];
   entity:Ientity[]=[];
   listacarrera:Carreras[]=[];
-  
+  nombre?:String;
+  private cedula?:string;
+  public carrera?: string;
 
 
-  constructor(private proyectoService:ProyectoService,private cvservice:CordinadorvinculacionService,private BondingCoordinationService:BondingCoordinationService,private router:Router,private carreraService:CarreraService) { 
+  constructor(private pesposablepppServiceprivate:ResposablepppService, private proyectoService:ProyectoService,private cvservice:CordinadorvinculacionService,private BondingCoordinationService:BondingCoordinationService,private router:Router,private carreraService:CarreraService,private activatedRoute: ActivatedRoute) { 
     this.cvservice.getCvinculacion().subscribe(data=>{
       this.listacvinculacion=data
       console.log(data)
@@ -49,6 +55,19 @@ export class ProyectocreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe( params => {
+      let cedula = params['cedula']
+      this.cedula=cedula;
+      console.log(this.cedula)
+    })
+    this.pesposablepppServiceprivate.getcarrera(this.cedula+"").subscribe(data=>{
+      for(let carrera of data){
+        this.carrera=carrera.codigo;
+        console.log(this.carrera)}
+    })
+    this.pesposablepppServiceprivate.cargarresponsables().subscribe(cres=>{
+      this.resPPP=cres;
+    })
     this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
     this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data)
 
@@ -72,24 +91,29 @@ export class ProyectocreateComponent implements OnInit {
   selectLineaAccion(event: any) {
     this.proyectos.lineaaccion= event.target.value;
   }
+  selectResposablepp(event: any) {
+    this.proyectos.responsablePPP= event.target.value;
+  }
   crearproyecto(){ 
+    this.proyectos.codigo="Proyecto "+getRandomArbitrary(0,1000000000000)
     console.log(this.proyectos)
-     this.proyectoService.savePr(this.proyectos).subscribe(data =>{
-       Swal.fire({
+    this.proyectoService.savePr(this.proyectos).subscribe(data=>{
+      Swal.fire({
         icon: 'success',
-        title: 'Exito',
-        text: 'Proyecto guardado',
+        title: 'Creacién de proyecto',
+        text: 'Proyecto creado correctamente',
         confirmButtonColor: "#0c3255"   
-      })
-     },err=>{
+      }) 
+    },err=>{
       Swal.fire({
         icon: 'warning',
         title: 'Al paracer hubo un problema',
         text: err.error.message,
         confirmButtonColor: "#0c3255"   
       }) 
-     }
-     )
+
+    }
+    )
   }
 
 

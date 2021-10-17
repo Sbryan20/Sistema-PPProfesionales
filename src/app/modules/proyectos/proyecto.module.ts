@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProyectoresponComponent } from './proyectorespon/proyectorespon.component';
 import { ProyectomiembrosComponent } from './proyectomiembros/proyectomiembros.component';
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
+import { CompracticasComponent } from './compracticas/compracticas.component';
 
 
 
@@ -14,7 +15,8 @@ import { ProyectolistarComponent } from './proyectolistar/proyectolistar.compone
     ProyectocreateComponent,
     ProyectoresponComponent,
     ProyectomiembrosComponent,
-    ProyectolistarComponent
+    ProyectolistarComponent,
+    CompracticasComponent
   ],
   imports: [
     CommonModule,

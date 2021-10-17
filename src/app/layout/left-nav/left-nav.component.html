@@ -43,6 +43,9 @@
               <a  [routerLink]="['/panel/proyecto/actrqs']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Asignar actividades a Proyectos
               </a>
+              <a  [routerLink]="['/panel/proyecto/convoprecticas']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+                Crear convocatorias
+              </a>
             </div>
     
             <!--Coordinador de carrear -->
@@ -51,11 +54,11 @@
               class="list-group-item list-group-item-action bg-dark text-light"
             >  Asignar Responsable PPP
             </a>
-              <a [routerLink]="['/panel/proyecto/create']" routerLinkActive="active"
+              <a [routerLink]="['/panel/proyecto/create',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
             >  Crear Nuevo Proyecto
             </a>
-            <a [routerLink]="['/panel/proyecto/createmienbros',persona.cedula]" routerLinkActive="active"
+            <a [routerLink]="['/panel/proyecto/createmienbros',persona.cedula,persona.nombrescompletos]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light">
               Asignar Miebros del Proyecto
             </a>

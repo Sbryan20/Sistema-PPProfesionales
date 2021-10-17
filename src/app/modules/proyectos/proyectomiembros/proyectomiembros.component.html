@@ -2,24 +2,21 @@
   <tr >
     <th> <h5>ASIGNACION DE DERECTOR Y DOCENTES DE APOYO</h5></th>
     <th>
-      <button  mat-raised-button color="primary" (click)="savemienbros()"style="position: absolute;">GUARDAR</button>
+      <button  mat-raised-button  (click)="directores()"  color="primary" style="position: absolute;">GUARDAR</button>
   </th>
   </tr>
-  
+
   <br>
   <tr >
-    <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select [(ngModel)]="proyectopoin" (change)="selectProyecto()" class="form-control"  style="width: 100%;" name="select">
+    <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select  (change)="selectProyecto($event)" class="form-control"  style="width: 100%;" name="select">
       <option value="SL">Seleccione</option>
-      <option *ngFor="let item of listproyecto" [value]="item">{{item.id}}- -{{item.nombre}}- -{{item.carrera}}</option>
+      <option *ngFor="let item of listproyecto" [value]="item.id">{{item.id}}- -{{item.nombre}}- -{{item.carrera}}</option>
       <option></option>
     </select> </th>
-    <td colspan="2"> <strong>SELECCIONE UN DIRECTOR DE PROYECTO</strong> <select class="form-control" style="width: 100%;" name="select">
+    <td colspan="2"> <strong>SELECCIONE UN DIRECTOR DE PROYECTO</strong> <select (change)="selectDirectorProyecto($event)" class="form-control" style="width: 100%;" name="select">
       <option value="SL">Seleccione</option>
       <option *ngFor="let item of Docs" [value]="item.cedula">{{item.cedula}}- -{{item.nombres_completo}}- -{{item.titulo}}</option>
     </select> </td>
-  <td colspan="2"> <strong>FECHA FINAL </strong> 
-    <input type="date" class="form-control" style="width: 100%;" >
-   </td>
 </tr>
 </table>
 <ng-container>
@@ -80,19 +77,12 @@
                 </select>
               </mat-cell>
             </ng-container>
-             <!-- Symbol Column -->
-             <ng-container matColumnDef="fecha">
-              <mat-header-cell *matHeaderCellDef> FECHA FINAL </mat-header-cell>
-              <mat-cell *matCellDef="let element"> 
-                <input type="date" [(ngModel)]="fecha_final">
-              </mat-cell>
-            </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="boton">
               <mat-header-cell *matHeaderCellDef> ASIGNAR </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 <div class="col-sm-6">
-                  <button  mat-raised-button color="primary" (click)="guardar(element)">ASIGNAR</button>
+                  <button  mat-raised-button color="primary" (click)="guardar(element,'apoyo')">ASIGNAR</button>
               </div> </mat-cell>
             </ng-container>
             
@@ -103,7 +93,6 @@
   
     </div>
   </div>
-  <button  mat-raised-button color="primary" (click)="guardar()">ASIGNAR</button>
-  <input type="file" angular-file-to-base64 (change)="base($event)" />
-  <button  (click)="convertFile()">¡dsfds</button>
+  <pre>{{docentesRoles|json}}</pre>
+ 
 

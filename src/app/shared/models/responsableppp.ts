@@ -5,4 +5,5 @@ export class ResponsablePPP {
     cargo?:string;
     fecha_fin?:Date;
     estado?:boolean
+    codigoCarrera?:string
 }

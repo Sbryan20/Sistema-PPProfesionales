@@ -15,6 +15,9 @@ import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
 import Swal from 'sweetalert2';
+import { Anexo1 } from '@shared/models/anexos/anexo1';
+import { Anexo1Service } from '@data/services/api/anexo1.service';
+import { DocentesDirector } from '@shared/models/docentesapoyo/docentesdirecto';
 
 //DOCX
 function loadFile(url, callback) {
@@ -28,6 +31,8 @@ function loadFile(url, callback) {
 
 export class ProyectomiembrosComponent implements OnInit {
   public Docs:Docentes[]=[];
+  public director:DocentesDirector= new DocentesDirector;
+  public directorAnexo:Docentes = new Docentes()
   public docentes:Docentes = new Docentes();
   public publicresPPP:ResponsablePPP[]=[];
   public proyecto:Proyectos= new Proyectos();
@@ -43,8 +48,9 @@ export class ProyectomiembrosComponent implements OnInit {
   public responsable:ResponsablePPP=new ResponsablePPP();
   public habilitar?: boolean= false;
   public fecha_final?:Date;
+  public nombrecordindor?:String
   //BASE 64
-  docum!: String;
+  docum?:string
   file;
   //
 
@@ -54,7 +60,7 @@ export class ProyectomiembrosComponent implements OnInit {
      itemForm?: FormGroup;
      ////
   
-  constructor(private fb: FormBuilder,private sysdateservice:SysdateService,private proyectoService:ProyectoService,private resposableppservice:ResposablepppService,private router:Router,private activatedRoute: ActivatedRoute) { 
+  constructor(private anexo1Service:Anexo1Service,private fb: FormBuilder,private sysdateservice:SysdateService,private proyectoService:ProyectoService,private resposableppservice:ResposablepppService,private router:Router,private activatedRoute: ActivatedRoute) { 
     //Director
     this.addForm = this.fb.group({
       items: [null, Validators.required],
@@ -67,7 +73,10 @@ export class ProyectomiembrosComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
+      let nombre = params['nombrescompletos']
+      console.log(nombre)
       this.cedula=cedula;
+      this.nombrecordindor=nombre;
     })
     this.resposableppservice.cargardocente().subscribe(resp =>{
       this.Docs=resp
@@ -106,7 +115,7 @@ export class ProyectomiembrosComponent implements OnInit {
   ////
 
 
-public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo_tiempo','materias','carreas','fecha','boton'];
+public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo_tiempo','materias','carreas','boton'];
  public dataSourcedoc
 
  applyFilter(filterValue: string) {
@@ -114,19 +123,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSourcedoc.filter = filterValue;
   }
-
-  selectProyecto() {
-    this.proyecto=this.proyectopoin
-    console.log(this.proyecto)
  
-  }
-//GUARDAR
- savemienbros(){
-  this.docenteslist=this.rows.getRawValue()
-  this.docentesRoles.cedula=this.cedula;
-  this.docentesRoles.docentes=this.docenteslist;
-  console.log(this.docentesRoles)
- }
 
   //Filtrar
 
@@ -139,12 +136,53 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
    setHabilitar(): void{
     this.habilitar=(this.habilitar==true)? false: true;
   }
-
-  selectDirectorProyecto (event: any) {
-    
+  
+  anexo1: Anexo1 = new Anexo1;
+  selectProyecto(event:any) {
+    this.proyectoService.getProtectid(event.target.value).subscribe(data=>{
+      this.anexo1.nombreCarrera=data.carrera;
+      this.anexo1.nombreProyecto=data.nombre
+      this.anexo1.idProyectoPPP=data.id;
+      this.docentesRoles.idProyecto=data.id
+      this.director.idProyecto=data.id
+      this.anexo1.siglasCarrera=data.codigocarrera;
+    })
+  }
+  Anexo1(docentes: Docentes,rol:String):Anexo1{
+    this.anexo1.fechaDelegacion=this.sysdate;
+    this.anexo1.fechaDelegado=this.sysdate;
+    this.anexo1.docenteTitulo=docentes.titulo;
+    this.anexo1.cedulaDelegado=docentes.cedula;
+    this.anexo1.nombreDelegado=docentes.nombres_completo;
+    this.anexo1.nombreRol=rol;
+    this.anexo1.cedulaCoordinador=this.cedula;
+    this.anexo1.nombreCoordinador=this.nombrecordindor
+    return this.anexo1;
+  }
+  DocenteApoyo(docentes: Docentes,rol:String){
+    this.docenteslist.length=0;
+    this.docenteslist.push({
+      cedula:docentes.cedula,
+      cargo:rol+"",
+      estado:true
+    })
+    this.docentesRoles.coordinador_id=this.cedula;
+    this.docentesRoles.docentes=this.docenteslist;
+  }
+  selectDirectorProyecto (event: any) { 
+    this.resposableppservice.getDocenteId(event.target.value).subscribe(data=>{
+      this.directorAnexo=data;
+      this.director.cedula=data.cedula
+    })
+  }
+  directores(){
+    this.director.coordinador_id=this.cedula;
+    this.director.estado=true;
+    this.guardardirec(this.directorAnexo,"director")
   }
 
-  guardar(){
+  guardardirec(docentes: Docentes,rol:String){
+    console.log(docentes);
     Swal.fire({
       title: 'Esta serguro?',
       text: "Una ves se le asigne el rol no lo podra cambiar!",
@@ -156,6 +194,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
       confirmButtonText: 'Si, deacuerdo!'
     }).then(async (result) => {
       if (result.isConfirmed) {
+        this.generate(this.Anexo1(docentes,rol));
         const { value: file } = await Swal.fire({
           allowOutsideClick: false,
           title: 'SELECCIONE EL PDF',
@@ -169,16 +208,116 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
             return new Promise((resolve) => {
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
-              } else {
-                resolve('')
-                this.base(value)
+              } else {            
+                this.base(value) 
+                this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
+                  
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Anexo',
+                    text: 'Proyecto creado correctamente',
+                    confirmButtonColor: "#0c3255"   
+                  }) 
+                  this.resposableppservice.saverdirector(this.director).subscribe(date=>{
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Anexo',
+                    text: 'Persona creado correctamente',
+                    confirmButtonColor: "#0c3255"   
+                  }) },err=>{
+                    Swal.fire({
+                      icon: 'warning',
+                      title: 'Al paracer hubo un problema',
+                      text: err.error.message,
+                      confirmButtonColor: "#0c3255"   
+                    }) 
+                  })
+                },err=>{
+                  Swal.fire({
+                    icon: 'warning',
+                    title: 'Al paracer hubo un problema',
+                    text: err.error.message,
+                    confirmButtonColor: "#0c3255"   
+                  }) 
+
+                })
+                resolve('')             
               }
             })
           }
         })
       }
     })
-   
+  }
+  guardar(docentes: Docentes,rol:String){
+    this.DocenteApoyo(docentes,rol)
+    Swal.fire({
+      title: 'Esta serguro?',
+      text: "Una ves se le asigne el rol no lo podra cambiar!",
+      icon: 'warning',
+      allowOutsideClick: false,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, deacuerdo!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        this.generate(this.Anexo1(docentes,rol));
+        const { value: file } = await Swal.fire({
+          allowOutsideClick: false,
+          title: 'SELECCIONE EL PDF',
+          text:'Debe subir la covocataria en tipo PDF',
+          input: 'file',
+          inputAttributes: {
+            'accept': 'application/pdf',
+            'aria-label': 'Debe subir la covocataria en tipo PDF'
+          },
+          inputValidator: (value) => {
+            return new Promise((resolve) => {
+              if (value === null) {
+                resolve('Es necesario que seleccione el PDF')
+              } else {            
+                this.base(value) 
+                console.log(this.docentesRoles)
+                this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
+                  
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Anexo',
+                    text: 'Proyecto creado correctamente',
+                    confirmButtonColor: "#0c3255"   
+                  }) 
+                  this.resposableppservice.saverapoyo(this.docentesRoles).subscribe(date=>{
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'Anexo',
+                    text: 'Persona creado correctamente',
+                    confirmButtonColor: "#0c3255"   
+                  }) },err=>{
+                    Swal.fire({
+                      icon: 'warning',
+                      title: 'Al paracer hubo un problema',
+                      text: err.error.message,
+                      confirmButtonColor: "#0c3255"   
+                    }) 
+                  })
+                },err=>{
+                  Swal.fire({
+                    icon: 'warning',
+                    title: 'Al paracer hubo un problema',
+                    text: err.error.message,
+                    confirmButtonColor: "#0c3255"   
+                  }) 
+
+                })
+                resolve('')             
+              }
+            })
+          }
+        })
+      }
+    })
+  
   }
 
 
@@ -187,7 +326,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
 
 
 //Docs
-  generate(docentes: Docentes,fecha:String,proyecto:Proyectos) {
+  generate(anexo1: Anexo1) {
 
     loadFile(
       
@@ -204,16 +343,15 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
         });
         try {
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-          doc.render({
-              
-              fecha: fecha,
-              titulo: docentes.titulo,
-              nombre_docente: docentes.nombres_completo,
-              nombre_carrera: proyecto.codigocarrera,
-              rol:"DOCENTE DE APOYO",
-              nombre_proyecto: proyecto.nombre,
-              nombre_coordinador:"dsfdsfd",
-              siglas:proyecto.codigocarrera
+          doc.render({             
+              fecha: anexo1.fechaDelegacion,
+              titulo: anexo1.docenteTitulo,
+              nombre_docente: anexo1.nombreDelegado,
+              nombre_carrera: anexo1.nombreCarrera,
+              rol:anexo1.nombreRol,
+              nombre_proyecto: anexo1.nombreProyecto,
+              nombre_coordinador:anexo1.nombreCoordinador,
+              siglas:anexo1.siglasCarrera
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
@@ -238,20 +376,18 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
         // Output the document using Data-URI
-        saveAs(out, 'Convocataria mienbros.docx');
+        saveAs(out, 'Convocataria miembros.docx');
       }
     );
   }
-  ///TRAFORMAR BASE64
-
+  ///TRAFORMAR BASE64;
   base(event: any){
     const file = event;
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.docum = reader.result + '';
-      console.log(reader.result) 
-    };
+      this.anexo1.documento=reader.result+''
+    };   
   }
 
   //convert a pdf

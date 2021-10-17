@@ -7,7 +7,7 @@
               <tr>
                   <th>ID</th>
                   <th>Cédula</th>
-                  <th>Fecha Final</th>
+                  <th>Carrera</th>
                   <th>Estado</th>
                   <th>Eliminar</th>
               </tr>
@@ -17,10 +17,10 @@
                 <ng-container *ngIf="resppp.estado==true" >
                   <td>{{resppp.id}}</td>
                   <td>{{resppp.cedula}}</td>
-                  <td>{{resppp.fecha_fin}}</td>
+                  <td>{{resppp.codigoCarrera}}</td>
                   <td>{{resppp.estado}}</td>
                   <td>
-                      <button type="button" class="btn btn-danger" >Eliminar</button>
+                      <button type="button" (click)="quitar(resppp)" class="btn btn-danger" >Eliminar</button>
                   </td>  
                 </ng-container>   
               </tr>
@@ -88,13 +88,6 @@
             </mat-cell>
           </ng-container>
            <!-- Symbol Column -->
-           <ng-container matColumnDef="fecha">
-            <mat-header-cell *matHeaderCellDef> FECHA FINAL </mat-header-cell>
-            <mat-cell *matCellDef="let element"> 
-              <input type="date" [(ngModel)]="fecha_final">
-            </mat-cell>
-          </ng-container>
-          <!-- Symbol Column -->
           <ng-container matColumnDef="boton">
             <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
             <mat-cell *matCellDef="let element">

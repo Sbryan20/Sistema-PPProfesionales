@@ -25,4 +25,11 @@ export class ProyectoService {
     return this.http.post<Proyectos>(this.urlEndPoint+"/save",proyectos,{headers: this.httpHeaders})
   }
 
+  getProtectid(id:number):Observable<Proyectos>{
+    return this.http.get(this.urlEndPoint+"/"+id,{headers: this.httpHeaders}).pipe(map(Response => Response as Proyectos))
+
+  }
+
+
+
 }

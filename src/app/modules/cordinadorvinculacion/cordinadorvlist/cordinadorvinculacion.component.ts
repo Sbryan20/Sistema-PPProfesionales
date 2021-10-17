@@ -43,6 +43,8 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
     }) 
   }
 
+  
+
   quitarcv(docente:CordinadorVinculacion){
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {

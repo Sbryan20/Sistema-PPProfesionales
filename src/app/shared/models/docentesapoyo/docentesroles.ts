@@ -1,7 +1,7 @@
 import { DocentesList } from "./docenteslist";
 
 export class DocentesRoles {
-    cedula?:string
+    coordinador_id?:string
     docentes?:DocentesList[]=[]
     idProyecto?:number;
 
