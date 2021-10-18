@@ -11,7 +11,7 @@ import { Personas } from '../../shared/models/persona';
 export class LoginServiceService {
   private urlEndPoint:string='http://localhost:8080/api/auth';
   
-  private httpHeaders = new HttpHeaders({'Content-Type':'application/json','Authorization':'Bearer '+JSON.parse(sessionStorage.user).token})
+  private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
 
   constructor(private http:HttpClient) { }
 

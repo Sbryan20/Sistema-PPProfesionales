@@ -30,6 +30,7 @@ import { ProyectomiembrosComponent } from '@modules/proyectos/proyectomiembros/p
 import { ProyectolistarComponent } from '@modules/proyectos/proyectolistar/proyectolistar.component';
 import { ProyectoatvrqsComponent } from '@modules/proyectos/proyectoatvrqs/proyectoatvrqs.component';
 import { AlumnoconvocatoriaComponent } from '@modules/proyectos/alumnoconvocatoria/alumnoconvocatoria.component';
+import { CompracticasComponent } from './modules/proyectos/compracticas/compracticas.component';
 
 
 const modules = [
@@ -56,7 +57,8 @@ const modules = [
     ProyectomiembrosComponent,
     ProyectolistarComponent,
     ProyectoatvrqsComponent,
-    AlumnoconvocatoriaComponent
+    AlumnoconvocatoriaComponent,
+    CompracticasComponent
     
     
   ],

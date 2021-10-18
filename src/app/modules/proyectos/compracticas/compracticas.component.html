@@ -1,1 +1,106 @@
-<p>compracticas works!</p>
+<form ngNativeValidate (ngSubmit)="generarAnexo()">
+    <table class="table table-striped table-responsive-md btn-table">
+      <tr>
+        <th>
+          <h5>Creacion de convocatoria</h5>
+        </th>
+      </tr>
+      <tr>
+        <th scope="row" style="width: 50%;">
+          <strong>SELECCIONE UN PROYECTO: </strong>
+          <select
+            (change)="selectProyecto($event)"
+            class="form-control"
+            style="width: 100%"
+            name="select"
+            required
+          >
+            <option value="SL">Seleccione</option>
+            <option *ngFor="let item of listproyecto" [value]="item.id">
+              {{ item.nombre }}
+            </option>
+            <option></option>
+          </select>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>Carrera: {{proyecto.carrera}} </p>
+        </th>
+        <th>
+          <p>Nombre del proyecto a participar: {{proyecto.nombre}}</p>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <p>Entidad beneficiaria: {{entidad.nombre}}</p> 
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <strong>Convoca a los estudiantes de los ciclos </strong><input type="text" required [(ngModel)]="anexo2.ciclo" name="ciclo">  
+        </th>
+        <th>
+          <strong>Numero de convocatoria </strong>
+          <input type="text" required [(ngModel)]="anexo2.numeroConvocatoria" name="numeroConvocatoria">
+        </th>
+      </tr>  
+      <tr>
+        <th>
+          <strong>Fecha maxima de recepcion de solicitudes:</strong>
+          <input type="date" [(ngModel)]="anexo2.fechaMaxRecepcion" name="fechaMaxRecepcion" required /> 
+        </th>
+      </tr>
+  
+      <tr>
+        <th>
+          <h3>Avtividades</h3>
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <strong>Descricpcion de actividad: </strong><br>
+          <strong>Fecha inicio: </strong> <br>
+          <strong>Fecha fin:    </strong>
+        </th>
+        <th>
+          <input type="text" required> <br>
+          <input type="date" [(ngModel)]="anexo2.fechaMaxRecepcion" name="fechaMaxRecepcion" required /> <br>
+          <input type="date" >
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <strong>Descricpcion de actividad: </strong><br>
+          <strong>Fecha inicio: </strong> <br>
+          <strong>Fecha fin:    </strong>
+        </th>
+        <th>
+          <input type="text" required> <br>
+          <input type="date" required /> <br>
+          <input type="date" >
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <strong>Descricpcion de actividad: </strong><br>
+          <strong>Fecha inicio: </strong> <br>
+          <strong>Fecha fin:    </strong>
+        </th>
+        <th>
+          <input type="text" required> <br>
+          <input type="date" required /> <br>
+          <input type="date" >
+        </th>
+      </tr>
+      <tr>
+        <th>
+          <strong>Email</strong><input type="email">
+        </th>
+      </tr>
+    </table>
+    <button class="btn btn-primary">GUARDAR</button>&nbsp;&nbsp;
+  </form>
+    
+  
+  

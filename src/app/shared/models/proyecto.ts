@@ -22,3 +22,10 @@ interface actividadeslistProyectos {
     descripcion: string;
 }
 
+export class listproyect{
+    id?:number;
+    carrera?:String;
+    nombre?:String;
+    nombreresponsable?:String;
+    
+}

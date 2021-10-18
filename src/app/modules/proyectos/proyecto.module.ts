@@ -18,7 +18,8 @@ import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocat
     ProyectomiembrosComponent,
     ProyectolistarComponent,
     CompracticasComponent,
-    AlumnoconvocatoriaComponent
+    AlumnoconvocatoriaComponent,
+    CompracticasComponent
   ],
   imports: [
     CommonModule,
