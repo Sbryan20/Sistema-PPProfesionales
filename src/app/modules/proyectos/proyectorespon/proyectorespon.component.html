@@ -1,15 +1,14 @@
 <div class="card border-primary mb-3">
-  <div class="card-header">RESPONSABLES DE PRACTICAS PRE PROFECIONALES</div>
+  <div class="card-header">RESPONSABLES PARA PRACTICAS PRE-PROFECIONALES</div>
   <div class="card-body text-primary">
-      <h5 class="card-title">Docente que actualmente lleva el cargo</h5>
+      <h5 class="card-title">Docentes que actualmente llevan el cargo</h5>
       <table class="table table-bordered table-striped">
           <thead>
               <tr>
                   <th>ID</th>
                   <th>Cédula</th>
-                  <th>Carrera</th>
                   <th>Estado</th>
-                  <th>Eliminar</th>
+                  <th>QUITAR CARGO</th>
               </tr>
           </thead>
           <tbody>
@@ -17,10 +16,9 @@
                 <ng-container *ngIf="resppp.estado==true" >
                   <td>{{resppp.id}}</td>
                   <td>{{resppp.cedula}}</td>
-                  <td>{{resppp.codigoCarrera}}</td>
                   <td>{{resppp.estado}}</td>
                   <td>
-                      <button type="button" (click)="quitar(resppp)" class="btn btn-danger" >Eliminar</button>
+                      <button type="button" (click)="quitar(resppp)" class="btn btn-danger" >Quitar Cargo</button>
                   </td>  
                 </ng-container>   
               </tr>
@@ -35,12 +33,12 @@
   </div>
 </ng-container>
 <div class="card border-primary mb-3">
-  <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES COMO RESPONSABLES DE PRACTICAS PRE PROFECIONALES </div>
+  <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES COMO RESPONSABLES DE PRACTICAS PRE-PROFECIONALES </div>
   <div class="card-body text-primary" *ngIf="habilitar == true">
       <div class="example-container mat-elevation-z8">
         <div class="example-header">
           <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILRAR">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILTRAR">
           </mat-form-field>
         </div>
       

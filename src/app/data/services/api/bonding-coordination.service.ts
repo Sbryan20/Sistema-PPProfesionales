@@ -33,4 +33,8 @@ export class BondingCoordinationService {
     return this.http.get<Ientity>(this.urlEndPoint+"/all/"+nombre,{headers: this.httpHeaders}).pipe(map(data=>data as Ientity[]))
   }
 
+  getEntidadid(id:Number):Observable<Ientity>{
+    return this.http.get<Ientity>(this.urlEndPoint+"/"+id,{headers: this.httpHeaders}).pipe(map(data=>data as Ientity))
+  }
+
 }

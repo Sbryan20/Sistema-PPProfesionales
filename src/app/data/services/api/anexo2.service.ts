@@ -25,4 +25,10 @@ export class Anexo2Service {
     return this.http.post<Anexo2>(this.urlEndPoint,anexo2,{headers:this.httpHeaders})
   }
 
+  getAnexoM(id:Number):Observable<Anexo2>{
+    return this.http.get(this.urlEndPoint+"/allByProyecto/"+id,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo2))
+
+  }
+
+
 }

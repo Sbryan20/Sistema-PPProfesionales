@@ -37,10 +37,8 @@ export class ProyectoresponComponent implements OnInit {
       let cedula = params['cedula']
       this.cedula=cedula;
     })
-    this.resposableppservice.cargardocente().subscribe(resp =>{
-    this.Docs=resp
-    this.dataSourcedoc=new MatTableDataSource(this.Docs); 
-  })
+    this.listarres();
+    
   this.resposableppservice.cargarresponsables().subscribe(cres=>{
     this.resPPP=cres;
   })
@@ -53,6 +51,12 @@ export class ProyectoresponComponent implements OnInit {
   this.sysdateservice.getSysdate().subscribe(date=>{
     this.sysdate=date.fecha;
   })}
+  listarres(){
+    this.resposableppservice.cargardocente().subscribe(resp =>{
+      this.Docs=resp
+      this.dataSourcedoc=new MatTableDataSource(this.Docs); 
+    })
+  }
   //Filtrar
  public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo_tiempo','materias','carreas','boton'];
  public dataSourcedoc
@@ -82,12 +86,12 @@ export class ProyectoresponComponent implements OnInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Quitar cargo',
+      title: 'Dar cargo',
       text: "CARGO: ",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, quitar!',
-      cancelButtonText: 'No, quitar!',
+      confirmButtonText: 'Si, dar!',
+      cancelButtonText: 'No, dar!',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -103,7 +107,8 @@ export class ProyectoresponComponent implements OnInit {
               'Convocado!',
               (`${cedula}`+', resivira un Carreo el que se le convocare que a sido asigando como Resposanble PPP'),
                 'success'
-            )              
+            )
+            this.listarres();              
         },err=>{
           Swal.fire({
             icon: 'warning',
@@ -134,12 +139,12 @@ export class ProyectoresponComponent implements OnInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Dar cargo',
+      title: 'Quitar cargo',
       text: "CARGO: ",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, dar cargo!',
-      cancelButtonText: 'No, dar cargo!',
+      confirmButtonText: 'Si, quitar cargo!',
+      cancelButtonText: 'No, quitar cargo!',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -151,7 +156,8 @@ export class ProyectoresponComponent implements OnInit {
               'Quitar Cargo!',
               (`${responsable.cedula}`+', ha sido retirado como Responsable e Practicas Pre Prefecionales'),
                 'success'
-            )              
+            )
+            this.listarres();              
         },err=>{
           Swal.fire({
             icon: 'warning',

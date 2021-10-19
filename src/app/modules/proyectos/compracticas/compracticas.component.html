@@ -33,16 +33,12 @@
       </tr>
       <tr>
         <th>
-          <p>Entidad beneficiaria: {{entidad.nombre}}</p> 
+          <p>Entidad beneficiaria: {{nombreetidad}}</p> 
         </th>
       </tr>
       <tr>
         <th>
-          <strong>Convoca a los estudiantes de los ciclos </strong><input type="text" required [(ngModel)]="anexo2.ciclo" name="ciclo">  
-        </th>
-        <th>
-          <strong>Numero de convocatoria </strong>
-          <input type="text" required [(ngModel)]="anexo2.numeroConvocatoria" name="numeroConvocatoria">
+          <strong>Convoca a los estudiantes de los ciclos </strong><input type="text" placeholder="EX:TERCERO Y CUARTO" required [(ngModel)]="anexo2.ciclo" name="ciclo">  
         </th>
       </tr>  
       <tr>
@@ -57,50 +53,59 @@
           <h3>Avtividades</h3>
         </th>
       </tr>
-      <tr>
+      <tr style="width: 100%">
         <th>
-          <strong>Descricpcion de actividad: </strong><br>
+          <strong>Descripcion de actividad: Emisión de la convocatoria </strong><br>
           <strong>Fecha inicio: </strong> <br>
           <strong>Fecha fin:    </strong>
         </th>
         <th>
-          <input type="text" required> <br>
-          <input type="date" [(ngModel)]="anexo2.fechaMaxRecepcion" name="fechaMaxRecepcion" required /> <br>
-          <input type="date" >
+          <br>
+          <input type="date" value='fecha' [(ngModel)]="fechae1" name="fechae1" required /> <br>
+          <input type="date" [(ngModel)]="fechae2" name="fechae2" required>
         </th>
-      </tr>
-      <tr>
         <th>
-          <strong>Descricpcion de actividad: </strong><br>
+          <strong>Descricpcion de actividad: Recepción de solicitudes </strong><br>
           <strong>Fecha inicio: </strong> <br>
           <strong>Fecha fin:    </strong>
         </th>
         <th>
-          <input type="text" required> <br>
-          <input type="date" required /> <br>
-          <input type="date" >
+          <br>
+          <input type="date" [(ngModel)]="fechar1" name="fechar1" required /> <br>
+          <input type="date"  [(ngModel)]="fechar2" name="fechar2" required>
         </th>
       </tr>
-      <tr>
+      <tr style="width: 50%">
         <th>
-          <strong>Descricpcion de actividad: </strong><br>
+          <strong>Descricpcion de actividad: Proceso de selección </strong><br>
           <strong>Fecha inicio: </strong> <br>
           <strong>Fecha fin:    </strong>
         </th>
         <th>
-          <input type="text" required> <br>
-          <input type="date" required /> <br>
-          <input type="date" >
+          <br>
+          <input type="date" [(ngModel)]="fechap1" name="fechap1" required /> <br>
+          <input type="date" [(ngModel)]="fechap2" name="fechap2" required>
         </th>
-      </tr>
+        <th>
+          <strong>Descricpcion de actividad: Notificación de resultados </strong><br>
+          <strong>Fecha inicio: </strong> <br>
+          <strong>Fecha fin:    </strong>
+        </th>
+        <th> 
+          <br>
+          <input type="date" [(ngModel)]="fechan1" name="fechan1" required /> <br>
+          <input type="date" [(ngModel)]="fechan2" name="fechan2" required>
+        </th>
+      </tr>       
       <tr>
         <th>
-          <strong>Email</strong><input type="email">
+          <strong>Email</strong><input [(ngModel)]="correo" name="correo" type="email">
         </th>
       </tr>
     </table>
     <button class="btn btn-primary">GUARDAR</button>&nbsp;&nbsp;
   </form>
+ 
     
   
   

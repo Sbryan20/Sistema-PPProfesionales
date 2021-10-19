@@ -1,3 +1,5 @@
+import { Actividadesanexo } from "../dto/actividadeanexo2";
+
 export class Anexo2{
     id?:Number;
     siglasCarrera?:Date;
@@ -7,17 +9,16 @@ export class Anexo2{
     ciclo?:String;
     carrera?:String;
     nombreProyecto?:String;
+    emailDocente?:String;
     entidadBeneficiaria?:String;
     fechaMaxRecepcion?:Date;
     nombreResponsable?:String;
     idProyectoPPP?:Number;
     documento?:String;
-    actividades?:actividades[]
+    materias?: MateriasAn[]
+    actividades?:Actividadesanexo[]=[]
 }
-interface actividades {
-    id?:Number
-    descripcion?:String;
-    inicio:Date;
-    fin:Date;
+export class MateriasAn{
+    nombre?:String
 }
 

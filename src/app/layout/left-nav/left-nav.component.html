@@ -18,12 +18,8 @@
             <div class="list-group" *ngSwitchCase="'AUT'">
               <a [routerLink]="['/panel/cvinculacion/listcv']" routerLinkActive="active" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >  Convocar a Docentes como Cordinadores de Vinculacion
+              >  Convocar a Docentes como Cordinadores de Vinculación
               </a>
-              <a [routerLink]="['/crear_cv']" routerLinkActive="active"
-                 class="list-group-item list-group-item-action bg-dark text-light">
-                 Documentacion
-               </a>
             </div>
     
             <!--estudiante-->
@@ -60,16 +56,12 @@
             </a>
             <a [routerLink]="['/panel/proyecto/createmienbros',persona.cedula,persona.nombrescompletos]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light">
-              Asignar Miebros del Proyecto
+              Asignar Miembros al Proyecto
             </a>
             <a [routerLink]="['/panel/proyecto/listar']" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light">
               Ver proyecto Actuales
             </a>
-            <a [routerLink]="['/crear_cv']" routerLinkActive="active"
-               class="list-group-item list-group-item-action bg-dark text-light">
-               Documentacion
-             </a>
           </div>
     
             <!--Coordinador de vinculacion -->
@@ -78,7 +70,7 @@
                 [routerLink]="['/panel/user/create',persona.id]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >
-                Crear entidad beneficiaria
+                Agregar entidad beneficiaria
               </a>   
     
               <a
@@ -86,12 +78,6 @@
                 class="list-group-item list-group-item-action bg-dark text-light"
               >
               Lista de Entidades
-              </a>
-    
-              <a
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >
-                Informacion
               </a>   
             </div>
     

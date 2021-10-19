@@ -4,12 +4,12 @@
     </div>
   </ng-container>
   <div class="card border-primary mb-3">
-    <div class="card-header">Cordinadores de Vinculacion</div>
+    <div class="card-header">Cordinadores para Vinculación</div>
     <div class="card-body text-primary">
         <div class="example-container mat-elevation-z8">
           <div class="example-header">
             <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
             </mat-form-field>
           </div>
         
@@ -35,7 +35,7 @@
         
             <!-- Symbol Column -->
             <ng-container matColumnDef="titulo">
-              <mat-header-cell *matHeaderCellDef> Tiulo </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
             </ng-container>
             <!-- Symbol Column -->

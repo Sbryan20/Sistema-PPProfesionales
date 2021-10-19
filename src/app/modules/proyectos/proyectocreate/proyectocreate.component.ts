@@ -94,8 +94,18 @@ export class ProyectocreateComponent implements OnInit {
   selectResposablepp(event: any) {
     this.proyectos.responsablePPP= event.target.value;
   }
+
+  validacion():boolean{
+    if(this.proyectos.codigocarrera==""||this.proyectos.lineaaccion==""||this.proyectos.responsablePPP==""){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   crearproyecto(){ 
-    this.proyectos.codigo="Proyecto "+getRandomArbitrary(0,1000000000000)
+    if(this.validacion()==false){
+      this.proyectos.codigo="Proyecto "+getRandomArbitrary(0,1000000000000)
     console.log(this.proyectos)
     this.proyectoService.savePr(this.proyectos).subscribe(data=>{
       Swal.fire({
@@ -113,7 +123,14 @@ export class ProyectocreateComponent implements OnInit {
       }) 
 
     }
-    )
+    )}else{
+      Swal.fire({
+        icon: 'warning',
+        title: 'DATOS INCOMPLETOS',
+        text: 'SELECCIONE LOS DATOS',
+        confirmButtonColor: "#0c3255"   
+      })
+    }  
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Proyectos, listproyect } from '../../../shared/models/proyecto';
+import { Proyectos, listproyect} from '../../../shared/models/proyecto';
 import { ProyectoService } from '../../../data/services/api/proyecto.service';
 import { SysdateService } from '../../../data/services/api/sysdate.service';
 import { Sysdate } from '../../../shared/models/sysdate';
@@ -12,12 +12,26 @@ import { Ientity } from '../../../shared/models/entidad';
 import { Anexo2 } from '../../../shared/models/anexos/anexo2';
 import { Anexo1 } from '../../../shared/models/anexos/anexo1';
 import Swal from 'sweetalert2';
+import { saveAs } from 'file-saver';
 import { Anexo2Service } from '../../../data/services/api/anexo2.service';
+import { Actividadesanexo } from '@shared/models/dto/actividadeanexo2';
+import { Fechas } from '@shared/models/dto/fecha';
 
 
-
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min; 
+}
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
+}
+function abase64(archivo):String{
+  var string;
+    var reader=new FileReader();
+    reader.readAsDataURL(archivo);
+    reader.onload=function(){
+      string= reader.result
+    }
+    return string;
 }
 
 @Component({
@@ -30,57 +44,113 @@ export class CompracticasComponent implements OnInit {
 
 
   listproyecto: Proyectos[] = [];
+  public actividadesanexo:Actividadesanexo[]=[]
+  public prc:Proyectos=new Proyectos()
   proyecto: listproyect = new listproyect();
   sysdate: Sysdate = new Sysdate();
   entidad: Ientity = new Ientity();
   anexo2: Anexo2 = new Anexo2();
+  fechas:Fechas=new Fechas()
+  public codigocare
+  public fecha
+  public nombreentidad?:String
+  public identida
+  public nombreetidad?:String
+  //
+  fechae1
+  fechae2
 
+  fechar1
+  fechar2
 
+  fechap1
+  fechap2
+
+  fechan1
+  fechan2
+  //
+
+  correo;
   id?: number;
   //cargar input
 
 
 
-  constructor(private fb: FormBuilder, private proyectoService: ProyectoService, private SysdateService: SysdateService, private Anexo2Service: Anexo2Service) {
+  constructor(private bondingCoordinationService:BondingCoordinationService,private fb: FormBuilder, private proyectoService: ProyectoService, private SysdateService: SysdateService, private Anexo2Service: Anexo2Service) {
 
   }
 
   ngOnInit(): void {
     this.proyectoService.getProyectos().subscribe(data => {
       this.listproyecto = data
-      console.log(data)
+      
     })
     this.SysdateService.getSysdate().subscribe(data => {
       this.sysdate = data
+      this.fecha=data.fecha
     })
+
   }
 
 
   selectProyecto(event: any) {
     this.proyectoService.getProtectid(event.target.value).subscribe(data => {
       this.proyecto = data;
+      this.prc=data
+      this.codigocare=data.codigocarrera
       this.id = parseInt(this.proyecto.id + '');
+      this.identida=data.entidadbeneficiaria;
       console.log(this.id)
-
-
+      this.bondingCoordinationService.getEntidadid(this.identida).subscribe(date=>{
+        this.nombreetidad=date.nombre;
+      })
     })
 
   }
+  private(){
+    this.actividadesanexo.push({
+      descripcion:"Emisión de la convocatoria",
+      inicio:this.fechae1,
+      fin:this.fechae2,
+    },{
+      descripcion:"Recepción de solicitudes",
+      inicio:this.fechar1,
+      fin:this.fechar2,
+    },{
+      descripcion:"Proceso de selección",
+      inicio:this.fechap1,
+      fin:this.fechap2,
+    },{
+      descripcion:"Notificación de resultados",
+      inicio:this.fechan1,
+      fin:this.fechan2,
+    })    
+
+    this.fechas.fechae1=this.fechae1;
+    this.fechas.fechae2=this.fechae2;
+    this.fechas.fechan1=this.fechan1;
+    this.fechas.fechan2=this.fechan2;
+    this.fechas.fechap1=this.fechap1;
+    this.fechas.fechap2=this.fechap2;
+    this.fechas.fechar1=this.fechar1;
+    this.fechas.fechar2=this.fechar2;
+  }
 
   Anexo2(anio: String): Anexo2 {
-
-    this.anexo2.siglasCarrera;
+    this.private()
+    this.anexo2.siglasCarrera=this.codigocare;
     this.anexo2.anio = anio;
-    this.anexo2.numeroConvocatoria = this.anexo2.numeroConvocatoria;
+    this.anexo2.numeroConvocatoria =getRandomArbitrary(0, 10000000);
     this.anexo2.fecha = this.sysdate.fecha;
     this.anexo2.carrera = this.proyecto.carrera;
     this.anexo2.ciclo = this.anexo2.ciclo;
     this.anexo2.nombreProyecto = this.proyecto.nombre;
-    this.anexo2.entidadBeneficiaria = this.entidad.nombre;
+    this.anexo2.entidadBeneficiaria = this.nombreetidad
     this.anexo2.fechaMaxRecepcion = this.anexo2.fechaMaxRecepcion;
     this.anexo2.nombreResponsable = this.proyecto.nombreresponsable;
+    this.anexo2.emailDocente=this.correo
     this.anexo2.idProyectoPPP = this.proyecto.id;
-    this.anexo2.actividades = this.anexo2.actividades;
+    this.anexo2.actividades=this.actividadesanexo;
     return this.anexo2
   }
 
@@ -91,7 +161,7 @@ export class CompracticasComponent implements OnInit {
     const anio = this.sysdate.fecha + "";
     const split = anio.split('-');
 
-    console.log(this.Anexo2(split[0]))
+    
 
     Swal.fire({
       title: 'Esta serguro?',
@@ -104,7 +174,8 @@ export class CompracticasComponent implements OnInit {
       confirmButtonText: 'Si, deacuerdo!'
     }).then(async (result) => {
       if (result.isConfirmed) {
-        this.generate(this.Anexo2(split[0]));
+        this.generate(this.Anexo2(split[0]),this.prc,this.fechas,this.correo)
+        this.actividadesanexo.length=0
         const { value: file } = await Swal.fire({
           allowOutsideClick: false,
           title: 'SELECCIONE EL PDF',
@@ -119,8 +190,16 @@ export class CompracticasComponent implements OnInit {
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
               } else {
+               
                 this.base(value)
+                console.log(abase64(value))
                 this.Anexo2Service.saveanexo2(this.Anexo2(split[0])).subscribe(data => {
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Se mando convocatoria de forma existosa',
+                    text: 'Exitoso',
+                    confirmButtonColor: "#0c3255"
+                  })
                 }, err => {
                   Swal.fire({
                     icon: 'warning',
@@ -142,11 +221,11 @@ export class CompracticasComponent implements OnInit {
 
   ////Impresion del Convocatoria
 
-  generate(anexo: Anexo2) {
+  generate(anexo: Anexo2,proyecto:Proyectos,fechas:Fechas,correo) {
 
     loadFile(
 
-      'https://download1081.mediafire.com/r5d3t08erqug/zqm50wc75chvo4k/anexo2.docx',
+      'https://download1327.mediafire.com/4nvhzl1u2fhg/ht0lyermjd19vzx/anexo2.docx',
       function (error, content) {
 
         if (error) {
@@ -160,7 +239,7 @@ export class CompracticasComponent implements OnInit {
         try {
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({
-            sigla: anexo.siglasCarrera,
+            siglas: anexo.siglasCarrera,
             anio: anexo.anio,
             num_convocatoria: anexo.numeroConvocatoria,
             fecha: anexo.fecha,
@@ -168,17 +247,20 @@ export class CompracticasComponent implements OnInit {
             carrera: anexo.carrera,
             nombre_proyeto: anexo.nombreProyecto,
             entidad_beneficiaria: anexo.entidadBeneficiaria,
-            actividades_proyecto: anexo.actividades,
+            actividades: proyecto.actividadeslistProyectos,
             nombre_proyecto:anexo.nombreProyecto,
-            asignaturas_necesarias: "",
+            asignatura: proyecto.requisitoslistProyectos,
             //Enlistar las asignaturas que necesitarán haber aprobado para ejecutar las actividades
-            fecha_lim_recepcion: anexo.fechaMaxRecepcion,
-            fecha_convocatoria: anexo.fecha,
-            fecha_inic_recepcion: anexo.fechaMaxRecepcion,
-            fecha_seleccion: anexo.fechaMaxRecepcion,
-            fecha_not_resultados: anexo.fechaMaxRecepcion,
             nombre_doc_responsableppp: anexo.nombreResponsable,
-            email_doc_responsableppp: anexo.nombreResponsable
+            email_doc_responsableppp: correo,
+            fecha_inic_convocatoria:fechas.fechae1,
+            fecha_fin_convocatoria:fechas.fechae2,
+            fecha_inic_recepcion:fechas.fechar1,
+            fecha_lim_recepcion:fechas.fechar2,
+            fecha_inic_seleccion:fechas.fechap1,
+            fecha_fin_seleccion:fechas.fechap2,
+            fecha_i_not_resultados:fechas.fechan1,
+            fecha_f_not_resultados:fechas.fechan2
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
@@ -207,15 +289,17 @@ export class CompracticasComponent implements OnInit {
       }
     );
   }
-
+  vars?:String
   ///TRAFORMAR BASE64;
   base(event: any) {
     const file = event;
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.anexo2.documento = reader.result + ''
-    };
+      var s=reader.result+ ''
+      this.vars=s
+      this.anexo2.documento=this.vars
   }
+}
 
 }

@@ -24,7 +24,6 @@
             <h2 class="bss-txt-content" style="font-size: 22px;">
               (CREACIÓN DE PROYECTO) <br />INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY <br />
               CORDINADOR DE CARRERA <br />
-              REGISTRO DE BENEFICIARIOS / PARTICIPANTES
             </h2>
           </tr>
           <tr>
@@ -48,7 +47,7 @@
                 </tr>
                 <tr>
                   <td > <strong>CARRERA:</strong><select class="form-control" (change)="selectCarreta($event)" style="width: 100%;" name="select">
-                    <option value="SL">Seleccione</option>
+                    <option value="" selected>Seleccione</option>
                       <option *ngFor="let item of listacarrera" [value]="item.codigo"> <ng-container *ngIf="item.codigo==carrera"> {{item.codigo}}-{{item.nombre}}</ng-container></option>
                   </select></td>
                   <td colspan="3"> <strong>Estado: </strong><select class="form-control" (change)="selectEstado($event)" style="width: 100%;" name="select">
@@ -59,15 +58,15 @@
                 <tr> 
                   <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA</strong>
                     <select class="form-control" (change)="selectEntidadBeneficaria($event)" style="width: 100%;" name="select">
-                      <option value="SL">Seleccione</option>
+                      <option value=""selected>Seleccione</option>
                       <option *ngFor="let item of entity" [value]="item.idEntidad"> {{item.idEntidad}}-{{item.nombre}} {{item.representante}}</option>
                       </select> 
                   </th>
                 </tr>
                 <tr> 
-                  <th colspan="4" scope="col"><strong>Responsables</strong>
+                  <th colspan="4" scope="col"><strong>RESPONSABLE</strong>
                     <select class="form-control" (change)="selectResposablepp($event)" style="width: 100%;" name="select">
-                      <option value="SL">Seleccione</option>
+                      <option value=""selected>Seleccione</option>
                       <option *ngFor="let resppp of resPPP"  [value]="resppp.id"> <ng-container *ngIf="resppp.estado==true" >{{resppp.id}}-{{resppp.cedula}}</ng-container></option>
                       </select> 
                   </th>

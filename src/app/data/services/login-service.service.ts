@@ -22,9 +22,7 @@ export class LoginServiceService {
     return this.http.post<Personas>(this.urlEndPoint+"/signup",userRequest)
  }
 
- getCarrera(cedula:String):Observable<CarreasAlum>{
-  return this.http.get(this.urlEndPoint+"/"+cedula,{headers: this.httpHeaders}).pipe(map(Response => Response as CarreasAlum))
- }
+
 
  
 }

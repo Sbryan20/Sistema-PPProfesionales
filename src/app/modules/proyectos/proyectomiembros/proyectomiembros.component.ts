@@ -23,6 +23,9 @@ import { DocentesDirector } from '@shared/models/docentesapoyo/docentesdirecto';
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
+
+; // prints the base64 string
+
 @Component({
   selector: 'app-proyectomiembros',
   templateUrl: './proyectomiembros.component.html',
@@ -208,8 +211,13 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
             return new Promise((resolve) => {
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
-              } else {            
-                this.base(value) 
+              } else { 
+                const file:any = value;
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                 reader.onload = () => {
+                   this.anexo1.documento=reader.result+''
+                  };            
                 this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
                   
                   Swal.fire({
@@ -277,9 +285,13 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
               } else {            
-                this.base(value) 
-                console.log(this.docentesRoles)
-                this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
+                const file:any = value;
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                 reader.onload = () => {
+                   this.anexo1.documento=reader.result+''
+                  }; 
+               this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
                   
                   Swal.fire({
                     icon: 'success',
@@ -330,7 +342,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
 
     loadFile(
       
-      'https://download853.mediafire.com/lfqrftb224tg/nus27sckq8b28b7/anexo1.docx',
+      'http://download853.mediafire.com/xg3fq2cfdgug/nus27sckq8b28b7/anexo1.docx',
       function (error, content) {
         
         if (error) {
@@ -381,14 +393,8 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
     );
   }
   ///TRAFORMAR BASE64;
-  base(event: any){
-    const file = event;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.anexo1.documento=reader.result+''
-    };   
-  }
+
+  
 
   //convert a pdf
   convertFile() {

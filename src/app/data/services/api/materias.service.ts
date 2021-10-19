@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Mayeriasalum } from '@shared/models/dto/maeriasalum';
 import { Materias } from '@shared/models/materias';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -21,6 +22,11 @@ export class MateriasService {
     return this.http.get(this.urlEndPoint+"/"+codigo,{headers: this.httpHeaders}).pipe(map(Response => Response as Materias[]))
 
   }
+  getProtectCedula(codigo:String):Observable<Mayeriasalum>{
+    return this.http.get(this.urlEndPoint+"/alumno/"+codigo,{headers: this.httpHeaders}).pipe(map(Response => Response as Mayeriasalum))
+
+  }
+  
 
   
 }

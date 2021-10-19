@@ -1,4 +1,5 @@
 import { Byte } from "@angular/compiler/src/util";
+import { StringContainer } from "docx";
 
 export class Anexo1{
     fechaDelegacion?:Date;
@@ -13,7 +14,8 @@ export class Anexo1{
     nombreCoordinador?:String;
     siglasCarrera?:String;
     idProyectoPPP?:Number;
-    documento?:String;
+    documento?;
+    
 
 }
 
