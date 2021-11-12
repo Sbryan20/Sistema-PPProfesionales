@@ -1,0 +1,30 @@
+<div class="card border-primary mb-3" style="max-width: 100%">
+    <div class="card-header" >Solicitudes </div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Listado de Solicitudes</h5>
+        <br> <br>
+        <div class="row">
+            <div class="col" *ngFor="let anexos of anexo3">
+                <ng-container>
+                    <div class="card text-dark bg-light mb-3 float-container">
+                        <div class="card-header"> Proyecto: {{anexos.nombreproyecto}}</div>
+                        <div class="card-body">
+                            <p class="card-text"> Cedula : {{anexos.cedula}}</p>
+                            <p class="card-text"> Nombres: {{anexos.nombresestudiante}}</p>
+                            <p class="card-text"> Apellidos: {{anexos.apellidosestudiante}}</p>
+                            <p class="card-text"> Fechas: {{anexos.fecha_solicitud}}</p>
+                            <p class="card-text"> Resposable: {{anexos.nombre_responsable}} </p>
+                        </div>
+                        <div class="card-header">
+                            <div class="example-flex-container"  >
+                              <button type="button"  (click)="convertFile(anexos.documento)" class="btn btn-secondary">Mas información</button>
+                              <button type="button"   (click)="guardar(anexos)"  class="btn btn-primary">ACEPTAR</button>
+                            </div>
+                        </div>
+                </div>
+                </ng-container>
+                   
+            </div>
+        </div>
+    </div>
+</div>

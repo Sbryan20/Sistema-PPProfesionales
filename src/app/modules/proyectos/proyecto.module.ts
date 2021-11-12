@@ -8,6 +8,8 @@ import { ProyectomiembrosComponent } from './proyectomiembros/proyectomiembros.c
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
+import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
+import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosolicitudes.component';
 
 
 
@@ -19,7 +21,9 @@ import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocat
     ProyectolistarComponent,
     CompracticasComponent,
     AlumnoconvocatoriaComponent,
-    CompracticasComponent
+    CompracticasComponent,
+    AlumnosolicitudesComponent,
+    ProyectosolicitudesComponent
   ],
   imports: [
     CommonModule,

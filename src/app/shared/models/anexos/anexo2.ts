@@ -2,7 +2,7 @@ import { Actividadesanexo } from "../dto/actividadeanexo2";
 
 export class Anexo2{
     id?:Number;
-    siglasCarrera?:Date;
+    siglasCarrera?:String;
     anio?:String;
     numeroConvocatoria?:String;
     fecha?:Date;
