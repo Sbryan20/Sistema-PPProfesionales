@@ -22,9 +22,7 @@ import { DocentesDirector } from '@shared/models/docentesapoyo/docentesdirecto';
 //DOCX
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
-}
-
-; // prints the base64 string
+}; // prints the base64 string
 
 @Component({
   selector: 'app-proyectomiembros',

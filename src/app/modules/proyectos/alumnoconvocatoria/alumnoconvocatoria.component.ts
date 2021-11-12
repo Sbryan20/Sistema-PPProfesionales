@@ -5,29 +5,48 @@ import { MateriasService } from '@data/services/api/materias.service';
 import { SysdateService } from '@data/services/api/sysdate.service';
 import { LoginServiceService } from '@data/services/login-service.service';
 import { Anexo2 } from '@shared/models/anexos/anexo2';
+import { Anexo3 } from '@shared/models/anexos/anexo3';
 import { Mayeriasalum } from '@shared/models/dto/maeriasalum';
 import { Materias } from '@shared/models/materias';
 import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
+import PizZipUtils from 'pizzip/utils/index.js';
+import Docxtemplater from 'docxtemplater';
+import * as PizZip from 'pizzip';
+import { Anexo3Service } from '@data/services/api/anexo3.service';
+import { AlumnoDatos } from '@shared/models/dto/alumnodatos';
+
+//DOCX
+function loadFile(url, callback) {
+  PizZipUtils.getBinaryContent(url, callback);
+};
 
 @Component({
   selector: 'app-alumnoconvocatoria',
   templateUrl: './alumnoconvocatoria.component.html',
   styleUrls: ['./alumnoconvocatoria.component.scss']
 })
+
 export class AlumnoconvocatoriaComponent implements OnInit {
   public anexo2:Anexo2[]=[]
   public anexo2M:Anexo2=new Anexo2()
   public carrera?:string;
   public maeriaslim:Mayeriasalum= new Mayeriasalum()
+  public datosalumno:AlumnoDatos = new AlumnoDatos();
   docum?:string
   file;
+  fecha;
+  nombres;
+  cedula;
 
-  constructor(private materiasService:MateriasService,private activatedRoute: ActivatedRoute,private sysdateService:SysdateService,private anexo2services:Anexo2Service,private loginServiceService:LoginServiceService) { }
+  constructor(private anexo3service:Anexo3Service,private materiasService:MateriasService,private activatedRoute: ActivatedRoute,private sysdateService:SysdateService,private anexo2services:Anexo2Service,private loginServiceService:LoginServiceService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
+      let nombre = params['nombrescompletos']
+      this.nombres=nombre;
+      this.cedula=cedula;
       this.sysdateService.getCarrera(cedula).subscribe(data=>{
         this.carrera=data.codigoCarrera;
         console.log(this.carrera)
@@ -36,37 +55,170 @@ export class AlumnoconvocatoriaComponent implements OnInit {
         this.maeriaslim=data;
         console.log(this.maeriaslim)
       })
+      this.anexo3service.getdatosalumno(cedula).subscribe(data=>{
+        this.datosalumno=data;
+        console.log(this.datosalumno)
+      })
       
     })
     this.anexo2services.getAnexo2().subscribe(data=>{
       this.anexo2=data;
     })
 
-   
   }
   materias(id:Number){
     this.anexo2services.getAnexoM(id).subscribe(data=>{
-      this.anexo2M=data;
-      console.log(this.anexo2M)
+      this.anexo3service.getDocenteTitulo(data.siglasCarrera+'').subscribe(datos=>{
+        console.log(datos.titulo)
+        console.log(data) 
+        if(0==0){
+          Swal.fire({
+            title: 'Esta seguro que desea postular a proyeto '+data.nombreProyecto,
+            text: "Para ello debe firmar el siguiente anexo con sus datos",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, postular!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'ANEXO 3!',
+                'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
+                'success'
+              )
+              this.generate(this.anexo3(data,datos.titulo+''))
+              const { value: file } = await Swal.fire({
+                allowOutsideClick: false,
+                title: 'SELECCIONE EL PDF',
+                text:'Debe subir la covocataria en tipo PDF',
+                input: 'file',
+                inputAttributes: {
+                  'accept': 'application/pdf',
+                  'aria-label': 'Debe subir la covocataria en tipo PDF'
+                },
+                inputValidator: (value) => {
+                  return new Promise((resolve) => {
+                    if (value === null) {
+                      resolve('Es necesario que seleccione el PDF')
+                    } else {
+                       const file:any = value;
+                       const reader = new FileReader();
+                       reader.readAsDataURL(file);
+                       reader.onload = () => {
+                        this.anexo3response.documento=reader.result+''};    
+                        this.anexo3service.saveanexo3(this.anexo3(data,datos.titulo+'')).subscribe(data=>{
+                          Swal.fire({
+                            icon: 'success',
+                            title: 'Anexo',
+                            text: 'Postulacion relizada espera una respuesta',
+                            confirmButtonColor: "#0c3255"})
+                        },err=>{
+                          Swal.fire({
+                            icon: 'error',
+                            title: 'Anexo',
+                            text: 'Hubo un error: '+err.error.message,
+                            confirmButtonColor: "#0c3255"})
+                        })
+                    }
+                  })
+                }
+              })
+            }
+          })
+        }else{
+          Swal.fire({
+            icon: 'info',
+            title: 'Anexo',
+            text: 'No puede aplicar a '+ data.nombreProyecto,
+            confirmButtonColor: "#0c3255"
+          })
+        }
+      })
+         
     })
-    if(this.anexo2M.materias ===  this.maeriaslim.materias){
-      Swal.fire({
-        icon: 'info',
-        title: 'Anexo',
-        text: 'No puede aplicar',
-        confirmButtonColor: "#0c3255"   
-      })
-    }else{
-
-      Swal.fire({
-        icon: 'info',
-        title: 'Anexo',
-        text: 'Si puede aplicar',
-        confirmButtonColor: "#0c3255"   
-      })
-    }
   }
-  
+  anexo3response:Anexo3 = new Anexo3();
+  anexo3(anexo2: Anexo2,titulo:String):Anexo3{
+    this.anexo3response.siglas_carrera=anexo2.siglasCarrera;
+    this.anexo3response.nombrecarrera=anexo2.carrera;
+    this.anexo3response.nombreproyecto=anexo2.nombreProyecto;
+    this.anexo3response.idProyectoPPP=anexo2.idProyectoPPP;
+    this.anexo3response.titulo_responsable=titulo;
+    this.anexo3response.nombresestudiante=this.datosalumno.primerNombre+" "+this.datosalumno.segundoNombre;
+    this.anexo3response.cedula=this.cedula;
+    this.anexo3response.apellidosestudiante=this.datosalumno.primerApellido+" "+this.datosalumno.segundoApellido;
+    this.sysdateService.getSysdate().subscribe(data=>{
+    this.anexo3response.fecha_solicitud=data.fecha;});
+    this.anexo3response.jornada=this.datosalumno.jornada;
+    this.anexo3response.paralelo=this.datosalumno.paralelo;
+    this.anexo3response.nombre_responsable=anexo2.nombreResponsable
+    return this.anexo3response;
+  }
+
+
+
+  //Docs
+  generate(anexo3: Anexo3) {
+
+    loadFile(
+      'https://download1327.mediafire.com/p9ezwj0j95lg/ruyiz8kfefb7noq/anexo3.docx',
+      function (error, content) {
+        
+        if (error) {
+          throw error;
+        }
+        const zip = new PizZip(content);
+        const doc = new Docxtemplater(zip, {
+          paragraphLoop: true,
+          linebreaks: true,
+        });
+        try {
+          // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
+          doc.render({             
+            titulo:anexo3.titulo_responsable,
+            nombre_resp_vinculacion:anexo3.nombre_responsable,
+            siglas:anexo3.siglas_carrera,
+            nombreEstudiante:anexo3.nombresestudiante,
+            cedula:anexo3.cedula,
+            nombrecarrera:anexo3.nombrecarrera,
+            fecha:anexo3.fecha_solicitud,
+            paralelo:anexo3.paralelo,
+            jornada:anexo3.jornada,
+            nombreproyecto:anexo3.nombreproyecto,
+            ciclo:anexo3.ciclo
+          });
+        } catch (error) {
+          // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
+          function replaceErrors(key, value) {
+            if (value instanceof Error) {
+              return Object.getOwnPropertyNames(value).reduce(function (
+                error,
+                key
+              ) {
+                error[key] = value[key];
+                return error;
+              },
+              {});
+            }
+            return value;
+          }
+          console.log(JSON.stringify({ error: error }, replaceErrors));
+        }
+        const out = doc.getZip().generate({
+          type: 'blob',
+          mimeType:
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        });
+        // Output the document using Data-URI
+        saveAs(out, 'Convocataria para Vinculacion.docx');
+      }
+    );
+  }
+
+
+
+
 
   //convert a pdf
   convertFile(docum) {
