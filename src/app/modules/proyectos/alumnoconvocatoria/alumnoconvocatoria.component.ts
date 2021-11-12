@@ -153,7 +153,6 @@ export class AlumnoconvocatoriaComponent implements OnInit {
     this.anexo3response.jornada=this.datosalumno.jornada;
     this.anexo3response.paralelo=this.datosalumno.paralelo;
     this.anexo3response.nombre_responsable=anexo2.nombreResponsable
-    
     return this.anexo3response;
   }
 
