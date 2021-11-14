@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './layout/header/header.component';
 import { LeftNavComponent } from './layout/left-nav/left-nav.component';
 import { LeftNavMenuComponent } from './layout/left-nav/left-nav-menu/left-nav-menu.component';
-import { CordinadorvinculacionComponent } from '@modules/cordinadorvinculacion/cordinadorvlist/cordinadorvinculacion.component';
+import { CordinadorvinculacionComponent } from '@modules/proyectos/cordinadorvlist/cordinadorvinculacion.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { ProyectocreateComponent } from './modules/proyectos/proyectocreate/proyectocreate.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +32,6 @@ import { AlumnoconvocatoriaComponent } from '@modules/proyectos/alumnoconvocator
 import { CompracticasComponent } from './modules/proyectos/compracticas/compracticas.component';
 import { AlumnosolicitudesComponent } from '@modules/proyectos/alumnosolicitudes/alumnosolicitudes.component';
 import { ProyectosolicitudesComponent } from '@modules/proyectos/proyectosolicitudes/proyectosolicitudes.component';
-
 
 const modules = [
   MatButtonModule,
@@ -61,8 +60,6 @@ const modules = [
     CompracticasComponent,
     AlumnosolicitudesComponent,
     ProyectosolicitudesComponent
-    
-    
   ],
   imports: [
     

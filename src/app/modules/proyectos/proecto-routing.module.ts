@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
+import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
@@ -47,7 +48,11 @@ const routes: Routes = [
     {
       path: 'ver_solicidudes',
       component: ProyectosolicitudesComponent
-    }      
+    },
+    {
+      path: 'listcv',
+      component: CordinadorvinculacionComponent
+    }     
 ];
 
 @NgModule({

@@ -153,6 +153,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
     this.anexo3response.jornada=this.datosalumno.jornada;
     this.anexo3response.paralelo=this.datosalumno.paralelo;
     this.anexo3response.nombre_responsable=anexo2.nombreResponsable
+    this.anexo3response.estado="PN";
     return this.anexo3response;
   }
 
@@ -179,7 +180,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
             titulo:anexo3.titulo_responsable,
             nombre_resp_vinculacion:anexo3.nombre_responsable,
             siglas:anexo3.siglas_carrera,
-            nombreEstudiante:anexo3.nombresestudiante,
+            nombreEstudiante:anexo3.nombresestudiante+" "+anexo3.apellidosestudiante,
             cedula:anexo3.cedula,
             nombrecarrera:anexo3.nombrecarrera,
             fecha:anexo3.fecha_solicitud,

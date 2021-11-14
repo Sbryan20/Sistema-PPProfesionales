@@ -1,28 +1,28 @@
-<div class="card border-primary mb-3" style="max-width: 100%">
-    <div class="card-header" >Convocatarias </div>
+<div class="card border-primary mb-3"  >
+    <div class="card-header" >Convocatoria</div>
     <div class="card-body text-primary">
-        <h5 class="card-title">Listado de convocatarias</h5>
-        <br> <br>
-        <div class="row">
-            <div class="col" *ngFor="let anexos of anexo2">
-                <ng-container *ngIf="anexos.siglasCarrera==carrera" >
-                    <div class="card text-dark bg-light mb-3 float-container">
-                        <div class="card-header"> Proyecto: {{anexos.nombreProyecto}}</div>
-                        <div class="card-body">
-                            <p class="card-text"> Entidad: {{anexos.entidadBeneficiaria}}</p>
-                            <p class="card-text"> Fecha: {{anexos.fechaMaxRecepcion}}</p>
-                            <p class="card-text"> Resposable: {{anexos.nombreResponsable}} </p>
-                        </div>
-                        <div class="card-header">
-                            <div class="example-flex-container"  >
-                              <button type="button"   (click)="convertFile(anexos.documento)" class="btn btn-secondary">Mas información</button>
-                              <button  type="button" (click)="materias(anexos.idProyectoPPP)"  class="btn btn-danger">Postular</button>
+            <h5 class="card-title">Listado de Solicitudes</h5>
+            <br> <br>
+            <div class="example-flex-container">
+                <div class="float-container" *ngFor="let anexos of anexo2">
+                        <ng-container *ngIf="anexos.siglasCarrera==carrera">
+                            <div class="card text-dark bg-light mb-3 float-container">
+                                <div class="card-header"> Proyecto: {{anexos.nombreProyecto}}</div>
+                                <div class="card-body">
+                                   <p class="card-text"> Entidad: {{anexos.entidadBeneficiaria}}</p>
+                                   <p class="card-text"> Fecha: {{anexos.fechaMaxRecepcion}}</p>
+                                   <p class="card-text"> Resposable: {{anexos.nombreResponsable}} </p>
+                              </div>
+                            <div class="card-header">
+                               <div class="example-flex-container"  >
+                                   <button type="button"   (click)="convertFile(anexos.documento)" class="btn btn-secondary">Mas información</button>
+                                   <button  type="button" (click)="materias(anexos.idProyectoPPP)"  class="btn btn-danger">Postular</button>
+                               </div>
+                               </div>
                             </div>
-                        </div>
+                        </ng-container>
                 </div>
-                </ng-container>
-                   
             </div>
-        </div>
     </div>
 </div>
+

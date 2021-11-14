@@ -13,11 +13,11 @@
             </mat-form-field>
           </div>
         
-          <mat-table #table [dataSource]="dataSource" >
+          <mat-table #table [dataSource]="dataSource" matSort >
         
             <!-- Position Column -->
             <ng-container matColumnDef="cedula">
-              <mat-header-cell *matHeaderCellDef> Cédula. </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header="cedula"> Cédula. </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
             </ng-container>
         
@@ -29,7 +29,7 @@
         
             <!-- Weight Column -->
             <ng-container matColumnDef="apellidos">
-              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef mat-sort-header="apellidos"> Apellidos </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.apellidos}} </mat-cell>
             </ng-container>
         
@@ -44,7 +44,7 @@
               <mat-cell *matCellDef="let element"> {{element.carga}} </mat-cell>
             </ng-container>
             <!-- Symbol Column -->
-            <ng-container matColumnDef="estado">
+            <ng-container matColumnDef="estado" >
               <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
             </ng-container>

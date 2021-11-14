@@ -14,5 +14,5 @@ export class Anexo3{
     nombreproyecto?:String;
     documento?:String;
     idProyectoPPP?:Number;
-    estado?:boolean;
+    estado?:string;
 }

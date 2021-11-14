@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { Anexo3 } from '@shared/models/anexos/anexo3';
@@ -10,6 +10,9 @@ import { Anexo4 } from '@shared/models/anexos/anexo4';
 import { SysdateService } from '@data/services/api/sysdate.service';
 import { saveAs } from 'file-saver';
 import { Anexo4Service } from '@data/services/api/anexo4.service';
+import { MatTableDataSource } from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import { toBase64String } from '@angular/compiler/src/output/source_map';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -23,13 +26,24 @@ function loadFile(url, callback) {
 export class ProyectosolicitudesComponent implements OnInit {
   public anexo3:Anexo3[]=[];
   file
+  @ViewChild(MatSort, {static: true}) sort?: MatSort;
+  //Filtrar
+  public displayedColumns = ['nombreproyecto', 'cedula', 'nombresestudiante', 'apellidosestudiante','fecha_solicitud','documento','boton_ac','boton_dn','estado'];
+  public dataSource
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue; 
+  }
+
 
   constructor(private anexo4Service:Anexo4Service,private sysdateService:SysdateService,private activatedRoute: ActivatedRoute,private anexo3service:Anexo3Service) { }
 
   ngOnInit(): void {
     this.anexo3service.getallanexo3().subscribe(data=>{
       this.anexo3=data;
-      console.log(this.anexo3)
+      this.dataSource=new MatTableDataSource(this.anexo3); 
+      this.dataSource.sort = this.sort;
     })  
   }
 
@@ -76,8 +90,10 @@ export class ProyectosolicitudesComponent implements OnInit {
                    const reader = new FileReader();
                    reader.readAsDataURL(file);
                    reader.onload = () => {
-                    this.anexo4response.documento=reader.result+''};
+                    this.anexo4response.documento=reader.result+""};
                     this.anexo4Service.saveanexo3(this.aceptarsolucitud(anexo3,number)).subscribe(data=>{
+                      anexo3.estado="AN";
+                      this.anexo3service.updatinanexo3(anexo3).subscribe(datos=>{},err=>{});
                       Swal.fire({
                         icon: 'success',
                         title: 'Anexo',
@@ -89,7 +105,7 @@ export class ProyectosolicitudesComponent implements OnInit {
                         title: 'Anexo',
                         text: 'Hubo un error: '+err.error.message,
                         confirmButtonColor: "#0c3255"})
-                    })     
+                    }) 
                 }
               })
             }
@@ -102,17 +118,31 @@ export class ProyectosolicitudesComponent implements OnInit {
   anexo4response:Anexo4 = new Anexo4();
   aceptarsolucitud(anexo3:Anexo3,num:number):Anexo4{
     this.anexo4response.idProyectoPPP=anexo3.idProyectoPPP;
-    this.anexo4response.nombreEstudiante=anexo3.nombresestudiante;
+    this.anexo4response.nombreEstudiante=anexo3.nombresestudiante+" "+anexo3.apellidosestudiante;
     this.anexo4response.nombreResponsable=anexo3.nombre_responsable;
     this.anexo4response.nombreProyecto=anexo3.nombreproyecto;
     this.anexo4response.siglasCarrera=anexo3.siglas_carrera;
     this.sysdateService.getSysdate().subscribe(data=>{
       this.anexo4response.fechaRespuesta=data.fecha;});
+    this.anexo3service.getDocentedirector(anexo3.idProyectoPPP).subscribe(data=>{
+      this.anexo4response.nombreDirector=data.nombre+" "+data.apellidos;
+    })
+    this.anexo3service.getReprecentanteproyect(anexo3.idProyectoPPP).subscribe(data=>{
+      this.anexo4response.nombreRepresentante=data.nombre;
+    })
     this.anexo4response.cedulaEstudiante=anexo3.cedula;
     this.anexo4response.numeroHoras=num+'';
     return this.anexo4response;
   }
 
+  denegar(anexo3:Anexo3){
+    anexo3.estado="DN";
+    this.anexo3service.updatinanexo3(anexo3).subscribe(data=>{
+      console.log("Hola")
+    },err=>{
+      console.log(err.error.Mensaje)
+    });
+  }
  //Docs
  generate(Anexo4: Anexo4) {
 

@@ -10,6 +10,7 @@ import { CompracticasComponent } from './compracticas/compracticas.component';
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosolicitudes.component';
+import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 
 
 
@@ -23,7 +24,8 @@ import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosoli
     AlumnoconvocatoriaComponent,
     CompracticasComponent,
     AlumnosolicitudesComponent,
-    ProyectosolicitudesComponent
+    ProyectosolicitudesComponent,
+    CordinadorvinculacionComponent
   ],
   imports: [
     CommonModule,
