@@ -11,6 +11,7 @@ import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocat
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosolicitudes.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
+import { MiembroestudiantesComponent } from '@modules/miembroestudiantes/miembroestudiantes.component';
 
 
 
@@ -25,7 +26,8 @@ import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinc
     CompracticasComponent,
     AlumnosolicitudesComponent,
     ProyectosolicitudesComponent,
-    CordinadorvinculacionComponent
+    CordinadorvinculacionComponent,
+    MiembroestudiantesComponent
   ],
   imports: [
     CommonModule,

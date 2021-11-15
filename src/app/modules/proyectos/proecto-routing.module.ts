@@ -1,6 +1,7 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { MiembroestudiantesComponent } from '@modules/miembroestudiantes/miembroestudiantes.component';
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
@@ -52,7 +53,11 @@ const routes: Routes = [
     {
       path: 'listcv',
       component: CordinadorvinculacionComponent
-    }     
+    },
+    {
+      path: 'asigancion_docentes_a_estudiente/:cedula',
+      component: MiembroestudiantesComponent
+    }      
 ];
 
 @NgModule({

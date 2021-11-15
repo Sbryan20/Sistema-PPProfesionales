@@ -13,6 +13,7 @@ import { Anexo4Service } from '@data/services/api/anexo4.service';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
+import { Anexo5Service } from '@data/services/api/anexo5.service';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -26,6 +27,8 @@ function loadFile(url, callback) {
 export class ProyectosolicitudesComponent implements OnInit {
   public anexo3:Anexo3[]=[];
   file
+
+  
   @ViewChild(MatSort, {static: true}) sort?: MatSort;
   //Filtrar
   public displayedColumns = ['nombreproyecto', 'cedula', 'nombresestudiante', 'apellidosestudiante','fecha_solicitud','documento','boton_ac','boton_dn','estado'];

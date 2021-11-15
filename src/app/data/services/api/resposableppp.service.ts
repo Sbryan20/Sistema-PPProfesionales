@@ -49,4 +49,9 @@ export class ResposablepppService {
       data => data as Docentes
     )); 
   }
+  getResponsableId(cedula:String):Observable<CarreasDoc>{
+    return this.http.get(this.urlEndPoint+"/responsablePPP/"+cedula,{headers: this.httpHeaders}).pipe(map(
+      data => data as CarreasDoc
+    )); 
+  }
 }

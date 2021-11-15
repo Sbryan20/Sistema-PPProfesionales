@@ -66,12 +66,33 @@ export class AlumnoconvocatoriaComponent implements OnInit {
     })
 
   }
+  aux: number = 0;
+  aux2: number = 0;
+
+  hola(){
+    
+  }
   materias(id:Number){
     this.anexo2services.getAnexoM(id).subscribe(data=>{
       this.anexo3service.getDocenteTitulo(data.siglasCarrera+'').subscribe(datos=>{
-        console.log(datos.titulo)
+        for (let i = 0; i < this.maeriaslim.materias!.length; i++) {
+          for (let j = 0; j < data.materias!.length; j++) {
+            if(this.maeriaslim.materias![i].nombre == data.materias![j].nombre) {
+              this.aux2++;
+              console.log('la respuesta es' + this.aux2);
+            }
+          }
+        } 
+
+        if(this.aux2===data.materias!.length){
+          console.log("Si cumple con los requisitos")
+        }else{
+          console.log("No cumple")
+        }
+      
+
         console.log(data) 
-        if(0==0){
+        if(this.aux2==data.materias!.length){
           Swal.fire({
             title: 'Esta seguro que desea postular a proyeto '+data.nombreProyecto,
             text: "Para ello debe firmar el siguiente anexo con sus datos",
@@ -88,6 +109,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
                 'success'
               )
               this.generate(this.anexo3(data,datos.titulo+''))
+              console.log(this.anexo3(data,datos.titulo+''))
               const { value: file } = await Swal.fire({
                 allowOutsideClick: false,
                 title: 'SELECCIONE EL PDF',
@@ -158,6 +180,9 @@ export class AlumnoconvocatoriaComponent implements OnInit {
   }
 
 
+  continuarposltulacion(){
+
+  }
 
   //Docs
   generate(anexo3: Anexo3) {

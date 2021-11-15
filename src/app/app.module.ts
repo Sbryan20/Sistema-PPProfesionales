@@ -32,6 +32,7 @@ import { AlumnoconvocatoriaComponent } from '@modules/proyectos/alumnoconvocator
 import { CompracticasComponent } from './modules/proyectos/compracticas/compracticas.component';
 import { AlumnosolicitudesComponent } from '@modules/proyectos/alumnosolicitudes/alumnosolicitudes.component';
 import { ProyectosolicitudesComponent } from '@modules/proyectos/proyectosolicitudes/proyectosolicitudes.component';
+import { MiembroestudiantesComponent } from './modules/miembroestudiantes/miembroestudiantes.component';
 
 const modules = [
   MatButtonModule,
@@ -59,7 +60,8 @@ const modules = [
     AlumnoconvocatoriaComponent,
     CompracticasComponent,
     AlumnosolicitudesComponent,
-    ProyectosolicitudesComponent
+    ProyectosolicitudesComponent,
+    MiembroestudiantesComponent
   ],
   imports: [
     

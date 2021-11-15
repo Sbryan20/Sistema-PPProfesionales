@@ -1,0 +1,91 @@
+<table class="table table-striped table-responsive-md btn-table">
+    <tr >
+      <th> <h5>ASIGNAR ESTUDIANTES A DOCENTE DE APOYO</h5></th>
+    </tr>
+    
+    <br>
+    <tr >
+      <th scope="row"> <strong>SELECCIONE UN DOCENTE DE APOYO: </strong><select (change)="selectAlumnos($event)"  class="form-control"  style="width: 100%;" name="select">
+        <option value="SL">Seleccione</option>
+        <option *ngFor="let item of anexo1response" [value]="item.cedulaDelegado">PROYECTO: {{item.nombreProyecto}}    DIRECTOR DE PROYECTO:{{item.nombreDelegado}}   {{item.carrera}}</option>
+        <option></option>
+      </select>
+  </tr>
+</table>
+<div class="card border-primary mb-3">
+  <div class="card-header">ALUMNOS</div>
+  <div class="card-body text-primary">
+      <div class="example-container mat-elevation-z8">
+        <div class="example-header">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+      
+        <mat-table #table [dataSource]="dataSource" >
+      
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="cedula">
+            <mat-header-cell *matHeaderCellDef> CEDULA </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
+          </ng-container>
+      
+          <!-- Weight Column -->
+          <ng-container matColumnDef="nombresestudiante">
+            <mat-header-cell *matHeaderCellDef> NOMBREESTUDIANTE </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.nombresestudiante}} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="apellidosestudiante">
+            <mat-header-cell *matHeaderCellDef> NOMBREESTUDIANTE </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.apellidosestudiante}} </mat-cell>
+          </ng-container>
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="boton">
+            <mat-header-cell *matHeaderCellDef> SELECCIONAR </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <div class="col-sm-6">
+                <button  mat-raised-button color="primary" mat-raised-button color="primary" (click)="onAddRowR(element)" >Agregar</button>
+            </div> </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+
+  </div>
+</div>
+ <!-- Array -->
+ <h5>ASIGNADOS</h5>
+ <div class="bss-table-borderless" [formGroup]="addFormR">
+   <div class="form-group">
+     <br>	
+     <table class="table table-bordered table-striped" style="border: transparent;">
+       <thead>
+       </thead>
+       <tbody>
+         <tr *ngFor="let row of addFormR.get('rowsR')?.controls;let index = index;">
+           <td>
+            cedulaEstudiante : <input type="text" class="form-control" [formControl]="row.get('cedulaEstudiante')" readonly>
+           </td>
+           <td>
+            nombreEstudiante : <input type="text" class="form-control" [formControl]="row.get('nombreEstudiante')" readonly>
+           </td>
+           <td>
+             <button mat-raised-button color="warn" (click)="onRemoveRowR(index)">QUITAR</button>
+           </td>
+         </tr>
+       </tbody>
+     </table>
+   </div>
+
+   <ng-container >
+    <button mat-raised-button color="primary" (click)="guardar()" >GUARDAR</button>
+  </ng-container>

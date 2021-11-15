@@ -25,6 +25,9 @@ export class AlumnosolicitudesComponent implements OnInit {
     })
   }
 
+  continuarposltulacion(){
+
+  }
   
   //convert a pdf
   convertFile(docum) {
