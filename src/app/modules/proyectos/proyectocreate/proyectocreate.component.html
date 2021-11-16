@@ -48,7 +48,7 @@
                 <tr>
                   <td > <strong>CARRERA:</strong><select class="form-control" (change)="selectCarreta($event)" style="width: 100%;" name="select">
                     <option value="" selected>Seleccione</option>
-                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> <ng-container *ngIf="item.codigo==carrera"> {{item.codigo}}-{{item.nombre}}</ng-container></option>
+                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> {{item.codigo}}-{{item.nombre}}/option>
                   </select></td>
                   <td colspan="3"> <strong>Estado: </strong><select class="form-control" (change)="selectEstado($event)" style="width: 100%;" name="select">
                     <option value="true">TRUE</option>

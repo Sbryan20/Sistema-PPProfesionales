@@ -108,6 +108,7 @@ export class ProyectoresponComponent implements OnInit {
               (`${cedula}`+', resivira un Carreo el que se le convocare que a sido asigando como Resposanble PPP'),
                 'success'
             )
+            this.router.navigate(['/panel/proyecto']);
             this.listarres();              
         },err=>{
           Swal.fire({

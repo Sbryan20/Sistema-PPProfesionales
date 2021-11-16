@@ -69,7 +69,7 @@ export class ProyectocreateComponent implements OnInit {
       this.resPPP=cres;
     })
     this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
-    this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data)
+    this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data.filter(d=>d.codigo==this.carrera))
 
   }
 

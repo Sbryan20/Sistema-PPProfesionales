@@ -60,7 +60,7 @@ export class ProyectoatvrqsComponent implements OnInit {
   //ArrayActividades
   onAddRow() {
     this.rows.push(this.createItemFormGroup());
-    console.log()
+    console.log(this.rows.getRawValue())
   }
   onRemoveRow(rowIndex:number){
     this.rows.removeAt(rowIndex);

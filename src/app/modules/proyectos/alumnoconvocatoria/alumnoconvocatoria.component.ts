@@ -92,7 +92,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
       
 
         console.log(data) 
-        if(this.aux2==data.materias!.length){
+        if(this.aux2!=data.materias!.length){
           Swal.fire({
             title: 'Esta seguro que desea postular a proyeto '+data.nombreProyecto,
             text: "Para ello debe firmar el siguiente anexo con sus datos",

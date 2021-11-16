@@ -1,11 +1,13 @@
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MiembroestudiantesComponent } from '@modules/miembroestudiantes/miembroestudiantes.component';
+
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
+import { Anexo6Component } from './anexo6/anexo6.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
+import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
@@ -57,7 +59,11 @@ const routes: Routes = [
     {
       path: 'asigancion_docentes_a_estudiente/:cedula',
       component: MiembroestudiantesComponent
-    }      
+    },
+    {
+      path: 'anexo6',
+      component: Anexo6Component
+    }        
 ];
 
 @NgModule({

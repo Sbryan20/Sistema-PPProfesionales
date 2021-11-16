@@ -11,7 +11,8 @@ import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocat
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosolicitudes.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
-import { MiembroestudiantesComponent } from '@modules/miembroestudiantes/miembroestudiantes.component';
+import { MiembroestudiantesComponent } from '@modules/proyectos/miembroestudiantes/miembroestudiantes.component';
+import { Anexo6Component } from './anexo6/anexo6.component';
 
 
 
@@ -27,7 +28,8 @@ import { MiembroestudiantesComponent } from '@modules/miembroestudiantes/miembro
     AlumnosolicitudesComponent,
     ProyectosolicitudesComponent,
     CordinadorvinculacionComponent,
-    MiembroestudiantesComponent
+    MiembroestudiantesComponent,
+    Anexo6Component
   ],
   imports: [
     CommonModule,

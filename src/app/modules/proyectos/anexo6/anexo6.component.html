@@ -1,0 +1,146 @@
+<form class="formulario" >
+    <table style="width:100%; height:100%;" class="bss-table-borderless" class="table table-striped table-responsive-md btn-table">
+        <thead class="thead-dark center-block">
+          <tr class="active">
+            <div class="row-fluid">
+              <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                  <img />
+                </div>
+              </div>
+            </div>
+          </tr>
+        </thead>
+ <tbody>
+    <tr colspan="2" class="d-flex" class="text-center">
+            <h2 class="bss-txt-content" style="font-size: 22px;">
+              PLAN DE APRENDIZAJE <br /> 
+              PROYECTOS DE VINCULACIÓN CON LA SOCIEDAD<br />
+              INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY <br />
+            </h2>
+    </tr>
+     <tr>
+     <table style="width:100%; height:90%;" class="table table-bordered">
+              <tbody>
+                <tr> 
+                    <th colspan="4" scope="col"><strong>NOMBRE DEL PROYECTO:</strong> <select class="form-control"  style="width: 100%;" name="select">
+                      <option value="">Proyecto1</option>
+                      <option value="" selected>Proyecto2</option>
+                      <option value="" selected>Proyecto3</option>
+                    </select>
+                    </th>  
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>Datos Informativos:</strong>  
+                  </th>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col" ><strong>DOCENTE DE APOYO DEL PROYECTO:</strong> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-5" /> 
+                  </th>
+                </tr>
+                <tr> 
+                    <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA:</strong> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-5"  /> 
+                    </th>
+                  </tr>
+                <tr>
+                  <td colspan="3" scope="col"> <strong>ESTUDIANTE:</strong><select class="form-control" style="width: 100%;" name="select">
+                    <option value="">Est1</option>
+                      <option value="" selected>Est2</option>
+                      <option value="" selected>Est3</option>     
+                    </select>
+                </td>
+                  <td colspan="1"> <strong>PERIODO ACADEMICO: </strong>
+                    <tr> 
+                        <th colspan="4" scope="col"> <input type="text" class="form-control"  value="" class="col-md-5" style="background-color:transparent; "  /> 
+                        </th>
+                      </tr>
+                </td>
+                </tr>
+                <tr>
+                    <td colspan="3" scope="col " ><strong>FECHA DE ELABORACION:</strong>
+                            <input type="date" >
+                    </td>
+                     <td colspan="1"> <strong>CICLO: </strong>
+                        <tr> 
+                            <th colspan="4" scope="col"> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent; "  /> 
+                            </th>
+                          </tr>
+                    </td>
+              </tr>
+              <tr>
+                 <td colspan="2" scope="col">
+                     <div [formGroup]="addForm">
+                        <table>
+                            <td>
+                                <button mat-raised-button color="primary" (click)="onAddRow()" *ngIf="addForm.get('rows')">AGREGAR</button>
+                            </td>
+                            <tbody>
+                                <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                                    <td>  
+                                      <tr>
+                                      <h5>ACTIVIDADES POR REALIZAR</h5>
+                                      <div class="bss-table-borderless">
+                                        <div class="form-group">
+                                          <br>	
+                                          <table class="table table-bordered table-striped" style="border: transparent;">
+                                           <tbody> 
+                                              <tr>
+                                                <td>
+                                                <input type="text" class="form-control"  [formControl]="row.get('actividad')">
+                                                </td>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                        </div>
+                                      </div>
+                                     </tr>
+                                  </td>
+                                  <td colspan="" scope="col "> <strong>ASIGNATURA BASE RELACIONADA:</strong><select class="form-control" style="width: 100%;" name="select"  [formControl]="row.get('asignatura')">
+                                    <option value="fdg">BD</option>
+                                      <option value="fdg" selected>PROGRAMACION</option>
+                                      <option value="fdg" selected>PROGRAMACION3</option>     
+                                    </select>
+                                </td>
+                                <td >  
+                                  <tr>
+                                  <h5>RESULTADOS DEL APRENDIZAJE</h5>
+                                  <div class="bss-table-borderless">
+                                    <div class="form-group">
+                                      <br>	
+                                      <table class="table table-bordered table-striped" style="border: transparent;">
+                                       <tbody> 
+                                          <tr>
+                                            <td>
+                                            <input type="text" class="form-control"  [formControl]="row.get('resultado')">
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                 </tr>
+                              </td>
+                              <td colspan="3"> <strong>HORAS ASIGNADAS </strong>
+                                <tr> 
+                                    <th colspan="4" scope="col"> <input type="number"  class="form-control" value="" class="col-md-5" style="background-color:transparent;" [formControl]="row.get('horasAsignadas')"/> </th>
+                                    <td> <button mat-raised-button color="warn" (click)="onRemoveRow(index)">ELIMINAR</button> </td>
+                                </tr>
+                            </td>
+                            </tr>
+                               <tr> 
+                               <th colspan="4" scope="col"><strong>TOTAL DE HORAS:</strong> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-11" style="background-color:transparent; "/>  </th>
+                            </tr>
+                            </tbody>
+                         </table>
+                     </div>
+                 </td> 
+              </tr>
+        </tbody>
+      </table>
+          </tr>
+        </tbody>
+      </table> 
+    <div class="col text-center" style="display: block; margin: 0 auto;"> 
+      <button class="btn btn-primary">GUARDAR PLAN DE APRENDIZAJE</button>&nbsp;&nbsp;
+      </div>
+ </form>
