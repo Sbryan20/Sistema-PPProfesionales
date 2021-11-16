@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
+import { Anexo61Component } from './anexo61/anexo61.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
@@ -63,6 +64,9 @@ const routes: Routes = [
     {
       path: 'anexo6',
       component: Anexo6Component
+    },{
+      path: 'anexo6_1',
+      component: Anexo61Component
     }        
 ];
 

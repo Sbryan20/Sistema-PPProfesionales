@@ -13,6 +13,7 @@ import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosoli
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { MiembroestudiantesComponent } from '@modules/proyectos/miembroestudiantes/miembroestudiantes.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
+import { Anexo61Component } from './anexo61/anexo61.component';
 
 
 
@@ -29,7 +30,8 @@ import { Anexo6Component } from './anexo6/anexo6.component';
     ProyectosolicitudesComponent,
     CordinadorvinculacionComponent,
     MiembroestudiantesComponent,
-    Anexo6Component
+    Anexo6Component,
+    Anexo61Component
   ],
   imports: [
     CommonModule,
