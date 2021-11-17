@@ -96,6 +96,7 @@ export class MiembroestudiantesComponent implements OnInit {
     this.anexo1service.getbyCarrera(this.anexo1.siglasCarrera).subscribe(date=>{
       date.filter(da=>da.nombreRol=="director").forEach(element => {
         this.anexo5resposae.directorD=element.nombreDelegado
+        console.log(element.nombreDelegado)
       });
     })
     return this.anexo5resposae
@@ -187,9 +188,9 @@ export class MiembroestudiantesComponent implements OnInit {
 
   //Docs
   generate(anexo5: Anexo5) {
-
+    console.log(anexo5)
     loadFile(
-      'https://download1326.mediafire.com/9j72a5beq3tg/hyii5f90qhtoyj2/anexo5.docx',
+      'https://download852.mediafire.com/dd5v6e5au9pg/skgfbfsatrqiopz/anexo5.docx',
       function (error, content) {
         
         if (error) {
@@ -202,19 +203,15 @@ export class MiembroestudiantesComponent implements OnInit {
         });
         try {
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
-          doc.render({             
-            fecha:anexo5.fechaEmision,
-            titulo_nivel:anexo5.tituloTercerN,
-            nombre_docente:anexo5.nombreDocenteReceptor,
-            director:anexo5.directorD,
+          doc.render({
+
+            titulo:anexo5.siglasCarrera,
             docente_apoyo:anexo5.nombreDocenteReceptor,
-            proyecto_vinculacion:anexo5.idProyectoPPP,
+            director:anexo5.directorD,        
+            fecha:anexo5.fechaEmision, 
             estudiantes:anexo5.alumnos,
-            identificaciones:anexo5.alumnos,
             nom_apell_responsable_ppp:anexo5.nonbreDocenteEmisor,
             siglas_carrera:anexo5.siglasCarrera,
-            titulo:anexo5.siglasCarrera,
-            nom_apell_director:anexo5.directorD
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).

@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit, AfterViewInit{
 
             }else{
               sessionStorage.setItem('user', JSON.stringify(data));
+              console.log(data)
               this.router.navigate(['/panel/user']);
             }
             

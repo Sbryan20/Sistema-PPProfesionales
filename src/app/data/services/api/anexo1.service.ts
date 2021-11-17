@@ -21,6 +21,11 @@ export class Anexo1Service {
     return this.http.post<Anexo1>(this.urlEndPoint,anexo1,{headers: this.httpHeaders})
   }
 
+  updateanexo1(anexo1: Anexo1):Observable<Anexo1>{
+    console.log(anexo1);
+    return this.http.put<Anexo1>(this.urlEndPoint,anexo1,{headers: this.httpHeaders})
+  }
+
   getanexo1by(proyecto?:Number):Observable<Anexo1[]>{
     return this.http.get(this.urlEndPoint+"/allByProyecto/"+proyecto,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo1[]))
   }

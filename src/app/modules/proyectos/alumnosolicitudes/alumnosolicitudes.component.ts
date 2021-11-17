@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { Anexo3 } from '@shared/models/anexos/anexo3';
+import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -50,7 +51,5 @@ dataURLtoFile(dataurl, filename) {
     return new File([u8arr], filename, { type: mime });
   }
 }
-function saveAs(file: File, arg1: string) {
-  throw new Error('Function not implemented.');
-}
+
 

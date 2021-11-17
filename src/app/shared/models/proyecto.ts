@@ -9,6 +9,7 @@ export class Proyectos {
     fechaat?:string;
     entidadbeneficiaria?:number;
     directorProyecto?:string;
+    nombreresponsable?:string
     responsablePPP?:string;
     actividadeslistProyectos?: actividadeslistProyectos[];
     requisitoslistProyectos?:  requisitoslistProyectos[];

@@ -150,7 +150,7 @@ export class ProyectosolicitudesComponent implements OnInit {
  generate(Anexo4: Anexo4) {
 
   loadFile(
-    'https://download1590.mediafire.com/auzuy99yyjrg/7qyi36tarwmwnxd/anexo4.docx',
+    'https://download855.mediafire.com/q5cu3wnt6wtg/qijek752n3vwysq/anexo4.docx',
     function (error, content) {
       
       if (error) {

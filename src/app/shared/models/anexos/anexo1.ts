@@ -14,7 +14,7 @@ export class Anexo1{
     nombreCoordinador?:String;
     siglasCarrera?:String;
     idProyectoPPP?:Number;
-    documento?;
+    documento?:String;
     
 
 }

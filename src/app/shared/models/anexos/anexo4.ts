@@ -8,7 +8,7 @@ export class Anexo4{
     nombreRepresentante?:String;
     numeroHoras?:String;
     nombreResponsable?:String;
-    fechaRecepcionEst?:String;
+    fechaRecepcionEst?:Date;
     idProyectoPPP?:Number;
     documento?:String;
     cedulaEstudiante?:String;

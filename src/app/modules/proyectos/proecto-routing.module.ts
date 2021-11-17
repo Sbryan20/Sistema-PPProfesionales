@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocatoria.component';
+import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
+import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
 import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
@@ -38,7 +40,7 @@ const routes: Routes = [
       component: ProyectoatvrqsComponent
     },
     {
-      path: 'convopracticas',
+      path: 'convopracticas/:nombre',
       component: CompracticasComponent
     },
     {
@@ -67,6 +69,12 @@ const routes: Routes = [
     },{
       path: 'anexo6_1',
       component: Anexo61Component
+    },{
+      path: 'docentemiebros_convocatoria/:cedula',
+      component: DocenteapoyoconvocatoriaComponent
+    } ,{
+      path: 'alumno_convocatoria/:cedula',
+      component: AlumnosfirmaComponent
     }        
 ];
 

@@ -16,6 +16,8 @@ import { saveAs } from 'file-saver';
 import { Anexo2Service } from '../../../data/services/api/anexo2.service';
 import { Actividadesanexo } from '@shared/models/dto/actividadeanexo2';
 import { Fechas } from '@shared/models/dto/fecha';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ResposablepppService } from '@data/services/api/resposableppp.service';
 
 
 function getRandomArbitrary(min, max) {
@@ -76,15 +78,19 @@ export class CompracticasComponent implements OnInit {
 
 
 
-  constructor(private bondingCoordinationService:BondingCoordinationService,private fb: FormBuilder, private proyectoService: ProyectoService, private SysdateService: SysdateService, private Anexo2Service: Anexo2Service) {
+  constructor(private router: Router,private resposablepppService:ResposablepppService,private activatedRoute: ActivatedRoute,private bondingCoordinationService:BondingCoordinationService,private fb: FormBuilder, private proyectoService: ProyectoService, private SysdateService: SysdateService, private Anexo2Service: Anexo2Service) {
 
   }
 
   ngOnInit(): void {
-    this.proyectoService.getProyectos().subscribe(data => {
-      this.listproyecto = data
-      
+    this.activatedRoute.params.subscribe( params => {
+      let nombre = params['nombre']
+        this.proyectoService.getProyectos().subscribe(datas => {
+          this.listproyecto = datas.filter(d=>d.nombreresponsable==nombre)
+        })
+ 
     })
+    
     this.SysdateService.getSysdate().subscribe(data => {
       this.sysdate = data
       this.fecha=data.fecha
@@ -200,6 +206,7 @@ export class CompracticasComponent implements OnInit {
                     text: 'Exitoso',
                     confirmButtonColor: "#0c3255"
                   })
+                  this.router.navigate(['/panel/proyecto/ver_solicidudes']);
                 }, err => {
                   Swal.fire({
                     icon: 'warning',

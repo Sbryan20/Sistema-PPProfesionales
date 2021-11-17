@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { MateriasService } from '@data/services/api/materias.service';
 import { ProyectoService } from '@data/services/api/proyecto.service';
 import { Materias } from '@shared/models/materias';
@@ -28,7 +29,7 @@ export class ProyectoatvrqsComponent implements OnInit {
   rowsR: FormArray;
   itemFormR?: FormGroup;
   
-  constructor(private fb: FormBuilder,private fbR: FormBuilder,private proyectoService:ProyectoService, private materiasService:MateriasService) {
+  constructor(private router: Router,private fb: FormBuilder,private fbR: FormBuilder,private proyectoService:ProyectoService, private materiasService:MateriasService) {
     //ArrayActividades
     this.addForm = this.fb.group({
       items: [null, Validators.required],
@@ -106,6 +107,7 @@ export class ProyectoatvrqsComponent implements OnInit {
         text: 'Datos guadados correctamente',
         confirmButtonColor: "#0c3255"   
       }) 
+      this.router.navigate(['/panel/proyecto/convopracticas']);
     },err=>{
       Swal.fire({
         icon: 'warning',

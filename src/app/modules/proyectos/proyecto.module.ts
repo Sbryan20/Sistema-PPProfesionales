@@ -14,6 +14,9 @@ import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinc
 import { MiembroestudiantesComponent } from '@modules/proyectos/miembroestudiantes/miembroestudiantes.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
+import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
+import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
+
 
 
 
@@ -31,7 +34,9 @@ import { Anexo61Component } from './anexo61/anexo61.component';
     CordinadorvinculacionComponent,
     MiembroestudiantesComponent,
     Anexo6Component,
-    Anexo61Component
+    Anexo61Component,
+    DocenteapoyoconvocatoriaComponent,
+    AlumnosfirmaComponent
   ],
   imports: [
     CommonModule,

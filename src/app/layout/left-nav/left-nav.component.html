@@ -36,6 +36,10 @@
                 <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>
                 Ver Solicitud
               </a>
+              <a [routerLink]="['/panel/proyecto/alumno_convocatoria',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light">
+                <i class="fa fa-shopping-cart mr-3" aria-hidden="true"></i>
+                Proyectos Aceptados
+              </a>
             </div>
     
             <!--Responsable PPP -Convocatoria -->
@@ -43,7 +47,7 @@
               <a  [routerLink]="['/panel/proyecto/actrqs']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Asignar actividades a Proyectos
               </a>
-              <a  [routerLink]="['/panel/proyecto/convopracticas']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+              <a  [routerLink]="['/panel/proyecto/convopracticas',persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Crear convocatorias
               </a>
               <a  [routerLink]="['/panel/proyecto/ver_solicidudes']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
@@ -55,9 +59,7 @@
               <a  [routerLink]="['/panel/proyecto/anexo6']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Plan de Aprendizaje
               </a>
-              <a  [routerLink]="['/panel/proyecto/anexo6_1']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
-                Dar segumiento al Plan de Aprendizaje
-              </a>
+
 
             </div>
     
@@ -97,9 +99,28 @@
               Lista de Entidades
               </a>   
             </div>
-    
-    
-    
+               <!--DocenteApoyo -->
+               <div class="list-group" *ngSwitchCase="'DA'">
+                <a
+                  [routerLink]="['/panel/proyecto/docentemiebros_convocatoria',persona.cedula]" routerLinkActive="active"
+                  class="list-group-item list-group-item-action bg-dark text-light"
+                >
+                  Convocatorias
+                </a> 
+                <a  [routerLink]="['/panel/proyecto/anexo6_1']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+                  Dar segumiento al Plan de Aprendizaje
+                </a>    
+              </div>
+              <!--DirectorProyecto -->
+              <div class="list-group" *ngSwitchCase="'DP'">
+                <a
+                  [routerLink]="['/panel/proyecto/docentemiebros_convocatoria',persona.cedula]" routerLinkActive="active"
+                  class="list-group-item list-group-item-action bg-dark text-light"
+                >
+                  Convocatorias
+                </a>     
+              </div>
           </div>
+          
         </div>
 </ng-container>

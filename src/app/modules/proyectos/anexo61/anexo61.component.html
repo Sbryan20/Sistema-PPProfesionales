@@ -23,9 +23,9 @@
      <table style="width:100%; height:90%;" class="table table-bordered">
               <tbody>
                 <tr> 
-                    <th colspan="4" scope="col"><strong>SELECIONE EL PRAN DE APRENDIZAJE PARA DAR SEGUIMIENTO</strong> <select class="form-control"  style="width: 100%;" name="select">
-                      <option value="">Proyecto1</option>
-                      <option value="" selected>Proyecto2</option>
+                    <th colspan="4" scope="col"><strong>SELECIONE EL PRAN DE APRENDIZAJE PARA DAR SEGUIMIENTO</strong> <select class="form-control"  style="width: 100%;" name="select" (change)="selectProyecto($event)" >
+                      <option value="">SELECCIONE</option>
+                      <option *ngFor="let item of anexo6" [value]="item.id">{{item.id}}- -{{item.nombreProyecto}}- -{{item.nombreEstudiante}}</option>
                     </select>
                     </th>  
                 </tr>

@@ -44,7 +44,7 @@ export class LeftNavComponent implements OnInit {
     if(rol=="CV"){
       return "CORDINADOR/RA DE VINCULACION";
     }
-    if(rol=="DV"){
+    if(rol=="DP"){
       return "DIRECTOR/RA DE PROYECTO";
     }
     if(rol=="DA"){
