@@ -23,6 +23,14 @@ import { ResposablepppService } from '@data/services/api/resposableppp.service';
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min; 
 }
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }
@@ -196,27 +204,27 @@ export class CompracticasComponent implements OnInit {
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
               } else {
-               
-                this.base(value)
-                console.log(abase64(value))
-                this.Anexo2Service.saveanexo2(this.Anexo2(split[0])).subscribe(data => {
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Se mando convocatoria de forma existosa',
-                    text: 'Exitoso',
-                    confirmButtonColor: "#0c3255"
+                getBase64(value).then(docx=>{
+                  this.anexo2.documento=docx+''
+                  this.Anexo2Service.saveanexo2(this.Anexo2(split[0])).subscribe(data => {
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'Se mando convocatoria de forma existosa',
+                      text: 'Exitoso',
+                      confirmButtonColor: "#0c3255"
+                    })
+                    this.router.navigate(['/panel/proyecto/ver_solicidudes']);
+                  }, err => {
+                    Swal.fire({
+                      icon: 'warning',
+                      title: 'Al paracer hubo un problema',
+                      text: err.error.message,
+                      confirmButtonColor: "#0c3255"
+                    })
+  
                   })
-                  this.router.navigate(['/panel/proyecto/ver_solicidudes']);
-                }, err => {
-                  Swal.fire({
-                    icon: 'warning',
-                    title: 'Al paracer hubo un problema',
-                    text: err.error.message,
-                    confirmButtonColor: "#0c3255"
-                  })
-
-                })
-                resolve('')
+                  resolve('')
+                })   
               }
             })
           }
@@ -296,17 +304,5 @@ export class CompracticasComponent implements OnInit {
       }
     );
   }
-  vars?:String
-  ///TRAFORMAR BASE64;
-  base(event: any) {
-    const file = event;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      var s=reader.result+ ''
-      this.vars=s
-      this.anexo2.documento=this.vars
-  }
-}
 
 }

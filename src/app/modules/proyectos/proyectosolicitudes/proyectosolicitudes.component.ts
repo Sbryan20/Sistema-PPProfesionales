@@ -19,6 +19,15 @@ function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 };
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 @Component({
   selector: 'app-proyectosolicitudes',
   templateUrl: './proyectosolicitudes.component.html',
@@ -89,11 +98,8 @@ export class ProyectosolicitudesComponent implements OnInit {
                 if (value === null) {
                   resolve('Es necesario que seleccione el PDF')
                 } else {
-                   const file:any = value;
-                   const reader = new FileReader();
-                   reader.readAsDataURL(file);
-                   reader.onload = () => {
-                    this.anexo4response.documento=reader.result+""};
+                  getBase64(value).then(docx=>{
+                    this.anexo4response.documento=docx+''
                     this.anexo4Service.saveanexo3(this.aceptarsolucitud(anexo3,number)).subscribe(data=>{
                       anexo3.estado="AN";
                       this.anexo3service.updatinanexo3(anexo3).subscribe(datos=>{},err=>{});
@@ -109,6 +115,8 @@ export class ProyectosolicitudesComponent implements OnInit {
                         text: 'Hubo un error: '+err.error.message,
                         confirmButtonColor: "#0c3255"})
                     }) 
+                  })
+                    
                 }
               })
             }

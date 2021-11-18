@@ -20,10 +20,6 @@
                 class="list-group-item list-group-item-action bg-dark text-light"
               >  Convocar a Docentes como Cordinadores de Vinculación
               </a>
-              <a [routerLink]="['/panel/proyecto/anexo5']" routerLinkActive="active"
-              class="list-group-item list-group-item-action bg-dark text-light">
-              Anexo5
-            </a>
             </div>
     
             <!--estudiante-->
@@ -50,13 +46,13 @@
               <a  [routerLink]="['/panel/proyecto/convopracticas',persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Crear convocatorias
               </a>
-              <a  [routerLink]="['/panel/proyecto/ver_solicidudes']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+              <a  [routerLink]="['/panel/proyecto/ver_solicidudes',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Ver solicidudes
               </a>
               <a  [routerLink]="['/panel/proyecto/asigancion_docentes_a_estudiente',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
-                Assignar docentes a estudiantes
+                Asignar docentes a estudiantes
               </a>
-              <a  [routerLink]="['/panel/proyecto/anexo6']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+              <a  [routerLink]="['/panel/proyecto/anexo6',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                 Plan de Aprendizaje
               </a>
 
@@ -91,13 +87,18 @@
               >
                 Agregar entidad beneficiaria
               </a>   
-    
               <a
                 [routerLink]="['/panel/user/list']" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >
               Lista de Entidades
-              </a>   
+              </a>
+              <a
+                [routerLink]="['/panel/proyecto/plan_de_aprendizaje',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >
+              Planes de Aprencizaje
+              </a>    
             </div>
                <!--DocenteApoyo -->
                <div class="list-group" *ngSwitchCase="'DA'">
@@ -107,9 +108,12 @@
                 >
                   Convocatorias
                 </a> 
-                <a  [routerLink]="['/panel/proyecto/anexo6_1']" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+                <a  [routerLink]="['/panel/proyecto/anexo6_1',persona.cedula,persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
                   Dar segumiento al Plan de Aprendizaje
-                </a>    
+                </a>
+                <a  [routerLink]="['/panel/proyecto/alumno_en_cargo',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light">
+                  Alumnos en Cargo
+                </a>      
               </div>
               <!--DirectorProyecto -->
               <div class="list-group" *ngSwitchCase="'DP'">
@@ -118,7 +122,13 @@
                   class="list-group-item list-group-item-action bg-dark text-light"
                 >
                   Convocatorias
-                </a>     
+                </a>   
+                <a
+                  [routerLink]="['/panel/proyecto/seguimeinto_parcial_firma',persona.cedula]" routerLinkActive="active"
+                  class="list-group-item list-group-item-action bg-dark text-light"
+                >
+                  Seguminto parcial de plan de Aprendizaje
+                </a>    
               </div>
           </div>
           

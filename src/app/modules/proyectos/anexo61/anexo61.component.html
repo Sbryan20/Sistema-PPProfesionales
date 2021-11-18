@@ -43,8 +43,8 @@
                             <tbody>
                                 <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                                     <td colspan="" scope="col "> <strong>Actividades realizadas por el estudiante:</strong><select class="form-control" style="width: 100%;" name="select"  [formControl]="row.get('actividadesEstudiante')">
-                                        <option value="SL" selected>SELECCIONE</option>
-                                          <option value="SI" >SI</option>
+                                        <option value="SL">SELECCIONE</option>
+                                        <option *ngFor="let item of anexo6es.actividades" [value]="item.id">{{item.id}}- -{{item.actividad}}- -{{item.totalHoras}}</option>
                                         </select>
                                     </td>
                                   <td >  
@@ -69,18 +69,19 @@
                                    </tr>
                                 </td>
                                   <td colspan="" scope="col "> <strong>Evolución del desempeño estudiante en la ejecución de la actividad:</strong><select class="form-control" style="width: 100%;" name="select" [formControl]="row.get('desempenoEstudiante')">
-                                    <option value="SL" selected>SELECCIONE</option>
+                                    <option value="SL">SELECCIONE</option>
                                       <option value="Poco Satisfactorio">Poco Satisfactorio</option>
                                       <option value="Satisfactorio" >Satisfactorio</option>
                                       <option value="Muy Satisfactorio">Muy Satisfactorio</option>       
                                     </select>
                                 </td>
                                 <td colspan="" scope="col "> <strong>Las asignaturas base permitieron lograr el resultado de la actividad:</strong><select class="form-control" style="width: 100%;" name="select" [formControl]="row.get('asignaturasBase')">
-                                    <option value="SL" selected>SELECCIONE</option>
+                                    <option value="SL">SELECCIONE</option>
                                       <option value="SI" >SI</option>
                                       <option value="NO" >NO</option> 
                                     </select>
                                 </td>
+                                <td> <button mat-raised-button color="warn" (click)="onRemoveRow(index)">ELIMINAR</button> </td>
                             </tbody>
                          </table>
                      </div>
@@ -92,6 +93,6 @@
         </tbody>
       </table> 
     <div class="col text-center" style="display: block; margin: 0 auto;"> 
-      <button class="btn btn-primary">GUARDAR PLAN DE APRENDIZAJE</button>&nbsp;&nbsp;
+      <button class="btn btn-primary" (click)="guardar()">GUARDAR PLAN DE APRENDIZAJE</button>&nbsp;&nbsp;
       </div>
  </form>

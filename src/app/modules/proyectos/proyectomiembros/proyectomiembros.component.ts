@@ -23,7 +23,14 @@ import { DocentesDirector } from '@shared/models/docentesapoyo/docentesdirecto';
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 }; // prints the base64 string
-
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 @Component({
   selector: 'app-proyectomiembros',
   templateUrl: './proyectomiembros.component.html',
@@ -210,44 +217,40 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
               } else { 
-                const file:any = value;
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                 reader.onload = () => {
-                   this.anexo1.documento=reader.result+''
-                  };            
-                this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
-                  
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Anexo',
-                    text: 'Proyecto creado correctamente',
-                    confirmButtonColor: "#0c3255"   
-                  }) 
-                  this.resposableppservice.saverdirector(this.director).subscribe(date=>{
+                getBase64(value).then(docx=>{
+                  this.anexo1.documento=docx+''
+                  this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
                     Swal.fire({
-                    icon: 'success',
-                    title: 'Anexo',
-                    text: 'Persona creado correctamente',
-                    confirmButtonColor: "#0c3255"   
-                  }) },err=>{
+                      icon: 'success',
+                      title: 'Anexo',
+                      text: 'Proyecto creado correctamente',
+                      confirmButtonColor: "#0c3255"   
+                    }) 
+                    this.resposableppservice.saverdirector(this.director).subscribe(date=>{
+                      Swal.fire({
+                      icon: 'success',
+                      title: 'Anexo',
+                      text: 'Persona creado correctamente',
+                      confirmButtonColor: "#0c3255"   
+                    }) },err=>{
+                      Swal.fire({
+                        icon: 'warning',
+                        title: 'Al paracer hubo un problema',
+                        text: err.error.message,
+                        confirmButtonColor: "#0c3255"   
+                      }) 
+                    })
+                  },err=>{
                     Swal.fire({
                       icon: 'warning',
                       title: 'Al paracer hubo un problema',
                       text: err.error.message,
                       confirmButtonColor: "#0c3255"   
                     }) 
+  
                   })
-                },err=>{
-                  Swal.fire({
-                    icon: 'warning',
-                    title: 'Al paracer hubo un problema',
-                    text: err.error.message,
-                    confirmButtonColor: "#0c3255"   
-                  }) 
-
-                })
-                resolve('')             
+                  resolve('')  
+                })                        
               }
             })
           }

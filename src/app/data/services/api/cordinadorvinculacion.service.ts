@@ -32,6 +32,10 @@ export class CordinadorvinculacionService {
     return this.http.get(this.urlEndPoint+"/exists/"+cedula,{headers: this.httpHeaders})
   }
 
+  getall():Observable<CordinadorVinculacion>{
+    return this.http.get(this.urlEndPoint,{headers: this.httpHeaders})
+  }
+
 
   saveCv(cordinadorVinculacion: CordinadorVinculacion):Observable<CordinadorVinculacion>{
     console.log(cordinadorVinculacion);

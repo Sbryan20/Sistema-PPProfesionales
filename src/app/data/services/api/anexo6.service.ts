@@ -21,9 +21,22 @@ export class Anexo6Service {
     console.log(anexo6);
     return this.http.post<Anexo5>(this.urlEndPoint,anexo6,{headers: this.httpHeaders})
   }
+  updateAnexo6(anexo6: Anexo6):Observable<Anexo5>{
+    console.log(anexo6);
+    return this.http.put<Anexo5>(this.urlEndPoint,anexo6,{headers: this.httpHeaders})
+  }
 
   getanexo6all():Observable<Anexo6[]>{
     return this.http.get(this.urlEndPoint,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo6[]))
+  }
+
+  getanexo6byvinculacion(cedula:String):Observable<Anexo6[]>{
+    return this.http.get(this.urlEndPoint+"/vinculacion/"+cedula,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo6[]))
+  }
+
+
+  getanexo6byid(id?:Number):Observable<Anexo6>{
+    return this.http.get(this.urlEndPoint+"/"+id,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo6))
   }
 }
 

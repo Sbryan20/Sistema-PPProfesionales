@@ -1,146 +1,154 @@
-<form class="formulario" >
-    <table style="width:100%; height:100%;" class="bss-table-borderless" class="table table-striped table-responsive-md btn-table">
-        <thead class="thead-dark center-block">
-          <tr class="active">
-            <div class="row-fluid">
-              <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                  <img />
-                </div>
-              </div>
-            </div>
-          </tr>
-        </thead>
- <tbody>
-    <tr colspan="2" class="d-flex" class="text-center">
-            <h2 class="bss-txt-content" style="font-size: 22px;">
-              PLAN DE APRENDIZAJE <br /> 
-              PROYECTOS DE VINCULACIÓN CON LA SOCIEDAD<br />
-              INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY <br />
-            </h2>
-    </tr>
-     <tr>
-     <table style="width:100%; height:90%;" class="table table-bordered">
-              <tbody>
-                <tr> 
-                    <th colspan="4" scope="col"><strong>NOMBRE DEL PROYECTO:</strong> <select class="form-control"  style="width: 100%;" name="select">
-                      <option value="">Proyecto1</option>
-                      <option value="" selected>Proyecto2</option>
-                      <option value="" selected>Proyecto3</option>
-                    </select>
-                    </th>  
-                </tr>
-                <tr> 
-                  <th colspan="4" scope="col"><strong>Datos Informativos:</strong>  
-                  </th>
-                </tr>
-                <tr> 
-                  <th colspan="4" scope="col" ><strong>DOCENTE DE APOYO DEL PROYECTO:</strong> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-5" /> 
-                  </th>
-                </tr>
-                <tr> 
-                    <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA:</strong> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-5"  /> 
-                    </th>
-                  </tr>
-                <tr>
-                  <td colspan="3" scope="col"> <strong>ESTUDIANTE:</strong><select class="form-control" style="width: 100%;" name="select">
-                    <option value="">Est1</option>
-                      <option value="" selected>Est2</option>
-                      <option value="" selected>Est3</option>     
-                    </select>
-                </td>
-                  <td colspan="1"> <strong>PERIODO ACADEMICO: </strong>
-                    <tr> 
-                        <th colspan="4" scope="col"> <input type="text" class="form-control"  value="" class="col-md-5" style="background-color:transparent; "  /> 
-                        </th>
-                      </tr>
-                </td>
-                </tr>
-                <tr>
-                    <td colspan="3" scope="col " ><strong>FECHA DE ELABORACION:</strong>
-                            <input type="date" >
-                    </td>
-                     <td colspan="1"> <strong>CICLO: </strong>
-                        <tr> 
-                            <th colspan="4" scope="col"> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent; "  /> 
-                            </th>
-                          </tr>
-                    </td>
+<form class="formulario" ngNativeValidate (ngSubmit)="anexo6" >
+  <table style="width:95%; height:100%;" class="table" >
+  <tbody> 
+
+        <table style="width:100%; height:90%;" class="table" style="background-color: rgb(223, 236, 252);">
+              <tr colspan="4" class="d-flex" class="text-center">
+                <h2 class="bss-txt-content" style="font-size: 18px;">
+                  <b>PLAN DE APRENDIZAJE </b><br/> 
+                  <b>PROYECTOS DE VINCULACIÓN CON LA SOCIEDAD</b><br />
+                 <b>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY</b> 
+                </h2>
               </tr>
+           
               <tr>
-                 <td colspan="2" scope="col">
-                     <div [formGroup]="addForm">
-                        <table>
-                            <td>
-                                <button mat-raised-button color="primary" (click)="onAddRow()" *ngIf="addForm.get('rows')">AGREGAR</button>
-                            </td>
-                            <tbody>
-                                <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
-                                    <td>  
-                                      <tr>
-                                      <h5>ACTIVIDADES POR REALIZAR</h5>
-                                      <div class="bss-table-borderless">
-                                        <div class="form-group">
-                                          <br>	
-                                          <table class="table table-bordered table-striped" style="border: transparent;">
-                                           <tbody> 
-                                              <tr>
-                                                <td>
-                                                <input type="text" class="form-control"  [formControl]="row.get('actividad')">
-                                                </td>
-                                              </tr>
-                                            </tbody>
-                                          </table>
-                                        </div>
-                                      </div>
-                                     </tr>
-                                  </td>
-                                  <td colspan="" scope="col "> <strong>ASIGNATURA BASE RELACIONADA:</strong><select class="form-control" style="width: 100%;" name="select"  [formControl]="row.get('asignatura')">
-                                    <option value="fdg">BD</option>
-                                      <option value="fdg" selected>PROGRAMACION</option>
-                                      <option value="fdg" selected>PROGRAMACION3</option>     
-                                    </select>
-                                </td>
-                                <td >  
-                                  <tr>
-                                  <h5>RESULTADOS DEL APRENDIZAJE</h5>
-                                  <div class="bss-table-borderless">
-                                    <div class="form-group">
-                                      <br>	
-                                      <table class="table table-bordered table-striped" style="border: transparent;">
-                                       <tbody> 
-                                          <tr>
-                                            <td>
-                                            <input type="text" class="form-control"  [formControl]="row.get('resultado')">
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                 </tr>
-                              </td>
-                              <td colspan="3"> <strong>HORAS ASIGNADAS </strong>
-                                <tr> 
-                                    <th colspan="4" scope="col"> <input type="number"  class="form-control" value="" class="col-md-5" style="background-color:transparent;" [formControl]="row.get('horasAsignadas')"/> </th>
-                                    <td> <button mat-raised-button color="warn" (click)="onRemoveRow(index)">ELIMINAR</button> </td>
-                                </tr>
-                            </td>
-                            </tr>
-                               <tr> 
-                               <th colspan="4" scope="col"><strong>TOTAL DE HORAS:</strong> <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-11" style="background-color:transparent; "/>  </th>
-                            </tr>
-                            </tbody>
-                         </table>
-                     </div>
-                 </td> 
+                <table style="width:100%; height:90%;" class="table" style="background-color: rgb(255, 255, 255);">
+                  <tr> 
+                    <th  colspan="4" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
+                         <select (change)="selectP($event)" class="form-control"  style="width: 100%" name="select" required>
+                             <option value="SL">Seleccione</option>
+                             <option *ngFor="let item of listproyecto" [value]="item.id">{{item.nombreProyecto}}</option>
+                         </select>
+                     </th>  
+                   </tr>
+                </table>
               </tr>
-        </tbody>
-      </table>
+           
+        </table>
+
+         <tr>
+           <table style="width:100%; height:90%;" class="table">
+              <tbody>
+
+                  <tr> 
+                      <th colspan="4" scope="col"><strong class="texto2">Datos Informativos:</strong> </th>
+                  </tr>
+
+                  <tr> 
+                      <td colspan="1" scope="col" ><strong class="texto">DOCENTE DE APOYO DEL PROYECTO:</strong>
+                        <select (change)="selectAlumnos($event)" class="form-control"  style="width: 100%;" name="select" required>
+                          <option value="SL">Seleccione</option>
+                          <option *ngFor="let item of anexo1response" [value]="item.cedulaDelegado">  {{item.nombreDelegado}}</option>
+                      </select>
+                      </td>
+                      <td colspan="3" scope="col">
+                      </td>
+                  </tr>
+                 
+                  <tr> 
+                    <td colspan="4" scope="col"><strong class="texto">ENTIDAD BENEFICIARIA:</strong><b  class="texto2"> {{entidadb}} </b></td>
+                  </tr>
+
+                  <tr>
+                      <td colspan="3" scope="col"> <strong class="texto">ESTUDIANTE:</strong>
+                          <select (change)="selectCedula($event)" class="form-control"  style="width: 100%" name="select" >
+                              <option value="SL">Seleccione</option>
+                              <option *ngFor="let item of listalm" [value]="item.cedula">  {{item.cedula}}  {{item.nombresestudiante}}  </option>
+                          </select>
+                        </td> 
+                        <td colspan="4" scope="col"><strong class="texto" for="periodoAcademico">PERIODO ACADEMICO:</strong>
+                          <br>
+                           <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="periodoAcademico" name="periodoAcademico" required /> 
+                      </td>
+                  </tr>
+             
+                  <tr>
+                      <td colspan="3" scope="col " ><strong class="texto">FECHA DE ELABORACION:</strong> <b class="texto2"> {{fech}} </b> </td>
+                      <td colspan="1" scope="col"> <strong class="texto">CICLO: </strong><b class="texto2"> {{cicl}} </b>  </td>
+                  </tr>
+
+              </tbody>
+            </table>
           </tr>
-        </tbody>
-      </table> 
-    <div class="col text-center" style="display: block; margin: 0 auto;"> 
-      <button class="btn btn-primary">GUARDAR PLAN DE APRENDIZAJE</button>&nbsp;&nbsp;
-      </div>
- </form>
+
+        <tr>
+            <div [formGroup]="addForm">
+              <table  style="width:100%; height:90%;background-color: rgb(240, 240, 240);" class="table"> 
+                <tr>
+                  <td colspan="5" scope="col " > <strong class="texto2">Actividades:</strong></td>
+                </tr>
+                <tr>
+                  <td colspan="5" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">AGREGAR ACTIVIDADES</button></td>
+                </tr>
+                <tbody>
+                 
+                      <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                        <td scope="col">   
+                            <strong>ACTIVIDADES POR REALIZAR</strong> 
+                              <div class="form-group"> 
+                                      <td>
+                                      <input type="text" class="form-control"  [formControl]="row.get('actividad')">
+                                      </td>
+                              </div> 
+                        </td>
+                        
+                        <td scope="col">
+                          <strong>ASIGNATURA BASE RELACIONADA:</strong> 
+                          <div>
+                            <td>
+                              <select class="form-control"  style="width: 100%;" name="select" [formControl]="row.get('asignatura')">
+                                <option value="SL">Seleccione</option>
+                                <option *ngFor="let item of materias" [value]="item.nombre"> {{item.nombre}}  </option>
+                            </select>
+                            </td>
+                          </div>
+                        </td>
+                                    
+                        <td scope="col">    
+                          <strong>RESULTADOS DEL APRENDIZAJE</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="text" class="form-control"  [formControl]="row.get('resultado')">
+                                    </td>
+                          </div> 
+                        </td>
+
+                        <td scope="col"> 
+                          <strong>HORAS ASIGNADAS </strong>
+                          <div class="form-group"> 
+                            <td> 
+                              <input type="number" style="font-size: 18px;" class="form-control"  class="impnumber" [formControl]="row.get('horasAsignadas')"/>
+                             </td>
+                        </div>
+                        </td>
+
+                        <td scope="col"> 
+                          <div>
+                            <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
+                          </div>
+                       </td>
+                    
+                    </tr>
+
+                    <tr> 
+                      <td colspan="3" scope="col"></td>
+                        <td colspan="1" scope="col"><strong style="text-align-last: end;" class="texto2">TOTAL DE HORAS:</strong> </td>
+                          <td colspan="1" scope="col">
+                            <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-11"/> 
+                          </td>        
+                     </tr>
+                    </tbody>
+                     <tr>
+                      <td colspan="5" >
+                        <button style="align-self: center;" class="btn btn-info" (click)=" crear()">GUARDAR PLAN DE APRENDIZAJE</button>
+                      </td>
+                     </tr>
+              
+             </table>
+           </div>
+
+       </tr>
+
+  </tbody>
+</table> 
+</form>

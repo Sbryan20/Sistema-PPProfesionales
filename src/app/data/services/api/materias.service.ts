@@ -18,7 +18,7 @@ export class MateriasService {
   constructor(private http:HttpClient) { }
 
 
-  getProtectid(codigo:String):Observable<Materias[]>{
+  getProtectid(codigo?:String):Observable<Materias[]>{
     return this.http.get(this.urlEndPoint+"/"+codigo,{headers: this.httpHeaders}).pipe(map(Response => Response as Materias[]))
 
   }

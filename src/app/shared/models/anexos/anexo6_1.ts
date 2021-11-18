@@ -4,7 +4,10 @@ export class Anexo6_1{
     fechaDirector?:Date;
     nombreApoyo?:String;
     nombreDirector?:String;
+    cedulaDirector?:String;
     documento?:String;
+    idProyecto?:Number;
+    actividades?:ActividadesAnexo6_1Request[]
 
 }
 

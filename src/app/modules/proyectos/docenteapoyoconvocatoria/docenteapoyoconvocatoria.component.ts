@@ -5,6 +5,15 @@ import { Anexo1 } from '@shared/models/anexos/anexo1';
 import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 @Component({
   selector: 'app-docenteapoyoconvocatoria',
   templateUrl: './docenteapoyoconvocatoria.component.html',
@@ -41,11 +50,8 @@ export class DocenteapoyoconvocatoriaComponent implements OnInit {
           if (value === null) {
             resolve('Es necesario que seleccione el PDF')
           } else {
-             const file:any = value;
-             const reader = new FileReader();
-             reader.readAsDataURL(file);
-             reader.onload = () => {
-              anexo1.documento=reader.result+''};
+            getBase64(value).then(docx=>{
+              anexo1.documento=docx+''
               this.anexo1Service.updateanexo1(anexo1).subscribe(data=>{
                 Swal.fire({
                   icon: 'success',
@@ -59,7 +65,7 @@ export class DocenteapoyoconvocatoriaComponent implements OnInit {
                   text: 'Hubo un error: '+err.error.message,
                   confirmButtonColor: "#0c3255"})
               })    
-              
+            })   
           }
         })
       }

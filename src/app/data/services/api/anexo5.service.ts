@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Anexo5 } from '@shared/models/anexos/anexo5';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,5 +17,15 @@ export class Anexo5Service {
   saveAnexo5(anexo5: Anexo5):Observable<Anexo5>{
     console.log(anexo5);
     return this.http.post<Anexo5>(this.urlEndPoint,anexo5,{headers: this.httpHeaders})
+  }
+
+  updateAnexo5(anexo5: Anexo5):Observable<Anexo5>{
+    console.log(anexo5);
+    return this.http.put<Anexo5>(this.urlEndPoint,anexo5,{headers: this.httpHeaders})
+  }
+
+  getanexo5bycedula(cedula:String):Observable<Anexo5[]>{
+    return this.http.get('http://localhost:8080/api/anexo5/docenteApoyo/0924903503',{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo5[]))
+    
   }
 }

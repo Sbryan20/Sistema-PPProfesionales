@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Anexo4Service } from '@data/services/api/anexo4.service';
+import { Anexo5Service } from '@data/services/api/anexo5.service';
 import { SysdateService } from '@data/services/api/sysdate.service';
-import { Anexo4 } from '@shared/models/anexos/anexo4';
+import { Anexo5 } from '@shared/models/anexos/anexo5';
 import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
 
@@ -16,25 +16,28 @@ function getBase64(file) {
 }
 
 @Component({
-  selector: 'app-alumnosfirma',
-  templateUrl: './alumnosfirma.component.html',
-  styleUrls: ['./alumnosfirma.component.scss']
+  selector: 'app-alumnosencargo',
+  templateUrl: './alumnosencargo.component.html',
+  styleUrls: ['./alumnosencargo.component.scss']
 })
-export class AlumnosfirmaComponent implements OnInit {
-  public anexo4:Anexo4[]=[];
+export class AlumnosencargoComponent implements OnInit {
+  public anexo5:Anexo5[]=[];
   file;
-  constructor(private activatedRoute: ActivatedRoute,private anexo4Service:Anexo4Service,private sysdateService:SysdateService) { }
+
+  constructor(private activatedRoute: ActivatedRoute,private anexo5Service:Anexo5Service,private sysdateService:SysdateService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
       console.log(cedula)
-      this.anexo4Service.getanexo4bycedula(cedula).subscribe(data=>{
-        this.anexo4=data;
+      this.anexo5Service.getanexo5bycedula(cedula).subscribe(data=>{
+        this.anexo5=data
+        console.log(data)
+       
       })
     })
   }
-  async update(anexo4:Anexo4){
+  async update(anexo5:Anexo5){
     const { value: file } = await Swal.fire({
       allowOutsideClick: false,
       title: 'SELECCIONE EL PDF',
@@ -50,9 +53,9 @@ export class AlumnosfirmaComponent implements OnInit {
             resolve('Es necesario que seleccione el PDF')
           } else {
             getBase64(value).then(docx=>{
-              anexo4.documento=docx+'';
-              this.sysdateService.getSysdate().subscribe(dta=>anexo4.fechaRecepcionEst=dta.fecha)
-              this.anexo4Service.updateanexo4(anexo4).subscribe(data=>{
+              anexo5.documento=docx+''
+              this.sysdateService.getSysdate().subscribe(dta=>anexo5.fechaRecepcion=dta.fecha)         
+              this.anexo5Service.updateAnexo5(anexo5).subscribe(data=>{
                 Swal.fire({
                   icon: 'success',
                   title: 'Anexo',
@@ -64,16 +67,17 @@ export class AlumnosfirmaComponent implements OnInit {
                   title: 'Anexo',
                   text: 'Hubo un error: '+err.error.message,
                   confirmButtonColor: "#0c3255"})
-              })  
-            })   
+              })    
+            })    
           }
         })
       }
     })
 
   }
-   //convert a pdf
-   convertFile(docum) {
+
+  //convert a pdf
+  convertFile(docum) {
     console.log(docum)
     //Usage example:
     var file = this.dataURLtoFile(docum, 'Convocatoria.pdf');
@@ -92,5 +96,6 @@ dataURLtoFile(dataurl, filename) {
     }
     return new File([u8arr], filename, { type: mime });
   }
-  
 }
+
+

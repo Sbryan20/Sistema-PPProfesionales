@@ -10,7 +10,8 @@ export class Anexo5{
     idProyectoPPP?:Number;
     documento?:String;
     alumnos?: alumnosAnexo5Request[];
-    }
+    cedulaDocenteApoyo?:String
+}
 
 interface alumnosAnexo5Request {
     id: Number;

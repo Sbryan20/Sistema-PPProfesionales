@@ -17,6 +17,15 @@ import { saveAs } from 'file-saver';
 import { Anexo5Service } from '@data/services/api/anexo5.service';
 import Swal from 'sweetalert2';
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 //DOCX
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -33,6 +42,7 @@ export class MiembroestudiantesComponent implements OnInit {
     addFormR: FormGroup;
     rowsR: FormArray;
     itemFormR?: FormGroup;
+    private cedula;
 
     siglas;
     anexo1response:Anexo1[]=[];
@@ -53,13 +63,9 @@ export class MiembroestudiantesComponent implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
       console.log(cedula)
-      this.resposablepppService.getResponsableId(cedula).subscribe(data=>{
-        console.log(data.codigo)
-        this.anexo1service.getbyCarrera(data.codigo).subscribe(dat=>{
-          this.anexo1response=dat.filter(da=>da.nombreRol=="apoyo")
-          console.log(this.anexo1response)
-        })
-      })
+      this.cedula=cedula
+      this.filtrar('');
+      
     })
     //Array de alumnos
     this.addFormR.get("items_valueR")?.setValue("yes");
@@ -81,12 +87,24 @@ export class MiembroestudiantesComponent implements OnInit {
   }
 
 
+  filtrar(anguja:String){
+    console.log(anguja)
+    this.resposablepppService.getResponsableId(this.cedula).subscribe(data=>{
+      console.log(data.codigo)
+      this.anexo1service.getbyCarrera(data.codigo).subscribe(dat=>{
+        this.anexo1response=dat.filter(da=>da.nombreRol=="apoyo"&&da.nombreProyecto?.includes(anguja+''))
+        console.log(this.anexo1response)
+      })
+    })
+  }
+
   public anexo5resposae:Anexo5 = new Anexo5;
   ObtnerDatos():Anexo5{
     this.anexo5resposae.siglasCarrera=this.anexo1.siglasCarrera;
     this.anexo5resposae.idProyectoPPP=this.anexo1.idProyectoPPP;
     this.anexo5resposae.alumnos=this.rowsR.getRawValue();
-    this.anexo5resposae.nombreDocenteReceptor=this.anexo1.nombreDelegado; 
+    this.anexo5resposae.nombreDocenteReceptor=this.anexo1.nombreDelegado;
+    this.anexo5resposae.cedulaDocenteApoyo=this.anexo1.cedulaDelegado
     this.anexo3service.getDocenteTitulo(this.anexo1.siglasCarrera).subscribe(det=>{
       this.anexo5resposae.nonbreDocenteEmisor=det.nombres_completo
       this.anexo5resposae.tituloTercerN=det.titulo;
@@ -133,11 +151,8 @@ export class MiembroestudiantesComponent implements OnInit {
                 if (value === null) {
                   resolve('Es necesario que seleccione el PDF')
                 } else {
-                   const file:any = value;
-                   const reader = new FileReader();
-                   reader.readAsDataURL(file);
-                   reader.onload = () => {
-                   this.anexo5resposae.documento=reader.result+""};
+                  getBase64(value).then(docx=>{
+                    this.anexo5resposae.documento=docx+''
                     this.anexo5Service.saveAnexo5(this.ObtnerDatos()).subscribe(data=>{
                       Swal.fire({
                         icon: 'success',
@@ -151,6 +166,8 @@ export class MiembroestudiantesComponent implements OnInit {
                         text: 'Hubo un error: '+err.error.message,
                         confirmButtonColor: "#0c3255"})
                     }) 
+                  })
+                    
                 }
               })
             }

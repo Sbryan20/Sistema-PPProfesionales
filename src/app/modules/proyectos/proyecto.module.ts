@@ -16,6 +16,9 @@ import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
 import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
 import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
+import { AlumnosencargoComponent } from './alumnosencargo/alumnosencargo.component';
+import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprendizajefirma.component';
+import { SegumientoparcialfirmaComponent } from './segumientoparcialfirma/segumientoparcialfirma.component';
 
 
 
@@ -36,7 +39,10 @@ import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
     Anexo6Component,
     Anexo61Component,
     DocenteapoyoconvocatoriaComponent,
-    AlumnosfirmaComponent
+    AlumnosfirmaComponent,
+    AlumnosencargoComponent,
+    PlanaprendizajefirmaComponent,
+    SegumientoparcialfirmaComponent
   ],
   imports: [
     CommonModule,

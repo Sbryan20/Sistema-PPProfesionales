@@ -5,9 +5,14 @@
     
     <br>
     <tr >
+      <th>
+        <mat-form-field>
+          <input matInput  (keyup)="filtrar($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </th>
       <th scope="row"> <strong>SELECCIONE UN DOCENTE DE APOYO: </strong><select (change)="selectAlumnos($event)"  class="form-control"  style="width: 100%;" name="select">
         <option value="SL">Seleccione</option>
-        <option *ngFor="let item of anexo1response" [value]="item.cedulaDelegado">PROYECTO: {{item.nombreProyecto}}    DIRECTOR DE PROYECTO:{{item.nombreDelegado}}   {{item.carrera}}</option>
+        <option *ngFor="let item of anexo1response" [value]="item.cedulaDelegado">PROYECTO: {{item.nombreProyecto}}    DOCENTE DE PROYECTO:{{item.nombreDelegado}}   {{item.carrera}}</option>
         <option></option>
       </select>
   </tr>

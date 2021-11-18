@@ -7,11 +7,13 @@ export class Anexo6{
     cedulaEstudiante?:String;
     nombreResponsableVinculacion?:String;
     nombreCoordinadorVinculacion?:String;
+    cedulaCoordinadorVinculacion?:String;
     fecha?:Date;
     periodoAcademico?:String;
     ciclo?:String;
     proyectoId?:Number
     actividades?:ActividadesAnexo6Request[];
+    documento?:String;
 
 }
 export class ActividadesAnexo6Request{

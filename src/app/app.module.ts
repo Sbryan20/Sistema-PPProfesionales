@@ -37,6 +37,10 @@ import { Anexo6Component } from '@modules/proyectos/anexo6/anexo6.component';
 import { Anexo61Component } from '@modules/proyectos/anexo61/anexo61.component';
 import { DocenteapoyoconvocatoriaComponent } from '@modules/proyectos/docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
 import { AlumnosfirmaComponent } from '@modules/proyectos/alumnosfirma/alumnosfirma.component';
+import { AlumnosencargoComponent } from '@modules/proyectos/alumnosencargo/alumnosencargo.component';
+import { PlanaprendizajefirmaComponent } from '@modules/proyectos/planaprendizajefirma/planaprendizajefirma.component';
+import { SegumientoparcialfirmaComponent } from '@modules/proyectos/segumientoparcialfirma/segumientoparcialfirma.component';
+
 
 const modules = [
   MatButtonModule,
@@ -69,7 +73,10 @@ const modules = [
     Anexo6Component,
     Anexo61Component,
     DocenteapoyoconvocatoriaComponent,
-    AlumnosfirmaComponent
+    AlumnosfirmaComponent,
+    AlumnosencargoComponent,
+    PlanaprendizajefirmaComponent,
+    SegumientoparcialfirmaComponent
   ],
   imports: [
     

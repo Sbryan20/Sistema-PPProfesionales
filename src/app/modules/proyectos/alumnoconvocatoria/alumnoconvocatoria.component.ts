@@ -21,6 +21,15 @@ function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 };
 
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
+
 @Component({
   selector: 'app-alumnoconvocatoria',
   templateUrl: './alumnoconvocatoria.component.html',
@@ -92,7 +101,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
       
 
         console.log(data) 
-        if(this.aux2!=data.materias!.length){
+        if(this.aux2==data.materias!.length){
           Swal.fire({
             title: 'Esta seguro que desea postular a proyeto '+data.nombreProyecto,
             text: "Para ello debe firmar el siguiente anexo con sus datos",
@@ -124,11 +133,8 @@ export class AlumnoconvocatoriaComponent implements OnInit {
                     if (value === null) {
                       resolve('Es necesario que seleccione el PDF')
                     } else {
-                       const file:any = value;
-                       const reader = new FileReader();
-                       reader.readAsDataURL(file);
-                       reader.onload = () => {
-                        this.anexo3response.documento=reader.result+''};    
+                      getBase64(value).then(docx=>{
+                        this.anexo3response.documento=docx+'';
                         this.anexo3service.saveanexo3(this.anexo3(data,datos.titulo+'')).subscribe(data=>{
                           Swal.fire({
                             icon: 'success',
@@ -141,7 +147,8 @@ export class AlumnoconvocatoriaComponent implements OnInit {
                             title: 'Anexo',
                             text: 'Hubo un error: '+err.error.message,
                             confirmButtonColor: "#0c3255"})
-                        })
+                        })                       
+                      })   
                     }
                   })
                 }
