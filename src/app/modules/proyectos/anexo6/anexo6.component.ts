@@ -75,6 +75,7 @@ idProyectoPPP?: number;
 public number?
 periodoAcademico?:String;
 entity:Ientity[]=[];
+public sum = 0;
 listacarrera:Carreras[]=[];
 nombre?:String; 
 public carrera?: string;
@@ -139,18 +140,35 @@ public materias:Materias[]=[]
 
   //ArrayActividades
   onAddRow() {
+    this.sum = 0;
     this.rows.push(this.createItemFormGroup());
-    console.log(this.rows.getRawValue())
+    this.rows.getRawValue().forEach(element => {
+      this.sum+=element.horasAsignadas;
+      console.log(this.sum)
+    })
+    
   }
   onRemoveRow(rowIndex:number){
+    this.sum = 0;
     this.rows.removeAt(rowIndex);
+    this.rows.getRawValue().forEach(element => {
+      this.sum+=element.horasAsignadas;
+      console.log(this.sum)
+    })
+  }
+  sumar(){
+    this.sum = 0;
+    this.rows.getRawValue().forEach(element => {
+      this.sum+=element.horasAsignadas;
+      console.log(this.sum)
+    })
   }
   createItemFormGroup(): FormGroup {
     return this.fb.group({
       actividad:null,
       asignatura:null,
       resultado:null,
-      horasAsignadas:null
+      horasAsignadas:null,
     });
   }
   public anexo6resposae:Anexo6 = new Anexo6;
@@ -176,6 +194,7 @@ public materias:Materias[]=[]
         this.number_a=data.id
         this.materiasService.getProtectid(data.siglasCarrera).subscribe(data2=>{
           this.materias=data2;
+          console.log(this.materias)
         })
       })
     })
@@ -215,7 +234,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
     this.anexo6.nombreDocenteApoyo=this.anexo1.nombreDelegado;
     this.anexo6.cedulaEstudiante=this.cedula;
     this.anexo6.nombreEstudiante=this.nombresestudiante;
-
+    this.anexo6.totalHoras=this.sum+'';
     this.cordinadorvinculacionService.getall().subscribe(data=>{
       this.anexo6.nombreCoordinadorVinculacion=data.nombres+" "+data.apellidos;
       this.anexo6.cedulaCoordinadorVinculacion=data.cedula;
@@ -256,7 +275,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
                   getBase64(value).then(
                     data => {
                       this.anexo6.documento=data+''
-                      this.anexo6Service.saveAnexo5(this.anexo6).subscribe(datos=>{
+                      this.anexo6Service.saveAnexo6(this.anexo6).subscribe(datos=>{
                         Swal.fire({
                           icon: 'success',
                           title: 'PLAN GUARDADO',

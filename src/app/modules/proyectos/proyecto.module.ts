@@ -19,6 +19,8 @@ import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
 import { AlumnosencargoComponent } from './alumnosencargo/alumnosencargo.component';
 import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprendizajefirma.component';
 import { SegumientoparcialfirmaComponent } from './segumientoparcialfirma/segumientoparcialfirma.component';
+import { Anexo8Component } from './anexo8/anexo8.component';
+import { Anexo9Component } from './anexo9/anexo9.component';
 
 
 
@@ -42,7 +44,9 @@ import { SegumientoparcialfirmaComponent } from './segumientoparcialfirma/segumi
     AlumnosfirmaComponent,
     AlumnosencargoComponent,
     PlanaprendizajefirmaComponent,
-    SegumientoparcialfirmaComponent
+    SegumientoparcialfirmaComponent,
+    Anexo8Component,
+    Anexo9Component
   ],
   imports: [
     CommonModule,

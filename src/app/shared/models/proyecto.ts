@@ -11,6 +11,7 @@ export class Proyectos {
     directorProyecto?:string;
     nombreresponsable?:string
     responsablePPP?:string;
+    nombredirector?:string
     actividadeslistProyectos?: actividadeslistProyectos[];
     requisitoslistProyectos?:  requisitoslistProyectos[];
 }

@@ -25,7 +25,7 @@ export class Anexo5Service {
   }
 
   getanexo5bycedula(cedula:String):Observable<Anexo5[]>{
-    return this.http.get('http://localhost:8080/api/anexo5/docenteApoyo/0924903503',{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo5[]))
+    return this.http.get('http://localhost:8080/api/anexo5/docenteApoyo/'+cedula,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo5[]))
     
   }
 }

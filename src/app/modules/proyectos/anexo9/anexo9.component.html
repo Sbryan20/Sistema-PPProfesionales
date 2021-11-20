@@ -1,0 +1,175 @@
+<form class="formulario"  >
+    <table style="width:100%; height:100%;" class="table" >
+    <tbody> 
+
+          <table style="width:100%; height:90%;" class="table" style="background-color: rgb(223, 236, 252);">
+                  <tr colspan="4" class="active">
+                    <div class="row-fluid"> 
+                            <img class="centrado" [src]="ista" width="200" height="150"   />
+                    </div>
+                  </tr> 
+                <tr colspan="4" class="d-flex" class="text-center">
+                  <h2 class="bss-txt-content" style="font-size: 18px;">
+                    <b>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY </b><br/> 
+                    <b>COORDINACIÓN DE VINCULACIÓN CON LA SOCIEDAD</b><br />
+                   <b>SEGUIMIENTO MENSUAL SEGÚN PLANIFICACIÓN</b> 
+                  </h2>
+                </tr>
+          </table>
+
+          <tr>
+            <table style="width:100%; height:90%;" class="table">
+               <tbody>
+
+                   <tr> 
+                    <td  colspan="2" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
+                         <select  class="form-control"  style="width: 100%" name="select" required>
+                             <option value="SL">Seleccione</option>
+                             <option *ngFor="let item of anexo5" [value]="item.idProyectoPPP">{{item.idProyectoPPP}}</option>
+                         </select>
+                     </td>  
+                   <tr> 
+                    <td colspan="4" scope="col"><strong class="texto">Empresa/Institución:</strong><b  class="texto2">  </b></td>
+                  </tr>
+                  <tr> 
+                    <td colspan="2" scope="col"><strong class="texto">Mes:</strong>   
+                 
+                      <select class="form-control"  style="width: 100%;" name="select" required>
+                        <option value="SL">Seleccione</option> 
+                        <option value="ENERO">ENERO</option> 
+                        <option value="FEBRERO">FEBRERO</option> 
+                        <option value="MARZO">MARZO</option> 
+                        <option value="ABRIL">ABRIL</option> 
+                        <option value="MAYO">MAYO</option> 
+                        <option value="JUNIO">JUNIO</option> 
+                        <option value="JULIO">JULIO</option> 
+                        <option value="AGOSTO">AGOSTO</option> 
+                        <option value="SEPTIEMBRE">SEPTIEMBRE</option> 
+                        <option value="OCTUBRE">OCTUBRE</option> 
+                        <option value="NOVIEMBRE">NOVIEMBRE</option> 
+                        <option value="DICIEMBRE">DICIEMBRE</option> 
+                    </select>
+                    </td>
+                  
+                    <td colspan="2" scope="col"><strong class="texto">Fecha de Seguimiento:</strong>
+                      <input type="date"  class="form-control" style="background-color:transparent;font-size: 18px;" />
+                    </td>
+                  </tr>
+               </tbody>
+             </table>
+           </tr>
+
+           <tr>
+ 
+              <table  style="width:100%; height:90%;background-color: rgb(240, 240, 240);" class="table"> 
+                <tr>
+                  <td colspan="8" scope="col " > <strong class="texto2">Actividades:</strong></td>
+                </tr>
+                <tr>
+                  <td colspan="8" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">REGISTRAR ACTIVIDADES</button></td>
+                </tr>
+                <tbody>
+                 
+                      <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                        <td scope="col">  
+                          <br> 
+                            <strong>No.</strong>
+                              <div class="form-group"> 
+                                      <td>
+                                      <input type="text" class="form-control"  [formControl]="row.get('numero')">
+                                      </td>
+                              </div> 
+                        </td>
+                        
+                        <td scope="col">    
+                          <strong>Actividades según planificación</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="text" class="form-control"  [formControl]="row.get('actividadesPlanificacion')">
+                                    </td>
+                          </div> 
+                        </td>
+                                    
+                        <td scope="col"> 
+                          <strong>  Estudiante Responsable:</strong>
+                            <div class="form-group">
+                                    <td>
+                                      <select  class="form-control"  style="width: 100%" name="select"  [formControl]="row.get('estudianteResponsable')" required>
+                                        <option value="SL">Seleccione</option>
+                                    </select>
+                                    </td>
+                          </div> 
+                        </td>
+                        <td scope="col">  
+                          <br>  
+                          <strong> Fecha Planificada:</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="date" class="form-control"  [formControl]="row.get('fechaPlanificacion')">
+                                    </td>
+                          </div> 
+                        </td>
+
+                        <td scope="col">
+                          <strong>Finalizada: SI/NO:</strong> 
+                          <div>
+                            <td>
+                              <select class="form-control"  style="width: 100%;" name="select" [formControl]="row.get('finalizacion')">
+                                <option value="SL">Seleccione</option>
+                                <option value="SI">SI</option>
+                                <option value="NO" selected>NO</option> 
+                            </select>
+                            </td>
+                          </div>
+                        </td>
+
+                        <td scope="col">   
+                          <br> 
+                          <strong> Fecha Finalizacion Prevista:</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="date" class="form-control"  [formControl]="row.get('Finalizada')">
+                                    </td>
+                          </div> 
+                        </td>
+                        <td scope="col">  
+                          <br>  
+                          <strong> Porcentaje de Avance:</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="number" class="form-control" class="impnumber"  [formControl]="row.get('Porcentajeavance')">
+                                    </td>
+                          </div> 
+                        </td>
+
+
+                        <td scope="col"> 
+                          <div>
+                            <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
+                          </div>
+                       </td>
+                    
+                    </tr>
+
+                    <tr> 
+                        <td colspan="8" scope="col"><strong style="text-align-last: end;" class="texto2">OBSERVACIONES GENERALES:</strong> 
+                         <br>
+                          <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="150">                             
+                          </textarea>
+                        </td>
+                          
+                     </tr>
+                    </tbody>
+                     <tr>
+                      <td colspan="8" >
+                        <button style="align-self: center;" class="btn btn-info" >GUARDAR REGISTRO</button>
+                      </td>
+                     </tr>
+              
+             </table>
+
+       </tr>
+
+    </tbody>
+  </table> 
+ </form>

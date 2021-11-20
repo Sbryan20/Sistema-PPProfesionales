@@ -14,6 +14,7 @@ export class Anexo6{
     proyectoId?:Number
     actividades?:ActividadesAnexo6Request[];
     documento?:String;
+    totalHoras?:String;
 
 }
 export class ActividadesAnexo6Request{
@@ -23,6 +24,5 @@ export class ActividadesAnexo6Request{
     asignatura?:String;
     resultado?:String;
     horasAsignadas?:String;
-    totalHoras?:String;
 
 }

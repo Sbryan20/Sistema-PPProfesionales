@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo61Service } from '@data/services/api/anexo6-1.service';
+import { SysdateService } from '@data/services/api/sysdate.service';
 import { Anexo6_1 } from '@shared/models/anexos/anexo6_1';
 import { saveAs } from 'file-saver';
 import Swal from 'sweetalert2';
@@ -22,7 +23,7 @@ function getBase64(file) {
 export class SegumientoparcialfirmaComponent implements OnInit {
   public anexo61:Anexo6_1[]=[]
   file;
-  constructor(private activatedRoute: ActivatedRoute,private anexo61Service:Anexo61Service) { }
+  constructor(private activatedRoute: ActivatedRoute,private anexo61Service:Anexo61Service,private sysdateService:SysdateService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
@@ -50,6 +51,11 @@ export class SegumientoparcialfirmaComponent implements OnInit {
           } else {
             getBase64(value).then(docx=>{
               anexo61.documento=docx+'';
+              this.sysdateService.getSysdate().subscribe(d=>{
+                anexo61.fechaApoyo=d.fecha;
+                anexo61.fechaDirector=d.fecha;
+              })
+              
               this.anexo61Service.updateAnexo6_1(anexo61).subscribe(data=>{
                 Swal.fire({
                   icon: 'success',

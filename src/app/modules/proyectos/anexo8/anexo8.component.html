@@ -1,0 +1,124 @@
+<form class="formulario"  >
+    <table style="width:95%; height:100%;" class="table" >
+    <tbody> 
+
+          <table style="width:100%; height:90%;" class="table" style="background-color: rgb(223, 236, 252);">
+                  <tr colspan="4" class="active">
+                    <div class="row-fluid"> 
+                            <img class="centrado" [src]="ista" width="200" height="150"   />
+                    </div>
+                  </tr> 
+                <tr colspan="4" class="d-flex" class="text-center">
+                  <h2 class="bss-txt-content" style="font-size: 18px;">
+                    <b>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY </b><br/> 
+                    <b>COORDINACIÓN DE VINCULACIÓN CON LA SOCIEDAD</b><br />
+                   <b>REGISTRO DIARIO DE ACTIVIDADES DE LOS ESTUDIANTES</b> 
+                  </h2>
+                </tr>
+          </table>
+
+          <tr>
+            <table style="width:100%; height:90%;" class="table">
+               <tbody>
+
+                   <tr> 
+                       <th colspan="4" scope="col"><strong class="texto2">Datos Informativos:</strong> </th>
+                   </tr>
+
+                   <tr> 
+                    <td  colspan="2" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
+                         <select  class="form-control"  (change)="selectOpcion($event)" style="width: 100%" name="select" required>
+                             <option value="SL">Seleccione</option>
+                             <option *ngFor="let item of anexo3"[value]="item.idProyectoPPP">{{item.nombreproyecto}}</option>
+                         </select>
+                     </td>  
+                   <tr> 
+                   <tr> 
+                    <td colspan="4" scope="col"><strong class="texto">Entidad beneficiaria: {{edntidad.nombre}}</strong><b  class="texto2">  </b></td>
+                  </tr>
+                  <tr> 
+                    <td colspan="2" scope="col"><strong class="texto">Nombre del Estudiante: {{nombre}}</strong><b  class="texto2">  </b></td>
+                    <td colspan="2" scope="col"><strong class="texto">Nro. de Cédula: {{cedula}}</strong><b  class="texto2">  </b></td>
+                  </tr>
+               </tbody>
+             </table>
+           </tr>
+
+           <tr>
+
+          
+              <table  style="width:100%; height:90%;background-color: rgb(240, 240, 240);" class="table"> 
+                <tr>
+                  <td colspan="4" scope="col " > <strong class="texto2">Actividades:</strong></td>
+                </tr>
+                <tr>
+                  <td colspan="4" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">REGISTRAR ACTIVIDADES</button></td>
+                </tr>
+                <tbody>
+                 
+                      <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                        <td scope="col">   
+                            <strong>Fecha:</strong> 
+                              <div class="form-group"> 
+                                      <td>
+                                      <input type="date" class="form-control"  [formControl]="row.get('fecha')">
+                                      </td>
+                              </div> 
+                        </td>
+                        
+                        <td scope="col">    
+                          <strong>Descripcion de Actividades</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="text" class="form-control"  [formControl]="row.get('descripcionActividad')">
+                                    </td>
+                          </div> 
+                        </td>
+                                    
+                        <td scope="col">    
+                          <strong>Lugar</strong>
+                            <div class="form-group">
+                                    <td>
+                                    <input type="text" class="form-control"  [formControl]="row.get('lugar')">
+                                    </td>
+                          </div> 
+                        </td>
+
+                        <td scope="col"> 
+                          <strong>Número de Horas </strong>
+                          <div class="form-group"> 
+                            <td> 
+                              <input type="number" style="font-size: 18px;" class="form-control" (keyup)="sumar()"  class="impnumber" [formControl]="row.get('numHoras')"/>
+                             </td>
+                        </div>
+                        </td>
+
+                        <td scope="col"> 
+                          <div>
+                            <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
+                          </div>
+                       </td>
+                    
+                    </tr>
+
+                    <tr> 
+                      <td colspan="3" scope="col"></td>
+                        <td colspan="1" scope="col"><strong style="text-align-last: end;" class="texto2">TOTAL DE HORAS:</strong> </td>
+                          <td colspan="1" scope="col">
+                           <strong class="texto2"> {{sum}}</strong>
+                          </td>        
+                     </tr>
+                    </tbody>
+                     <tr>
+                      <td colspan="5" >
+                        <button style="align-self: center;" class="btn btn-info" (click)="guardar()">GUARDAR REGISTRO</button>
+                      </td>
+                     </tr>
+              
+             </table>
+
+       </tr>
+
+    </tbody>
+  </table> 
+ </form>

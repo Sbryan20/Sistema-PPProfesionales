@@ -40,6 +40,8 @@ import { AlumnosfirmaComponent } from '@modules/proyectos/alumnosfirma/alumnosfi
 import { AlumnosencargoComponent } from '@modules/proyectos/alumnosencargo/alumnosencargo.component';
 import { PlanaprendizajefirmaComponent } from '@modules/proyectos/planaprendizajefirma/planaprendizajefirma.component';
 import { SegumientoparcialfirmaComponent } from '@modules/proyectos/segumientoparcialfirma/segumientoparcialfirma.component';
+import { Anexo8Component } from '@modules/proyectos/anexo8/anexo8.component';
+import { Anexo9Component } from '@modules/proyectos/anexo9/anexo9.component';
 
 
 const modules = [
@@ -76,7 +78,9 @@ const modules = [
     AlumnosfirmaComponent,
     AlumnosencargoComponent,
     PlanaprendizajefirmaComponent,
-    SegumientoparcialfirmaComponent
+    SegumientoparcialfirmaComponent,
+    Anexo8Component,
+    Anexo9Component
   ],
   imports: [
     

@@ -17,13 +17,13 @@ export class Anexo6Service {
 
 
 
-  saveAnexo5(anexo6: Anexo6):Observable<Anexo5>{
+  saveAnexo6(anexo6: Anexo6):Observable<Anexo6>{
     console.log(anexo6);
     return this.http.post<Anexo5>(this.urlEndPoint,anexo6,{headers: this.httpHeaders})
   }
-  updateAnexo6(anexo6: Anexo6):Observable<Anexo5>{
+  updateAnexo6(anexo6: Anexo6):Observable<Anexo6>{
     console.log(anexo6);
-    return this.http.put<Anexo5>(this.urlEndPoint,anexo6,{headers: this.httpHeaders})
+    return this.http.put<Anexo6>(this.urlEndPoint,anexo6,{headers: this.httpHeaders})
   }
 
   getanexo6all():Observable<Anexo6[]>{

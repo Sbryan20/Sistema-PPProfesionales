@@ -78,9 +78,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
   aux: number = 0;
   aux2: number = 0;
 
-  hola(){
-    
-  }
+
   materias(id:Number){
     this.anexo2services.getAnexoM(id).subscribe(data=>{
       this.anexo3service.getDocenteTitulo(data.siglasCarrera+'').subscribe(datos=>{

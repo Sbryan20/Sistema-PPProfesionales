@@ -96,7 +96,7 @@
                           <strong>ASIGNATURA BASE RELACIONADA:</strong> 
                           <div>
                             <td>
-                              <select class="form-control"  style="width: 100%;" name="select" [formControl]="row.get('asignatura')">
+                              <select class="form-control"  style="width: 100%;" name="select"  [formControl]="row.get('asignatura')">
                                 <option value="SL">Seleccione</option>
                                 <option *ngFor="let item of materias" [value]="item.nombre"> {{item.nombre}}  </option>
                             </select>
@@ -117,7 +117,7 @@
                           <strong>HORAS ASIGNADAS </strong>
                           <div class="form-group"> 
                             <td> 
-                              <input type="number" style="font-size: 18px;" class="form-control"  class="impnumber" [formControl]="row.get('horasAsignadas')"/>
+                              <input type="number" style="font-size: 18px;" class="form-control"  class="impnumber" (keyup)="sumar()" [formControl]="row.get('horasAsignadas')"/>
                              </td>
                         </div>
                         </td>
@@ -132,15 +132,14 @@
 
                     <tr> 
                       <td colspan="3" scope="col"></td>
-                        <td colspan="1" scope="col"><strong style="text-align-last: end;" class="texto2">TOTAL DE HORAS:</strong> </td>
+                        <td colspan="1" scope="col"><strong style="text-align-last: end;" class="texto2">TOTAL DE HORAS: {{sum}}</strong> </td>
                           <td colspan="1" scope="col">
-                            <input readonly=»readonly» type="text" class="form-control" value="" class="col-md-11"/> 
                           </td>        
                      </tr>
                     </tbody>
                      <tr>
                       <td colspan="5" >
-                        <button style="align-self: center;" class="btn btn-info" (click)=" crear()">GUARDAR PLAN DE APRENDIZAJE</button>
+                        <button style="align-self: center;" class="btn btn-info" (click)="crear()">GUARDAR PLAN DE APRENDIZAJE</button>
                       </td>
                      </tr>
               

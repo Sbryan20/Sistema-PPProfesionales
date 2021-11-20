@@ -8,6 +8,8 @@ import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
+import { Anexo8Component } from './anexo8/anexo8.component';
+import { Anexo9Component } from './anexo9/anexo9.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
@@ -87,7 +89,13 @@ const routes: Routes = [
     },{
       path: 'seguimeinto_parcial_firma/:cedula',
       component: SegumientoparcialfirmaComponent
-    }  
+    },{
+      path: 'resistro_de_actividades/:cedula/:nombres',
+      component: Anexo8Component
+    },{
+      path: 'resistro_de_actividades_mensual/:cedula',
+      component: Anexo9Component
+    }    
             
 ];
 
