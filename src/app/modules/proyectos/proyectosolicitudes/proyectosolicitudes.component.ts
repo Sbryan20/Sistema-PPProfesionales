@@ -14,6 +14,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import { toBase64String } from '@angular/compiler/src/output/source_map';
 import { Anexo5Service } from '@data/services/api/anexo5.service';
+import { ResposablepppService } from '@data/services/api/resposableppp.service';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -49,14 +50,22 @@ export class ProyectosolicitudesComponent implements OnInit {
   }
 
 
-  constructor(private anexo4Service:Anexo4Service,private sysdateService:SysdateService,private activatedRoute: ActivatedRoute,private anexo3service:Anexo3Service) { }
+  constructor(private resposablepppService:ResposablepppService,private anexo4Service:Anexo4Service,private sysdateService:SysdateService,private activatedRoute: ActivatedRoute,private anexo3service:Anexo3Service) { }
 
   ngOnInit(): void {
-    this.anexo3service.getallanexo3().subscribe(data=>{
-      this.anexo3=data;
-      this.dataSource=new MatTableDataSource(this.anexo3); 
-      this.dataSource.sort = this.sort;
-    })  
+    this.activatedRoute.params.subscribe( params => {
+      let cedula = params['cedula']
+      this.resposablepppService.getResponsableId(cedula).subscribe(data=>{
+        console.log(data.codigo)
+        this.anexo3service.getanexo3byCodigo(data.codigo).subscribe(data=>{
+          this.anexo3=data;
+          this.dataSource=new MatTableDataSource(this.anexo3); 
+          this.dataSource.sort = this.sort;         
+        })
+      })
+    })
+      
+     
   }
 
   guardar(anexo3:Anexo3){

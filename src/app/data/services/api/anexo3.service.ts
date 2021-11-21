@@ -38,6 +38,9 @@ export class Anexo3Service {
   getanexo3by(proyecto?:Number):Observable<Anexo3[]>{
     return this.http.get(this.urlEndPoint+"/allByProyecto/"+proyecto,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo3[]))
   }
+  getanexo3byCodigo(codigoProyecto?:String):Observable<Anexo3[]>{
+    return this.http.get(this.urlEndPoint+"/allByCodigoCarrera/"+codigoProyecto,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo3[]))
+  }
 
   getdatosalumno(cedula:String):Observable<AlumnoDatos>{
     return this.http.get(this.urlEndPoint+"/datosAlumno/"+cedula,{headers:this.httpHeaders}).pipe(map(Response=>Response as AlumnoDatos))
