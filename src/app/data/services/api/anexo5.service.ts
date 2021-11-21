@@ -23,6 +23,10 @@ export class Anexo5Service {
     console.log(anexo5);
     return this.http.put<Anexo5>(this.urlEndPoint,anexo5,{headers: this.httpHeaders})
   }
+  getanexo5byid(id?:Number):Observable<Anexo5>{
+    return this.http.get(this.urlEndPoint+'/'+id,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo5))
+    
+  }
 
   getanexo5bycedula(cedula:String):Observable<Anexo5[]>{
     return this.http.get('http://localhost:8080/api/anexo5/docenteApoyo/'+cedula,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo5[]))

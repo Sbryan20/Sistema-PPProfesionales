@@ -12,8 +12,12 @@ export class Proyectos {
     nombreresponsable?:string
     responsablePPP?:string;
     nombredirector?:string
+    objetivoGeneral?:String;
+    alcanceTerritorial?:String;
+    programaVinculacion?:String;
     actividadeslistProyectos?: actividadeslistProyectos[];
     requisitoslistProyectos?:  requisitoslistProyectos[];
+    objetivosEspecificoslistProyecto?:ObjetivosEspeciicoslistProyecto[]
 }
 
 interface actividadeslistProyectos {
@@ -22,6 +26,9 @@ interface actividadeslistProyectos {
 
  interface requisitoslistProyectos {
     descripcion: string;
+}
+export class ObjetivosEspeciicoslistProyecto{
+    descripcion?: String;
 }
 
 export class listproyect{

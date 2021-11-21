@@ -38,16 +38,16 @@
                 </tr>
                 <tr> 
                   <th colspan="4" scope="col"><strong>LINEA DE ACCIÓN:</strong> <select class="form-control" (change)="selectLineaAccion($event)" style="width: 100%;" name="select">
-                    <option value="Inical">Inical</option>
-                    <option value="Media" selected>Media</option>
-                    <option value="Final" selected>Final</option>
+                    <option value="Tecnica">Asesoría Técnica</option>
+                    <option value="Comunitario" selected>Trabajo Comunitario</option>
+                    <option value="☐Capacitación" selected>Capacitación</option>
                   </select>
                   </th>
                 </tr>
                 <tr>
                   <td > <strong>CARRERA:</strong><select class="form-control" (change)="selectCarreta($event)" style="width: 100%;" name="select">
                     <option value="" selected>Seleccione</option>
-                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> {{item.codigo}}-{{item.nombre}}/option>
+                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> {{item.codigo}}-{{item.nombre}} </option>
                   </select></td>
                   <td colspan="3"> <strong>Estado: </strong><select class="form-control" (change)="selectEstado($event)" style="width: 100%;" name="select">
                     <option value="true">TRUE</option>
@@ -69,10 +69,48 @@
                       <option *ngFor="let resppp of resPPP"  [value]="resppp.id"> <ng-container *ngIf="resppp.estado==true" >{{resppp.id}}-{{resppp.cedula}}</ng-container></option>
                       </select> 
                   </th>
-                </tr>    
+                </tr> 
+                <tr> 
+                  <th colspan="3" scope="col"><strong>Programa de Vinculación: </strong>
+                    <input type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent;" [(ngModel)]="proyectos.programaVinculacion" name="programaVinculacion" required>
+                  </th>
+                  <th colspan="1" scope="col"><strong>Alcance Territoral: </strong>
+                   <select name="select" id="" class="form-control" (change)="selectalcanceTerritorial($event)" required>
+                    <option value="SL">Seleccione</option>
+                    <option value="Nacional">Nacional</option>
+                    <option value="Provincial">Provincial</option>
+                    <option value="Cantonal">Cantonal</option>
+                    <option value="Parroquial">Parroquial</option>
+                    <option value="Institucional">Institucional</option>
+                    <option value="Internacional">Internacional</option>
+                   </select>
+                  </th>
+                </tr>
+                <tr> 
+                  <th colspan="3" scope="col"><strong>Objetivo Generales: </strong>
+                    <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="100" [(ngModel)]="proyectos.objetivoGeneral" name="objetivoGeneral" ></textarea>
+                  </th>
+                  <th>
+                    <tr [formGroup]="addForm"> 
+                      <th  scope="col"><strong>Objetivo Especifico: </strong>
+                        <button  mat-raised-button color="primary"  (click)="onAddRow()" *ngIf="addForm.get('rows')">NUEVA OBJETIVO</button>
+                        <br> <br>
+                          <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                            <td>
+                              descripcion : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+                            </td>
+                            <td>
+                              <button mat-raised-button color="warn" (click)="onRemoveRow(index)">QUITAR</button>
+                            </td>
+                          </tr>
+  
+                      </th>
+                    </tr>    
+                  </th>
+                </tr>
+                   
               </tbody>
             </table>
-            
             <br> <br>
           </tr>
         </tbody>

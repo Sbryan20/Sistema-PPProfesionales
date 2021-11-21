@@ -23,18 +23,18 @@
 
                    <tr> 
                     <td  colspan="2" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
-                         <select  class="form-control"  style="width: 100%" name="select" required>
+                         <select  class="form-control"  style="width: 100%" name="select" (change)="selectProyecto($event)" required>
                              <option value="SL">Seleccione</option>
-                             <option *ngFor="let item of anexo5" [value]="item.idProyectoPPP">{{item.idProyectoPPP}}</option>
+                             <option *ngFor="let item of anexo5" [value]="item.id">{{item.idProyectoPPP}}</option>
                          </select>
                      </td>  
                    <tr> 
-                    <td colspan="4" scope="col"><strong class="texto">Empresa/Institución:</strong><b  class="texto2">  </b></td>
+                    <td colspan="4" scope="col"><strong class="texto">Empresa/Institución: {{edntidad.nombre}}</strong><b  class="texto2">  </b></td>
                   </tr>
                   <tr> 
                     <td colspan="2" scope="col"><strong class="texto">Mes:</strong>   
                  
-                      <select class="form-control"  style="width: 100%;" name="select" required>
+                      <select class="form-control"  style="width: 100%;" name="select" (change)="selectmes($event)" required>
                         <option value="SL">Seleccione</option> 
                         <option value="ENERO">ENERO</option> 
                         <option value="FEBRERO">FEBRERO</option> 
@@ -52,7 +52,7 @@
                     </td>
                   
                     <td colspan="2" scope="col"><strong class="texto">Fecha de Seguimiento:</strong>
-                      <input type="date"  class="form-control" style="background-color:transparent;font-size: 18px;" />
+                      <input type="date"  class="form-control" [(ngModel)]="anexo9.fechaSeguimeinto" name="fechaSeguimeinto" style="background-color:transparent;font-size: 18px;" />
                     </td>
                   </tr>
                </tbody>
@@ -71,15 +71,6 @@
                 <tbody>
                  
                       <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
-                        <td scope="col">  
-                          <br> 
-                            <strong>No.</strong>
-                              <div class="form-group"> 
-                                      <td>
-                                      <input type="text" class="form-control"  [formControl]="row.get('numero')">
-                                      </td>
-                              </div> 
-                        </td>
                         
                         <td scope="col">    
                           <strong>Actividades según planificación</strong>
@@ -96,6 +87,7 @@
                                     <td>
                                       <select  class="form-control"  style="width: 100%" name="select"  [formControl]="row.get('estudianteResponsable')" required>
                                         <option value="SL">Seleccione</option>
+                                        <option *ngFor="let item of anexo5response.alumnos" [value]="item.nombreEstudiante">{{item.nombreEstudiante}}</option>
                                     </select>
                                     </td>
                           </div> 
@@ -154,7 +146,7 @@
                     <tr> 
                         <td colspan="8" scope="col"><strong style="text-align-last: end;" class="texto2">OBSERVACIONES GENERALES:</strong> 
                          <br>
-                          <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="150">                             
+                          <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="150" [(ngModel)]="anexo9.observaciones" name="observaciones">                             
                           </textarea>
                         </td>
                           
@@ -162,7 +154,7 @@
                     </tbody>
                      <tr>
                       <td colspan="8" >
-                        <button style="align-self: center;" class="btn btn-info" >GUARDAR REGISTRO</button>
+                        <button style="align-self: center;" class="btn btn-info" (click)="guardar()">GUARDAR REGISTRO</button>
                       </td>
                      </tr>
               

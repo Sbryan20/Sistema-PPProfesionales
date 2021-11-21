@@ -47,13 +47,26 @@ export class ProyectocreateComponent implements OnInit {
   private cedula?:string;
   public carrera?: string;
 
+  //ArrayAntividades
+  addForm: FormGroup;
+  rows: FormArray;
+  itemForm?: FormGroup;
 
-  constructor(private sysdateService:SysdateService,private pesposablepppServiceprivate:ResposablepppService, private proyectoService:ProyectoService,private cvservice:CordinadorvinculacionService,private BondingCoordinationService:BondingCoordinationService,private router:Router,private carreraService:CarreraService,private activatedRoute: ActivatedRoute) { 
+
+
+  constructor(private fb: FormBuilder,private sysdateService:SysdateService,private pesposablepppServiceprivate:ResposablepppService, private proyectoService:ProyectoService,private cvservice:CordinadorvinculacionService,private BondingCoordinationService:BondingCoordinationService,private router:Router,private carreraService:CarreraService,private activatedRoute: ActivatedRoute) { 
     this.cvservice.getCvinculacion().subscribe(data=>{
       this.listacvinculacion=data
       console.log(data)
     })
     this.sysdateService.getSysdate().subscribe(data=>this.fecha=data.fecha) 
+    //ArrayActividades
+    this.addForm = this.fb.group({
+      items: [null, Validators.required],
+      items_value: ['no', Validators.required]
+    });
+    this.rows = this.fb.array([]);
+
 
   }
 
@@ -68,12 +81,29 @@ export class ProyectocreateComponent implements OnInit {
 }
     })
     this.pesposablepppServiceprivate.cargarresponsables().subscribe(cres=>{
-      this.resPPP=cres.filter(d=>d.codigoCarrera==this.carrera);
+      this.resPPP=cres;
       console.log(this.resPPP)
     })
     this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
     this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data.filter(d=>d.codigo==this.carrera))
 
+    //ArrayActividades
+    this.addForm.get("items_value")?.setValue("yes");
+    this.addForm.addControl('rows', this.rows);
+  }
+
+  //ArrayActividades
+  onAddRow() {
+    this.rows.push(this.createItemFormGroup());
+    console.log(this.rows.getRawValue())
+  }
+  onRemoveRow(rowIndex:number){
+    this.rows.removeAt(rowIndex);
+  }
+  createItemFormGroup(): FormGroup {
+    return this.fb.group({
+      descripcion:null
+    });
   }
 
  
@@ -97,6 +127,9 @@ export class ProyectocreateComponent implements OnInit {
   selectResposablepp(event: any) {
     this.proyectos.responsablePPP= event.target.value;
   }
+  selectalcanceTerritorial(event: any) {
+    this.proyectos.alcanceTerritorial= event.target.value;
+  }
 
   validacion():boolean{
     if(this.proyectos.codigocarrera==""||this.proyectos.lineaaccion==""||this.proyectos.responsablePPP==""){
@@ -110,6 +143,7 @@ export class ProyectocreateComponent implements OnInit {
     if(this.validacion()==false){
       this.proyectos.codigo="Proyecto "+getRandomArbitrary(0,1000000000000)
       this.proyectos.fechaat=this.fecha;
+      this.proyectos.objetivosEspecificoslistProyecto=this.rows.getRawValue();
     console.log(this.proyectos)
     this.proyectoService.savePr(this.proyectos).subscribe(data=>{
       Swal.fire({

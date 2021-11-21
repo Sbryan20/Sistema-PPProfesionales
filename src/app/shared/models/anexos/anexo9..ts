@@ -20,4 +20,6 @@ export class ActividadesAnexo9{
     estudianteResponsable?:String;
     fechaPlanificacion?:Date;
     finalizacion?:String;
+    Finalizada?:Date;
+    Porcentajeavance?:String
 }
