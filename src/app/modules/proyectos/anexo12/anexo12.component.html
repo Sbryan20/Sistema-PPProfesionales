@@ -1,0 +1,116 @@
+<form class="formulario"  >
+    <table style="width:95%; height:100%;" class="table" >
+    <tbody> 
+
+          <table style="width:100%; height:90%;" class="table" style="background-color: rgb(223, 236, 252);">
+                  <tr colspan="4" class="active">
+                    <div class="row-fluid"> 
+                            <img class="centrado" [src]="ista" width="200" height="150"   />
+                    </div>
+                  </tr> 
+                <tr colspan="4" class="d-flex" class="text-center">
+                  <h2 class="bss-txt-content" style="font-size: 18px;">
+                    <b>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY </b><br/> 
+                    <b>COORDINACIÓN DE VINCULACIÓN CON LA SOCIEDAD</b><br />
+                   <b>REGISTRO DE BENEFICIARIOS / CAPACITACIONES</b> 
+                  </h2>
+                </tr>
+              
+          </table>
+          <tr>
+            <table style="width:100%; height:90%;" class="table" style="background-color: rgb(255, 255, 255);">
+              <tr> 
+                <td  colspan="2" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
+                     <select             class="form-control"  style="width: 100%" name="select" required>
+                         <option value="SL">Seleccione</option> 
+                     </select>
+                 </td>  
+               </tr>
+               <tr>
+                <td  colspan="3" scope="col">
+                    <strong class="texto"> FECHA:</strong> <b class="texto2"> {{fech}}</b>
+                </td>
+                <td  colspan="2" scope="col"><strong class="texto"> No.HORAS:</strong>
+                    <input  type="number" style="font-size: 18px;" class="form-control"  class="impnumber"/>        
+                </td>
+               </tr>
+               <tr>
+                <td  colspan="2" scope="col">
+                    <strong class="texto"> ENTIDAD BENEFICIARIA:</strong> <b class="texto2"> 123 </b>
+                </td>
+                <td  colspan="3" scope="col"></td>
+               </tr>
+               <tr>
+                <td  colspan="2" scope="col">
+                    <strong class="texto"> REPRESENTANTE:</strong> <b class="texto2">  R </b>
+                </td>
+                <td  colspan="1" scope="col">
+                    <strong class="texto"> TELÉFONO::</strong> <b class="texto2">  T </b>
+                </td>
+                <td  colspan="2" scope="col">
+                    <strong class="texto"> E MAIL:</strong> <b class="texto2">  E </b>
+                </td>
+               </tr>
+               <tr>
+                <td colspan="5" scope="col"><strong class="texto">ASUNTO:</strong>
+                    <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" />
+                  </td>
+               </tr>
+              
+            </table>
+          </tr>   
+
+           <tr>
+ 
+              <table  style="width:100%; height:90%;background-color: rgb(240, 240, 240);" class="table"> 
+                <tr>
+                  <td colspan="4" scope="col " > <strong class="texto2"> BENEFICIARIOS</strong></td>
+                </tr>
+                <tr>
+                  <td colspan="4" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">INGRESAR DATOS DE BENEFICIARIOS</button></td>
+                </tr>
+                <tbody>
+                 
+                      <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                        <td>   
+                            <strong>APELLIDOS NOMBRES</strong>
+                              <div class="form-group"> 
+                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ApellidosNombres')">
+                              </div> 
+                        </td>
+                        
+                        <td>    
+                          <strong>CÉDULA</strong>
+                            <div class="form-group">
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('Cedula')">
+                          </div> 
+                        </td>
+                                    
+                        <td> 
+                          <strong> OBSERVACIONES:</strong>
+                            <div class="form-group"> 
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('Observaciones')">               
+                          </div> 
+                        </td>
+                        
+                        <td> 
+                          <div>
+                            <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
+                          </div>
+                       </td> 
+                    </tr>
+
+             
+                    </tbody>
+                     <tr>
+                      <td colspan="4" >
+                        <button style="align-self: center;" class="btn btn-info" >GUARDAR REGISTRO</button>
+                      </td>
+                     </tr>
+              
+             </table>
+       </tr>
+
+    </tbody>
+  </table> 
+ </form>

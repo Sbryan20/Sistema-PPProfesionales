@@ -54,4 +54,9 @@ export class ResposablepppService {
       data => data as CarreasDoc
     )); 
   }
+  getbyAll():Observable<ResponsablePPP[]>{
+    return this.http.get(this.urlEndPoint+"/all/responsable",{headers: this.httpHeaders}).pipe(map(
+      data => data as ResponsablePPP[]
+    )); 
+  }
 }

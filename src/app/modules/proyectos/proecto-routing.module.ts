@@ -6,8 +6,11 @@ import { AlumnoconvocatoriaComponent } from './alumnoconvocatoria/alumnoconvocat
 import { AlumnosencargoComponent } from './alumnosencargo/alumnosencargo.component';
 import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
+import { Anexo10Component } from './anexo10/anexo10.component';
+import { Anexo12Component } from './anexo12/anexo12.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
+import { Anexo7Component } from './anexo7/anexo7.component';
 import { Anexo8Component } from './anexo8/anexo8.component';
 import { Anexo9Component } from './anexo9/anexo9.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
@@ -22,6 +25,7 @@ import { ProyectomiembrosComponent } from './proyectomiembros/proyectomiembros.c
 import { ProyectoresponComponent } from './proyectorespon/proyectorespon.component';
 import { ProyectosolicitudesComponent } from './proyectosolicitudes/proyectosolicitudes.component';
 import { SegumientoparcialfirmaComponent } from './segumientoparcialfirma/segumientoparcialfirma.component';
+import { SocializacionComponent } from './socializacion/socializacion.component';
 
 const routes: Routes = [
     {
@@ -95,7 +99,20 @@ const routes: Routes = [
     },{
       path: 'resistro_de_actividades_mensual/:cedula',
       component: Anexo9Component
-    }    
+    },{
+      path: 'planificacion_de_actividades_mensual/:cedula',
+      component: Anexo7Component
+    },{
+      path: 'socilizacion/:cedula',
+      component: SocializacionComponent
+    },{
+      path: 'informe_de_culminacion/:cedula',
+      component: Anexo10Component
+    },{
+      path: 'resgistro_de_Beneficiarios/:cedula',
+      component: Anexo12Component
+    }
+         
             
 ];
 

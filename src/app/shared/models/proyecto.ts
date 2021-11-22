@@ -18,6 +18,9 @@ export class Proyectos {
     actividadeslistProyectos?: actividadeslistProyectos[];
     requisitoslistProyectos?:  requisitoslistProyectos[];
     objetivosEspecificoslistProyecto?:ObjetivosEspeciicoslistProyecto[]
+    plazoEjecucion?:String;
+    fechaInicio?:Date;
+    fechaFin?:Date;
 }
 
 interface actividadeslistProyectos {

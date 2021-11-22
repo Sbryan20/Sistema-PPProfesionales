@@ -21,6 +21,10 @@ import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprend
 import { SegumientoparcialfirmaComponent } from './segumientoparcialfirma/segumientoparcialfirma.component';
 import { Anexo8Component } from './anexo8/anexo8.component';
 import { Anexo9Component } from './anexo9/anexo9.component';
+import { Anexo7Component } from './anexo7/anexo7.component';
+import { SocializacionComponent } from './socializacion/socializacion.component';
+import { Anexo10Component } from './anexo10/anexo10.component';
+import { Anexo12Component } from './anexo12/anexo12.component';
 
 
 
@@ -45,8 +49,12 @@ import { Anexo9Component } from './anexo9/anexo9.component';
     AlumnosencargoComponent,
     PlanaprendizajefirmaComponent,
     SegumientoparcialfirmaComponent,
+    Anexo7Component,
     Anexo8Component,
-    Anexo9Component
+    Anexo9Component,
+    Anexo10Component,
+    Anexo12Component,
+    SocializacionComponent
   ],
   imports: [
     CommonModule,

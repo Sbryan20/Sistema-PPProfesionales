@@ -31,6 +31,8 @@
               >Proyectos Aceptados</a>
               <a [routerLink]="['/panel/proyecto/resistro_de_actividades',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
               >Registro diario de Actividades</a>
+              <a [routerLink]="['/panel/proyecto/informe_de_culminacion',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
+              >Informe de culminacion de proyecto de Vinculación</a>
             </div>
     
             <!--Responsable PPP -Convocatoria -->
@@ -77,6 +79,10 @@
                 [routerLink]="['/panel/proyecto/plan_de_aprendizaje',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Planes de Aprencizaje</a>    
+              <a
+                [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Resgitro de veneficiarios</a>
             </div>
                <!--DocenteApoyo -->
                <div class="list-group" *ngSwitchCase="'DA'">
@@ -100,8 +106,17 @@
                 <a
                   [routerLink]="['/panel/proyecto/seguimeinto_parcial_firma',persona.cedula]" routerLinkActive="active"
                   class="list-group-item list-group-item-action bg-dark text-light"
-                >Seguminto parcial de plan de Aprendizaje</a>    
+                >Seguminto parcial de plan de Aprendizaje</a>   
+                <a
+                [routerLink]="['/panel/proyecto/planificacion_de_actividades_mensual',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Planificación Mensual de Actividades</a>
+              <a
+                [routerLink]="['/panel/proyecto/socilizacion',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Socialización firmada</a>  
               </div>
+              
           </div>
         </div>
 </ng-container>

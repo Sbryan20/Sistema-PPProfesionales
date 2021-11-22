@@ -63,6 +63,17 @@
                   </th>
                 </tr>
                 <tr> 
+                  <th colspan="2" scope="col"><strong>Plazo de Ejecición</strong>
+                    <input type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.plazoEjecucion" name="plazoEjecucion" required />
+                  </th>
+                  <th  scope="col"><strong>Fecha Inicio</strong>
+                    <input type="date" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.fechaInicio" name="fechaInicio" required />
+                  </th>
+                  <th  scope="col"><strong>Fecha Fin</strong>
+                    <input type="date" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.fechaFin" name="fechaFin" required />
+                  </th>
+                </tr>
+                <tr> 
                   <th colspan="4" scope="col"><strong>RESPONSABLE</strong>
                     <select class="form-control" (change)="selectResposablepp($event)" style="width: 100%;" name="select">
                       <option value=""selected>Seleccione</option>
