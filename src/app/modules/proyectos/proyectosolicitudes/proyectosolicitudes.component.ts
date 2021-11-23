@@ -167,7 +167,7 @@ export class ProyectosolicitudesComponent implements OnInit {
  generate(Anexo4: Anexo4) {
 
   loadFile(
-    'https://download855.mediafire.com/q5cu3wnt6wtg/qijek752n3vwysq/anexo4.docx',
+    'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo4.docx',
     function (error, content) {
       
       if (error) {

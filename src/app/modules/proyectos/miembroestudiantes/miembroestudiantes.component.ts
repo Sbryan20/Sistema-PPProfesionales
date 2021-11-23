@@ -221,13 +221,13 @@ export class MiembroestudiantesComponent implements OnInit {
         try {
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({
-
-            titulo:anexo5.siglasCarrera,
-            docente_apoyo:anexo5.nombreDocenteReceptor,
-            director:anexo5.directorD,        
             fecha:anexo5.fechaEmision, 
+            titulo:anexo5.siglasCarrera,
+            proyecto_vinculacion:anexo5.nombreProyecto,
+            docente:anexo5.nombreDocenteReceptor,
             estudiantes:anexo5.alumnos,
-            nom_apell_responsable_ppp:anexo5.nonbreDocenteEmisor,
+            director:anexo5.directorD,  
+            nom_responsable_ppp:anexo5.nonbreDocenteEmisor,
             siglas_carrera:anexo5.siglasCarrera,
           });
         } catch (error) {
