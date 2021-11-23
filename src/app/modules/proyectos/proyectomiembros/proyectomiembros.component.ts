@@ -343,7 +343,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
 
     loadFile(
       
-      'http://download853.mediafire.com/xg3fq2cfdgug/nus27sckq8b28b7/anexo1.docx',
+      'src\assets\doc\anexo1.docx',
       function (error, content) {
         
         if (error) {
