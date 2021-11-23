@@ -193,7 +193,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
   generate(anexo3: Anexo3) {
 
     loadFile(
-      'https://download1327.mediafire.com/p9ezwj0j95lg/ruyiz8kfefb7noq/anexo3.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo3.docx',
       function (error, content) {
         
         if (error) {
