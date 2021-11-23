@@ -174,7 +174,7 @@ export class Anexo61Component implements OnInit {
       try {
         // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
         doc.render({             
-          estudiantes:anexo6_1.actividades,
+          tb:anexo6_1.actividades,
           docente_apoyo:anexo6_1.nombreApoyo,
           director_proyeto:anexo6_1.nombreDirector
         });

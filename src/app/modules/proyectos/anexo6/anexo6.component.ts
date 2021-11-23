@@ -307,7 +307,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
   generate(anexo6: Anexo6) {
 
     loadFile(
-      'https://download1488.mediafire.com/gzka339lejog/0x277mau8ww33nv/anexo6.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo6.docx',
       function (error, content) {
         
         if (error) {
@@ -329,7 +329,8 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
             ciclo:anexo6.ciclo,
             act:anexo6.actividades,
             director_proyeto:anexo6.nombreCoordinadorVinculacion,
-            fecha:anexo6.fecha
+            fecha:anexo6.fecha,
+            horaTotal:anexo6.totalHoras
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
