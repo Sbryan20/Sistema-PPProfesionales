@@ -223,7 +223,7 @@ export class MiembroestudiantesComponent implements OnInit {
           doc.render({
             fecha:anexo5.fechaEmision, 
             titulo:anexo5.siglasCarrera,
-            proyecto_vinculacion:anexo5.nombreProyecto,
+            proyecto:anexo5.nombreProyecto,
             docente:anexo5.nombreDocenteReceptor,
             estudiantes:anexo5.alumnos,
             director:anexo5.directorD,  
