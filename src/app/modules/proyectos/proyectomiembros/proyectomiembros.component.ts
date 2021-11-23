@@ -342,7 +342,6 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
   generate(anexo1: Anexo1) {
 
     loadFile(
-      
       'src\assets\doc\anexo1.docx',
       function (error, content) {
         
