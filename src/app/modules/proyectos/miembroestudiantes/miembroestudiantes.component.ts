@@ -102,6 +102,7 @@ export class MiembroestudiantesComponent implements OnInit {
   ObtnerDatos():Anexo5{
     this.anexo5resposae.siglasCarrera=this.anexo1.siglasCarrera;
     this.anexo5resposae.idProyectoPPP=this.anexo1.idProyectoPPP;
+    this.anexo5resposae.nombreProyecto=this.anexo1.nombreProyecto
     this.anexo5resposae.alumnos=this.rowsR.getRawValue();
     this.anexo5resposae.nombreDocenteReceptor=this.anexo1.nombreDelegado;
     this.anexo5resposae.cedulaDocenteApoyo=this.anexo1.cedulaDelegado
@@ -207,7 +208,7 @@ export class MiembroestudiantesComponent implements OnInit {
   generate(anexo5: Anexo5) {
     console.log(anexo5)
     loadFile(
-      'https://download852.mediafire.com/dd5v6e5au9pg/skgfbfsatrqiopz/anexo5.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo5.docx',
       function (error, content) {
         
         if (error) {

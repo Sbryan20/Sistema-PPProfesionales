@@ -322,12 +322,13 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({             
             nombre_proyecto:anexo6.nombreProyecto,
-            Docente_apoyo:anexo6.nombreDocenteApoyo,
+            docente_apoyo:anexo6.nombreDocenteApoyo,
             entidad_beneficiaria:anexo6.nombreEntidad,
             estudiante:anexo6.nombreEstudiante ,
             periodo_academico:anexo6.periodoAcademico,
             ciclo:anexo6.ciclo,
-            director_proyecto:anexo6.nombreCoordinadorVinculacion,
+            act:anexo6.actividades,
+            director_proyeto:anexo6.nombreCoordinadorVinculacion,
             fecha:anexo6.fecha
           });
         } catch (error) {
