@@ -340,9 +340,9 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
 
 //Docs
   generate(anexo1: Anexo1) {
-
+    console.log(anexo1)
     loadFile(
-      'src\assets\doc\anexo1.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo1.docx',
       function (error, content) {
         
         if (error) {
@@ -360,7 +360,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
               titulo: anexo1.docenteTitulo,
               nombre_docente: anexo1.nombreDelegado,
               nombre_carrera: anexo1.nombreCarrera,
-              rol:anexo1.nombreRol,
+              delegacion:anexo1.nombreRol,
               nombre_proyecto: anexo1.nombreProyecto,
               nombre_coordinador:anexo1.nombreCoordinador,
               siglas:anexo1.siglasCarrera

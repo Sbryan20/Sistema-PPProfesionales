@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Anexo1Service } from '@data/services/api/anexo1.service';
-import { Anexo6Service } from '@data/services/api/anexo6.service';
-import { Anexo7Service } from '@data/services/api/anexo7.service';
-import { ProyectoService } from '@data/services/api/proyecto.service';
-import { ResposablepppService } from '@data/services/api/resposableppp.service';
-import { Anexo7 } from '@shared/models/anexos/anexo7';
+import { Anexo12Service } from '@data/services/api/anexo12.service';
+import { Anexo12 } from '@shared/models/anexos/anexo12';
 import Swal from 'sweetalert2';
 import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
@@ -24,29 +19,29 @@ function getBase64(file) {
     reader.onerror = error => reject(error);
   });
 }
+
 @Component({
-  selector: 'app-socializacion',
-  templateUrl: './socializacion.component.html',
-  styleUrls: ['./socializacion.component.scss']
+  selector: 'app-anexo12extendido',
+  templateUrl: './anexo12extendido.component.html',
+  styleUrls: ['./anexo12extendido.component.scss']
 })
-export class SocializacionComponent implements OnInit {
+export class Anexo12extendidoComponent implements OnInit {
+  
+  public anexo12:Anexo12[]=[];
 
-  public anexo7:Anexo7[]=[]
-
-  constructor(private anexo7Service:Anexo7Service,private resposablepppService:ResposablepppService, private anexo1Service:Anexo1Service, private proyectoService:ProyectoService,private fb: FormBuilder,private activatedRoute: ActivatedRoute, private anexo6Service:Anexo6Service) { }
+  constructor(private activatedRoute: ActivatedRoute,private anexo12Service:Anexo12Service) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
-      this.anexo1Service.getbyCedula(cedula).subscribe(datos=>{
-        this.anexo7Service.getanexo7(Number(datos[0].idProyectoPPP)).subscribe(data=>{
-          this.anexo7=data;
-        })
+      this.anexo12Service.getanexo12by(cedula).subscribe(date=>{
+        this.anexo12=date;
       })
-    })
+      
+    }) 
   }
 
-  async update(anexo7:Anexo7){
+  async update(anexo12:Anexo12){
     const { value: file } = await Swal.fire({
       allowOutsideClick: false,
       title: 'SELECCIONE EL PDF',
@@ -62,8 +57,8 @@ export class SocializacionComponent implements OnInit {
             resolve('Es necesario que seleccione el PDF')
           } else {
             getBase64(value).then(docx=>{
-              docx+'';    
-              this.anexo7Service.updateAnexo7(anexo7).subscribe(data=>{
+              anexo12.documento=docx+'';    
+              this.anexo12Service.updateAnexo12(anexo12).subscribe(data=>{
                 Swal.fire({
                   icon: 'success',
                   title: 'Anexo',
@@ -83,4 +78,5 @@ export class SocializacionComponent implements OnInit {
     })
 
   }
+
 }

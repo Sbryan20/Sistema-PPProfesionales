@@ -79,10 +79,7 @@
                 [routerLink]="['/panel/proyecto/plan_de_aprendizaje',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Planes de Aprencizaje</a>    
-              <a
-                [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios',persona.cedula]" routerLinkActive="active"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >Resgitro de veneficiarios</a>
+
             </div>
                <!--DocenteApoyo -->
                <div class="list-group" *ngSwitchCase="'DA'">
@@ -95,7 +92,15 @@
                 <a  [routerLink]="['/panel/proyecto/alumno_en_cargo',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
                 >Alumnos en Cargo</a>
                 <a [routerLink]="['/panel/proyecto/resistro_de_actividades_mensual',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-                >Seguminto Mensual</a>      
+                >Seguminto Mensual</a>
+                <a
+                [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Resgitro de Beneficiarios</a>
+              <a
+                [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios_firmas',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Resgitro de Beneficiarios Firmas</a>       
               </div>
               <!--DirectorProyecto -->
               <div class="list-group" *ngSwitchCase="'DP'">

@@ -21,8 +21,9 @@
             <table style="width:100%; height:90%;" class="table" style="background-color: rgb(255, 255, 255);">
               <tr> 
                 <td  colspan="2" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
-                     <select             class="form-control"  style="width: 100%" name="select" required>
-                         <option value="SL">Seleccione</option> 
+                     <select (change)="selectProyecto($event)" class="form-control"  style="width: 100%" name="select" required>
+                         <option value="SL">Seleccione</option>
+                         <option *ngFor="let item of anexo5" [value]="item.id">{{item.idProyectoPPP}}-{{item.nombreProyecto}}</option>
                      </select>
                  </td>  
                </tr>
@@ -31,29 +32,29 @@
                     <strong class="texto"> FECHA:</strong> <b class="texto2"> {{fech}}</b>
                 </td>
                 <td  colspan="2" scope="col"><strong class="texto"> No.HORAS:</strong>
-                    <input  type="number" style="font-size: 18px;" class="form-control"  class="impnumber"/>        
+                    <input  type="number" style="font-size: 18px;" class="form-control"  class="impnumber" [(ngModel)]="anexo12.horasCapacitacion" name="horasCapacitacion"/>        
                 </td>
                </tr>
                <tr>
                 <td  colspan="2" scope="col">
-                    <strong class="texto"> ENTIDAD BENEFICIARIA:</strong> <b class="texto2"> 123 </b>
+                    <strong class="texto"> ENTIDAD BENEFICIARIA:</strong> <b class="texto2"> {{entidad.nombre}} </b>
                 </td>
                 <td  colspan="3" scope="col"></td>
                </tr>
                <tr>
                 <td  colspan="2" scope="col">
-                    <strong class="texto"> REPRESENTANTE:</strong> <b class="texto2">  R </b>
+                    <strong class="texto"> REPRESENTANTE:</strong> <b class="texto2"> {{entidad.representante}} </b>
                 </td>
                 <td  colspan="1" scope="col">
-                    <strong class="texto"> TELÉFONO::</strong> <b class="texto2">  T </b>
+                    <strong class="texto"> TELÉFONO:</strong> <b class="texto2"> {{entidad.telefonoEntidad}}</b>
                 </td>
                 <td  colspan="2" scope="col">
-                    <strong class="texto"> E MAIL:</strong> <b class="texto2">  E </b>
+                    <strong class="texto"> E MAIL:</strong> <b class="texto2">  {{entidad.emailEntidad}} </b>
                 </td>
                </tr>
                <tr>
                 <td colspan="5" scope="col"><strong class="texto">ASUNTO:</strong>
-                    <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" />
+                    <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="anexo12.asuntoCapacitacion" name="asuntoCapacitacion" />
                   </td>
                </tr>
               
@@ -75,21 +76,21 @@
                         <td>   
                             <strong>APELLIDOS NOMBRES</strong>
                               <div class="form-group"> 
-                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ApellidosNombres')">
+                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('nombresCompletos')">
                               </div> 
                         </td>
                         
                         <td>    
                           <strong>CÉDULA</strong>
                             <div class="form-group">
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('Cedula')">
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('cedula')">
                           </div> 
                         </td>
                                     
                         <td> 
                           <strong> OBSERVACIONES:</strong>
                             <div class="form-group"> 
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('Observaciones')">               
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('observaciones')">               
                           </div> 
                         </td>
                         
@@ -104,7 +105,7 @@
                     </tbody>
                      <tr>
                       <td colspan="4" >
-                        <button style="align-self: center;" class="btn btn-info" >GUARDAR REGISTRO</button>
+                        <button style="align-self: center;" class="btn btn-info" (click)="guardar()" >GUARDAR REGISTRO</button>
                       </td>
                      </tr>
               

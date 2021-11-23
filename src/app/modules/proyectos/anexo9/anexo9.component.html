@@ -25,7 +25,7 @@
                     <td  colspan="2" scope="col"><strong class="texto">NOMBRE DEL PROYECTO:</strong> 
                          <select  class="form-control"  style="width: 100%" name="select" (change)="selectProyecto($event)" required>
                              <option value="SL">Seleccione</option>
-                             <option *ngFor="let item of anexo5" [value]="item.id">{{item.idProyectoPPP}}</option>
+                             <option *ngFor="let item of anexo5" [value]="item.id">{{item.idProyectoPPP}}-{{item.nombreProyecto}}</option>
                          </select>
                      </td>  
                    <tr> 

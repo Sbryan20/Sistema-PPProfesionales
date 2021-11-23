@@ -7,6 +7,7 @@ export class Anexo5{
     siglasCarrera?:String;
     nonbreDocenteEmisor?:String;
     fechaRecepcion?:Date;
+    nombreProyecto?:String
     idProyectoPPP?:Number;
     documento?:String;
     alumnos?: alumnosAnexo5Request[];

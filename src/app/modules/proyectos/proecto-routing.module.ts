@@ -8,6 +8,7 @@ import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { Anexo10Component } from './anexo10/anexo10.component';
 import { Anexo12Component } from './anexo12/anexo12.component';
+import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
 import { Anexo7Component } from './anexo7/anexo7.component';
@@ -111,6 +112,10 @@ const routes: Routes = [
     },{
       path: 'resgistro_de_Beneficiarios/:cedula',
       component: Anexo12Component
+    }
+    ,{
+      path: 'resgistro_de_Beneficiarios_firmas/:cedula',
+      component: Anexo12extendidoComponent
     }
          
             
