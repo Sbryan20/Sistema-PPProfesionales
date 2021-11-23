@@ -240,7 +240,7 @@ export class CompracticasComponent implements OnInit {
 
     loadFile(
 
-      'https://download1327.mediafire.com/4nvhzl1u2fhg/ht0lyermjd19vzx/anexo2.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo2.docx',
       function (error, content) {
 
         if (error) {
