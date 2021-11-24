@@ -2,6 +2,7 @@ input[type=text] {
     border: none;
     border-bottom: 2px solid rgb(3, 69, 168);
     align-self: start;
+    background-color: rgb(160, 205, 250);
   
   }
 
@@ -34,19 +35,19 @@ input[type=text] {
     table {
       /* Para centrar usamos "auto" en la alineación horizontal */
       margin: 0 auto;
-      /*Lo siguiente es para los bordes*/
       border-collapse: collapse;
       border-collapse: separate;
       border-spacing: 10;
       border: 3px solid rgb(189, 186, 186);
       border-radius: 20px;
       -moz-border-radius: 15px;
-      padding: 1px;
+      padding: 0px;
       background-color: white;
+      margin-top: 2px;
   }
 
   .formulario{
-      margin-top: 20px;
+      margin-top: 10px;
   } 
   
   .example-full-width {
@@ -57,9 +58,9 @@ input[type=text] {
     display:block;
 }
 .texto{
-    font-size: 16px;
+    font-size: 12px;
 }
 .texto2{
-    font-size: 16px;
+    font-size: 12px;
     color: rgb(3, 69, 168);
 }

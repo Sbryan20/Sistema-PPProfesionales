@@ -50,6 +50,8 @@ export class Anexo12Component implements OnInit {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
       this.cedula=cedula;
+      this.anexo12.cedulaApoyo=cedula
+      console.log(cedula)
       this.anexo5Service.getanexo5bycedula(cedula).subscribe(data=>{
         this.anexo5=data;
       })
@@ -92,7 +94,7 @@ createItemFormGroup(): FormGroup {
       this.anexo12.fechaCapacitacion= data.fecha
     })
     this.anexo12.idProyectoPPP=this.proyectoresponse.id;
-    this.anexo12.cedulaApoyo=this.cedula;
+    
     this.anexo12.actividadesAnexo12=this.rows.getRawValue()
     return this.anexo12;
   }

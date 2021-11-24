@@ -15,7 +15,7 @@ export class Anexo12Service {
   constructor(private http:HttpClient) { }
 
   saveAnexo12(anexo12: Anexo12):Observable<Anexo12>{
-    console.log(anexo12);
+    console.log(anexo12.cedulaApoyo);
     return this.http.post<Anexo12>(this.urlEndPoint,anexo12,{headers: this.httpHeaders})
   }
   

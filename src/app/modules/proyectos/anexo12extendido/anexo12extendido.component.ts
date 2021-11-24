@@ -41,7 +41,10 @@ export class Anexo12extendidoComponent implements OnInit {
       
     }) 
   }
-
+  modificar(anexo12:Anexo12){
+    this.update(anexo12)
+    console.log(anexo12)
+  }
   async update(anexo12:Anexo12){
     const { value: file } = await Swal.fire({
       allowOutsideClick: false,
@@ -81,9 +84,9 @@ export class Anexo12extendidoComponent implements OnInit {
   }
 
   generate(anexo12: Anexo12) {
-
+    console.log(anexo12)
     loadFile(
-      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo9.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo12.docx',
       function (error, content) {
         
         if (error) {
@@ -107,7 +110,7 @@ export class Anexo12extendidoComponent implements OnInit {
             repreEmail:anexo12.telefonoEntidad,
             nombreAdminEntidadBeneficiaria:anexo12.nombreAdministrador,
             nombreDocenteApoyoRespoActivid:anexo12.nombreApoyo,
-
+            tb:anexo12.actividadesAnexo12
 
 
           });

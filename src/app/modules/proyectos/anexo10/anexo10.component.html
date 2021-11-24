@@ -1,154 +1,265 @@
 <form class="formulario"  >
-    <table style="width:95%; height:100%;" class="table" >
-    <tbody> 
+  <table style="width:95%; height:100%;" class="table" >
+  <tbody> 
 
-          <table style="width:100%; height:90%;" class="table" style="background-color: rgb(223, 236, 252);">
-                  <tr colspan="4" class="active">
-                    <div class="row-fluid"> 
-                            <img class="centrado" [src]="ista" width="200" height="150"   />
-                    </div>
-                  </tr> 
-                <tr colspan="4" class="d-flex" class="text-center">
-                  <h2 class="bss-txt-content" style="font-size: 18px;">
-                    <b>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY </b><br/> 
-                    <b>COORDINACIÓN DE VINCULACIÓN CON LA SOCIEDAD</b><br />
-                   <b>INFORME DE CULMINACIÓN DEL PROYECTO DE VINCULACIÓN</b> 
-                  </h2>
-                </tr>
-              
-          </table>
-          <div style='text-align:right' >
-            <br>
-            <strong class="texto">                                     
-              Cuenca.</strong> <b class="texto2"> {{fech}}   .</b>
-          </div>
-
-      
-          <tr>
-            <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);"  class="table">
-               <tbody>
-                    <tr>
-                      <td rowspan="2" colspan="1">
-                        <strong class="texto2">DATOS DEL PROYECTO:</strong> 
-                        <select  class="form-control"  style="width: 100%" name="select" required>
-                            <option value="SL">Seleccione</option>
-                        </select>
-                      </td>
-                      <td colspan="1" scope="col"><strong class="texto">NOMBRE:</strong><b class="texto2"> 123  </b></td>          
-                      <td colspan="1" scope="col">
-                        <td colspan="1" scope="col">
-                          <td colspan="1" scope="col">   
-                    </tr>
-                    <tr>
-                      <td colspan="1" scope="col"><strong class="texto">DIRECTOR:</strong><b class="texto2"> 123 </b></td>
-              
-                    </tr>
-                  </tbody>
-                </table>
+        <table style="width:100%; height:90%;" class="table" style="background-color: rgb(223, 236, 252);">
+                <tr colspan="4" class="active">
+                  <div class="row-fluid"> 
+                          <img class="centrado" [src]="ista" width="180" height="120"   />
+                  </div>
+                </tr> 
+              <tr colspan="4" class="d-flex" class="text-center">
+                <h2 class="bss-txt-content" style="font-size: 14px;">
+                  <b>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY </b><br/> 
+                  <b>COORDINACIÓN DE VINCULACIÓN CON LA SOCIEDAD</b><br />
+                 <b>INFORME DE CULMINACIÓN DEL PROYECTO DE VINCULACIÓN</b> 
+                </h2>
               </tr>
-                    
-              <tr>
-                <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table">
-                   <tbody>
-                    <tr>
-                      <td rowspan="3">
-                        <strong class="texto2">DATOS DEL ESTUDIANTE:</strong> 
-                  
-                      </td>
-                      <td colspan="1" scope="col"><strong class="texto">NOMBRE COMPLETO:</strong><b class="texto2"> 123  </b></td>          
-                      <td colspan="1" scope="col"><strong class="texto">CEDULA DE IDENTIDAD:</strong><b class="texto2"> 0107952293 </b></td>
-                  
-                    </tr>
-                   
-                    <tr>
-                      <td colspan="1" scope="col"><strong class="texto">ULTIMO CICLO APROVADO:</strong><b class="texto2"> CUARTO</b></td>
-                     
-                      <td colspan="1" scope="col"><strong class="texto">CORREO ELECTRÓNICO:</strong>
-                        <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" required />
-                      </td>
-
-                      <td colspan="1" scope="col"><strong class="texto">TELEFONO:</strong>
-                        <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" required />
-                      </td>
-                     
-                    </tr>
             
-               </tbody>
-             </table>
-           </tr>
+        </table>
+        <div style='text-align:right' >
+          <br>
+          <strong class="texto">                                     
+            Cuenca.</strong> <b class="texto2"> {{fech}}   .</b>
+        </div>
 
-           
-           <tr> 
-            <td><strong  class="texto2">DESCRIPCIÓN DE LA EMPRESA/INSTITUCIÓN:</strong> 
-             <br>
-             <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="90">                             
-            </textarea>
-            </td>
+    
+        <tr>
+          <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);"  class="table">
+             <tbody>
+                  <tr>
+                    <td rowspan="3" colspan="2"scope="col" style="background-color: rgb(235, 235, 235);">
+                      <strong class="texto2">DATOS DEL PROYECTO:</strong>
+                      <select  class="form-control"  (change)="selectProyecto($event)" style="width: 100%" name="select" required>
+                        <option value="SL">Seleccione</option>
+                        <option *ngFor="let item of anexo3" [value]="item.idProyectoPPP">{{item.nombreproyecto}} </option>
+                    </select>
+                    </td> 
+                  </tr>
+                  <tr>
+                    <td colspan="2" scope="col"><strong class="texto">NOMBRE:</strong><b class="texto2"> {{nombreproyecto}} </b></td>          
+                   
+                  </tr>
+                  <tr>
+                    <td colspan="2" scope="col"><strong class="texto">DIRECTOR:</strong><b class="texto2"> {{director}} </b></td>        
+                  </tr> 
+                </tbody>
+              </table>
+            </tr>
+            <tr>
+              <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);"  class="table">
+                 <tbody>
+                   <tr>
+                    <td colspan="4" style="background-color: rgb(235, 235, 235);">
+                      <strong class="texto2">DATOS DEL DOCENTE DE APOYO ASIGNADO:</strong> 
+                    </td>
+                   </tr>
+                      <tr> 
+                        <td colspan="2" ><strong class="texto">NOMBRE COMPLETO:</strong> <b class="texto2"> {{nombreDocenteapoyo}}</b></td>          
+                        <td colspan="2" ><strong class="texto">CÉDULA DE IDENTIDAD:</strong> <b class="texto2"> {{cedulaDocenteApoyo}}</b></td>
+
+                      </tr>  
+                      <tr>
+                        <td colspan="2" ><strong class="texto" for="correo_DocenteApoyo">CORREO ELECTRONICO:</strong>
+                          <input type="email"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="correo_DocenteApoyo" name="correo_DocenteApoyo" required />
+                        </td> 
+                      </tr>
+                    </tbody>
+                  </table>
+                </tr>
+    
+            <tr>
+              <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table">
+                 <tbody>
+                  <tr>
+                  
+                    <td rowspan="2" colspan="2" style="background-color: rgb(235, 235, 235);">
+                      <strong class="texto2">DATOS GENERALES DE LA EMPRESA / INSTITUCIÓN:</strong>  
+                    </td> 
+                    <td colspan="1"><strong class="texto" for="nombreEmpresa">NOMBRE DE LA EMPRESA:</strong>
+                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="nombreEmpresa" name="nombreEmpresa"required />
+                    </td>
+
+                    <td colspan="1"><strong class="texto" for="Ciudad">CIUDAD:</strong>
+                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="Ciudad" name="Ciudad" required />
+                    </td>
+                    <td colspan="1"><strong class="texto" for="Direccion">DIRECCION:</strong>
+                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="Direccion" name="Direccion" required />
+                    </td> 
+                    <td colspan="4" scope="col"></td>
+
+
+                  </tr>
+          
+             </tbody>
+           </table>
          </tr>
 
-           <tr>
- 
-              <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table"> 
-                <tr>
-                  <td colspan="4" scope="col " > <strong class="texto2"> DESCRIPCIÓN DETALLADA DE ACTIVIDADES REALIZADAS</strong></td>
-                </tr>
-                <tr>
-                  <td colspan="4" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">REGISTRAR ACTIVIDADES</button></td>
-                </tr>
-                <tbody>
+
+
+
+
+            <tr>
+              <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table">
+                 <tbody>
+                   <tr>
+                    <td  colspan="4" style="background-color: rgb(235, 235, 235);">
+                      <strong class="texto2">DATOS DEL ESTUDIANTE:</strong> 
+                
+                    </td>
+                   </tr>
+                  <tr>
+                   
+                    <td colspan="1" scope="col"><strong class="texto">NOMBRE COMPLETO: </strong><b class="texto2"> {{nombre}} </b></td>          
+                    <td colspan="1" scope="col"><strong class="texto">CEDULA DE IDENTIDAD:</strong><b class="texto2"> {{cedula}} </b></td>
+                    <td colspan="1" scope="col"><strong class="texto">ULTIMO CICLO APROVADO:</strong><b class="texto2"> {{cicl}}</b></td>
+                   
+                  </tr>
                  
-                      <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
-                        <td>   
-                            <strong>ACTIVIDADES GENERALES</strong>
-                              <div class="form-group"> 
-                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ActividadesGenerales')">
-                              </div> 
-                        </td>
-                        
-                        <td>    
-                          <strong>ACTIVIDADES ESPECÍFICAS</strong>
-                            <div class="form-group">
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('ActividadesEspecificas')">
-                          </div> 
-                        </td>
-                                    
-                        <td> 
-                          <strong>  PRODUCTO GENERADO:</strong>
-                            <div class="form-group"> 
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ProductoGenerado')">               
-                          </div> 
-                        </td>
-                        
-                        <td> 
-                          <div>
-                            <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
-                          </div>
-                       </td> 
-                    </tr>
+                  <tr>
+                   
+                    <td colspan="1" scope="col"><strong class="texto" for="correo">CORREO ELECTRÓNICO:</strong>
+                      <input type="email"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="correo" name="correo"required />
+                    </td>
+                 
+                    <td colspan="1" scope="col"><strong class="texto" for="telefono">TELEFONO:</strong>
+                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="telefono" name="telefono" required />
+                    </td>
+                    <td colspan="1" scope="col">
 
-                    <tr> 
-                        <td colspan="2" scope="col"><strong style="text-align-last: end;" class="texto2">CONCLUSIONES:</strong> 
-                         <br>
-                          <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="90">                             
-                          </textarea>
-                        </td>
-                        <td colspan="2" scope="col"><strong style="text-align-last: end;" class="texto2">RECOMENDACIONES:</strong> 
-                          <br>
-                           <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="90">                             
-                           </textarea>
-                         </td>
-                          
-                     </tr>
-                    </tbody>
-                     <tr>
-                      <td colspan="4" >
-                        <button style="align-self: center;" class="btn btn-info" >GUARDAR INFORME</button>
-                      </td>
-                     </tr>
-              
-             </table>
+                   
+                  </tr>
+          
+             </tbody>
+           </table>
+         </tr>
+
+ 
+         <tr>
+          <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table">
+             <tbody>
+              <tr>
+                <td colspan="3" style="background-color: rgb(235, 235, 235);">
+                  <strong class="texto2"> DATOS DEL ADMINISTRADOR DEL PROYECTO (ENTIDAD RECEPTORA):</strong>  
+                  
+                </td> 
+                <td  colspan="3" style="background-color: rgb(235, 235, 235);">
+                  <strong class="texto2"> PERIODO DE DURACIÓN DEL PROYECTO DE VINCULACIÓN</strong>  
+                </td> 
+              </tr> 
+              <tr> 
+                <td colspan="1"><strong class="texto" for="nombreAdministrador">NOMBRE COMPLETO:</strong>
+                  <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="nombreAdministrador" name="nombreAdministrador"required />
+                </td>
+                <td colspan="1"  ><strong class="texto" for="cedulaAdministrador">CEDULA DE IDENTIDAD:</strong>
+                  <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="cedulaAdministrador" name="cedulaAdministrador" required />
+                </td>
+                <td colspan="1"><strong class="texto" for="correoAdministrador">CORREO ELECTRÓNICO:</strong>
+                  <input type="email"  class="form-control"    style="background-color:transparent;font-size: 18px;" [(ngModel)]="correoAdministrador" name="correoAdministrador" required />
+                </td> 
+                <td colspan="1"  ><strong class="texto" for="horasRealizadas">HORAS REALIZADAS:</strong>
+                  <input type="number"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="horasRealizadas" name="horasRealizadas"required />
+                </td>
+  
+                <td colspan="1"  ><strong class="texto" for="fechaInicio">FECHA DE INICIO:</strong>
+                  <input type="date"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="fechaInicio" name="fechaInicio" required />
+                </td>
+                <td colspan="1"  ><strong class="texto" for="fechaFin">FECHA DE FIN:</strong>
+                  <input type="date"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="fechaFin" name="fechaFin" required />
+                </td> 
+              </tr>
+      
+         </tbody>
+       </table>
+     </tr>
+
+     <tr>
+      <table  style="width:100%; height:100%;background-color: rgb(250, 250, 250);" class="table">
+         <tbody>
+         <tr> 
+          <td colspan="6" style="background-color: rgb(235, 235, 235);"><strong  class="texto2">DESCRIPCIÓN DE LA EMPRESA/INSTITUCIÓN:</strong>  
+          </td>
        </tr>
+       <tr>
+         <td>
+          <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="100" [(ngModel)]="anexo10.descripcionEmpresa" name="descripcionEmpresa">                             
+          </textarea> 
+         </td> 
+       </tr>
+      </tbody>
+    </table>
+  </tr>
+         <tr>
 
-    </tbody>
-  </table> 
- </form>
+            <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table"> 
+              <tr>
+                <td colspan="2" scope="col " style="background-color: rgb(235, 235, 235);"> <strong class="texto2"> DESCRIPCIÓN DETALLADA DE ACTIVIDADES REALIZADAS</strong></td>
+              </tr>
+              <tr>
+                <td colspan="2" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">REGISTRAR ACTIVIDADES</button></td>
+              </tr>
+              <tbody>
+               
+                    <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                      <td>   
+                          <strong>ACTIVIDADES GENERALES</strong>
+                            <div class="form-group"> 
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ActividadesGenerales')">
+                            </div> 
+                      </td>
+                      
+                      <td>    
+                        <strong>ACTIVIDADES ESPECÍFICAS</strong>
+                          <div class="form-group">
+                             <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('ActividadesEspecificas')">
+                        </div> 
+                      </td>
+                                  
+                      <td> 
+                        <strong>  PRODUCTO GENERADO:</strong>
+                          <div class="form-group"> 
+                             <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ProductoGenerado')">               
+                        </div> 
+                      </td>
+                      
+                      <td> 
+                        <div>
+                          <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
+                        </div>
+                     </td> 
+                  </tr>
+
+                
+                  </tbody>
+           </table>
+     </tr>
+
+
+     <tr>
+      <table  style="width:100%; height:90%;background-color: rgb(250, 250, 250);" class="table">
+         <tbody>
+
+     <tr> 
+      <td colspan="2" scope="col"><strong style="text-align-last: end;" class="texto2">CONCLUSIONES:</strong> 
+       <br>
+        <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="60" [(ngModel)]="anexo10.conclusiones" name="conclusiones">                             
+        </textarea>
+      </td>
+      <td colspan="2" scope="col"><strong style="text-align-last: end;" class="texto2">RECOMENDACIONES:</strong> 
+        <br>
+         <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="60" [(ngModel)]="anexo10.recomendaciones" name="recomendaciones">                             
+         </textarea>
+       </td>
+   </tr>
+   <br>
+   <tr>
+    <td colspan="8" >
+      <button style="align-self: center;" class="btn btn-info"  (click)="save()" >GUARDAR INFORME</button>
+    </td>
+   </tr>
+   </tbody>
+      </table>
+     </tr> 
+  </tbody>
+</table> 
+</form>

@@ -26,6 +26,7 @@ import { SocializacionComponent } from './socializacion/socializacion.component'
 import { Anexo10Component } from './anexo10/anexo10.component';
 import { Anexo12Component } from './anexo12/anexo12.component';
 import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.component';
+import { Anexo10extendidoComponent } from './anexo10extendido/anexo10extendido.component';
 
 
 
@@ -56,7 +57,8 @@ import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.c
     Anexo10Component,
     Anexo12Component,
     SocializacionComponent,
-    Anexo12extendidoComponent
+    Anexo12extendidoComponent,
+    Anexo10extendidoComponent
   ],
   imports: [
     CommonModule,

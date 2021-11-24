@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Anexo5 } from '@shared/models/anexos/anexo5';
+import { DocenteApoyoDatos } from '@shared/models/dto/docenteapoyodatos';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -30,6 +31,12 @@ export class Anexo5Service {
 
   getanexo5bycedula(cedula:String):Observable<Anexo5[]>{
     return this.http.get('http://localhost:8080/api/anexo5/docenteApoyo/'+cedula,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo5[]))
+    
+  }
+
+  getDocentesApoyo(cedulaEstudiante?:String,idProyectoPPP?:Number):Observable<DocenteApoyoDatos>{
+    return this.http.get(this.urlEndPoint+ '/estudiante/'+cedulaEstudiante+'/proyecto/'+idProyectoPPP,{headers: this.httpHeaders}).pipe(map(
+      Response => Response as DocenteApoyoDatos))
     
   }
 }

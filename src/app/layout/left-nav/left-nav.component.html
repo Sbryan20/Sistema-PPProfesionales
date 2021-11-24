@@ -31,8 +31,10 @@
               >Proyectos Aceptados</a>
               <a [routerLink]="['/panel/proyecto/resistro_de_actividades',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
               >Registro diario de Actividades</a>
-              <a [routerLink]="['/panel/proyecto/informe_de_culminacion',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
+              <a [routerLink]="['/panel/proyecto/informe_de_culminacion',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
               >Informe de culminacion de proyecto de Vinculación</a>
+              <a [routerLink]="['/panel/proyecto/informe_de_culminacion_firmas',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
+              >Informe de culminacion de proyecto de Vinculación Firmas</a>
             </div>
     
             <!--Responsable PPP -Convocatoria -->
