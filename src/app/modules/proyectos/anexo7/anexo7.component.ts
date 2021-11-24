@@ -195,7 +195,7 @@ export class Anexo7Component implements OnInit {
  generate(anexo7: Anexo7,proyecto:Proyectos) {
 
   loadFile(
-    'https://download1591.mediafire.com/a8w799eeuamg/1gte623hgkd4c31/anexo7.docx',
+    'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo7.docx',
     function (error, content) {
       
       if (error) {
