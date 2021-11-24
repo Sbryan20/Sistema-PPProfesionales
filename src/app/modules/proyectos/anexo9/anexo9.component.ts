@@ -200,7 +200,9 @@ createItemFormGroup(): FormGroup {
             mes_planificacion:anexo9.mesPlanificaccion,
             fecha_seguimiento:anexo9.fechaSeguimeinto,
             docente_apoyo:anexo9.nombreApoyo,
-            director_apoyo:anexo9.nombreDirector             
+            director_apoyo:anexo9.nombreDirector,
+            observacionesGenerales:anexo9.observaciones,
+            tb:anexo9.actividadesAnexo9             
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).

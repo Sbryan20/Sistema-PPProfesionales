@@ -200,7 +200,7 @@ ontnerDatos():Anexo8{
   generate(anexo8: Anexo8) {
 
     loadFile(
-      'https://download1084.mediafire.com/u67jcwbouheg/j9sydh9t0vhl1yz/anexo8.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo8.docx',
       function (error, content) {
         
         if (error) {
