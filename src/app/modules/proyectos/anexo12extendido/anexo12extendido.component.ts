@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
+import { saveAs } from 'file-saver';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -77,6 +78,65 @@ export class Anexo12extendidoComponent implements OnInit {
       }
     })
 
+  }
+
+  generate(anexo12: Anexo12) {
+
+    loadFile(
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo9.docx',
+      function (error, content) {
+        
+        if (error) {
+          throw error;
+        }
+        const zip = new PizZip(content);
+        const doc = new Docxtemplater(zip, {
+          paragraphLoop: true,
+          linebreaks: true,
+        });
+        try {
+          // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
+          doc.render({
+            nombreproyecto:anexo12.nombreProyecto,
+            fecha:anexo12.fechaCapacitacion,
+            entidadbeneficiaria:anexo12.entidadBeneficiaria,
+            representanteEntidad:anexo12.repreentanteEntidad,
+            asunto:anexo12.asuntoCapacitacion,
+            numHoras:anexo12.horasCapacitacion,
+            repreTelefono:anexo12.telefonoEntidad,
+            repreEmail:anexo12.telefonoEntidad,
+            nombreAdminEntidadBeneficiaria:anexo12.nombreAdministrador,
+            nombreDocenteApoyoRespoActivid:anexo12.nombreApoyo,
+
+
+
+          });
+        } catch (error) {
+          // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
+          function replaceErrors(key, value) {
+            if (value instanceof Error) {
+              return Object.getOwnPropertyNames(value).reduce(function (
+                error,
+                key
+              ) {
+                error[key] = value[key];
+                return error;
+              },
+              {});
+            }
+            return value;
+          }
+          console.log(JSON.stringify({ error: error }, replaceErrors));
+        }
+        const out = doc.getZip().generate({
+          type: 'blob',
+          mimeType:
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        });
+        // Output the document using Data-URI
+        saveAs(out, 'Convocataria para Vinculacion.docx');
+      }
+    );
   }
 
 }

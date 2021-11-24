@@ -181,7 +181,7 @@ createItemFormGroup(): FormGroup {
   generate(anexo9: Anexo9) {
 
     loadFile(
-      'https://download1521.mediafire.com/0ncixrb2l7yg/h8vdyoccijwghs5/anexo9.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo9.docx',
       function (error, content) {
         
         if (error) {
