@@ -215,7 +215,8 @@ export class Anexo7Component implements OnInit {
           nombre_director:anexo7.nombreDirectorProyecto,
           mes_anio:anexo7.mesAnioPlanificado,
           tb:anexo7.horasDocentes,
-          tb2:anexo7.horasEstudiantes           
+          tb2:anexo7.horasEstudiantes,
+          es:anexo7.horasEstudiantes   
 
         });
       } catch (error) {

@@ -220,7 +220,9 @@ ontnerDatos():Anexo8{
             identificiacion_est:anexo8.cedulaEstudiante,
             nombre_admin_entidad:anexo8.nombreAdminEB,
             docente_apoyo:anexo8.nombreDocenteApoyo,
-            nombre_director:anexo8.nombreDirectorProyecto
+            nombre_director:anexo8.nombreDirectorProyecto,
+            tb:anexo8.actividades,
+            totalHoras:anexo8.totalHoras
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
