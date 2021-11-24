@@ -213,7 +213,9 @@ export class Anexo7Component implements OnInit {
           entidad_beneficiaria:anexo7.nombreEntidadBeneficiaria,
           fecha_realizacion:anexo7.fechaPlanificacion,
           nombre_director:anexo7.nombreDirectorProyecto,
-          mes_anio:anexo7.mesAnioPlanificado             
+          mes_anio:anexo7.mesAnioPlanificado,
+          tb:anexo7.horasDocentes,
+          tb2:anexo7.horasEstudiantes           
 
         });
       } catch (error) {

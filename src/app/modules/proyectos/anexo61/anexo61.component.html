@@ -44,7 +44,7 @@
                                 <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                                     <td colspan="" scope="col "> <strong>Actividades realizadas por el estudiante:</strong><select class="form-control" style="width: 100%;" name="select"  [formControl]="row.get('actividadesEstudiante')">
                                         <option value="SL">SELECCIONE</option>
-                                        <option *ngFor="let item of anexo6es.actividades" [value]="item.id">{{item.id}}- -{{item.actividad}}- -{{item.totalHoras}}</option>
+                                        <option *ngFor="let item of anexo6es.actividades" [value]="item.actividad">{{item.id}}- -{{item.actividad}}- -{{item.totalHoras}}</option>
                                         </select>
                                     </td>
                                   <td >  

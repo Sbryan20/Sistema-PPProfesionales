@@ -160,7 +160,7 @@ export class Anexo61Component implements OnInit {
  generate(anexo6_1: Anexo6_1) {
 
   loadFile(
-    'https://download852.mediafire.com/hg8qw9v8zgzg/g3c1u4j9tg0txy4/anexo6+.1.docx',
+    'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo6%20.1.docx',
     function (error, content) {
       
       if (error) {
