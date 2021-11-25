@@ -1,0 +1,181 @@
+<form class="formulario" >
+    <table style="width:95%; height:100%;" class="table" >
+    <tbody> 
+  
+           <tr>
+             <table style="width:100%; height:90%;" class="table">
+                <tbody>
+  
+                    <tr> 
+                        <th colspan="4" scope="col"><strong class="texto2">Datos Informativos:</strong> </th>
+                    </tr>
+  
+                    <tr> 
+                        <td colspan="1" scope="col" ><strong class="texto">DIRECTOR DEL PROYECTO: {{anexo1.nombreDelegado}}</strong>
+                        </td>
+                        <td colspan="1" scope="col">
+                        </td>
+
+                        <td colspan="4" scope="col" ><strong class="texto">Representante Legal: {{edntidad.representante}}</strong>
+                          </td>
+
+                    </tr>
+
+                    <tr> 
+                        <td colspan="1" scope="col" ><strong class="texto">Periodo Academico:</strong>
+                          <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="anexo13.periodoAcademicon" name="periodoAcademicon" required />
+                        </td>
+                        <td colspan="1" scope="col">
+                        </td>
+
+                        <td colspan="4" scope="col" ><strong class="texto">Ciclo: {{anexo2.ciclo}}</strong>
+                          </td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="1" scope="col"><strong class="texto">Empresa/Institución: {{edntidad.nombre}}</strong>
+                        </td>
+                    </tr>  
+                </tbody>
+              </table>
+            </tr>
+            <tr>
+
+              <table>
+
+                <tbody>
+
+                  <tr>
+                    <td>
+                        <div [formGroup]="addForm1">
+                            <table>
+                               <td>
+                                   <button mat-raised-button color="primary" (click)="onAddRow1()" *ngIf="addForm1.get('rows')">Agregar Estudiante</button>
+                               </td>
+                                <tbody>
+
+                                   <tr *ngFor="let row of addForm1.get('rows')?.controls;let index = index;">
+                                   
+                                       <td colspan="1" scope="col "> <strong><center>CEDULA</center></strong>
+                                           <div class="form-group"> 
+                                            <td>
+                                              <select class="form-control" [formControl]="row.get('cedula')">
+                                                <option value="SL">SELECCIONE</option>
+                                                <option  *ngFor="let item of anexo3" value="{{item.cedula}}">{{item.cedula}} {{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
+                                              </select>
+                                            </td>
+                                           </div> 
+                                       </td>
+
+
+                                       <td colspan="" scope="col"> <strong><center>NOMBRE</center></strong>
+                                        <div class="form-group"> 
+                                          <td>
+                                            <select class="form-control" [formControl]="row.get('nombre')">
+                                              <option value="SL">SELECCIONE</option>
+                                              <option  *ngFor="let item of anexo3" value="{{item.nombresestudiante}} {{item.apellidosestudiante}}">{{item.cedula}} {{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
+                                            </select>
+                                          </td>
+                                        </div> 
+                                      </td>
+                                      <td> <button mat-raised-button color="warn" (click)="onRemoveRow1(index)">ELIMINAR</button> </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td> 
+                  </tr>
+
+                 
+                </tbody>
+
+              </table>
+
+            </tr>
+
+            <tr>
+
+              <table>
+
+                <tbody>
+
+                  <tr>
+                    <td>
+                        <div [formGroup]="addForm">
+                            <table>
+                               <td>
+                                   <button mat-raised-button color="primary" (click)="onAddRow()" *ngIf="addForm.get('rows')">Agregar Informe de la Visita</button>
+                               </td>
+                                <tbody>
+
+                                   <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                                       
+
+                                    <td colspan="5" scope="col "> <strong><center>Hora Inicio/Fin</center></strong>
+                                      <div class="form-group"> 
+                                        <td>
+                                          <input type="time" class="form-control"  [formControl]="row.get('horaInicio')">
+                                        </td>
+                                        <td>
+                                          <input type="time" class="form-control"  [formControl]="row.get('horaFin')">
+                                        </td>
+                                      </div> 
+                                    </td>
+                                    <td colspan="5" scope="col "> <strong><center>Fecha</center></strong>
+                                      <div class="form-group"> 
+                                        <td>
+                                          <input type="date" class="form-control"  [formControl]="row.get('fecha')">
+                                        </td>
+                                      </div> 
+                                    </td>
+
+                                    
+                                       <td colspan="1" scope="col "> <strong><center>Asunto</center></strong>
+                                           <div class="form-group"> 
+                                            <td>
+                                              <input type="text" class="form-control"  [formControl]="row.get('asunto')">
+                                            </td>
+                                           </div> 
+                                       </td>
+
+
+                                       <td colspan="" scope="col"> <strong><center>Actividades</center></strong>
+                                        <div class="form-group"> 
+                                          <td>
+                                            <input type="text" class="form-control"  [formControl]="row.get('actividades')">
+                                          </td>
+                                        </div> 
+                                      </td>
+
+                                    <td colspan="" scope="col"> <strong><center>Observaciones/Comentarios</center></strong>
+                                      <div class="form-group"> 
+                                        <td>
+                                          <input type="text" class="form-control"  [formControl]="row.get('observaciones')">
+                                        </td>
+                                      </div> 
+                                    </td>
+                                      <td> <button mat-raised-button color="warn" (click)="onRemoveRow(index)">ELIMINAR</button> </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td> 
+                  </tr>
+
+                 
+                </tbody>
+
+              </table>
+
+            </tr>
+            <tr>
+              <strong> Observaciones:</strong>
+              <br>
+              <textarea name="" id="" cols="150" rows="5" [(ngModel)]="anexo13.observaciones" name="observaciones"></textarea>
+            </tr>
+            <td colspan="8" >
+              <button style="align-self: center;" class="btn btn-info" (click)="guardar()" >GUARDAR INFORME</button>
+            </td>
+          
+  
+    </tbody>
+  </table> 
+  </form>

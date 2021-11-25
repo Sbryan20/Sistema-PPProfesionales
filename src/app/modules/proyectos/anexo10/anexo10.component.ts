@@ -49,8 +49,8 @@ public cicl
 correo?:String;
 telefono?:String;
 nombreEmpresa?:String
-Ciudad?:String
-Direccion?:String
+ciudad?:String
+direccion?:String
 cicloo?:Number
 nombreDocenteapoyo?:String;
 cedulaDocenteApoyo?:String;
@@ -109,9 +109,9 @@ public anexo1response:Anexo1[]=[];
         }
         createItemFormGroup(): FormGroup {
           return this.fb.group({
-            ActividadesGenerales:null,
-            ActividadesEspecificas:null,
-            ProductoGenerado:null, 
+            actividadesGenerales:null,
+            actividadesEspecificas:null,
+            productoGenerado:null, 
           });
         }
 
@@ -149,8 +149,8 @@ public anexo1response:Anexo1[]=[];
    this.anexo10.correo_DocenteApoyo=this.correo_DocenteApoyo; 
 
    this.anexo10.nombreEmpresa=this.nombreEmpresa;
-   this.anexo10.Ciudad=this.Ciudad;
-   this.anexo10.Direccion=this.Direccion;
+   this.anexo10.ciudad=this.ciudad;
+   this.anexo10.direccion=this.direccion;
 
    this.anexo10.nombreEstudiante=this.nombre;
    this.anexo10.cedulaEstudiante=this.cedula;

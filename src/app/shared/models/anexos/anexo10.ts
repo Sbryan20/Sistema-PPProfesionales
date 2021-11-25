@@ -6,8 +6,8 @@ export class Anexo10{
     nombreDirector?:String;
 
         nombreEmpresa?:String;
-        Ciudad?:String
-        Direccion?:String
+        ciudad?:String
+        direccion?:String
         nombreDocenteapoyo?:String;
         cedulaDocenteApoyo?:String;
         correo_DocenteApoyo?:String;

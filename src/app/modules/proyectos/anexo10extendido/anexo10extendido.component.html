@@ -8,13 +8,13 @@
                             <div class="card text-dark bg-light mb-3 float-container">
                                 <div class="card-body">
                                    <p class="card-text"> Proyeco: {{anexos.nombreProyecto}}</p>
-                                   <p class="card-text"> Entidad Beneficiaria: {{anexos.entidadBeneficiaria}}</p>
-                                   <p class="card-text"> id: {{anexos.id}} </p>
+                                   <p class="card-text"> Empresa: {{anexos.nombreEmpresa}}</p>
+                                   <p class="card-text"> Adminitrador: {{anexos.nombreAdministrador}} </p>
                               </div>
                             <div class="card-header">
                                <div class="example-flex-container"  >
                                    <button type="button" (click)="generate(anexos)" class="btn btn-secondary">DOCUMENTO</button>
-                                   <button type="button" (click)="update(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
+                                   <button type="button" (click)="modificar(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
                                </div>
                                </div>
                             </div>

@@ -81,10 +81,10 @@
                     </td>
 
                     <td colspan="1"><strong class="texto" for="Ciudad">CIUDAD:</strong>
-                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="Ciudad" name="Ciudad" required />
+                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="ciudad" name="ciudad" required />
                     </td>
                     <td colspan="1"><strong class="texto" for="Direccion">DIRECCION:</strong>
-                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="Direccion" name="Direccion" required />
+                      <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="direccion" name="direccion" required />
                     </td> 
                     <td colspan="4" scope="col"></td>
 
@@ -204,21 +204,21 @@
                       <td>   
                           <strong>ACTIVIDADES GENERALES</strong>
                             <div class="form-group"> 
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ActividadesGenerales')">
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('actividadesGenerales')">
                             </div> 
                       </td>
                       
                       <td>    
                         <strong>ACTIVIDADES ESPECÍFICAS</strong>
                           <div class="form-group">
-                             <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('ActividadesEspecificas')">
+                             <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('actividadesEspecificas')">
                         </div> 
                       </td>
                                   
                       <td> 
                         <strong>  PRODUCTO GENERADO:</strong>
                           <div class="form-group"> 
-                             <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ProductoGenerado')">               
+                             <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('productoGenerado')">               
                         </div> 
                       </td>
                       

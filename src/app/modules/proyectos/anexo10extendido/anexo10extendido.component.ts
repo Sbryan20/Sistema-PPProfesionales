@@ -40,13 +40,54 @@ export class Anexo10extendidoComponent implements OnInit {
       })
     }) 
   }
+  modificar(anexo10:Anexo10){
 
+    this.update(anexo10)  
+  }
+  async update(anexo10:Anexo10){
+    console.log(anexo10)
+    const { value: file } = await Swal.fire({
+      allowOutsideClick: false,
+      title: 'SELECCIONE EL PDF',
+      text:'Debe subir la covocataria en tipo PDF',
+      input: 'file',
+      inputAttributes: {
+        'accept': 'application/pdf',
+        'aria-label': 'SUBIR PDF FIRMADO'
+      },
+      inputValidator: (value) => {
+        return new Promise((resolve) => {
+          if (value === null) {
+            resolve('Es necesario que seleccione el PDF')
+          } else {
+            getBase64(value).then(docx=>{
+              anexo10.documento=docx+'';    
+              this.anexo10Service.updateAnexo10(anexo10).subscribe(data=>{
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Anexo',
+                  text: 'ARCHIVO SUBIDO',
+                  confirmButtonColor: "#0c3255"})
+              },err=>{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Anexo',
+                  text: 'Hubo un error: '+err.error.message,
+                  confirmButtonColor: "#0c3255"})
+              })  
+            })   
+          }
+        })
+      }
+    })
+
+  }
 
 
   generate(anexo10: Anexo10) {
     console.log(anexo10)
     loadFile(
-      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo12.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo10.docx',
       function (error, content) {
         
         if (error) {
@@ -79,6 +120,8 @@ export class Anexo10extendidoComponent implements OnInit {
             fechaInicio:anexo10.fechaFin,
             fechaFinalizacion:anexo10.fechaInicio,
             descripcionEmpresa:anexo10.descripcionEmpresa,
+            recomendaciones:anexo10.recomendaciones,
+            conclusiones:anexo10.conclusiones,
             tb:anexo10.actividadesAnexo10s
 
           });
