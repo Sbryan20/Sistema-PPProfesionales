@@ -17,6 +17,7 @@ import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
 import Swal from 'sweetalert2';
+import { Anexo13Service } from '@data/services/api/anexo13.service';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -44,7 +45,7 @@ export class Anexo13Component implements OnInit {
   itemForm1?: FormGroup;
 
 
-  constructor(private anexo2Service:Anexo2Service,private anexo8Service:Anexo8Service,private anexo1Service:Anexo1Service, private proyectoService:ProyectoService,private anexo3Service:Anexo3Service,private activatedRoute: ActivatedRoute,private fb: FormBuilder) {
+  constructor(private anexo13Service:Anexo13Service,private anexo2Service:Anexo2Service,private anexo8Service:Anexo8Service,private anexo1Service:Anexo1Service, private proyectoService:ProyectoService,private anexo3Service:Anexo3Service,private activatedRoute: ActivatedRoute,private fb: FormBuilder) {
     this.addForm = this.fb.group({
       items: [null, Validators.required],
       items_value: ['no', Validators.required]
@@ -129,6 +130,7 @@ export class Anexo13Component implements OnInit {
     this.anexo13.nombreDirectorDocenteApoyo=this.anexo1.nombreDelegado;
     this.anexo13.empresa=this.edntidad.nombre;
     this.anexo13.ciclo=this.anexo2.ciclo;
+    this.anexo13.proyectoId=this.proyecto.id;
     this.anexo13.representanteLegal=this.edntidad.representante;
     this.anexo13.estudiantesVisitas=this.rows1.getRawValue()
     this.anexo13.informes=this.rows.getRawValue()
@@ -137,14 +139,47 @@ export class Anexo13Component implements OnInit {
 
   guardar(){
     console.log(this.obtnenardatos())
+    Swal.fire({
+      title: 'Esta seguro que apecto la solicitud ',
+      text: "Para ello debe firmar el siguiente anexo con sus datos",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, postular!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'ANEXO 3!',
+          'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
+          'success'
+        )
+        this.generate(this.obtnenardatos(),this.proyecto);
+        this.anexo13Service.saveAnexo13(this.obtnenardatos()).subscribe(datos=>{
+          Swal.fire({
+            icon: 'success',
+            title: 'PLAN GUARDADO',
+            text: 'Datos guadados correctamente',
+            confirmButtonColor: "#0c3255"   
+          }) 
+        },err=>{
+          Swal.fire({
+            icon: 'warning',
+            title: 'Al paracer hubo un problema',
+            text: err.error.message,
+            confirmButtonColor: "#0c3255"   
+          }) 
+        })
+      }
+    })
   }
 
 
 
-  generate(anexo13: Anexo13) {
+  generate(anexo13: Anexo13,proyecto:Proyectos) {
 
     loadFile(
-      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo9.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo13.docx',
       function (error, content) {
         
         if (error) {
@@ -158,15 +193,15 @@ export class Anexo13Component implements OnInit {
         try {
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({
-            direc_docenProyecto:"",
-            nombreProyecto:"",
-            representanteEntidad:"",
-            peridoAcademico:"",
-            entidadBeneficiaria:"",
-            ciclo:"",
-            estudiante:[{"cedula":"","nombreEstudiante":""}],
-            registro:[{"horaInicio":"","horaFin":"","observaciones":""}],
-            observacionGeneral:""  
+            direc_docenProyecto:anexo13.nombreDirectorDocenteApoyo,
+            nombreProyecto:proyecto.nombre,
+            representanteEntidad:anexo13.representanteLegal,
+            peridoAcademico:anexo13.periodoAcademicon,
+            entidadBeneficiaria:anexo13.empresa,
+            ciclo:anexo13.ciclo,
+            estudiante:anexo13.estudiantesVisitas,
+            registro:anexo13.informes,
+            observacionGeneral:anexo13.observaciones  
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).

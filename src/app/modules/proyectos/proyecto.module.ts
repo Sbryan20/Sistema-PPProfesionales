@@ -28,6 +28,7 @@ import { Anexo12Component } from './anexo12/anexo12.component';
 import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.component';
 import { Anexo10extendidoComponent } from './anexo10extendido/anexo10extendido.component';
 import { Anexo13Component } from './anexo13/anexo13.component';
+import { Anexo13extendidoComponent } from './anexo13extendido/anexo13extendido.component';
 
 
 
@@ -60,7 +61,8 @@ import { Anexo13Component } from './anexo13/anexo13.component';
     Anexo13Component,
     SocializacionComponent,
     Anexo12extendidoComponent,
-    Anexo10extendidoComponent
+    Anexo10extendidoComponent,
+    Anexo13extendidoComponent
   ],
   imports: [
     CommonModule,

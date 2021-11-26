@@ -11,6 +11,7 @@ import { Anexo10extendidoComponent } from './anexo10extendido/anexo10extendido.c
 import { Anexo12Component } from './anexo12/anexo12.component';
 import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.component';
 import { Anexo13Component } from './anexo13/anexo13.component';
+import { Anexo13extendidoComponent } from './anexo13extendido/anexo13extendido.component';
 import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
 import { Anexo7Component } from './anexo7/anexo7.component';
@@ -120,11 +121,14 @@ const routes: Routes = [
     },{
       path: 'informe_de_culminacion_firmas/:cedula',
       component: Anexo10extendidoComponent
-    }
-    ,{
+    },{
       path: 'vistas_de_la_intitucion/:cedula',
       component: Anexo13Component
+    },{
+      path: 'vistas_de_la_intitucion_firma/:cedula',
+      component: Anexo13extendidoComponent
     }
+    
     
          
             
