@@ -37,19 +37,19 @@
       
           <!-- Name Column -->
           <ng-container matColumnDef="cedula">
-            <mat-header-cell *matHeaderCellDef> CEDULA </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> CÉDULA </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
           </ng-container>
       
           <!-- Weight Column -->
           <ng-container matColumnDef="nombresestudiante">
-            <mat-header-cell *matHeaderCellDef> NOMBREESTUDIANTE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> NOMBRE ESTUDIANTE </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.nombresestudiante}} </mat-cell>
           </ng-container>
 
           <!-- Weight Column -->
           <ng-container matColumnDef="apellidosestudiante">
-            <mat-header-cell *matHeaderCellDef> NOMBREESTUDIANTE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> NOMBRE ESTUDIANTE </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.apellidosestudiante}} </mat-cell>
           </ng-container>
           <!-- Symbol Column -->
@@ -78,7 +78,7 @@
        <tbody>
          <tr *ngFor="let row of addFormR.get('rowsR')?.controls;let index = index;">
            <td>
-            cedulaEstudiante : <input type="text" class="form-control" [formControl]="row.get('cedulaEstudiante')" readonly>
+            cédulaEstudiante : <input type="text" class="form-control" [formControl]="row.get('cedulaEstudiante')" readonly>
            </td>
            <td>
             nombreEstudiante : <input type="text" class="form-control" [formControl]="row.get('nombreEstudiante')" readonly>

@@ -23,7 +23,7 @@
      <table style="width:100%; height:90%;" class="table table-bordered">
               <tbody>
                 <tr> 
-                    <th colspan="4" scope="col"><strong>SELECIONE EL PRAN DE APRENDIZAJE PARA DAR SEGUIMIENTO</strong> <select class="form-control"  style="width: 100%;" name="select" (change)="selectProyecto($event)" >
+                    <th colspan="4" scope="col"><strong>SELECIONE EL PLAN DE APRENDIZAJE PARA DAR SEGUIMIENTO</strong> <select class="form-control"  style="width: 100%;" name="select" (change)="selectProyecto($event)" >
                       <option value="">SELECCIONE</option>
                       <option *ngFor="let item of anexo6" [value]="item.id">{{item.id}}- -{{item.nombreProyecto}}- -{{item.nombreEstudiante}}</option>
                     </select>
@@ -68,14 +68,14 @@
                                     </div>
                                    </tr>
                                 </td>
-                                  <td colspan="" scope="col "> <strong>Evolución del desempeño estudiante en la ejecución de la actividad:</strong><select class="form-control" style="width: 100%;" name="select" [formControl]="row.get('desempenoEstudiante')">
+                                  <td colspan="" scope="col "> <strong>Evolución del desempeño del estudiante en la ejecución de la actividad:</strong><select class="form-control" style="width: 100%;" name="select" [formControl]="row.get('desempenoEstudiante')">
                                     <option value="SL">SELECCIONE</option>
                                       <option value="Poco Satisfactorio">Poco Satisfactorio</option>
                                       <option value="Satisfactorio" >Satisfactorio</option>
                                       <option value="Muy Satisfactorio">Muy Satisfactorio</option>       
                                     </select>
                                 </td>
-                                <td colspan="" scope="col "> <strong>Las asignaturas base permitieron lograr el resultado de la actividad:</strong><select class="form-control" style="width: 100%;" name="select" [formControl]="row.get('asignaturasBase')">
+                                <td colspan="" scope="col "> <strong>Las asignaturas base permitierón lograr el resultado de la actividad:</strong><select class="form-control" style="width: 100%;" name="select" [formControl]="row.get('asignaturasBase')">
                                     <option value="SL">SELECCIONE</option>
                                       <option value="SI" >SI</option>
                                       <option value="NO" >NO</option> 

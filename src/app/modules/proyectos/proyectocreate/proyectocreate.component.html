@@ -103,12 +103,12 @@
                   </th>
                   <th>
                     <tr [formGroup]="addForm"> 
-                      <th  scope="col"><strong>Objetivo Especifico: </strong>
+                      <th  scope="col"><strong>Objetivo Específico: </strong>
                         <button  mat-raised-button color="primary"  (click)="onAddRow()" *ngIf="addForm.get('rows')">NUEVA OBJETIVO</button>
                         <br> <br>
                           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                             <td>
-                              descripcion : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+                              descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
                             </td>
                             <td>
                               <button mat-raised-button color="warn" (click)="onRemoveRow(index)">QUITAR</button>

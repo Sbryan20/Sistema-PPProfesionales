@@ -18,7 +18,7 @@
             <div class="list-group" *ngSwitchCase="'AUT'">
               <a [routerLink]="['/panel/proyecto/listcv']" routerLinkActive="active" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Convocar a Docentes como Cordinadores de Vinculación</a>
+              >Convocar a Docentes como Coordinadores de Vinculación</a>
             </div>
     
             <!--estudiante-->
@@ -26,15 +26,15 @@
               <a [routerLink]="['/panel/proyecto/convocatoria',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
               >Ver convocatorias Actuales</a>
               <a [routerLink]="['/panel/proyecto/solicidudes',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Ver Solicitud</a>
+              >Ver Solicitudes</a>
               <a [routerLink]="['/panel/proyecto/alumno_convocatoria',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
               >Proyectos Aceptados</a>
               <a [routerLink]="['/panel/proyecto/resistro_de_actividades',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
               >Registro diario de Actividades</a>
               <a [routerLink]="['/panel/proyecto/informe_de_culminacion',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Informe de culminacion de proyecto de Vinculación</a>
+              >Informe de culminación de proyecto de Vinculación</a>
               <a [routerLink]="['/panel/proyecto/informe_de_culminacion_firmas',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Informe de culminacion de proyecto de Vinculación Firmas</a>
+              >Informe de culminación de proyecto de Vinculación Firmas</a>
             </div>
     
             <!--Responsable PPP -Convocatoria -->
@@ -81,7 +81,7 @@
               <a
                 [routerLink]="['/panel/proyecto/plan_de_aprendizaje',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Planes de Aprencizaje</a>    
+              >Planes de Aprendizaje</a>    
 
             </div>
                <!--DocenteApoyo -->
@@ -95,15 +95,15 @@
                 <a  [routerLink]="['/panel/proyecto/alumno_en_cargo',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
                 >Alumnos en Cargo</a>
                 <a [routerLink]="['/panel/proyecto/resistro_de_actividades_mensual',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-                >Seguminto Mensual</a>
+                >Seguimiento Mensual</a>
                 <a
                 [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Resgitro de Beneficiarios</a>
+              >Registro de Beneficiarios</a>
               <a
                 [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios_firmas',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Resgitro de Beneficiarios Firmas</a>       
+              >Registro de Beneficiarios Firmas</a>       
               </div>
               <!--DirectorProyecto -->
               <div class="list-group" *ngSwitchCase="'DP'">
@@ -114,7 +114,7 @@
                 <a
                   [routerLink]="['/panel/proyecto/seguimeinto_parcial_firma',persona.cedula]" routerLinkActive="active"
                   class="list-group-item list-group-item-action bg-dark text-light"
-                >Seguminto parcial de plan de Aprendizaje</a>   
+                >Seguimiento parcial de plan de Aprendizaje</a>   
                 <a
                 [routerLink]="['/panel/proyecto/planificacion_de_actividades_mensual',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"

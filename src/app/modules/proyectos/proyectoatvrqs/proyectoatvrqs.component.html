@@ -19,7 +19,7 @@
   </div>
 </ng-container>
 <div class="card border-primary mb-3">
-  <div class="card-header">Cordinadores de Vinculacion</div>
+  <div class="card-header">Coordinadores de Vinculación</div>
   <div class="card-body text-primary">
       <div class="example-container mat-elevation-z8">
         <div class="example-header">
@@ -38,7 +38,7 @@
       
           <!-- Name Column -->
           <ng-container matColumnDef="codigo">
-            <mat-header-cell *matHeaderCellDef> CODGO </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> CÓDIGO </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.codigo}} </mat-cell>
           </ng-container>
       
@@ -73,7 +73,7 @@
         <tbody>
           <tr *ngFor="let row of addFormR.get('rowsR')?.controls;let index = index;">
             <td>
-              descripcion : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+              descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
             </td>
             <td>
               <button mat-raised-button color="warn" (click)="onRemoveRowR(index)">QUITAR</button>
@@ -94,7 +94,7 @@
         <tbody>
           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
             <td>
-              descripcion : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+              descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
             </td>
             <td>
               <button mat-raised-button color="warn" (click)="onRemoveRow(index)">QUITAR</button>
