@@ -173,7 +173,7 @@ ontnerDatos():Anexo8{
   guardar(){
     console.log(this.ontnerDatos())
     Swal.fire({
-      title: 'Esta seguro que apecto la solicitud ',
+      title: 'Esta seguro de aceptar la solicitud ',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
@@ -183,7 +183,7 @@ ontnerDatos():Anexo8{
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'ANEXO 3!',
+          'ANEXO 8!',
           'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
           'success'
         )

@@ -167,7 +167,7 @@ export class Anexo7Component implements OnInit {
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'ANEXO 3!',
+          'ANEXO 7!',
           'Se le descargará un archivo WORD, y no se olvide de subir el archivo un ves firmado',
           'success'
         )

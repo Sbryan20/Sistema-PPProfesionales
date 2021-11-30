@@ -253,7 +253,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'ANEXO 3!',
+          'ANEXO 6!',
           'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
           'success'
         )
@@ -261,11 +261,11 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
           const { value: file } = await Swal.fire({
             allowOutsideClick: false,
             title: 'SELECCIONE EL PDF',
-            text:'Debe subir la covocataria en tipo PDF',
+            text:'Debe subir la convocataria en tipo PDF',
             input: 'file',
             inputAttributes: {
               'accept': 'application/pdf',
-              'aria-label': 'Debe subir la covocataria en tipo PDF'
+              'aria-label': 'Debe subir la convocataria en tipo PDF'
             },
             inputValidator: (value) => {
               return new Promise((resolve) => {
