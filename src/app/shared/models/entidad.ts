@@ -9,4 +9,9 @@ export class Ientity{
     fechaCreacion?:String;
     idCoordinador?:number;
     nombreCoordinador?:string;
+    ciudad?:string;
+    direccion?:string; 
+    nombreAdministrador?:string;
+    cedulaAdministrador?:string;
+    correoAdministrador?:string;
 }

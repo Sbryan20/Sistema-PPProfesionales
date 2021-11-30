@@ -7,6 +7,7 @@ import { Anexo10Service } from '@data/services/api/anexo10.service';
 import { Anexo2Service } from '@data/services/api/anexo2.service';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { Anexo5Service } from '@data/services/api/anexo5.service';
+import { Anexo8Service } from '@data/services/api/anexo8.service';
 import { ProyectoService } from '@data/services/api/proyecto.service';
 import { ResposablepppService } from '@data/services/api/resposableppp.service';
 import { SysdateService } from '@data/services/api/sysdate.service';
@@ -16,6 +17,7 @@ import { Anexo2 } from '@shared/models/anexos/anexo2';
 import { Anexo3 } from '@shared/models/anexos/anexo3'; 
 import { Anexo5 } from '@shared/models/anexos/anexo5';
 import { DocenteApoyoDatos } from '@shared/models/dto/docenteapoyodatos';
+import { Ientity } from '@shared/models/entidad';
 import { Proyectos } from '@shared/models/proyecto';
 import { ResponsablePPP } from '@shared/models/responsableppp';
 import Swal from 'sweetalert2';
@@ -61,6 +63,8 @@ correoAdministrador?:String;
 horasRealizadas?:String;
 fechaInicio?:Date;
 fechaFin?:Date;
+public edntidad:Ientity=new Ientity;
+
 
 public DocenteA:DocenteApoyoDatos=new DocenteApoyoDatos;
 
@@ -71,7 +75,7 @@ public anexo1response:Anexo1[]=[];
    rows: FormArray;
    itemForm?: FormGroup;
 
-  constructor(private anexo10Service:Anexo10Service,private anexo5Service:Anexo5Service, private anexo2Service:Anexo2Service,  private router: Router,private fb: FormBuilder,private sysdateService:SysdateService,private activatedRoute: ActivatedRoute,private anexo3Service:Anexo3Service, private proyectoService:ProyectoService) { 
+  constructor(private anexo8Service:Anexo8Service, private anexo10Service:Anexo10Service,private anexo5Service:Anexo5Service, private anexo2Service:Anexo2Service,  private router: Router,private fb: FormBuilder,private sysdateService:SysdateService,private activatedRoute: ActivatedRoute,private anexo3Service:Anexo3Service, private proyectoService:ProyectoService) { 
      this.addForm = this.fb.group({
       items: [null, Validators.required],
       items_value: ['no', Validators.required]
@@ -120,6 +124,16 @@ public anexo1response:Anexo1[]=[];
       this.idproyecto=data.id
       this.director=data.nombredirector
       this.nombreproyecto=data.nombre
+      
+      this.anexo8Service.getEntidadById(data.entidadbeneficiaria).subscribe(da=>{
+        this.ciudad=da.ciudad;
+        this.direccion=da.direccion;
+        this.nombreEmpresa=da.nombre;
+        this.cedulaAdministrador=da.cedulaAdministrador;
+        this.nombreAdministrador=da.nombreAdministrador;
+        this.correoAdministrador=da.correoAdministrador;
+      })
+      
     })
     this.anexo2Service.getAnexoM(event.target.value).subscribe(data => {
       this.number=data.id;
@@ -129,8 +143,14 @@ public anexo1response:Anexo1[]=[];
     this.anexo5Service.getDocentesApoyo(this.cedula,event.target.value).subscribe(data=>{
     this.nombreDocenteapoyo=data.nombreDApoyo
     this.cedulaDocenteApoyo=data.cedulaDAapoyo
-    console.log(this.nombreDocenteapoyo,this.cedulaDocenteApoyo)
+    this.correo_DocenteApoyo=data.correoDApoyo
+    console.log(this.nombreDocenteapoyo,this.cedulaDocenteApoyo,this.correo_DocenteApoyo)
       }) 
+    
+    
+
+
+
   }
 
 

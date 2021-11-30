@@ -7,7 +7,7 @@ import { Anexo8Service } from '@data/services/api/anexo8.service';
 import { ProyectoService } from '@data/services/api/proyecto.service';
 import { Anexo3 } from '@shared/models/anexos/anexo3';
 import { Anexo6 } from '@shared/models/anexos/anexo6';
-import { Anexo8 } from '@shared/models/anexos/anexo8';
+import { ActividadesAnexo8Request, Anexo8 } from '@shared/models/anexos/anexo8';
 import { Ientity } from '@shared/models/entidad';
 import { Proyectos } from '@shared/models/proyecto';
 import { saveAs } from 'file-saver';
@@ -36,11 +36,14 @@ function getBase64(file) {
 export class Anexo8Component implements OnInit {
   public ista='assets/images/ISTA.png'
   public sum=0;
+  public actualzar=false
   public cedula;
   public nombre;
   public anexo3:Anexo3[]=[];
+  public anexo8requeste:Anexo8=new Anexo8;
   public proyecto:Proyectos=new Proyectos;
   public edntidad:Ientity=new Ientity;
+  binding;
 
   ////ARRAY
    addForm: FormGroup;
@@ -62,9 +65,11 @@ export class Anexo8Component implements OnInit {
       let nombre = params['nombres']
       this.nombre=nombre;
       this.cedula=cedula;
+     
       this.anexo3Service.getanexo3(cedula).subscribe(datos=>{
         this.anexo3=datos.filter(d=>d.estado=="AN")
       })
+      
     })
       //ArrayActividades
     this.addForm.get("items_value")?.setValue("yes");
@@ -72,9 +77,9 @@ export class Anexo8Component implements OnInit {
   }
 
   //ArrayActividades
-onAddRow() {
+onAddRow(actividades:ActividadesAnexo8Request) {
   this.sum = 0;
-  this.rows.push(this.createItemFormGroup());
+  this.rows.push(this.createItemFormGroup(actividades));
   this.rows.getRawValue().forEach(element => {
     this.sum+=element.numHoras;
     console.log(this.sum)
@@ -82,19 +87,40 @@ onAddRow() {
   console.log(this.rows.getRawValue())
 }
 onRemoveRow(rowIndex:number){
+  this.rows.removeAt(rowIndex)
   this.sum = 0;
-  this.rows.removeAt(rowIndex);
   this.rows.getRawValue().forEach(element => {
     this.sum+=element.numHoras;
     console.log(this.sum)
   })
 }
-createItemFormGroup(): FormGroup {
+
+eliminarActividad(actividades:ActividadesAnexo8Request){
+  console.log(this.anexo8requeste.id,actividades.id)
+  this.anexo8Service.deteledActivadades(this.anexo8requeste.id,actividades.id).subscribe(data=>{
+    Swal.fire({
+      icon: 'success',
+      title: 'PLAN GUARDADO',
+      text: 'Eliminado guadados correctamente',
+      confirmButtonColor: "#0c3255"   
+    }) 
+  },err=>{
+    Swal.fire({
+      icon: 'warning',
+      title: 'Al paracer hubo un problema',
+      text: err.error.message,
+      confirmButtonColor: "#0c3255"   
+    }) 
+  })
+}
+
+createItemFormGroup(actividades:ActividadesAnexo8Request): FormGroup {
   return this.fb.group({
-    fecha:null,
-    descripcionActividad:null,
-    lugar:null,
-    numHoras:null
+    id:actividades?.id,
+    fecha:actividades?.fecha,
+    descripcionActividad:actividades?.descripcionActividad,
+    lugar:actividades?.lugar,
+    numHoras:actividades?.numHoras,
   });
 }
 sumar(){
@@ -114,6 +140,19 @@ selectOpcion(event:any){
       this.edntidad=da;
     })
       
+  })
+  this.anexo8Service.getAnexo8byCedula(this.cedula).subscribe(datos=>{
+    if(datos.length!=0){
+      this.anexo8requeste=datos[0]
+      if(datos[0].actividades?.length!=0){
+        this.actualzar=true;
+        
+        datos[0].actividades?.forEach(element => {
+          this.onAddRow(element)
+        });
+      }
+      console.log(this.actualzar)
+    }
   })
   
 }
@@ -148,7 +187,7 @@ ontnerDatos():Anexo8{
           'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
           'success'
         )
-        this.generate(this.anexo8);
+        this.generate(this.ontnerDatos());
           const { value: file } = await Swal.fire({
             allowOutsideClick: false,
             title: 'SELECCIONE EL PDF',
@@ -166,7 +205,71 @@ ontnerDatos():Anexo8{
                   getBase64(value).then(
                     data => {
                       this.anexo8.documento=data+''
-                      this.anexo8Service.saveAnexo8(this.anexo8).subscribe(datos=>{
+                      this.anexo8Service.saveAnexo8(this.ontnerDatos()).subscribe(datos=>{
+                        Swal.fire({
+                          icon: 'success',
+                          title: 'PLAN GUARDADO',
+                          text: 'Datos guadados correctamente',
+                          confirmButtonColor: "#0c3255"   
+                        }) 
+                      },err=>{
+                        Swal.fire({
+                          icon: 'warning',
+                          title: 'Al paracer hubo un problema',
+                          text: err.error.message,
+                          confirmButtonColor: "#0c3255"   
+                        }) 
+                      })
+                    }
+                  );
+                   
+                }
+              })
+            }
+          })
+      
+      }
+    })
+  }
+
+
+  actulizar(){
+    console.log(this.ontnerDatos())
+    Swal.fire({
+      title: 'Esta seguro que apecto la solicitud ',
+      text: "Para ello debe firmar el siguiente anexo con sus datos",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, postular!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'ANEXO 3!',
+          'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
+          'success'
+        )
+        this.generate(this.ontnerDatos());
+          const { value: file } = await Swal.fire({
+            allowOutsideClick: false,
+            title: 'SELECCIONE EL PDF',
+            text:'Debe subir la covocataria en tipo PDF',
+            input: 'file',
+            inputAttributes: {
+              'accept': 'application/pdf',
+              'aria-label': 'Debe subir la covocataria en tipo PDF'
+            },
+            inputValidator: (value) => {
+              return new Promise((resolve) => {
+                if (value === null) {
+                  resolve('Es necesario que seleccione el PDF')
+                } else {
+                  getBase64(value).then(
+                    data => {
+                      this.anexo8.id=this.anexo8requeste.id
+                      this.anexo8.documento=data+''
+                      this.anexo8Service.updateActivadades(this.ontnerDatos()).subscribe(datos=>{
                         Swal.fire({
                           icon: 'success',
                           title: 'PLAN GUARDADO',

@@ -95,7 +95,7 @@
 
                         <td scope="col"> 
                           <div>
-                            <button class="btn btn-outline-danger" (click)="onRemoveRow(index)">ELIMINAR</button> 
+                            <button class="btn btn-outline-danger" (click)="eliminarActividad(row.value)" (click)="onRemoveRow(index)" >ELIMINAR</button> 
                           </div>
                        </td>
                     
@@ -111,7 +111,11 @@
                     </tbody>
                      <tr>
                       <td colspan="5" >
-                        <button style="align-self: center;" class="btn btn-info" (click)="guardar()">GUARDAR REGISTRO</button>
+                        <button  style="align-self: center;" class="btn btn-info" *ngIf="actualzar else actualizardatos" (click)="actulizar()">Actualizar Nuevos Datos</button>
+                        <ng-template #actualizardatos>
+                          <button  style="align-self: center;" class="btn btn-info"  (click)="guardar()">GUARDAR REGISTRO</button>
+                        </ng-template>
+                       
                       </td>
                      </tr>
               

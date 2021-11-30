@@ -43,8 +43,12 @@
                   </th>
                 </tr>
                 <tr> 
-                  <th colspan="4" scope="col"><strong>ENTIDAD BENEFICIARIA:</strong> <input type="text" class="form-control"value=""class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.nombre" name="nombre" required />
-                  </th>
+                  <td colspan="1" scope="col"><strong>ENTIDAD BENEFICIARIA:</strong> <input type="text" class="form-control"value=""class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.nombre" name="nombre" required />
+                  </td>
+                  <td colspan="1" scope="col"><strong>CIUDAD</strong> <br><input type="text" class="form-control"value=""class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.ciudad" name="ciudad" required />
+                  </td>
+                  <td colspan="2" scope="col"><strong>DIRECCION</strong> <br><input type="text" class="form-control"value=""class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.direccion" name="direccion" required />
+                  </td>
                 </tr>
                 <tr>
                   <td > <strong>TELÉFONO:</strong><input type="number" class="form-control"value="" class="col-md-8" style="background-color:transparent; " [(ngModel)]="entity.telefonoEntidad" name="telefonoEntidad" required/></td>
@@ -58,6 +62,15 @@
                   <th scope="row"> <strong>REPRESENTANTE: </strong><input type="text" class="form-control"value="" class="col-md-10" style="background-color:transparent; " [(ngModel)]="entity.representante" name="representante" required/></th>
                   <td colspan="2"> <strong>CELULAR</strong><input type="number" class="form-control"value="" class="col-md-10" style="background-color:transparent; " [(ngModel)]="entity.celularRepresentante" name="celularRepresentante" required/></td>
                   <td colspan="2"> <strong>E-MAIL: </strong><input type="email" class="form-control"value="" class="col-md-12" style="background-color:transparent; " [(ngModel)]="entity.emailRepresentante" name="emailRepresentante" required/></td>
+                </tr>
+                <tr> 
+                  <th colspan="4" scope="col"><strong>INFORMACIÓN DEL ADMINISTRADOR:</strong> 
+                  </th>
+                </tr>
+                <tr>
+                  <th scope="row"> <strong>NOMBRE: </strong><input type="text" class="form-control"value="" class="col-md-10" style="background-color:transparent; " [(ngModel)]="entity.nombreAdministrador" name="nombreAdministrador" required/></th>
+                  <td colspan="2"> <strong>CEDULA</strong><input type="number" class="form-control"value="" class="col-md-10" style="background-color:transparent; " [(ngModel)]="entity.cedulaAdministrador" name="cedulaAdministrador" required/></td>
+                  <td colspan="2"> <strong>E-MAIL: </strong><input type="email" class="form-control"value="" class="col-md-12" style="background-color:transparent; " [(ngModel)]="entity.correoAdministrador" name="correoAdministrador" required/></td>
                 </tr>
               </tbody>
             </table>
