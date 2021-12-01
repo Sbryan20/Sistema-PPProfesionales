@@ -103,7 +103,8 @@ eliminarActividad(actividades:ActividadesAnexo8Request){
       title: 'PLAN GUARDADO',
       text: 'Eliminado guadados correctamente',
       confirmButtonColor: "#0c3255"   
-    }) 
+    })
+    this.actulizar(); 
   },err=>{
     Swal.fire({
       icon: 'warning',
