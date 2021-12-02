@@ -29,6 +29,7 @@ import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.c
 import { Anexo10extendidoComponent } from './anexo10extendido/anexo10extendido.component';
 import { Anexo13Component } from './anexo13/anexo13.component';
 import { Anexo13extendidoComponent } from './anexo13extendido/anexo13extendido.component';
+import { InformeseguimientoComponent } from './informeseguimiento/informeseguimiento.component';
 
 
 
@@ -62,7 +63,8 @@ import { Anexo13extendidoComponent } from './anexo13extendido/anexo13extendido.c
     SocializacionComponent,
     Anexo12extendidoComponent,
     Anexo10extendidoComponent,
-    Anexo13extendidoComponent
+    Anexo13extendidoComponent,
+    InformeseguimientoComponent
   ],
   imports: [
     CommonModule,

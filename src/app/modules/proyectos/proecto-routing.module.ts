@@ -20,6 +20,7 @@ import { Anexo9Component } from './anexo9/anexo9.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
+import { InformeseguimientoComponent } from './informeseguimiento/informeseguimiento.component';
 import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
 import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprendizajefirma.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
@@ -127,6 +128,9 @@ const routes: Routes = [
     },{
       path: 'vistas_de_la_intitucion_firma/:cedula',
       component: Anexo13extendidoComponent
+    },{
+      path: 'informe_seguimiento/:cedula',
+      component: InformeseguimientoComponent
     }
     
     

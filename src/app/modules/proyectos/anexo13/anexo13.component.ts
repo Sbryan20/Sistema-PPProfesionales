@@ -67,7 +67,7 @@ export class Anexo13Component implements OnInit {
         this.proyectoService.getProtectid(Number(datos[0].idProyectoPPP)).subscribe(data=>{
           this.proyecto=data
           this.anexo3Service.getanexo3by(data.id).subscribe(dates=>{
-            this.anexo3=dates
+            this.anexo3=dates.filter(d=>d.estado=="AN")
           })
           this.anexo2Service.getAnexoM(data.id).subscribe(datos=>{
             this.anexo2=datos;

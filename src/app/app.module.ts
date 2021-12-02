@@ -50,6 +50,7 @@ import { Anexo12extendidoComponent } from '@modules/proyectos/anexo12extendido/a
 import { Anexo10extendidoComponent } from '@modules/proyectos/anexo10extendido/anexo10extendido.component';
 import { Anexo13Component } from '@modules/proyectos/anexo13/anexo13.component';
 import { Anexo13extendidoComponent } from '@modules/proyectos/anexo13extendido/anexo13extendido.component';
+import { InformeseguimientoComponent } from '@modules/proyectos/informeseguimiento/informeseguimiento.component';
 
 
 const modules = [
@@ -96,7 +97,8 @@ const modules = [
     SocializacionComponent,
     Anexo12extendidoComponent,
     Anexo10extendidoComponent,
-    Anexo13extendidoComponent
+    Anexo13extendidoComponent,
+    InformeseguimientoComponent
   ],
   imports: [
     

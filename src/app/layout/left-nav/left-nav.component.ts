@@ -25,6 +25,7 @@ export class LeftNavComponent implements OnInit {
   ngOnInit(): void {
     this.persona=JSON.parse(sessionStorage.user);
     this.rolnombre=this.geRolName(JSON.parse(sessionStorage.user).rol);
+    console.log(JSON.parse(sessionStorage.user).token)
     if(JSON.parse(sessionStorage.user).urlFoto==null){    
       this.foto='assets/images/pngwing.com.png'
     }else{

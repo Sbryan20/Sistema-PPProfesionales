@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Anexo9 } from '@shared/models/anexos/anexo9.';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,8 @@ export class Anexo9Service {
   saveAnexo9(anexo9: Anexo9):Observable<Anexo9>{
     console.log(anexo9);
     return this.http.post<Anexo9>(this.urlEndPoint,anexo9,{headers: this.httpHeaders})
+  }
+  getAnexo9ById(proyectoId?:Number):Observable<Anexo9>{
+    return this.http.get(this.urlEndPoint+"/allByProyecto/"+proyectoId,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo9))
   }
 }
