@@ -13,6 +13,7 @@ export class Informe1{
     conclusiones?:String
     nombreDirector?:String
     cedulaDirector?:String
+    documento?:String;
     nombreCoordinadorVinculacion?:String
     cedulaCoordinadorVinculacion?:String
     fechaInicio?:Date

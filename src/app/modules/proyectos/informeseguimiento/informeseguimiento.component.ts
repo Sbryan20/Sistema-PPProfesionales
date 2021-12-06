@@ -24,7 +24,14 @@ import Swal from 'sweetalert2';
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 };
-
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 @Component({
   selector: 'app-informeseguimiento',
   templateUrl: './informeseguimiento.component.html',
@@ -231,6 +238,60 @@ export class InformeseguimientoComponent implements OnInit {
             text: 'Datos guadados correctamente',
             confirmButtonColor: "#0c3255"   
           }) 
+          this.informe1Service.getoInforme1ById(datos.idProyectoPPP).subscribe(async dates=>{
+            Swal.fire(
+              'ANEXO 8!',
+              'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
+              'success'
+            )
+            this.generate(dates);
+              const { value: file } = await Swal.fire({
+                allowOutsideClick: false,
+                title: 'SELECCIONE EL PDF',
+                text:'Debe subir la covocataria en tipo PDF',
+                input: 'file',
+                inputAttributes: {
+                  'accept': 'application/pdf',
+                  'aria-label': 'Debe subir la covocataria en tipo PDF'
+                },
+                inputValidator: (value) => {
+                  return new Promise((resolve) => {
+                    if (value === null) {
+                      resolve('Es necesario que seleccione el PDF')
+                    } else {
+                      getBase64(value).then(
+                        data => {
+                          dates.documento=data+''
+                          this.informe1Service.updateAnexoInforme1(dates).subscribe(datos=>{
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'GUARDADO',
+                              text: 'Datos guadados correctamente',
+                              confirmButtonColor: "#0c3255"   
+                            }) 
+                          },err=>{
+                            Swal.fire({
+                              icon: 'warning',
+                              title: 'Al paracer hubo un problema',
+                              text: err.error.message,
+                              confirmButtonColor: "#0c3255"   
+                            }) 
+                          })
+                        }
+                      );
+                       
+                    }
+                  })
+                }
+              })
+          },err=>{
+            Swal.fire({
+              icon: 'warning',
+              title: 'Al paracer hubo un problema',
+              text: err.error.message,
+              confirmButtonColor: "#0c3255"   
+            }) 
+          })
         },err=>{
           Swal.fire({
             icon: 'warning',

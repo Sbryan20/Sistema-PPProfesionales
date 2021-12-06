@@ -20,6 +20,10 @@ export class Informe1Service {
     console.log(informe1);
     return this.http.post<Informe1>(this.urlEndPoint,informe1,{headers: this.httpHeaders})
   }
+  updateAnexoInforme1(informe1: Informe1):Observable<Informe1>{
+    console.log(informe1);
+    return this.http.put<Informe1>(this.urlEndPoint,informe1,{headers: this.httpHeaders})
+  }
   getoInforme1ById(proyectoId?:Number):Observable<Informe1>{
     return this.http.get(this.urlEndPoint+"/allByProyecto/"+proyectoId,{headers: this.httpHeaders}).pipe(map(Response => Response as Informe1))
   }
