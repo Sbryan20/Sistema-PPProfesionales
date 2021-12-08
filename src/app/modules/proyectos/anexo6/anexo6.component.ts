@@ -243,13 +243,13 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
     this.anexo6.actividades=this.rows.getRawValue()
 
     Swal.fire({
-      title: 'Esta seguro que apecto la solicitud ',
+      title: 'Esta seguro que aceptar la solicitud ',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, postular!'
+      confirmButtonText: 'Si, aceptar!'
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -355,7 +355,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
         // Output the document using Data-URI
-        saveAs(out, 'Convocataria para Vinculacion.docx');
+        saveAs(out, 'Convocataria Anexo6.docx');
       }
     );
   }

@@ -222,7 +222,7 @@ export class InformeseguimientoComponent implements OnInit {
 
   save(){
     Swal.fire({
-      title: 'Esta seguro que generar informe ',
+      title: 'Esta seguro',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
@@ -238,7 +238,7 @@ export class InformeseguimientoComponent implements OnInit {
             text: 'Datos guadados correctamente',
             confirmButtonColor: "#0c3255"   
           }) 
-          this.informe1Service.getoInforme1ById(datos.idProyectoPPP).subscribe(async dates=>{
+          this.informe1Service.getoInforme1ById(this.obtnerdatos().idProyectoPPP).subscribe(async dates=>{
             Swal.fire(
               'ANEXO 8!',
               'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',

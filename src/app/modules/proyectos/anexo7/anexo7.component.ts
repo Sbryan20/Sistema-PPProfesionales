@@ -157,13 +157,13 @@ export class Anexo7Component implements OnInit {
   guardar(){
     console.log(this.obtnerdatos())
     Swal.fire({
-      title: 'Esta seguro que apecto la solicitud ',
+      title: 'Esta seguro ',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, postular!'
+      confirmButtonText: 'Si!'
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -242,7 +242,7 @@ export class Anexo7Component implements OnInit {
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
       });
       // Output the document using Data-URI
-      saveAs(out, 'Convocataria para Vinculacion.docx');
+      saveAs(out, 'Convocataria Anexo7.docx');
     }
   );
 }

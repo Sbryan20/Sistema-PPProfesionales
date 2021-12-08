@@ -92,16 +92,16 @@ export class AlumnoconvocatoriaComponent implements OnInit {
         } 
 
         if(this.aux2===data.materias!.length){
-          console.log("Si cumple con los requisitos")
+          console.log("Si cumple con los requisitos para postular")
         }else{
-          console.log("No cumple")
+          console.log("No cumple, para postular")
         }
       
 
         console.log(data) 
         if(this.aux2==data.materias!.length){
           Swal.fire({
-            title: 'Esta seguro que desea postular a proyeto '+data.nombreProyecto,
+            title: 'Esta seguro que desea postular al proyeto '+data.nombreProyecto,
             text: "Para ello debe firmar el siguiente anexo con sus datos",
             icon: 'warning',
             showCancelButton: true,
@@ -137,7 +137,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
                           Swal.fire({
                             icon: 'success',
                             title: 'Anexo',
-                            text: 'Postulacion relizada espera una respuesta',
+                            text: 'Postulacion relizada espere una respuesta',
                             confirmButtonColor: "#0c3255"})
                         },err=>{
                           Swal.fire({
@@ -242,7 +242,7 @@ export class AlumnoconvocatoriaComponent implements OnInit {
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
         // Output the document using Data-URI
-        saveAs(out, 'Convocataria para Vinculacion.docx');
+        saveAs(out, 'Postulacion Anexo3.docx');
       }
     );
   }

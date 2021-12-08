@@ -174,13 +174,13 @@ ontnerDatos():Anexo8{
   guardar(){
     console.log(this.ontnerDatos())
     Swal.fire({
-      title: 'Esta seguro de aceptar la solicitud ',
+      title: 'Esta seguro',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, postular!'
+      confirmButtonText: 'Si'
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
@@ -237,13 +237,13 @@ ontnerDatos():Anexo8{
   actulizar(){
     console.log(this.ontnerDatos())
     Swal.fire({
-      title: 'Esta seguro que apecto la solicitud ',
+      title: 'Esta seguro',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, postular!'
+      confirmButtonText: 'Si'
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(

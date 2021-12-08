@@ -99,13 +99,13 @@ export class Anexo61Component implements OnInit {
   guardar(){
     console.log(this.obtnerdatos())
     Swal.fire({
-      title: 'Esta seguro que apecto la solicitud ',
+      title: 'Esta seguro',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, postular!'
+      confirmButtonText: 'Si'
     }).then(async (result) => {
       if (result.isConfirmed) {
         Swal.fire(
