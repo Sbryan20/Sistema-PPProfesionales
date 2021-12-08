@@ -23,6 +23,7 @@ import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/do
 import { InformeseguimientoComponent } from './informeseguimiento/informeseguimiento.component';
 import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
 import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprendizajefirma.component';
+import { PreinformeseguimientoComponent } from './preinformeseguimiento/preinformeseguimiento.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
 import { ProyectolistarComponent } from './proyectolistar/proyectolistar.component';
@@ -131,6 +132,9 @@ const routes: Routes = [
     },{
       path: 'informe_seguimiento/:cedula',
       component: InformeseguimientoComponent
+    },{
+      path: 'preinforme_seguimiento/:cedula',
+      component: PreinformeseguimientoComponent
     }
     
     

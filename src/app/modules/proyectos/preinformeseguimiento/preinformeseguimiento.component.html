@@ -1,0 +1,100 @@
+<form class="formulario"  >
+    <table style="width:95%; height:100%;" class="table" >
+    <tbody> 
+          <tr>
+            <table style="width:100%; height:90%;" class="table">
+               <tbody> 
+                   <tr> 
+                       <th colspan="4" scope="col"><strong class="texto2">Datos Informativos:</strong> </th>
+                   </tr> 
+                   <tr> 
+                    <td  colspan="4" scope="col">
+                      <strong class="texto">NOMBRE DEL PROYECTO:<b class="texto2"> {{proyecto.nombre}}</b>  </strong> <br>
+                      <strong class="texto">DIRECTOR DEL PROYECTO: <b class="texto2">{{anexo1.nombreDelegado}} </b> </strong><br>
+                        <strong class="texto">CARRERA: <b class="texto2">{{anexo1.siglasCarrera}} </b> </strong>
+                       
+                    </td>  
+                   <tr>
+                    <tr> 
+                        <td>
+                            <strong>Fecha Elaborado:</strong><b class="texto2"> {{fechaElaborado}}</b>
+                        </td> 
+                        <td>
+                          <strong class="texto">REVISIÓN: <b class="texto2">{{anexo1.nombreCoordinador}}
+                          </b></strong><br>
+                          <strong>Fecha de Revision:</strong> <input type="date"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="preinforme.fechaRevisado" name="fechaRevisado" required />
+                      </td>
+                    </tr> 
+               </tbody>
+             </table>
+           </tr>
+           <tr>
+            <table style="width:100%; height:90%;" class="table">
+               <tbody>
+
+                <tr> 
+                  <td colspan="2" scope="col"><strong style="text-align-last: end;" class="texto2">ANTECEDENTES:</strong> 
+                   <br>
+                    <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="60" [(ngModel)]="preinforme.antecedentes" name="antecedentes">                             
+                    </textarea>
+                  </td>
+                  <td colspan="2" scope="col"><strong style="text-align-last: end;" class="texto2">OBJETIVO GENERAL:</strong> 
+                    <br>
+                     <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="60" [(ngModel)]="preinforme.objetivoGeneral" name="objetivoGeneral">                             
+                     </textarea>
+                   </td>
+               </tr> 
+                  
+               </tbody>
+             </table>
+           </tr>
+       <tr>
+        <table  style="width:100%; height:90%;background-color: rgb(240, 240, 240);" class="table"> 
+          <tr>
+            <td colspan="4" scope="col " > <strong class="texto2">ESTUDIANTES</strong></td>
+          </tr> 
+          <tbody> 
+                <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
+                  <td scope="col">   
+                      <strong>Cedula:</strong> 
+                        <div class="form-group">  
+                                <input type="text" class="form-control"  [formControl]="row.get('id')" readonly> 
+                        </div> 
+                  </td> 
+                  <td scope="col">    
+                    <strong>Nombres</strong>
+                      <div class="form-group"> 
+                              <input type="text" class="form-control"  [formControl]="row.get('nombreEstudiante')" readonly> 
+                    </div> 
+                  </td> 
+                  <td scope="col">    
+                    <strong>Estado</strong>
+                      <div class="form-group"> 
+                              <input type="text" class="form-control"  [formControl]="row.get('estado')" readonly> 
+                    </div> 
+                  </td> 
+                  <td scope="col"> 
+                    <strong>Observaciones:</strong>
+                    <div class="form-group">  
+                        <input type="text" style="font-size: 18px;" class="form-control"   [formControl]="row.get('observaciones')"/>
+                  </div>
+                  </td> 
+              </tr> 
+              </tbody>  
+       </table>
+ </tr>
+  
+<tr>
+  <table  style="width:100%; height:90%;background-color: rgb(240, 240, 240);" class="table">  
+    <tbody> 
+      <tr>
+        <td colspan="4" >
+            <button  style="align-self: center;" class="btn btn-info" (click)="guardarinforme()" >GENERAR INFORME</button>  
+        </td>
+    </tr>
+        </tbody>           
+ </table> 
+</tr> 
+    </tbody>
+  </table> 
+ </form> 

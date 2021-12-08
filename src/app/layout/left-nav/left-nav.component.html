@@ -132,6 +132,10 @@
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Registro de Vistas a los Institución Firma</a>
               <a
+              [routerLink]="['/panel/proyecto/preinforme_seguimiento',persona.cedula]" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+              >Informe inicial</a> 
+              <a
                 [routerLink]="['/panel/proyecto/informe_seguimiento',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Generar informe de Seguimiento</a>      

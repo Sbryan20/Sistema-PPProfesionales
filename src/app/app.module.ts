@@ -51,6 +51,7 @@ import { Anexo10extendidoComponent } from '@modules/proyectos/anexo10extendido/a
 import { Anexo13Component } from '@modules/proyectos/anexo13/anexo13.component';
 import { Anexo13extendidoComponent } from '@modules/proyectos/anexo13extendido/anexo13extendido.component';
 import { InformeseguimientoComponent } from '@modules/proyectos/informeseguimiento/informeseguimiento.component';
+import { PreinformeseguimientoComponent } from '@modules/proyectos/preinformeseguimiento/preinformeseguimiento.component';
 
 
 const modules = [
@@ -98,7 +99,8 @@ const modules = [
     Anexo12extendidoComponent,
     Anexo10extendidoComponent,
     Anexo13extendidoComponent,
-    InformeseguimientoComponent
+    InformeseguimientoComponent,
+    PreinformeseguimientoComponent
   ],
   imports: [
     
