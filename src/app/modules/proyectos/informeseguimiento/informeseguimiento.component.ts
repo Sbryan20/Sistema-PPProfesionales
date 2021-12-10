@@ -368,7 +368,7 @@ export class InformeseguimientoComponent implements OnInit {
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
         // Output the document using Data-URI
-        saveAs(out, 'Convocataria para Vinculacion.docx');
+        saveAs(out, 'Informe seguimiento.docx');
       }
     );
   }

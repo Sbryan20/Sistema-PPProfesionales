@@ -12,13 +12,14 @@ id?:Number
      nombreRevisado?:String;
      cargoRevisado?:String; 
      fechaRevisado?:Date; 
-     cedulaEstudiante?:String;
+
      estudianteInformeInicial?:EstudiantesInformeInicialRequest[];
      documento?:String;
       
 }
 export class EstudiantesInformeInicialRequest {
-    id?:Number; 
+     id?:Number; 
+     cedula?:String;
      nombreEstudiante?:String;
      estado?:String; 
      observaciones?:String;

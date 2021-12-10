@@ -55,12 +55,7 @@
           </tr> 
           <tbody> 
                 <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
-                  <td scope="col">   
-                      <strong>Cedula:</strong> 
-                        <div class="form-group">  
-                                <input type="text" class="form-control"  [formControl]="row.get('id')" readonly> 
-                        </div> 
-                  </td> 
+                 
                   <td scope="col">    
                     <strong>Nombres</strong>
                       <div class="form-group"> 
