@@ -22,7 +22,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { ProyectomiembrosComponent } from '@modules/proyectos/proyectomiembros/proyectomiembros.component';
@@ -52,6 +52,9 @@ import { Anexo13Component } from '@modules/proyectos/anexo13/anexo13.component';
 import { Anexo13extendidoComponent } from '@modules/proyectos/anexo13extendido/anexo13extendido.component';
 import { InformeseguimientoComponent } from '@modules/proyectos/informeseguimiento/informeseguimiento.component';
 import { PreinformeseguimientoComponent } from '@modules/proyectos/preinformeseguimiento/preinformeseguimiento.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const modules = [
@@ -60,7 +63,8 @@ const modules = [
   MatInputModule,
   MatRippleModule,
   MatSortModule,
-  MatTableModule,
+  MatTableModule
+  
 ];
 @NgModule({
   declarations: [
@@ -107,11 +111,25 @@ const modules = [
     //core
     CoreModule,
     SharedModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatSliderModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    MatNativeDateModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    BrowserModule,
+    FormsModule,
+    MatInputModule,
+    MatRippleModule,
+    MatSelectModule,
     modules
   ],
   providers: [

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Ientity } from '../../../shared/models/entidad';
 import { BondingCoordinationService } from '../../../data/services/api/bonding-coordination.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,7 +11,11 @@ import { Sysdate } from '@shared/models/sysdate';
   templateUrl: './user-create.component.html',
   styleUrls: ['./user-create.component.scss']
 })
-export class UserCreateComponent implements OnInit {
+export class UserCreateComponent implements OnInit,AfterViewInit {
+  
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   entity:Ientity=new Ientity();
   public secretaria='assets/images/Secretaria.png'  
   public ista='assets/images/ISTA.png'
@@ -27,6 +31,11 @@ export class UserCreateComponent implements OnInit {
     this.sysdateservice.getSysdate().subscribe(date=>{
       this.sysdate=date.fecha;
     })
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      this.issloading=false; 
+    },1000)
   }
 
   crearEntidad(){

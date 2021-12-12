@@ -1,8 +1,11 @@
 <ng-container *ngIf="issloading">
-    <div class="bss-loader">
-       <img [src]="loader" alt=""> 
-    </div>
-  </ng-container>
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt="" style="size: 50pt;"> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
   <div class="card border-primary mb-3">
     <div class="card-header">Cordinadores para Vinculación</div>
     <div class="card-body text-primary">
@@ -67,3 +70,5 @@
 
     </div>
 </div>
+</div>
+  

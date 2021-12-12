@@ -1,94 +1,111 @@
-  <div class="card border-primary mb-3">
-    <div class="card-header">Cordinadores para Vinculación</div>
-    <div class="card-body text-primary">
-        <div class="example-container mat-elevation-z8">
-          <div class="example-header">
-            <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
-            </mat-form-field>
-          </div>
-        
-          <mat-table #table [dataSource]="dataSource">
-        
-            <!-- Position Column -->
-            <ng-container matColumnDef="nombreproyecto">
-              <mat-header-cell *matHeaderCellDef> Nombre Proyecto </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.nombreproyecto}} </mat-cell>
-            </ng-container>
-        
-            <!-- Name Column -->
-            <ng-container matColumnDef="cedula">
-              <mat-header-cell *matHeaderCellDef> Cédula </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
-            </ng-container>
-        
-            <!-- Weight Column -->
-            <ng-container matColumnDef="nombresestudiante">
-              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.nombresestudiante}} </mat-cell>
-            </ng-container>
-        
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="apellidosestudiante">
-              <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.apellidosestudiante}} </mat-cell>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="fecha_solicitud">
-              <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.fecha_solicitud}} </mat-cell>
-            </ng-container>
-             <!-- Symbol Column -->
-             <ng-container matColumnDef="documento">
-                <mat-header-cell *matHeaderCellDef> Documento </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <div class="col-sm-6">
-                        <button  mat-raised-button color="basic">Ver</button>
-                    </div>
-                </mat-cell> 
-              </ng-container>
-               <!-- Symbol Column -->
-             <ng-container matColumnDef="boton_ac">
-                <mat-header-cell *matHeaderCellDef> ACEPTAR </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <div class="col-sm-6">
-                        <button  mat-raised-button color="primary" (click)="guardar(element)">ACEPTAR</button>
-                    </div>
-                </mat-cell>
-              </ng-container>
-          
-               <!-- Symbol Column -->
-             <ng-container matColumnDef="boton_dn">
-                <mat-header-cell *matHeaderCellDef> DENEGAR </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <div class="col-sm-6">
-                        <button  mat-raised-button color="warn"  (click)="denegar(element)">DENEGAR</button>
-                    </div>
-                </mat-cell>
-              </ng-container>
-              <!-- Symbol Column -->
-             <ng-container matColumnDef="estado">
-                <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
-                <mat-cell *matCellDef="let element">
-                    <div  [ngSwitch]="element.estado">
-                        <div class="list-group" *ngSwitchCase="'PN'" style="color:black;">
-                            <p>PENDIENTE</p>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario">
+    <table class="table">
+      <div class="card border-primary mb-3" >
+        <div class="card-header">Solicitudes enviadas</div>
+        <div class="card-body text-primary">
+            <div class="example-container mat-elevation-z8">
+              <div class="example-header">
+                <mat-form-field>
+                  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+                </mat-form-field>
+              </div>
+            
+              <mat-table #table [dataSource]="dataSource">
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="nombreproyecto">
+                  <mat-header-cell *matHeaderCellDef> Nombre Proyecto </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.nombreproyecto}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="cedula">
+                  <mat-header-cell *matHeaderCellDef> Cédula </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="nombresestudiante">
+                  <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.nombresestudiante}} </mat-cell>
+                </ng-container>
+            
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="apellidosestudiante">
+                  <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.apellidosestudiante}} </mat-cell>
+                </ng-container>
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="fecha_solicitud">
+                  <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.fecha_solicitud}} </mat-cell>
+                </ng-container>
+                 <!-- Symbol Column -->
+                 <ng-container matColumnDef="documento">
+                    <mat-header-cell *matHeaderCellDef> Documento </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div class="col-sm-6">
+                            <button  mat-raised-button color="basic" (click)="convertFile(element.documento)">Ver</button>
                         </div>
-                        <div class="list-group" *ngSwitchCase="'DN'" style="color:red;">
-                            <p>DENEGADO</p>
+                    </mat-cell> 
+                  </ng-container>
+                   <!-- Symbol Column -->
+                 <ng-container matColumnDef="boton_ac">
+                    <mat-header-cell *matHeaderCellDef> ACEPTAR </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div class="col-sm-6">
+                            <button  mat-raised-button color="primary"  *ngIf="element.estado!='AN' else asignar"(click)="guardar(element)">ACEPTAR</button>
+                            <ng-template #asignar>
+                              <button  mat-raised-button color="primary"  (click)="guardar(element)" disabled>ACEPTAR</button>
+                          </ng-template>
                         </div>
-                        <div class="list-group" *ngSwitchCase="'AN'" style="color:blue;">
-                            <p>ACEPTADO</p>
+                    </mat-cell>
+                  </ng-container>
+              
+                   <!-- Symbol Column -->
+                 <ng-container matColumnDef="boton_dn">
+                    <mat-header-cell *matHeaderCellDef> DENEGAR </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div class="col-sm-6">
+                            <button  mat-raised-button color="warn"  (click)="denegar(element)">DENEGAR</button>
                         </div>
-                    </div>
-                </mat-cell>
-              </ng-container>
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
+                    </mat-cell>
+                  </ng-container>
+                  <!-- Symbol Column -->
+                 <ng-container matColumnDef="estado">
+                    <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div  [ngSwitch]="element.estado">
+                            <div class="list-group" *ngSwitchCase="'PN'" style="color:black;">
+                                <p>PENDIENTE</p>
+                            </div>
+                            <div class="list-group" *ngSwitchCase="'DN'" style="color:red;">
+                                <p>DENEGADO</p>
+                            </div>
+                            <div class="list-group" *ngSwitchCase="'AN'" style="color:blue;">
+                                <p>ACEPTADO</p>
+                            </div>
+                        </div>
+                    </mat-cell>
+                  </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+            </div>
+    
         </div>
-
     </div>
+    </table>
+  </form>
 </div>
+  
 
 

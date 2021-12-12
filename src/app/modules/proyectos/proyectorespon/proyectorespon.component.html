@@ -1,103 +1,106 @@
-<div class="card border-primary mb-3">
-  <div class="card-header">RESPONSABLES PARA PRACTICAS PRE-PROFECIONALES</div>
-  <div class="card-body text-primary">
-      <h5 class="card-title">Docentes que actualmente llevan el cargo</h5>
-      <table class="table table-bordered table-striped">
-          <thead>
-              <tr>
-                  <th>ID</th>
-                  <th>Cédula</th>
-                  <th>Estado</th>
-                  <th>QUITAR CARGO</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr *ngFor="let resppp of resPPP">
-                <ng-container *ngIf="resppp.estado==true" >
-                  <td>{{resppp.id}}</td>
-                  <td>{{resppp.cedula}}</td>
-                  <td>{{resppp.estado}}</td>
-                  <td>
-                      <button type="button" (click)="quitar(resppp)" class="btn btn-danger" >Quitar Cargo</button>
-                  </td>  
-                </ng-container>   
-              </tr>
-          </tbody>
-      </table>
-  </div>
-</div>
-
-<ng-container>
-  <div class="bss-loader">
-     <img  alt=""> 
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
   </div>
 </ng-container>
-<div class="card border-primary mb-3">
-  <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES COMO RESPONSABLES DE PRACTICAS PRE-PROFECIONALES </div>
-  <div class="card-body text-primary" *ngIf="habilitar == true">
-      <div class="example-container mat-elevation-z8">
-        <div class="example-header">
-          <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILTRAR">
-          </mat-form-field>
+<div *ngIf="issloading==false">
+  <div class="card border-primary mb-3">
+    <div class="card-header">RESPONSABLES PARA PRACTICAS PRE-PROFECIONALES</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">Docentes que actualmente llevan el cargo</h5>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cédula</th>
+                    <th>Estado</th>
+                    <th>QUITAR CARGO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{resPPP.id}}</td>
+                    <td>{{resPPP.cedula}}</td>
+                    <td>{{resPPP.nombres_completo}}</td>
+                    <td>{{resPPP.estado}}</td>
+                    <td>
+                        <button type="button" (click)="quitar(resPPP)" class="btn btn-danger" >Quitar Cargo</button>
+                    </td>  
+  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  <div class="card border-primary mb-3">
+    <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES COMO RESPONSABLES DE PRACTICAS PRE-PROFECIONALES </div>
+    <div class="card-body text-primary">
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+            <mat-form-field>
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILTRAR">
+            </mat-form-field>
+          </div>
+        
+          <mat-table #table [dataSource]="dataSourcedoc" >
+        
+            <!-- Position Column -->
+            <ng-container matColumnDef="cedula">
+              <mat-header-cell *matHeaderCellDef> Cédula. </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="nombres_completo">
+              <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.nombres_completo}} </mat-cell>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="titulo">
+              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="docente_tipo_tiempo">
+              <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.docente_tipo_tiempo}} </mat-cell>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="materias">
+              <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <select class="btn btn-outline-ligth dropdown-toggle" >
+                  <option matNativeControl class="" *ngFor="let materia of element.materias" disabled selected>{{materia.nombre}}</option>
+                </select>
+              </mat-cell>
+            </ng-container>
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="carreas">
+              <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
+              <mat-cell *matCellDef="let element"> 
+                <select class="btn btn-outline-ligth dropdown-toggle">
+                  <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>
+                </select>
+              </mat-cell>
+            </ng-container>
+             <!-- Symbol Column -->
+            <ng-container matColumnDef="boton">
+              <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                <div class="col-sm-6">
+                  <button  mat-raised-button color="primary"  (click)="saverppp(element.cedula)">DAR CARGO</button>
+              </div> </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+          </mat-table>
         </div>
-      
-        <mat-table #table [dataSource]="dataSourcedoc" >
-      
-          <!-- Position Column -->
-          <ng-container matColumnDef="cedula">
-            <mat-header-cell *matHeaderCellDef> Cédula. </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
-          </ng-container>
-      
-          <!-- Name Column -->
-          <ng-container matColumnDef="nombres_completo">
-            <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.nombres_completo}} </mat-cell>
-          </ng-container>
-      
-          <!-- Weight Column -->
-          <ng-container matColumnDef="titulo">
-            <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
-          </ng-container>
-      
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="docente_tipo_tiempo">
-            <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.docente_tipo_tiempo}} </mat-cell>
-          </ng-container>
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="materias">
-            <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <select class="btn btn-outline-ligth dropdown-toggle" >
-                <option matNativeControl class="" *ngFor="let materia of element.materias" disabled selected>{{materia.nombre}}</option>
-              </select>
-            </mat-cell>
-          </ng-container>
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="carreas">
-            <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
-            <mat-cell *matCellDef="let element"> 
-              <select class="btn btn-outline-ligth dropdown-toggle">
-                <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>
-              </select>
-            </mat-cell>
-          </ng-container>
-           <!-- Symbol Column -->
-          <ng-container matColumnDef="boton">
-            <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <div class="col-sm-6">
-                <button  mat-raised-button color="primary"  (click)="saverppp(element.cedula)">DAR CARGO</button>
-            </div> </mat-cell>
-          </ng-container>
-      
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-      </div>
-
+  
+    </div>
   </div>
 </div>

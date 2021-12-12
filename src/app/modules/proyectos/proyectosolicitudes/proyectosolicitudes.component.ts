@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { Anexo3 } from '@shared/models/anexos/anexo3';
@@ -34,7 +34,11 @@ function getBase64(file) {
   templateUrl: './proyectosolicitudes.component.html',
   styleUrls: ['./proyectosolicitudes.component.scss']
 })
-export class ProyectosolicitudesComponent implements OnInit {
+export class ProyectosolicitudesComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+  
   public anexo3:Anexo3[]=[];
   file
 
@@ -60,12 +64,18 @@ export class ProyectosolicitudesComponent implements OnInit {
         this.anexo3service.getanexo3byCodigo(data.codigo).subscribe(data=>{
           this.anexo3=data;
           this.dataSource=new MatTableDataSource(this.anexo3); 
-          this.dataSource.sort = this.sort;         
+          this.dataSource.sort = this.sort;
+          this.issloading=false;         
         })
       })
     })
       
      
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   guardar(anexo3:Anexo3){

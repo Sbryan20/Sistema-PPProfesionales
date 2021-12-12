@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProyectoService } from '@data/services/api/proyecto.service';
@@ -18,6 +18,8 @@ import Swal from 'sweetalert2';
 import { Anexo1 } from '@shared/models/anexos/anexo1';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
 import { DocentesDirector } from '@shared/models/docentesapoyo/docentesdirecto';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 //DOCX
 function loadFile(url, callback) {
@@ -37,8 +39,13 @@ function getBase64(file) {
   styleUrls: ['./proyectomiembros.component.scss']
 })
 
-export class ProyectomiembrosComponent implements OnInit {
+export class ProyectomiembrosComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public Docs:Docentes[]=[];
+  public Docs2:Docentes[]=[];
   public director:DocentesDirector= new DocentesDirector;
   public directorAnexo:Docentes = new Docentes()
   public docentes:Docentes = new Docentes();
@@ -68,6 +75,10 @@ export class ProyectomiembrosComponent implements OnInit {
      itemForm?: FormGroup;
      ////
   
+  /// FILTER
+  myControl = new FormControl();
+  filteredOptions?: Observable<Docentes[]>;
+  
   constructor(private anexo1Service:Anexo1Service,private fb: FormBuilder,private sysdateservice:SysdateService,private proyectoService:ProyectoService,private resposableppservice:ResposablepppService,private router:Router,private activatedRoute: ActivatedRoute) { 
     //Director
     this.addForm = this.fb.group({
@@ -86,9 +97,15 @@ export class ProyectomiembrosComponent implements OnInit {
       this.cedula=cedula;
       this.nombrecordindor=nombre;
     })
+    
     this.resposableppservice.cargardocente().subscribe(resp =>{
+      this.filteredOptions = this.myControl.valueChanges.pipe(
+        startWith(''),
+        map(values=>this.filter(values)),
+      );
       this.Docs=resp
-      this.dataSourcedoc=new MatTableDataSource(this.Docs); 
+      this.dataSourcedoc=new MatTableDataSource(this.Docs);
+      this.issloading=false;   
     })
     this.proyectoService.getProyectos().subscribe(data =>{
       this.listproyecto=data;
@@ -99,9 +116,20 @@ export class ProyectomiembrosComponent implements OnInit {
     //DIRECTOR
     this.addForm.get("items_value")?.setValue("yes");
     this.addForm.addControl('rows', this.rows);
-    ////
-
+    //FILTAR
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
+  filter(value: any): Docentes[] {
+    const filterValue = value.toLowerCase();
+    console.log(this.Docs)
+    return this.Docs.filter(option => option.cedula?.toLowerCase().includes(filterValue)||option.nombres_completo?.toLocaleLowerCase().includes(filterValue));
+  }
+
   //DIRECTOR
   onAddRow(cedual:String) {
     this.rows.push(this.createItemFormGroup(cedual));
@@ -178,7 +206,9 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
     this.docentesRoles.docentes=this.docenteslist;
   }
   selectDirectorProyecto (event: any) { 
+    console.log(event.target.value)
     this.resposableppservice.getDocenteId(event.target.value).subscribe(data=>{
+      console.log(event.target.value)
       this.directorAnexo=data;
       this.director.cedula=data.cedula
     })
@@ -204,7 +234,6 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
       if (result.isConfirmed) {
         this.generate(this.Anexo1(docentes,rol));
         const { value: file } = await Swal.fire({
-          allowOutsideClick: false,
           title: 'SELECCIONE EL PDF',
           text:'Debe subir la covocataria en tipo PDF',
           input: 'file',
@@ -273,7 +302,6 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
       if (result.isConfirmed) {
         this.generate(this.Anexo1(docentes,rol));
         const { value: file } = await Swal.fire({
-          allowOutsideClick: false,
           title: 'SELECCIONE EL PDF',
           text:'Debe subir la covocataria en tipo PDF',
           input: 'file',
@@ -286,44 +314,41 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
               if (value === null) {
                 resolve('Es necesario que seleccione el PDF')
               } else {            
-                const file:any = value;
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                 reader.onload = () => {
-                   this.anexo1.documento=reader.result+''
-                  }; 
-               this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
+                getBase64(value).then(docx=>{
+                  this.anexo1.documento=docx+''
+                  this.anexo1Service.saveanexo1(this.Anexo1(docentes,rol)).subscribe(data=>{
                   
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Anexo',
-                    text: 'Proyecto creado correctamente',
-                    confirmButtonColor: "#0c3255"   
-                  }) 
-                  this.resposableppservice.saverapoyo(this.docentesRoles).subscribe(date=>{
                     Swal.fire({
-                    icon: 'success',
-                    title: 'Anexo',
-                    text: 'Persona creado correctamente',
-                    confirmButtonColor: "#0c3255"   
-                  }) },err=>{
+                      icon: 'success',
+                      title: 'Anexo',
+                      text: 'Proyecto creado correctamente',
+                      confirmButtonColor: "#0c3255"   
+                    }) 
+                    this.resposableppservice.saverapoyo(this.docentesRoles).subscribe(date=>{
+                      Swal.fire({
+                      icon: 'success',
+                      title: 'Anexo',
+                      text: 'Persona creado correctamente',
+                      confirmButtonColor: "#0c3255"   
+                    }) },err=>{
+                      Swal.fire({
+                        icon: 'warning',
+                        title: 'Al paracer hubo un problema',
+                        text: err.error.message,
+                        confirmButtonColor: "#0c3255"   
+                      }) 
+                    })
+                  },err=>{
                     Swal.fire({
                       icon: 'warning',
                       title: 'Al paracer hubo un problema',
                       text: err.error.message,
                       confirmButtonColor: "#0c3255"   
                     }) 
+  
                   })
-                },err=>{
-                  Swal.fire({
-                    icon: 'warning',
-                    title: 'Al paracer hubo un problema',
-                    text: err.error.message,
-                    confirmButtonColor: "#0c3255"   
-                  }) 
-
-                })
-                resolve('')             
+                  resolve('')  
+                })             
               }
             })
           }

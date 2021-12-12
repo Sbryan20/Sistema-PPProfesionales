@@ -26,6 +26,10 @@ export class ResposablepppService {
     return this.http.get(this.urlEndPoint+"/all/responsable",{headers: this.httpHeaders}).pipe(map(Response => Response as ResponsablePPP[]))
   }
 
+  getResposable(codigoppp:String):Observable<Docentes>{
+    return this.http.get(this.urlEndPoint+"/responsable/"+codigoppp,{headers: this.httpHeaders}).pipe(map(Response => Response as Docentes))
+  }
+
   saverppp(responsableppp:ResponsablePPP):Observable<ResponsablePPP>{
     return this.http.post<ResponsablePPP>(this.urlEndPoint+"/save/responsable",responsableppp,{headers: this.httpHeaders})
   }

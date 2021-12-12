@@ -1,5 +1,5 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
@@ -33,7 +33,13 @@ function getBase64(file) {
   templateUrl: './anexo8.component.html',
   styleUrls: ['./anexo8.component.scss']
 })
-export class Anexo8Component implements OnInit {
+export class Anexo8Component implements OnInit,AfterViewInit {
+
+  
+  loader='assets/images/progress.gif'
+  issloading=true;
+
+
   public ista='assets/images/ISTA.png'
   public sum=0;
   public actualzar=false
@@ -68,12 +74,18 @@ export class Anexo8Component implements OnInit {
      
       this.anexo3Service.getanexo3(cedula).subscribe(datos=>{
         this.anexo3=datos.filter(d=>d.estado=="AN")
+        this.issloading=false; 
       })
       
     })
       //ArrayActividades
     this.addForm.get("items_value")?.setValue("yes");
     this.addForm.addControl('rows', this.rows);
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   //ArrayActividades

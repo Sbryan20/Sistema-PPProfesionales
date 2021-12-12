@@ -20,6 +20,8 @@ import Swal from 'sweetalert2';
 })
 export class Anexo12Component implements OnInit {
 
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   public ista='assets/images/ISTA.png'
   public fech;
@@ -59,8 +61,13 @@ export class Anexo12Component implements OnInit {
     })
     this.proyectoService.getProyectos().subscribe(data=>{
       this.proyectos=data;
+      this.issloading=false;  
     })
-
+}
+ngAfterViewInit(): void {
+  setTimeout(()=>{
+    
+  },1000)
 }
 
 onAddRow() {

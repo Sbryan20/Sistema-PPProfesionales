@@ -1,9 +1,11 @@
-<ng-container>
-    <div class="bss-loader">
-       <img  alt=""> 
-    </div>
-  </ng-container>
-  <div class="card border-primary mb-3">
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+  <div class="card border-primary mb-3" *ngIf="issloading==false">
     <div class="card-header">Proyectos Actuales</div>
     <div class="card-body text-primary">
         <div class="example-container mat-elevation-z8">
@@ -39,13 +41,18 @@
               <mat-cell *matCellDef="let element"> {{element.carrera}} </mat-cell>
             </ng-container>
             <!-- Symbol Column -->
+            <ng-container matColumnDef="nombredirector">
+              <mat-header-cell *matHeaderCellDef> Director de proyecto </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.nombredirector}} </mat-cell>
+            </ng-container>
+            <!-- Symbol Column -->
             <ng-container matColumnDef="fechaat">
               <mat-header-cell *matHeaderCellDef> Fecha </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.fechaat}} </mat-cell>
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="actividadeslistProyectos">
-              <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Actividades </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 <select class="btn btn-outline-ligth dropdown-toggle">
                     <option  matNativeControl class="" *ngFor="let carrera  of element.actividadeslistProyectos" disabled selected>{{carrera.descripcion}}</option>
@@ -54,13 +61,22 @@
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="requisitoslistProyectos">
-                <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Resquistos </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <select class="btn btn-outline-ligth dropdown-toggle">
                         <option  matNativeControl class="" *ngFor="let carrera  of element.requisitoslistProyectos" disabled selected>{{carrera.descripcion}}</option>
                       </select>
                 </mat-cell>
               </ng-container>
+               <!-- Symbol Column -->
+            <ng-container matColumnDef="docenteApoyoResponse">
+              <mat-header-cell *matHeaderCellDef> Apoyo </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                  <select class="btn btn-outline-ligth dropdown-toggle">
+                      <option  matNativeControl class="" *ngFor="let apoyo  of element.docenteApoyoResponse" disabled selected>{{apoyo.cedula}} {{apoyo.nombres}}</option>
+                    </select>
+              </mat-cell>
+            </ng-container>
           
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

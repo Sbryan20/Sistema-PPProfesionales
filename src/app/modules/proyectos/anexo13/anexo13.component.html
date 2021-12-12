@@ -1,4 +1,12 @@
-<form class="formulario" >
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario" >
     <table style="width:95%; height:100%;" class="table" >
     <tbody> 
   
@@ -13,12 +21,10 @@
                     <tr> 
                         <td colspan="1" scope="col" ><strong class="texto">DIRECTOR DEL PROYECTO: {{anexo1.nombreDelegado}}</strong>
                         </td>
-                        <td colspan="1" scope="col">
-                        </td>
-
-                        <td colspan="4" scope="col" ><strong class="texto">Representante Legal: {{edntidad.representante}}</strong>
-                          </td>
-
+                    </tr>
+                    <tr>
+                      <td colspan="4" scope="col" ><strong class="texto">Representante Legal: {{edntidad.representante}}</strong>
+                      </td>
                     </tr>
 
                     <tr> 
@@ -46,9 +52,9 @@
                 <tbody>
 
                   <tr>
-                    <td>
-                        <div [formGroup]="addForm1">
-                            <table>
+                    <td  tyle="width: 100%;">
+                        <div [formGroup]="addForm1"  tyle="width: 100%;">
+                            <table tyle="width: 100%;">
                                <td>
                                    <button mat-raised-button color="primary" (click)="onAddRow1()" *ngIf="addForm1.get('rows')">Agregar Estudiante</button>
                                </td>
@@ -57,27 +63,15 @@
                                    <tr *ngFor="let row of addForm1.get('rows')?.controls;let index = index;">
                                    
                                        <td colspan="1" scope="col "> <strong><center>CÉDULA</center></strong>
-                                           <div class="form-group"> 
-                                            <td>
-                                              <select class="form-control" [formControl]="row.get('cedula')">
+                                           <div class="form-group"  tyle="width: 100%;"> 
+                                            <td >
+                                              <select class="form-control" [formControl]="row.get('cedula')" style="width: 100%;">
                                                 <option value="SL">SELECCIONE</option>
-                                                <option  *ngFor="let item of anexo3" value="{{item.cedula}}">{{item.cedula}} {{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
+                                                <option  *ngFor="let item of anexo3" [Value]="item.cedula-item.nombresestudiante-item.apellidosestudiante">{{item.cedula}}-{{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
                                               </select>
                                             </td>
                                            </div> 
                                        </td>
-
-
-                                       <td colspan="" scope="col"> <strong><center>NOMBRE</center></strong>
-                                        <div class="form-group"> 
-                                          <td>
-                                            <select class="form-control" [formControl]="row.get('nombre')">
-                                              <option value="SL">SELECCIONE</option>
-                                              <option  *ngFor="let item of anexo3" value="{{item.nombresestudiante}} {{item.apellidosestudiante}}">{{item.cedula}} {{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
-                                            </select>
-                                          </td>
-                                        </div> 
-                                      </td>
                                       <td> <button mat-raised-button color="warn" (click)="onRemoveRow1(index)">ELIMINAR</button> </td>
                                 </tbody>
                             </table>
@@ -179,3 +173,5 @@
     </tbody>
   </table> 
   </form>
+
+</div>

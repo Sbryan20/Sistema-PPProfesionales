@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CarreraService } from '@data/services/api/carrera.service';
 import { CordinadorvinculacionService } from '@data/services/api/cordinadorvinculacion.service';
@@ -34,7 +34,11 @@ function getRandomInt(min, max) {
   templateUrl: './proyectocreate.component.html',
   styleUrls: ['./proyectocreate.component.scss']
 })
-export class ProyectocreateComponent implements OnInit {
+export class ProyectocreateComponent implements OnInit,AfterViewInit  {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public ista='assets/images/ISTA.png'
   public secretaria='assets/images/Secretaria.png'  
   listacvinculacion: CordinadorVinculacion[]=[];
@@ -66,8 +70,11 @@ export class ProyectocreateComponent implements OnInit {
       items_value: ['no', Validators.required]
     });
     this.rows = this.fb.array([]);
-
-
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   ngOnInit(): void {
@@ -78,14 +85,15 @@ export class ProyectocreateComponent implements OnInit {
     this.pesposablepppServiceprivate.getcarrera(this.cedula+"").subscribe(data=>{
       for(let carrera of data){
         this.carrera=carrera.codigo;
-}
-    })
-    this.pesposablepppServiceprivate.cargarresponsables().subscribe(cres=>{
-      this.resPPP=cres;
-      console.log(this.resPPP)
-    })
-    this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
-    this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data.filter(d=>d.codigo==this.carrera))
+        this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
+        this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data.filter(d=>d.codigo==carrera.codigo))
+        this.pesposablepppServiceprivate.cargarresponsables().subscribe(cres=>{
+          this.resPPP=cres.filter(d=>d.estado==true&&d.codigoCarrera==carrera.codigo)
+          console.log(this.resPPP)
+          this.issloading=false; 
+        })}
+    })   
+    
 
     //ArrayActividades
     this.addForm.get("items_value")?.setValue("yes");
@@ -143,7 +151,7 @@ export class ProyectocreateComponent implements OnInit {
     if(this.validacion()==false){
       this.proyectos.codigo="Proyecto "+getRandomArbitrary(0,1000000000000)
       this.proyectos.fechaat=this.fecha;
-      this.proyectos.objetivosEspecificoslistProyecto=this.rows.getRawValue();
+      this.proyectos.objetivosEspecificosProyecto=this.rows.getRawValue();
     console.log(this.proyectos)
     this.proyectoService.savePr(this.proyectos).subscribe(data=>{
       Swal.fire({

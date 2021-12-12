@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
@@ -29,7 +29,11 @@ function getBase64(file) {
   templateUrl: './socializacion.component.html',
   styleUrls: ['./socializacion.component.scss']
 })
-export class SocializacionComponent implements OnInit {
+export class SocializacionComponent implements OnInit,AfterViewInit{
+
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   public anexo7:Anexo7[]=[]
 
@@ -41,9 +45,15 @@ export class SocializacionComponent implements OnInit {
       this.anexo1Service.getbyCedula(cedula).subscribe(datos=>{
         this.anexo7Service.getanexo7(Number(datos[0].idProyectoPPP)).subscribe(data=>{
           this.anexo7=data;
+          this.issloading=false; 
         })
       })
     })
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   async update(anexo7:Anexo7){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo5Service } from '@data/services/api/anexo5.service';
@@ -33,7 +33,11 @@ function getBase64(file) {
   templateUrl: './anexo9.component.html',
   styleUrls: ['./anexo9.component.scss']
 })
-export class Anexo9Component implements OnInit {
+export class Anexo9Component implements OnInit,AfterViewInit{
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+  
   public anexo5:Anexo5[]=[];
   public ista='assets/images/ISTA.png'
   public proyectoselact:Proyectos = new Proyectos;
@@ -57,11 +61,17 @@ export class Anexo9Component implements OnInit {
       let cedula = params['cedula']
       this.anexo5Service.getanexo5bycedula(cedula).subscribe(data=>{
         this.anexo5=data;
+        this.issloading=false; 
       })
       
     }) 
     this.addForm.get("items_value")?.setValue("yes");
     this.addForm.addControl('rows', this.rows) 
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
 onAddRow() {

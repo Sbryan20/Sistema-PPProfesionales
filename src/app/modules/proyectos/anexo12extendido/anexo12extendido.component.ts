@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo12Service } from '@data/services/api/anexo12.service';
 import { Anexo12 } from '@shared/models/anexos/anexo12';
@@ -26,7 +26,10 @@ function getBase64(file) {
   templateUrl: './anexo12extendido.component.html',
   styleUrls: ['./anexo12extendido.component.scss']
 })
-export class Anexo12extendidoComponent implements OnInit {
+export class Anexo12extendidoComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
   
   public anexo12:Anexo12[]=[];
 
@@ -37,9 +40,15 @@ export class Anexo12extendidoComponent implements OnInit {
       let cedula = params['cedula']
       this.anexo12Service.getanexo12by(cedula).subscribe(date=>{
         this.anexo12=date;
+        this.issloading=false; 
       })
       
     }) 
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
   modificar(anexo12:Anexo12){
     this.update(anexo12)

@@ -1,4 +1,5 @@
 export class Docentes {
+    id?:Number;
     cedula?:              string;
     nombres_completo?:    string;
     titulo?:              string;

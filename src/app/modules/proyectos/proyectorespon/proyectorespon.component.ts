@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResposablepppService } from '@data/services/api/resposableppp.service';
@@ -16,10 +16,13 @@ import Swal from 'sweetalert2';
   templateUrl: './proyectorespon.component.html',
   styleUrls: ['./proyectorespon.component.scss'],
 })
-export class ProyectoresponComponent implements OnInit {
+export class ProyectoresponComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   Docs:Docentes[]=[];
-  resPPP:ResponsablePPP[]=[];
+  resPPP:Docentes= new Docentes;
   asignacion:AsignacionRol=new AsignacionRol();
   fecha?:String;
   rolDoc="2";
@@ -32,6 +35,12 @@ export class ProyectoresponComponent implements OnInit {
 
   constructor( private sysdateservice:SysdateService,private resposableppservice:ResposablepppService,private router:Router,private activatedRoute: ActivatedRoute) { }
 
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
+
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
@@ -39,12 +48,14 @@ export class ProyectoresponComponent implements OnInit {
     })
     this.listarres();
     
-  this.resposableppservice.cargarresponsables().subscribe(cres=>{
-    this.resPPP=cres;
-  })
+  
   this.resposableppservice.getcarrera(this.cedula+"").subscribe(data=>{
     for(let carrera of data){
       this.carrera=carrera.codigo;
+      this.resposableppservice.getResposable(carrera.codigo+'').subscribe(cres=>{
+        this.resPPP=cres
+        console.log(cres)
+      })
       console.log(this.carrera)}
   })
   
@@ -54,7 +65,8 @@ export class ProyectoresponComponent implements OnInit {
   listarres(){
     this.resposableppservice.cargardocente().subscribe(resp =>{
       this.Docs=resp
-      this.dataSourcedoc=new MatTableDataSource(this.Docs); 
+      this.dataSourcedoc=new MatTableDataSource(this.Docs);
+      this.issloading=false;  
     })
   }
   //Filtrar
@@ -108,8 +120,7 @@ export class ProyectoresponComponent implements OnInit {
               (`${cedula}`+', resivira un Carreo el que se le convocare que a sido asigando como Resposanble PPP'),
                 'success'
             )
-            this.router.navigate(['/panel/proyecto']);
-            this.listarres();              
+            window.location.reload();               
         },err=>{
           Swal.fire({
             icon: 'warning',
@@ -117,6 +128,7 @@ export class ProyectoresponComponent implements OnInit {
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
+          window.location.reload();  
         })
       } else if (
         /* Read more about handling dismissals below */
@@ -158,7 +170,7 @@ export class ProyectoresponComponent implements OnInit {
               (`${responsable.cedula}`+', ha sido retirado como Responsable e Practicas Pre Prefecionales'),
                 'success'
             )
-            this.listarres();              
+            window.location.reload();             
         },err=>{
           Swal.fire({
             icon: 'warning',
@@ -166,6 +178,7 @@ export class ProyectoresponComponent implements OnInit {
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
+          window.location.reload();  
         })
       } else if (
         /* Read more about handling dismissals below */

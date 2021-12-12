@@ -1,4 +1,12 @@
-<form class="formulario" >
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario" >
     <table style="width:100%; height:100%;" class="bss-table-borderless" class="table table-striped table-responsive-md btn-table">
         <thead class="thead-dark center-block">
           <tr class="active">
@@ -39,11 +47,11 @@
                   
                   </tr>
 
-                  <tr>
-                  <th colspan="4" scope="col"><strong>Fecha Planificación: </strong>
+                  <tr >
+                  <th colspan="5" scope="col"><strong>Fecha Planificación: </strong>
                     <input type="date" class="form-control" [(ngModel)]="this.anexo7.fechaPlanificacion" name="fechaPlanificacion">
                   </th> 
-                  <th colspan="4" scope="col"><strong>Mes/año Planificado: </strong>
+                  <th colspan="3" scope="col"><strong>Mes/año Planificado: </strong>
                     <input type="month" class="form-control" [(ngModel)]="this.anexo7.mesAnioPlanificado" name="mesAnioPlanificado">
                   </th>  
                   
@@ -58,12 +66,11 @@
                   </th>
                 </tr>
               <tr>
-                 <td colspan="2" scope="col">
+                
+                 <td colspan="2" scope="col" style="color: firebrick">
+                  <h1>DOCENTES PARTICIPANTES</h1>
                      <div [formGroup]="addForm">
                         <table>
-                            <td>
-                                <button mat-raised-button color="primary" (click)="onAddRow()" *ngIf="addForm.get('rows')">Agregar Docentes</button>
-                            </td>
                             <tbody>
                                 <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                                     <td colspan="" scope="col "> <strong>Resultados</strong>
@@ -76,64 +83,50 @@
                                   <td colspan="" scope="col">  
                                     <tr>
                                     <h5><strong><center>Actividad de los docentes participantes</center></strong></h5>
-                                      <div class="form-group"> 
-                                      <td>
-                                        <select class="form-control" [formControl]="row.get('actividad')">
-                                          <option value="SL">SELECCIONE</option>
-                                          <option  *ngFor="let item of proyecto.actividadeslistProyectos" [value]="item.descripcion">{{item.descripcion}}</option>
-                                        </select>
-                                      </td>
-                                      </div> 
+                                    <input type="text" class="form-control"  [formControl]="row.get('actividad')" disabled>
                                    </tr>
                                 </td>
-                                <td colspan="" scope="col"> <strong><center>Cédula del docente de apoyo</center></strong>
+                                <td colspan="" scope="col"> <strong><center>Docente de apoyo</center></strong>
                                   <div class="form-group"> 
                                   <td>
                                     <select class="form-control" [formControl]="row.get('cedulaDocente')">
                                       <option value="SL">SELECCIONE</option>
-                                      <option  *ngFor="let item of anexo1" [value]="item.cedulaDelegado">{{item.cedulaDelegado}} {{item.nombreDelegado}}</option>
+                                      <option  *ngFor="let item of anexo1" [ngvalue]="item.cedulaDelegado-item.nombreDelegado">{{item.cedulaDelegado}}-{{item.nombreDelegado}}</option>
                                     </select>
                                   </td>
                                   </div> 
-                              </td>
-                                  <td colspan="" scope="col"> <strong><center>Nombres docente de apoyo</center></strong>
-                                      <div class="form-group"> 
+                                <td colspan="" scope="col "> 
+                                  <tr>
+                                    <strong><center>Fecha Inicio</center></strong>
+                                    <div class="form-group"> 
+                                    <td>
+                                      <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaInicio')" >
+                                    </td>
+                                    </div> 
+                                    <div class="form-group"> 
+                                      <strong><center>Fecha Finalización</center></strong>
                                       <td>
-                                        <select class="form-control" [formControl]="row.get('nombreDocenteApoyo')">
-                                          <option value="SL">SELECCIONE</option>
-                                          <option  *ngFor="let item of anexo1" [value]="item.nombreDelegado">{{item.cedulaDelegado}} {{item.nombreDelegado}}</option>
-                                        </select>
+                                        <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaFin')" >
                                       </td>
                                       </div> 
-                                  </td>
-                                <td colspan="" scope="col "> <strong><center>Fecha Inicio</center></strong>
-                                  <div class="form-group"> 
-                                  <td>
-                                    <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaInicio')">
-                                  </td>
-                                  </div> 
+                                   </tr>
                                 </td>
-                                <td colspan="" scope="col "> <strong><center>Fecha Finalización</center></strong>
-                                  <div class="form-group"> 
-                                  <td>
-                                    <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaFin')">
-                                  </td>
-                                  </div> 
-                                </td>
-                                <td colspan="" scope="col "> <strong><center>Observaciones</center></strong>
-                                  <div class="form-group"> 
-                                  <td>
-                                  <input type="text" class="form-control"  [formControl]="row.get('observaciones')">
-                                  </td>
-                                  </div> 
-                              </td>
-                              <td colspan="" scope="col "> <strong><center>No. de Horas</center></strong>
+                                <td colspan="" scope="col "> 
+                                  <tr>
+                                    <strong><center>Observaciones</center></strong>
+                                    <div class="form-group"> 
+                                    <td>
+                                    <input type="text" class="form-control"  [formControl]="row.get('observaciones')">
+                                    </td>
+                                    </div> 
+                                    <strong><center>No. de Horas</center></strong>
                                 <div class="form-group"> 
                                 <td>
                                 <input type="number" class="form-control" [formControl]="row.get('numHoras')">
                                 </td>
                                 </div> 
-                              </td>
+                                </tr>   
+                              </td>           
                                 <td> <button mat-raised-button color="warn" (click)="onRemoveRow(index)">ELIMINAR</button> </td>
                             </tbody>
                          </table>
@@ -146,13 +139,10 @@
 
 
               <tr>
-                <td colspan="2" scope="col">
+                <td colspan="2" scope="col" style="color: darkblue;;">
+                  <h1>ALUMNOS PARTICIPANTES</h1>
                     <div [formGroup]="addForm1">
                        <table>
-                           <td>
-                              <!-- falta el *ngIf="addForm.get('rows')"-->
-                              <button mat-raised-button color="primary" (click)="onAddRow1()" >Agregar Estudiante</button>
-                           </td>
                            <tbody>
                                <tr *ngFor="let row of addForm1.get('rows1')?.controls;let index = index;">
                                    <td colspan="" scope="col "> <strong>Resultados</strong>
@@ -165,64 +155,50 @@
                                  <td colspan="" scope="col">  
                                    <tr>
                                    <h5><strong><center>Actividad de los estudiantes participantes</center></strong></h5>
-                                     <div class="form-group"> 
-                                     <td>
-                                      <select class="form-control" [formControl]="row.get('actividad')">
-                                        <option value="SL">SELECCIONE</option>
-                                        <option  *ngFor="let item of proyecto.actividadeslistProyectos" [value]="item.descripcion">{{item.descripcion}}</option>
-                                      </select>
-                                     </td>
-                                     </div> 
+                                   <input type="text" class="form-control"  [formControl]="row.get('actividad')" disabled>
                                   </tr>
                                </td>
-                               <td colspan="" scope="col"> <strong><center>Cédula Estudiante</center></strong>
+                               <td colspan="" scope="col"> <strong><center>Estudiante</center></strong>
                                 <div class="form-group"> 
                                 <td>
                                    <select class="form-control" [formControl]="row.get('cedulaEstudiante')">
                                      <option value="SL">SELECCIONE</option>
-                                     <option  *ngFor="let item of anexo3" value="{{item.cedula}}">{{item.cedula}} {{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
+                                     <option  *ngFor="let item of anexo3" [ngvalue]="item.cedula-item.nombresestudiante-item.apellidosestudiante">{{item.cedula}}-{{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
                                    </select>
                                   </td>
                                 </div> 
                             </td>
-                                 <td colspan="" scope="col"> <strong><center>Nombre Estudiante</center></strong>
-                                     <div class="form-group"> 
-                                     <td>
-                                        <select class="form-control" [formControl]="row.get('nombreEstudiante')">
-                                          <option value="SL">SELECCIONE</option>
-                                          <option  *ngFor="let item of anexo3" value="{{item.nombresestudiante}} {{item.apellidosestudiante}}">{{item.cedula}} {{item.nombresestudiante}} {{item.apellidosestudiante}}</option>
-                                        </select>
-                                       </td>
-                                     </div> 
-                                 </td>
-                               <td colspan="" scope="col "> <strong><center>Fecha Inicio</center></strong>
-                                 <div class="form-group"> 
-                                 <td>
-                                   <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaInicio')" >
-                                 </td>
-                                 </div> 
-                               </td>
-                               <td colspan="" scope="col "> <strong><center>Fecha Finalización</center></strong>
-                                 <div class="form-group"> 
-                                 <td>
-                                   <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaFin')" >
-                                 </td>
-                                 </div> 
-                               </td>
-                               <td colspan="" scope="col "> <strong><center>Observaciones</center></strong>
-                                 <div class="form-group"> 
-                                 <td>
-                                 <input type="text" class="form-control"  [formControl]="row.get('observaciones')">
-                                 </td>
-                                 </div> 
-                             </td>
-                             <td colspan="" scope="col "> <strong><center>No. de Horas</center></strong>
+                               <td colspan="" scope="col ">
+                                 <tr>
+                                  <strong><center>Fecha Inicio</center></strong>
+                                  <div class="form-group"> 
+                                  <td>
+                                    <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaInicio')" >
+                                  </td>
+                                  </div> 
+                                  <div class="form-group"> 
+                                    <strong><center>Fecha Finalización</center></strong>
+                                    <td>
+                                      <input type="date" id="start" name="trip-start" [formControl]="row.get('fechaFin')" >
+                                    </td>
+                                    </div> 
+                                 </tr>
+                               <td> 
+                                 <tr>
+                                  <strong><center>Observaciones</center></strong>
+                                  <div class="form-group"> 
+                                  <td>
+                                  <input type="text" class="form-control"  [formControl]="row.get('observaciones')">
+                                  </td>
+                                  </div> 
+                                  <strong><center>No. de Horas</center></strong>
                               <div class="form-group"> 
                               <td>
                               <input type="number" class="form-control" [formControl]="row.get('numHoras')">
                               </td>
                               </div> 
-                            </td>
+                              </tr>   
+                             </td>
                                <td> <button mat-raised-button color="warn" (click)="onRemoveRow1(index)">ELIMINAR</button> </td>
                            </tbody>
                         </table>
@@ -244,3 +220,5 @@
       </div>
  </form>
 
+
+</div>

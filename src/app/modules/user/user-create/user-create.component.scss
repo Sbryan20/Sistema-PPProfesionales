@@ -1,4 +1,16 @@
-.input-group{
+input{
+    border: none;
+    border-bottom: 2px solid rgb(3, 69, 168);
+    align-self: start;
+  
+  }
+
+.impnumber{
+    border: none;
+    border-bottom: 2px solid rgb(3, 69, 168);
+}
+
+  .input-group{
     margin-bottom: 20px;
 }
 
@@ -9,7 +21,7 @@
 }
 
 .btn.mod{
-    margin-left: 20px;
+    margin-block-end: 20px;
 }
 
 .bss{
@@ -24,22 +36,30 @@
       margin: 0 auto;
       /*Lo siguiente es para los bordes*/
       border-collapse: collapse;
-  }
-table,
-th,
-td {
-    border: 1px solid black;
-}
-
-.sinborde {
-    border: 0;
+      border-collapse: separate;
+      border-spacing: 10;
+      border: 3px solid rgb(189, 186, 186);
+      border-radius: 20px;
+      -moz-border-radius: 15px;
+      padding: 1px;
+      background-color: white;
   }
 
   .formulario{
-      margin-top: 60px;
+      margin-top: 20px;
+  } 
+  
+  .example-full-width {
+    width: 100%;
   }
-
-  input[type=text] {
-    border: none;
-    border-bottom: 2px solid red;
-  }
+  .centrado{
+    margin:10px auto;
+    display:block;
+}
+.texto{
+    font-size: 16px;
+}
+.texto2{
+    font-size: 16px;
+    color: rgb(3, 69, 168);
+}

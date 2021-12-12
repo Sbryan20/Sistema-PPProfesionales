@@ -1,4 +1,12 @@
-<form class="formulario"  >
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario"  >
     <table style="width:95%; height:100%;" class="table" >
     <tbody> 
           <tr>
@@ -251,3 +259,5 @@
   </table> 
  </form>
 
+
+</div>

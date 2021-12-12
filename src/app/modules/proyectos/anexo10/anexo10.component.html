@@ -1,4 +1,12 @@
-<form class="formulario"  >
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario"  >
     <table style="width:95%; height:100%;" class="table" >
     <tbody> 
 
@@ -187,21 +195,21 @@
                         <td>   
                             <strong>ACTIVIDADES GENERALES</strong>
                               <div class="form-group"> 
-                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ActividadesGenerales')">
+                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('actividadesGenerales')">
                               </div> 
                         </td>
                         
                         <td>    
                           <strong>ACTIVIDADES ESPECÍFICAS</strong>
                             <div class="form-group">
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('ActividadesEspecificas')">
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;"  [formControl]="row.get('actividadesEspecificas')">
                           </div> 
                         </td>
                                     
                         <td> 
                           <strong>  PRODUCTO GENERADO:</strong>
                             <div class="form-group"> 
-                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('ProductoGenerado')">               
+                               <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('productoGenerado')">               
                           </div> 
                         </td>
                         
@@ -246,3 +254,4 @@
     </tbody>
   </table> 
  </form>
+</div>

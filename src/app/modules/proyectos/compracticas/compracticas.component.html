@@ -1,12 +1,19 @@
-<form class="formulario" ngNativeValidate (ngSubmit)="generarAnexo()">
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario" ngNativeValidate (ngSubmit)="generarAnexo()">
     <table class="table" style="width:95%; height:100%;">
       <tr>
-        <th>
-          <h5>Creación de convocatoria</h5>
+        <th>Creación de convocatoria
         </th>
       </tr>
       <tr>
-        <th scope="row" style="width: 50%;">
+        <th scope="row" colspan="4">
           <strong>SELECCIONE UN PROYECTO: </strong>
           <select
             (change)="selectProyecto($event)"
@@ -18,32 +25,33 @@
             <option *ngFor="let item of listproyecto" [value]="item.id">
               {{ item.nombre }}
             </option>
-            <option></option>
           </select>
         </th>
       </tr>
       <tr>
-        <th>
+        <th colspan="4">
           <p>Carrera: {{proyecto.carrera}} </p>
         </th>
-        <th>
+      </tr>
+      <tr>
+        <th colspan="4">
           <p>Nombre del proyecto a participar: {{proyecto.nombre}}</p>
         </th>
       </tr>
       <tr>
-        <th>
+        <th colspan="4">
           <p>Entidad beneficiaria: {{nombreetidad}}</p> 
         </th>
       </tr>
       <tr>
-        <th>
-          <strong class="texto">Convoca a los estudiantes de los ciclos </strong><input type="text" class="impnumber" placeholder="EX:TERCERO Y CUARTO" required [(ngModel)]="anexo2.ciclo" name="ciclo">  
+        <th colspan="4">
+          <strong class="texto">Convoca a los estudiantes de los ciclos </strong><input type="text" class="form-control" placeholder="EX:TERCERO Y CUARTO" required [(ngModel)]="anexo2.ciclo" name="ciclo">  
         </th>
       </tr>  
       <tr>
-        <th>
+        <th colspan="4">
           <strong class="texto">Fecha máxima de recepción de solicitudes:</strong>
-          <input class="impnumber" type="date" [(ngModel)]="anexo2.fechaMaxRecepcion" name="fechaMaxRecepcion" required /> 
+          <input class="form-control" type="date" [(ngModel)]="anexo2.fechaMaxRecepcion" name="fechaMaxRecepcion" required /> 
         </th>
       </tr>
   
@@ -60,8 +68,8 @@
         </th>
         <th>
           <br>
-          <input type="date" class="impnumber" value='fecha' [(ngModel)]="fechae1" name="fechae1" required /> <br>
-          <input type="date" class="impnumber" [(ngModel)]="fechae2" name="fechae2" required>
+          <input type="date" class="form-control" value='fecha' [(ngModel)]="fechae1" name="fechae1" required /> <br>
+          <input type="date" class="form-control" [(ngModel)]="fechae2" name="fechae2" required>
         </th>
         <th>
           <strong>Descripción de actividad: Recepción de solicitudes </strong><br>
@@ -70,8 +78,8 @@
         </th>
         <th>
           <br>
-          <input type="date" class="impnumber" [(ngModel)]="fechar1" name="fechar1" required /> <br>
-          <input type="date"  class="impnumber" [(ngModel)]="fechar2" name="fechar2" required>
+          <input type="date" class="form-control" [(ngModel)]="fechar1" name="fechar1" required /> <br>
+          <input type="date"  class="form-control" [(ngModel)]="fechar2" name="fechar2" required>
         </th>
       </tr>
       <tr style="width: 50%">
@@ -82,8 +90,8 @@
         </th>
         <th>
           <br>
-          <input type="date" class="impnumber" [(ngModel)]="fechap1" name="fechap1" required /> <br>
-          <input type="date" class="impnumber" [(ngModel)]="fechap2" name="fechap2" required>
+          <input type="date" class="form-control" [(ngModel)]="fechap1" name="fechap1" required /> <br>
+          <input type="date" class="form-control" [(ngModel)]="fechap2" name="fechap2" required>
         </th>
         <th>
           <strong class="texto">Descripción de actividad: Notificación de resultados </strong><br>
@@ -92,13 +100,13 @@
         </th>
         <th> 
           <br>
-          <input type="date" class="impnumber" [(ngModel)]="fechan1" name="fechan1" required /> <br>
-          <input type="date"  class="impnumber" [(ngModel)]="fechan2" name="fechan2" required>
+          <input type="date" class="form-control" [(ngModel)]="fechan1" name="fechan1" required /> <br>
+          <input type="date"  class="form-control" [(ngModel)]="fechan2" name="fechan2" required>
         </th>
       </tr>       
       <tr>
-        <th>
-          <strong class="texto" >Email</strong><input  class="impnumber" [(ngModel)]="correo" name="correo" type="email">
+        <th colspan="5">
+          <strong class="texto" >Email</strong><input  class="form-control" [(ngModel)]="correo" name="correo" type="email">
         </th>
       </tr>
       <tr>
@@ -108,6 +116,8 @@
       </tr>     
     </table>
   </form>
+</div>
+
  
     
   

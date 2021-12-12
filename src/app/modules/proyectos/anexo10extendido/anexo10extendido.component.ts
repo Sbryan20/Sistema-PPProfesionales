@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo10Service } from '@data/services/api/anexo10.service';
 import { Anexo10 } from '@shared/models/anexos/anexo10';
@@ -26,7 +26,10 @@ function getBase64(file) {
   templateUrl: './anexo10extendido.component.html',
   styleUrls: ['./anexo10extendido.component.scss']
 })
-export class Anexo10extendidoComponent implements OnInit {
+export class Anexo10extendidoComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   constructor(private activatedRoute: ActivatedRoute,private anexo10Service:Anexo10Service) { }
 
@@ -37,9 +40,17 @@ export class Anexo10extendidoComponent implements OnInit {
       let cedula = params['cedula']
       this.anexo10Service.getAnexo10All().subscribe(data=>{
         this.anexo10=data.filter(d=>d.cedulaEstudiante==cedula)
+        this.issloading=false; 
       })
     }) 
   }
+
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
+
   modificar(anexo10:Anexo10){
 
     this.update(anexo10)  

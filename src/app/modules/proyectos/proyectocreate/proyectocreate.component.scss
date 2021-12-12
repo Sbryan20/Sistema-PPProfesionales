@@ -1,54 +1,65 @@
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid rgb(3, 69, 168);
+  align-self: start;
+
+}
+
+.impnumber{
+  border: none;
+  border-bottom: 2px solid rgb(3, 69, 168);
+}
+
 .input-group{
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .botones{
-    margin-bottom: 20px;
-    margin-top: 600px;
-    margin-right: 60px;
+  margin-bottom: 20px;
+  margin-top: 600px;
+  margin-right: 60px;
 }
 
 .btn.mod{
-    margin-left: 20px;
+  margin-block-end: 20px;
 }
 
 .bss{
-    &-borderless{
-    border-top-style: none;
-    border-left-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
+  &-borderless{
+  border-top-style: none;
+  border-left-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
 }}
-    table {
-      /* Para centrar usamos "auto" en la alineación horizontal */
-      margin: 0 auto;
-      /*Lo siguiente es para los bordes*/
-      border-collapse: collapse;
-  }
-table,
-th,
-td {
-    border: 1px solid black;
+  table {
+    /* Para centrar usamos "auto" en la alineación horizontal */
+    margin: 0 auto;
+    /*Lo siguiente es para los bordes*/
+    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 10;
+    border: 3px solid rgb(189, 186, 186);
+    border-radius: 20px;
+    -moz-border-radius: 15px;
+    padding: 1px;
+    background-color: white;
 }
 
-.sinborde {
-    border: 0;
-  }
+.formulario{
+    margin-top: 20px;
+} 
 
-  .formulario{
-      margin-top: 60px;
-  }
-
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-  input[type=text] {
-    border: none;
-    border-bottom: 2px solid red;
-  }
+.example-full-width {
+  width: 100%;
+}
+.centrado{
+  margin:10px auto;
+  display:block;
+}
+.texto{
+  font-size: 16px;
+}
+.texto2{
+  font-size: 16px;
+  color: rgb(3, 69, 168);
+}

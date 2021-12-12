@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,7 +29,10 @@ import Swal from 'sweetalert2';
   templateUrl: './anexo10.component.html',
   styleUrls: ['./anexo10.component.scss']
 })
-export class Anexo10Component implements OnInit {
+export class Anexo10Component implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
 public ista='assets/images/ISTA.png'
 public fech;
@@ -82,6 +85,12 @@ public anexo1response:Anexo1[]=[];
     });
     this.rows = this.fb.array([]);
   }
+  
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
 
     ngOnInit(): void { 
       this.activatedRoute.params.subscribe( params => {
@@ -92,6 +101,7 @@ public anexo1response:Anexo1[]=[];
       this.cedula=cedula; 
       this.anexo3Service.getanexo3(cedula).subscribe(datos=>{
         this.anexo3=datos.filter(d=>d.estado=="AN")
+        this.issloading=false; 
       })
     
     })

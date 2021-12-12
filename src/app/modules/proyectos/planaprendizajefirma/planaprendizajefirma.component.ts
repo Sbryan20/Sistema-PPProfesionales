@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo6Service } from '@data/services/api/anexo6.service';
 import { Anexo2 } from '@shared/models/anexos/anexo2';
@@ -20,7 +20,11 @@ function getBase64(file) {
   templateUrl: './planaprendizajefirma.component.html',
   styleUrls: ['./planaprendizajefirma.component.scss']
 })
-export class PlanaprendizajefirmaComponent implements OnInit {
+export class PlanaprendizajefirmaComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo6:Anexo6[]=[]
   file;
   constructor(private activatedRoute: ActivatedRoute,private anexo6Service:Anexo6Service) { }
@@ -30,8 +34,14 @@ export class PlanaprendizajefirmaComponent implements OnInit {
       let cedula = params['cedula']
       this.anexo6Service.getanexo6byvinculacion(cedula).subscribe(data=>{
         this.anexo6=data
+        this.issloading=false;  
       })
     })
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
   async update(anexo6:Anexo6){
     const { value: file } = await Swal.fire({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -13,7 +13,11 @@ import Swal from 'sweetalert2';
   templateUrl: './proyectoatvrqs.component.html',
   styleUrls: ['./proyectoatvrqs.component.scss']
 })
-export class ProyectoatvrqsComponent implements OnInit {
+export class ProyectoatvrqsComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public listproyecto:Proyectos[]=[];
   public materias:Materias[]=[]
   public proyectos:Proyectos= new Proyectos();
@@ -44,10 +48,17 @@ export class ProyectoatvrqsComponent implements OnInit {
     });
     this.rowsR = this.fbR.array([]);
   }
+  
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
 
   ngOnInit(): void {
     this.proyectoService.getProyectos().subscribe(data =>{
       this.listproyecto=data;
+      this.issloading=false;
     })
     //ArrayActividades
     this.addForm.get("items_value")?.setValue("yes");

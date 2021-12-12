@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Proyectos } from '@shared/models/proyecto';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PreinformeService } from '@data/services/api/preinforme.service';
@@ -34,7 +34,11 @@ function getBase64(file) {
   templateUrl: './preinformeseguimiento.component.html',
   styleUrls: ['./preinformeseguimiento.component.scss']
 })
-export class PreinformeseguimientoComponent implements OnInit {
+export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public proyecto:Proyectos=new Proyectos;
   public anexo1:Anexo1=new Anexo1;
   public anexo1response:Anexo1[]=[];
@@ -73,6 +77,7 @@ export class PreinformeseguimientoComponent implements OnInit {
            this.anexo3=datos3.filter(d=>d.estado=="AN")
 
            console.log(this.anexo3)
+           this.issloading=false; 
            datos3.filter(d=>d.estado=="AN").forEach(element => {
              this.onAddRow(element)
        
@@ -83,6 +88,11 @@ export class PreinformeseguimientoComponent implements OnInit {
    }) 
     this.sysdateService.getSysdate().subscribe(data => {
       this.fechaElaborado = data.fecha})
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
    onAddRow(anexo3:Anexo3) {

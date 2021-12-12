@@ -1,9 +1,15 @@
-<table class="table table-striped table-responsive-md btn-table">
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <table class="table table-striped table-responsive-md btn-table">
     <tr >
-      <th> <h5>ASIGNAR ACTIVIDADES Y REQUISITOS</h5></th>
+      <th> ASIGNAR ACTIVIDADES Y REQUISITOS</th>
     </tr>
-    
-    <br>
     <tr >
       <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select (change)="selectProyecto($event)" class="form-control"  style="width: 100%;" name="select">
         <option value="SL">Seleccione</option>
@@ -107,5 +113,7 @@
 <ng-container >
   <button mat-raised-button color="primary" (click)=" update()">GUARDAR</button>
 </ng-container>
+</div>
+
 
    

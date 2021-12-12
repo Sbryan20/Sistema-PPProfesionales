@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
@@ -47,7 +47,11 @@ function getBase64(file) {
   templateUrl: './anexo6.component.html',
   styleUrls: ['./anexo6.component.scss']
 })
-export class Anexo6Component implements OnInit {
+export class Anexo6Component implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public listproyecto:Anexo2[]=[];
   public listalm:Anexo3[]=[];
 anexoss2:Anexo2=new Anexo2();
@@ -126,6 +130,7 @@ public materias:Materias[]=[]
         this.anexo1Service.getbyCarrera(data.codigo).subscribe(dat=>{
           this.anexo1response=dat.filter(da=>da.nombreRol=="apoyo")
           console.log(this.anexo1response)
+          this.issloading=false; 
         })
       })
     })
@@ -136,6 +141,11 @@ public materias:Materias[]=[]
       //ArrayActividades
       this.addForm.get("items_value")?.setValue("yes");
       this.addForm.addControl('rows', this.rows);
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   //ArrayActividades

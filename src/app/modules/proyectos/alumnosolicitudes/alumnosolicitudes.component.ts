@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { Anexo3 } from '@shared/models/anexos/anexo3';
@@ -10,18 +10,26 @@ import Swal from 'sweetalert2';
   templateUrl: './alumnosolicitudes.component.html',
   styleUrls: ['./alumnosolicitudes.component.scss']
 })
-export class AlumnosolicitudesComponent implements OnInit {
+export class AlumnosolicitudesComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
   
   public anexo3:Anexo3[]=[];
   file;
   constructor(private activatedRoute: ActivatedRoute,private anexo3service:Anexo3Service) { }
-
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
       this.anexo3service.getanexo3(cedula).subscribe(data=>{
         this.anexo3=data;
         console.log(this.anexo3)
+        this.issloading=false; 
       })     
     })
   }

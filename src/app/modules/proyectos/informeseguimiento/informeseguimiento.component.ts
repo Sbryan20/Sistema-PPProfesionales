@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
@@ -37,7 +37,10 @@ function getBase64(file) {
   templateUrl: './informeseguimiento.component.html',
   styleUrls: ['./informeseguimiento.component.scss']
 })
-export class InformeseguimientoComponent implements OnInit {
+export class InformeseguimientoComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   public proyecto:Proyectos=new Proyectos;
   public anexo1:Anexo1=new Anexo1;
@@ -129,15 +132,23 @@ export class InformeseguimientoComponent implements OnInit {
               
             })
           })
+          
           this.anexo9Service.getAnexo9ById(datos.id).subscribe(daticos=>{
             daticos.actividadesAnexo9?.forEach(element => {
               this.onAddRow2(element)
             });
+            
           })
+          this.issloading=false; 
         })
       })
     })
 
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   //DOCENTESPARTICIPANTES

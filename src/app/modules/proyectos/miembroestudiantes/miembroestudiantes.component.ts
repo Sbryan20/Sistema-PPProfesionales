@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
@@ -16,6 +16,8 @@ import * as PizZip from 'pizzip';
 import { saveAs } from 'file-saver';
 import { Anexo5Service } from '@data/services/api/anexo5.service';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -36,13 +38,19 @@ function loadFile(url, callback) {
   templateUrl: './miembroestudiantes.component.html',
   styleUrls: ['./miembroestudiantes.component.scss']
 })
-export class MiembroestudiantesComponent implements OnInit {
+export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
     //ArrayAntividades
     addFormR: FormGroup;
     rowsR: FormArray;
     itemFormR?: FormGroup;
     private cedula;
+
+    myControl = new FormControl();
+    filteredOptions?: Observable<Anexo1[]>;
 
     siglas;
     anexo1response:Anexo1[]=[];
@@ -58,6 +66,11 @@ export class MiembroestudiantesComponent implements OnInit {
       });
       this.rowsR = this.fbR.array([]);
   }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
@@ -67,9 +80,27 @@ export class MiembroestudiantesComponent implements OnInit {
       this.filtrar('');
       
     })
+    this.resposablepppService.getResponsableId(this.cedula).subscribe(data=>{
+      console.log(data.codigo)
+      this.anexo1service.getbyCarrera(data.codigo).subscribe(dat=>{
+        this.anexo1response=dat.filter(d=>d.nombreRol=="apoyo")
+        console.log(this.anexo1response)
+        this.filteredOptions = this.myControl.valueChanges.pipe(
+          startWith(''),
+          map(values=>this.filter(values)),
+        );
+        this.issloading=false;
+      })
+    })
     //Array de alumnos
     this.addFormR.get("items_valueR")?.setValue("yes");
     this.addFormR.addControl('rowsR', this.rowsR);
+  }
+
+  filter(value: any): Anexo1[] {
+    const filterValue = value.toLowerCase();
+    console.log(this.anexo1response)
+    return this.anexo1response.filter(option => option.cedulaCoordinador?.toLowerCase().includes(filterValue)||option.nombreCarrera?.toLocaleLowerCase().includes(filterValue)||option.nombreProyecto?.toLocaleLowerCase().includes(filterValue)||option.nombreDelegado?.toLocaleLowerCase().includes(filterValue));
   }
   //Array de alumnos
   onAddRowR(anexo3:Anexo3) {
@@ -89,13 +120,7 @@ export class MiembroestudiantesComponent implements OnInit {
 
   filtrar(anguja:String){
     console.log(anguja)
-    this.resposablepppService.getResponsableId(this.cedula).subscribe(data=>{
-      console.log(data.codigo)
-      this.anexo1service.getbyCarrera(data.codigo).subscribe(dat=>{
-        this.anexo1response=dat.filter(da=>da.nombreRol=="apoyo"&&da.nombreProyecto?.includes(anguja+''))
-        console.log(this.anexo1response)
-      })
-    })
+    
   }
 
   public anexo5resposae:Anexo5 = new Anexo5;
@@ -188,6 +213,7 @@ export class MiembroestudiantesComponent implements OnInit {
         this.anexo1=data[0]
         this.anexo3service.getanexo3by(data[0].idProyectoPPP).subscribe(d=>{
           this.dataSource=new MatTableDataSource(d.filter(datas=>datas.estado=="AN")); 
+          this.issloading=false;
         })
       })   
     }

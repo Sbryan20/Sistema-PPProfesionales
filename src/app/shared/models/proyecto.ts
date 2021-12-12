@@ -17,14 +17,15 @@ export class Proyectos {
     programaVinculacion?:String;
     actividadeslistProyectos?: actividadeslistProyectos[];
     requisitoslistProyectos?:  requisitoslistProyectos[];
-    objetivosEspecificoslistProyecto?:ObjetivosEspeciicoslistProyecto[]
+    objetivosEspecificosProyecto?:ObjetivosEspeciicoslistProyecto[]
     plazoEjecucion?:String;
     fechaInicio?:Date;
     fechaFin?:Date;
+    docenteApoyoResponse?:DocenteApoyoResponse[];
 }
 
-interface actividadeslistProyectos {
-    descripcion: string;
+export class actividadeslistProyectos {
+    descripcion?: string;
 }
 
  interface requisitoslistProyectos {
@@ -32,6 +33,11 @@ interface actividadeslistProyectos {
 }
 export class ObjetivosEspeciicoslistProyecto{
     descripcion?: String;
+}
+export class DocenteApoyoResponse{
+    cedula?:String;
+    nombres?:String;
+    correo?:String;
 }
 
 export class listproyect{

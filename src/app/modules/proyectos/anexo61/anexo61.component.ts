@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
@@ -28,7 +28,11 @@ function getBase64(file) {
   templateUrl: './anexo61.component.html',
   styleUrls: ['./anexo61.component.scss']
 })
-export class Anexo61Component implements OnInit {
+export class Anexo61Component implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo6:Anexo6[]=[]
   public anexo6es:Anexo6 = new Anexo6;
    //ArrayAntividades
@@ -52,11 +56,19 @@ export class Anexo61Component implements OnInit {
       let nombre = params['nombrescompletos']
       console.log(cedula)
     })
-    this.anexo6Service.getanexo6all().subscribe(data=>this.anexo6=data)
+    this.anexo6Service.getanexo6all().subscribe(data=>{
+      this.anexo6=data
+      this.issloading=false; 
+    })
 
     //ArrayActividades
     this.addForm.get("items_value")?.setValue("yes");
     this.addForm.addControl('rows', this.rows);
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   //ArrayActividades

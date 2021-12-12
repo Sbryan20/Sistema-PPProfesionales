@@ -6,7 +6,7 @@ export class Anexo7{
     mesAnioPlanificado?:String;
     idProyecto?:Number;
     horasDocentes?:HorasEstudiantesA7Request[];
-    horasEstudiantes?:HorasEstudiantesA7Request[];
+    horasEstudiantes?:HorasDocentesA7Request[];
 }
 
 export class HorasDocentesA7Request{

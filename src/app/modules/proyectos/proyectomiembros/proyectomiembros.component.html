@@ -1,98 +1,114 @@
-<table class="table table-striped table-responsive-md btn-table">
-  <tr >
-    <th> <h5>ASIGNACION DE DIRECTOR Y DOCENTES DE APOYO</h5></th>
-    <th>
-      <button  mat-raised-button  (click)="directores()"  color="primary" style="position: absolute;">GUARDAR</button>
-  </th>
-  </tr>
-
-  <br>
-  <tr >
-    <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select  (change)="selectProyecto($event)" class="form-control"  style="width: 100%;" name="select">
-      <option value="SL">Seleccione</option>
-      <option *ngFor="let item of listproyecto" [value]="item.id">{{item.id}}- -{{item.nombre}}- -{{item.carrera}}</option>
-      <option></option>
-    </select> </th>
-    <td colspan="2"> <strong>SELECCIONE UN DIRECTOR DE PROYECTO</strong> <select (change)="selectDirectorProyecto($event)" class="form-control" style="width: 100%;" name="select">
-      <option value="SL">Seleccione</option>
-      <option *ngFor="let item of Docs" [value]="item.cedula">{{item.cedula}}- -{{item.nombres_completo}}- -{{item.titulo}}</option>
-    </select> </td>
-</tr>
-</table>
-<ng-container>
-    <div class="bss-loader">
-       <img  alt=""> 
-    </div>
-  </ng-container>
-  <div class="card border-primary mb-3">
-    <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES DE APOYO </div>
-    <div class="card-body text-primary" *ngIf="habilitar == true">
-        <div class="example-container mat-elevation-z8">
-          <div class="example-header">
-            <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILRAR">
-            </mat-form-field>
-          </div>
-        
-          <mat-table #table [dataSource]="dataSourcedoc" >
-        
-            <!-- Position Column -->
-            <ng-container matColumnDef="cedula">
-              <mat-header-cell *matHeaderCellDef> Cédula. </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
-            </ng-container>
-        
-            <!-- Name Column -->
-            <ng-container matColumnDef="nombres_completo">
-              <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.nombres_completo}} </mat-cell>
-            </ng-container>
-        
-            <!-- Weight Column -->
-            <ng-container matColumnDef="titulo">
-              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
-            </ng-container>
-        
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="docente_tipo_tiempo">
-              <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.docente_tipo_tiempo}} </mat-cell>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="materias">
-              <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                <select class="btn btn-outline-ligth dropdown-toggle" >
-                  <option matNativeControl class="" *ngFor="let materia of element.materias" disabled selected>{{materia.nombre}}</option>
-                </select>
-              </mat-cell>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="carreas">
-              <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
-              <mat-cell *matCellDef="let element"> 
-                <select class="btn btn-outline-ligth dropdown-toggle">
-                  <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>
-                </select>
-              </mat-cell>
-            </ng-container>
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="boton">
-              <mat-header-cell *matHeaderCellDef> ASIGNAR </mat-header-cell>
-              <mat-cell *matCellDef="let element">
-                <div class="col-sm-6">
-                  <button  mat-raised-button color="primary" (click)="guardar(element,'apoyo')">ASIGNAR</button>
-              </div> </mat-cell>
-            </ng-container>
-            
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-          </mat-table>
-        </div>
-  
-    </div>
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt="" style="size: 50pt;"> 
+   </center>
   </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <table class="table table-striped table-responsive-md btn-table">
+    <tr >
+      <th> <strong> ASIGNACION DE DIRECTOR Y DOCENTES DE APOYO</strong></th>
+    </tr>
+    <tr >
+      <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select  (change)="selectProyecto($event)" class="form-control"  style="width: 100%;" name="select">
+        <option value="SL">Seleccione</option>
+        <option *ngFor="let item of listproyecto" [value]="item.id">{{item.id}}- -{{item.nombre}}- -{{item.carrera}}</option>
+      </select> </th>   
+  </tr>
+  <tr>
+    <td>
+      <strong>SELECCIONE UN DIRECTOR DE PROYECTO</strong> 
+      <mat-form-field>
+        <input matInput [formControl]="myControl" placeholder="FILTRAR">
+      </mat-form-field>
+      <select (change)="selectDirectorProyecto($event)" class="form-control" style="width: 100%;" name="select">
+        <option  value="SL">SELECCIONE</option>
+        <option *ngFor="let item of filteredOptions  | async" [value]="item.cedula">{{item.cedula}}- -{{item.nombres_completo}}- -{{item.titulo}}</option>
+      </select> 
+      <br>
+      <button  mat-raised-button  (click)="directores()"  color="primary" style="position: absolute;">ASIGNAR DIRECTOR</button>
+    </td> 
+  </tr>
+  <br>
+  <hr>
+  </table>
+  <ng-container>
+      <div class="bss-loader">
+         <img  alt=""> 
+      </div>
+    </ng-container>
+    <div class="card border-primary mb-3">
+      <div class="card-header" style="cursor: pointer" (click)="setHabilitar()" >ASIGNAR DOCENTES DE APOYO </div>
+      <div class="card-body text-primary">
+          <div class="example-container mat-elevation-z8">
+            <div class="example-header">
+              <mat-form-field>
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILRAR">
+              </mat-form-field>
+            </div>
+          
+            <mat-table #table [dataSource]="dataSourcedoc" >
+          
+              <!-- Position Column -->
+              <ng-container matColumnDef="cedula">
+                <mat-header-cell *matHeaderCellDef> Cédula. </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
+              </ng-container>
+          
+              <!-- Name Column -->
+              <ng-container matColumnDef="nombres_completo">
+                <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.nombres_completo}} </mat-cell>
+              </ng-container>
+          
+              <!-- Weight Column -->
+              <ng-container matColumnDef="titulo">
+                <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+              </ng-container>
+          
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="docente_tipo_tiempo">
+                <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.docente_tipo_tiempo}} </mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="materias">
+                <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <select class="btn btn-outline-ligth dropdown-toggle" >
+                    <option matNativeControl class="" *ngFor="let materia of element.materias" disabled selected>{{materia.nombre}}</option>
+                  </select>
+                </mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="carreas">
+                <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                  <select class="btn btn-outline-ligth dropdown-toggle">
+                    <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>
+                  </select>
+                </mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="boton">
+                <mat-header-cell *matHeaderCellDef> ASIGNAR </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                  <div class="col-sm-6">
+                    <button  mat-raised-button color="primary" (click)="guardar(element,'apoyo')">ASIGNAR</button>
+                </div> </mat-cell>
+              </ng-container>
+              
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          </div>
+    
+      </div>
+    </div>
+</div>
+
 
  
 

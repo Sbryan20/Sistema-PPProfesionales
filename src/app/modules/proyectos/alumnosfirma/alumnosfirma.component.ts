@@ -21,9 +21,18 @@ function getBase64(file) {
   styleUrls: ['./alumnosfirma.component.scss']
 })
 export class AlumnosfirmaComponent implements OnInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo4:Anexo4[]=[];
   file;
   constructor(private activatedRoute: ActivatedRoute,private anexo4Service:Anexo4Service,private sysdateService:SysdateService) { }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
@@ -31,6 +40,7 @@ export class AlumnosfirmaComponent implements OnInit {
       console.log(cedula)
       this.anexo4Service.getanexo4bycedula(cedula).subscribe(data=>{
         this.anexo4=data;
+        this.issloading=false;  
       })
     })
   }

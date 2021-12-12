@@ -12,7 +12,8 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./cordinadorvinculacion.component.scss']
 })
 export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
-  loader='assets/images/loader.gif'
+  
+  loader='assets/images/progress.gif'
   issloading=true;
  //Filtrar
  public displayedColumns = ['cedula', 'nombres', 'apellidos', 'titulo','carga','estado','boton'];
@@ -28,7 +29,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
   constructor(private cvservice:CordinadorvinculacionService,private router:Router) { }
   ngAfterViewInit(): void {
     setTimeout(()=>{
-    this.issloading=false;
+    
     },1000)
   }
 
@@ -39,7 +40,8 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
     this.cvservice.getCvinculacion().subscribe(data=>{
       console.log(data)
       this.listacvinculacion=data
-      this.dataSource=new MatTableDataSource(this.listacvinculacion); 
+      this.dataSource=new MatTableDataSource(this.listacvinculacion);
+      this.issloading=false; 
     }) 
   }
 
@@ -91,10 +93,8 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
           'error'
         )
       }
-    })
-    
+    })    
   }
-
 
   guardarcv(docente:CordinadorVinculacion):void{
     const swalWithBootstrapButtons = Swal.mixin({
@@ -105,7 +105,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Covocatoaria',
+      title: 'Convocatoria',
       text: "Convocar a: "+`${docente.nombres}`,
       icon: 'question',
       showCancelButton: true,
@@ -138,7 +138,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
           data=>{
             swalWithBootstrapButtons.fire(
               'Convocado!',
-              (`${docente.nombres}`+', obtendra un Correo en el cual se cominicará que le ha sido combocado como Cordindar de Inculacion'),
+              (`${docente.nombres}`+', obtendra un Correo en el cual se le comunicará que ha sido convocado como Cordinador de Vinculación'),
               'success'
             )  
         },err=>{
@@ -160,12 +160,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
           'error'
         )
       }
-    })
-
-
-    
-    
+    }) 
   }
-
 }
 

@@ -1,21 +1,29 @@
-<table class="table table-striped table-responsive-md btn-table">
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt=""> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <table class="table table-striped table-responsive-md btn-table">
     <tr >
-      <th> <h5>ASIGNAR ESTUDIANTES A DOCENTE DE APOYO</h5></th>
+      <th> ASIGNAR ESTUDIANTES A DOCENTE DE APOYO</th>
     </tr>
-    
-    <br>
-    <tr >
-      <th>
-        <mat-form-field>
-          <input matInput  (keyup)="filtrar($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-      </th>
-      <th scope="row"> <strong>SELECCIONE UN DOCENTE DE APOYO: </strong><select (change)="selectAlumnos($event)"  class="form-control"  style="width: 100%;" name="select">
-        <option value="SL">Seleccione</option>
-        <option *ngFor="let item of anexo1response" [value]="item.cedulaDelegado">PROYECTO: {{item.nombreProyecto}}    DOCENTE DE PROYECTO:{{item.nombreDelegado}}   {{item.carrera}}</option>
-        <option></option>
-      </select>
+  <tr>
+    <td>
+      <strong>SELECCIONE UN DOCENTE DE APOYO: </strong> 
+      <mat-form-field>
+        <input matInput [formControl]="myControl" placeholder="FILTRAR">
+      </mat-form-field>
+      <select (change)="selectAlumnos($event)" class="form-control" style="width: 100%;" name="select">
+        <option value="SL">SELECCION</option>
+        <option *ngFor="let item of filteredOptions  | async" [value]="item.cedulaDelegado">  DOCENTE DE PROYECTO:{{item.nombreDelegado}}  PROYECTO: {{item.nombreProyecto}}    {{item.carrera}}</option>
+      </select> 
+    </td> 
   </tr>
+  <br>
+  <hr>
 </table>
 <div class="card border-primary mb-3">
   <div class="card-header">ALUMNOS</div>
@@ -94,3 +102,5 @@
    <ng-container >
     <button mat-raised-button color="primary" (click)="guardar()" >GUARDAR</button>
   </ng-container>
+</div>
+

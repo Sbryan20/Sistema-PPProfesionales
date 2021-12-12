@@ -11,7 +11,7 @@ import { Proyectos } from '@shared/models/proyecto';
 import { Anexo2 } from '@shared/models/anexos/anexo2';
 import { Anexo2Service } from '@data/services/api/anexo2.service';
 import { Anexo1 } from '@shared/models/anexos/anexo1';
-import { Anexo13 } from '@shared/models/anexos/anexo13';
+import { Anexo13, EstudiantesVisitaRequest } from '@shared/models/anexos/anexo13';
 import { saveAs } from 'file-saver';
 import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
@@ -29,6 +29,9 @@ function loadFile(url, callback) {
   styleUrls: ['./anexo13.component.scss']
 })
 export class Anexo13Component implements OnInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   public anexo3:Anexo3[]=[];
   public anexo1:Anexo1=new Anexo1;
@@ -75,7 +78,7 @@ export class Anexo13Component implements OnInit {
           this.anexo8Service.getEntidadById(data.entidadbeneficiaria).subscribe(da=>{
             this.edntidad=da;
           })
-          
+          this.issloading=false; 
         })
       })
     })
@@ -88,7 +91,11 @@ export class Anexo13Component implements OnInit {
     this.addForm1.get("items_value")?.setValue("yes");
     this.addForm1.addControl('rows', this.rows1);
   }
-
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
   //ArrayActividades
   onAddRow() {
     this.rows.push(this.createItemFormGroup());
@@ -123,6 +130,24 @@ export class Anexo13Component implements OnInit {
       nombre:null
     });
   }
+  estudiantesVisitaRequest:EstudiantesVisitaRequest[]=[];
+  obtnereEstudiante():EstudiantesVisitaRequest[]{
+    this.estudiantesVisitaRequest.length=0;
+    this.rows1.getRawValue().forEach(element => {
+      console.log(element)
+      if(element.cedula==null){
+      }else{
+        let estudiente:String[]=element.cedula.split("-")
+        this.estudiantesVisitaRequest.push({
+          cedula:estudiente[0],
+          nombre:estudiente[1]
+        })
+      }
+    });
+
+    return this.estudiantesVisitaRequest;
+
+  }
 
   anexo13:Anexo13= new Anexo13;
   obtnenardatos():Anexo13{
@@ -132,7 +157,7 @@ export class Anexo13Component implements OnInit {
     this.anexo13.ciclo=this.anexo2.ciclo;
     this.anexo13.proyectoId=this.proyecto.id;
     this.anexo13.representanteLegal=this.edntidad.representante;
-    this.anexo13.estudiantesVisitas=this.rows1.getRawValue()
+    this.anexo13.estudiantesVisitas=this.obtnereEstudiante();
     this.anexo13.informes=this.rows.getRawValue()
     return this.anexo13;
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo61Service } from '@data/services/api/anexo6-1.service';
 import { SysdateService } from '@data/services/api/sysdate.service';
@@ -20,7 +20,11 @@ function getBase64(file) {
   templateUrl: './segumientoparcialfirma.component.html',
   styleUrls: ['./segumientoparcialfirma.component.scss']
 })
-export class SegumientoparcialfirmaComponent implements OnInit {
+export class SegumientoparcialfirmaComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo61:Anexo6_1[]=[]
   file;
   constructor(private activatedRoute: ActivatedRoute,private anexo61Service:Anexo61Service,private sysdateService:SysdateService) { }
@@ -31,8 +35,14 @@ export class SegumientoparcialfirmaComponent implements OnInit {
       this.anexo61Service.getanexo6bycedula(cedula).subscribe(data=>{
         this.anexo61=data;
         console.log(this.anexo61)
+        this.issloading=false; 
       })
     })
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
   async update(anexo61:Anexo6_1){
     const { value: file } = await Swal.fire({

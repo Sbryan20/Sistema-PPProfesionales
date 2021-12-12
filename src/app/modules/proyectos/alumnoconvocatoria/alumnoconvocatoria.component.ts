@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo2Service } from '@data/services/api/anexo2.service';
 import { MateriasService } from '@data/services/api/materias.service';
@@ -36,7 +36,12 @@ function getBase64(file) {
   styleUrls: ['./alumnoconvocatoria.component.scss']
 })
 
-export class AlumnoconvocatoriaComponent implements OnInit {
+export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
+
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo2:Anexo2[]=[]
   public anexo2M:Anexo2=new Anexo2()
   public carrera?:string;
@@ -49,7 +54,11 @@ export class AlumnoconvocatoriaComponent implements OnInit {
   cedula;
 
   constructor(private anexo3service:Anexo3Service,private materiasService:MateriasService,private activatedRoute: ActivatedRoute,private sysdateService:SysdateService,private anexo2services:Anexo2Service,private loginServiceService:LoginServiceService) { }
-
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
@@ -67,11 +76,13 @@ export class AlumnoconvocatoriaComponent implements OnInit {
       this.anexo3service.getdatosalumno(cedula).subscribe(data=>{
         this.datosalumno=data;
         console.log(this.datosalumno)
+        this.issloading=false;
       })
       
     })
     this.anexo2services.getAnexo2().subscribe(data=>{
       this.anexo2=data;
+      this.issloading=false;
     })
 
   }

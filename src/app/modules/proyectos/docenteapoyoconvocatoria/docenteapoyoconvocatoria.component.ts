@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
 import { Anexo1 } from '@shared/models/anexos/anexo1';
@@ -19,7 +19,11 @@ function getBase64(file) {
   templateUrl: './docenteapoyoconvocatoria.component.html',
   styleUrls: ['./docenteapoyoconvocatoria.component.scss']
 })
-export class DocenteapoyoconvocatoriaComponent implements OnInit {
+export class DocenteapoyoconvocatoriaComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+  
   file;
   public anexo1:Anexo1[]=[];
 
@@ -31,8 +35,14 @@ export class DocenteapoyoconvocatoriaComponent implements OnInit {
       console.log(cedula)
       this.anexo1Service.getbyCedula(cedula).subscribe(data=>{
         this.anexo1=data;
+        this.issloading=false; 
       })
     })
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   async update(anexo1:Anexo1){

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
@@ -33,7 +33,11 @@ function getBase64(file) {
   templateUrl: './anexo13extendido.component.html',
   styleUrls: ['./anexo13extendido.component.scss']
 })
-export class Anexo13extendidoComponent implements OnInit {
+export class Anexo13extendidoComponent implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   anexo13:Anexo13[]=[]
 
   constructor(private anexo13Service:Anexo13Service,private anexo2Service:Anexo2Service,private anexo8Service:Anexo8Service,private anexo1Service:Anexo1Service, private proyectoService:ProyectoService,private anexo3Service:Anexo3Service,private activatedRoute: ActivatedRoute,private fb: FormBuilder) { }
@@ -44,9 +48,15 @@ export class Anexo13extendidoComponent implements OnInit {
       this.anexo1Service.getbyCedula(cedula).subscribe(datos=>{ 
         this.anexo13Service.getanexo12by(Number(datos[0].idProyectoPPP)).subscribe(da=>{
           this.anexo13=da;
+          this.issloading=false;  
         })
       })
     })
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
   modificar(anexo13:Anexo13){

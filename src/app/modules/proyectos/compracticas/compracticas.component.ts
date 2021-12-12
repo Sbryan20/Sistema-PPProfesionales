@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Proyectos, listproyect} from '../../../shared/models/proyecto';
 import { ProyectoService } from '../../../data/services/api/proyecto.service';
@@ -49,9 +49,10 @@ function abase64(archivo):String{
   templateUrl: './compracticas.component.html',
   styleUrls: ['./compracticas.component.scss']
 })
-export class CompracticasComponent implements OnInit {
+export class CompracticasComponent implements OnInit,AfterViewInit {
 
-
+  loader='assets/images/progress.gif'
+  issloading=true;
 
   listproyecto: Proyectos[] = [];
   public actividadesanexo:Actividadesanexo[]=[]
@@ -95,6 +96,7 @@ export class CompracticasComponent implements OnInit {
       let nombre = params['nombre']
         this.proyectoService.getProyectos().subscribe(datas => {
           this.listproyecto = datas.filter(d=>d.nombreresponsable==nombre)
+          this.issloading=false; 
         })
  
     })
@@ -104,6 +106,11 @@ export class CompracticasComponent implements OnInit {
       this.fecha=data.fecha
     })
 
+  }
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
   }
 
 
@@ -174,7 +181,7 @@ export class CompracticasComponent implements OnInit {
 
     const anio = this.sysdate.fecha + "";
     const split = anio.split('-');
-
+    this.issloading=true; 
     
 
     Swal.fire({
@@ -213,7 +220,8 @@ export class CompracticasComponent implements OnInit {
                       text: 'Exitoso',
                       confirmButtonColor: "#0c3255"
                     })
-                    this.router.navigate(['/panel/proyecto/ver_solicidudes']);
+                    this.issloading=false; 
+                    window.location.reload();  
                   }, err => {
                     Swal.fire({
                       icon: 'warning',
@@ -221,7 +229,8 @@ export class CompracticasComponent implements OnInit {
                       text: err.error.message,
                       confirmButtonColor: "#0c3255"
                     })
-  
+                    this.issloading=false; 
+                    window.location.reload();  
                   })
                   resolve('')
                 })   

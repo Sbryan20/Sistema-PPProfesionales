@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo6 } from '@shared/models/anexos/anexo6';
@@ -6,14 +6,14 @@ import { Anexo6Service } from '@data/services/api/anexo6.service';
 import { Anexo6_1 } from '@shared/models/anexos/anexo6_1';
 import Docxtemplater from 'docxtemplater';
 import Swal from 'sweetalert2';
-import { Proyectos } from '@shared/models/proyecto';
+import { actividadeslistProyectos, Proyectos } from '@shared/models/proyecto';
 import { ProyectoService } from '@data/services/api/proyecto.service';
 import { Anexo1Service } from '@data/services/api/anexo1.service';
 import { ResposablepppService } from '@data/services/api/resposableppp.service';
 import { ResponsablePPP } from '@shared/models/responsableppp';
 import { Anexo8Service } from '@data/services/api/anexo8.service';
 import { Ientity } from '@shared/models/entidad';
-import { Anexo7 } from '@shared/models/anexos/anexo7';
+import { Anexo7, HorasDocentesA7Request, HorasEstudiantesA7Request } from '@shared/models/anexos/anexo7';
 import { saveAs } from 'file-saver';
 import PizZipUtils from 'pizzip/utils/index.js';
 import * as PizZip from 'pizzip';
@@ -21,6 +21,7 @@ import { Anexo7Service } from '@data/services/api/anexo7.service';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { Anexo3 } from '@shared/models/anexos/anexo3';
 import { Anexo1 } from '@shared/models/anexos/anexo1';
+
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -30,7 +31,11 @@ function loadFile(url, callback) {
   templateUrl: './anexo7.component.html',
   styleUrls: ['./anexo7.component.scss']
 })
-export class Anexo7Component implements OnInit {
+export class Anexo7Component implements OnInit,AfterViewInit {
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo6:Anexo6[]=[]
   public anexo6es:Anexo6 = new Anexo6;
   public edntidad:Ientity=new Ientity;
@@ -75,6 +80,10 @@ export class Anexo7Component implements OnInit {
       this.anexo1Service.getbyCedula(cedula).subscribe(datos=>{
         this.proyectoService.getProtectid(Number(datos[0].idProyectoPPP)).subscribe(data=>{
           this.proyecto=data;
+          data.actividadeslistProyectos?.forEach(element => {
+            this.onAddRow1(element.descripcion+'');
+            this.onAddRow(element.descripcion+'');
+          });  
           this.anexo3Service.getanexo3by(data.id).subscribe(dates=>{
             this.anexo3=dates
           })
@@ -86,8 +95,10 @@ export class Anexo7Component implements OnInit {
           })
           console.log(this.proyecto)
         })
+        this.issloading=false; 
       })
     })
+    
     this.anexo6Service.getanexo6all().subscribe(data=>this.anexo6=data)
     //ArrayActividades
     this.addForm.get("items_value")?.setValue("yes");
@@ -97,19 +108,25 @@ export class Anexo7Component implements OnInit {
     this.addForm1.addControl('rows1', this.rows1);
   }
 
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
+
   //ArrayActividades
-  onAddRow() {
-    this.rows.push(this.createItemFormGroup());
+  onAddRow(ctividadeslistProyectos:String) {
+    this.rows.push(this.createItemFormGroup(ctividadeslistProyectos));
     console.log(this.rows.getRawValue())
   }
   onRemoveRow(rowIndex:number){
     this.rows.removeAt(rowIndex);
   }
 
-  createItemFormGroup(): FormGroup {
+  createItemFormGroup(ctividadeslistProyectos:String): FormGroup {
     return this.fb.group({
       resultados:null,
-      actividad:null,
+      actividad:ctividadeslistProyectos,
       nombreDocenteApoyo:null,
       cedulaDocente:null,
       numHoras:null,
@@ -119,18 +136,18 @@ export class Anexo7Component implements OnInit {
     });
   }
 
-  onAddRow1() {
-    this.rows1.push(this.createItemFormGroup1());
+  onAddRow1(ctividadeslistProyectos:String) {
+    this.rows1.push(this.createItemFormGroup1(ctividadeslistProyectos));
     console.log(this.rows1.getRawValue())
   }
   onRemoveRow1(rowIndex:number){
     this.rows1.removeAt(rowIndex);
   }
 
-  createItemFormGroup1(): FormGroup {
+  createItemFormGroup1(ctividadeslistProyectos:String): FormGroup {
     return this.fb.group({
       resultados:null,
-      actividad:null,
+      actividad:ctividadeslistProyectos,
       nombreEstudiante:null,
       cedulaEstudiante:null,
       numHoras:null,
@@ -140,18 +157,60 @@ export class Anexo7Component implements OnInit {
     });
   }
 
+  horasDocentesA7Request:HorasDocentesA7Request[]=[];
+  obtnerDocentes():HorasDocentesA7Request[]{
+    this.horasDocentesA7Request.length=0
+    this.rows.getRawValue().forEach(element => {   
+      if(element.cedulaDocente==null){
+      }else{
+        var docente:string[]=element.cedulaDocente.split('-')
+        this.horasDocentesA7Request.push({
+          resultados:element.resultados,
+          actividad:element.actividad,
+          nombreDocenteApoyo:docente[1],
+          cedulaDocente:docente[0],
+          numHoras:element.numHoras,
+          fechaInicio:element.fechaInicio,
+          fechaFin:element.fechaFin,
+          observaciones:element.observaciones
+        })
+      } 
+    });
+    return this.horasDocentesA7Request;
+  }
 
+  horasEstudiantesA7Request:HorasEstudiantesA7Request[]=[];
+  obtnerAlumnos():HorasEstudiantesA7Request[]{
+    this.horasEstudiantesA7Request.length=0
+    this.rows1.getRawValue().forEach(element => {   
+      if(element.cedulaEstudiante==null){
+      }else{
+        var docente:string[]=element.cedulaEstudiante.split('-')
+        this.horasEstudiantesA7Request.push({
+          resultados:element.resultados,
+          actividad:element.actividad,
+          nombreEstudiante:docente[1],
+          cedulaEstudiante:docente[0],
+          numHoras:element.numHoras,
+          fechaInicio:element.fechaInicio,
+          fechaFin:element.fechaFin,
+          observaciones:element.observaciones
+        })
+      } 
+    });
+    return this.horasEstudiantesA7Request;
+  }
 
-  
   anexo7:Anexo7=new Anexo7;
   obtnerdatos():Anexo7{
     this.anexo7.nombreDirectorProyecto=this.proyecto.nombredirector;
     this.anexo7.nombreEntidadBeneficiaria=this.edntidad.nombre;
     this.anexo7.idProyecto=this.proyecto.id;
-    this.anexo7.horasDocentes=this.rows.getRawValue();
-    this.anexo7.horasEstudiantes=this.rows1.getRawValue();
+    this.anexo7.horasDocentes=this.obtnerDocentes();
+    this.anexo7.horasEstudiantes=this.obtnerAlumnos();
     return this.anexo7;
   }
+
 
   
   guardar(){

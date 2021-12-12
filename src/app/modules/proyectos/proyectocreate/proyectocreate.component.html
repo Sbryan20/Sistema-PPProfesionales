@@ -1,8 +1,15 @@
 <!--------------------------------------------------FORMULARIO----------------------------------------------------------------------- -->
 <!-- table table-borderless -->
 <!-- table table-bordered -->
-
-<form class="formulario" ngNativeValidate (ngSubmit)="proyectos" >
+<ng-container *ngIf="issloading">
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="loader" alt="" style="size: 50pt;"> 
+   </center>
+  </div>
+</ng-container>
+<div *ngIf="issloading==false">
+  <form class="formulario" ngNativeValidate (ngSubmit)="proyectos" >
     <table style="width:100%; height:100%;" class="bss-table-borderless" class="table table-striped table-responsive-md btn-table">
         <thead class="thead-dark center-block">
           <tr class="active">
@@ -33,14 +40,14 @@
                   <th colspan="4" scope="col " ><strong>FECHA CREACIÓN: {{fecha}}</strong>
                 </tr>
                 <tr> 
-                  <th colspan="4" scope="col"><strong>NOMBRE:</strong> <input type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.nombre" name="nombre" required /> 
+                  <th colspan="4" scope="col"><strong>NOMBRE:</strong> <input type="text" class="form-control" value="" style="background-color:transparent; "   [(ngModel)]="proyectos.nombre" name="nombre" required /> 
                   </th>
                 </tr>
                 <tr> 
                   <th colspan="4" scope="col"><strong>LINEA DE ACCIÓN:</strong> <select class="form-control" (change)="selectLineaAccion($event)" style="width: 100%;" name="select">
                     <option value="Tecnica">Asesoría Técnica</option>
                     <option value="Comunitario" selected>Trabajo Comunitario</option>
-                    <option value="☐Capacitación" selected>Capacitación</option>
+                    <option value="Capacitación" selected>Capacitación</option>
                   </select>
                   </th>
                 </tr>
@@ -63,27 +70,27 @@
                   </th>
                 </tr>
                 <tr> 
-                  <th colspan="2" scope="col"><strong>Plazo de Ejecición</strong>
-                    <input type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.plazoEjecucion" name="plazoEjecucion" required />
+                  <th colspan="2" scope="col"><strong>Plazo de Ejecución</strong>
+                    <input type="text" class="form-control" value=""  style="background-color:transparent; "   [(ngModel)]="proyectos.plazoEjecucion" name="plazoEjecucion" required />
                   </th>
                   <th  scope="col"><strong>Fecha Inicio</strong>
-                    <input type="date" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.fechaInicio" name="fechaInicio" required />
+                    <input type="date" class="form-control" value=""  style="background-color:transparent; "   [(ngModel)]="proyectos.fechaInicio" name="fechaInicio" required />
                   </th>
                   <th  scope="col"><strong>Fecha Fin</strong>
-                    <input type="date" class="form-control" value="" class="col-md-5" style="background-color:transparent; "   [(ngModel)]="proyectos.fechaFin" name="fechaFin" required />
+                    <input type="date" class="form-control" value=""  style="background-color:transparent; "   [(ngModel)]="proyectos.fechaFin" name="fechaFin" required />
                   </th>
                 </tr>
                 <tr> 
                   <th colspan="4" scope="col"><strong>RESPONSABLE</strong>
                     <select class="form-control" (change)="selectResposablepp($event)" style="width: 100%;" name="select">
                       <option value=""selected>Seleccione</option>
-                      <option *ngFor="let resppp of resPPP"  [value]="resppp.id"> <ng-container *ngIf="resppp.estado==true" >{{resppp.id}}-{{resppp.cedula}}</ng-container></option>
+                      <option *ngFor="let resppp of resPPP"  [value]="resppp.id">{{resppp.id}}-{{resppp.cedula}}</option>
                       </select> 
                   </th>
                 </tr> 
                 <tr> 
                   <th colspan="3" scope="col"><strong>Programa de Vinculación: </strong>
-                    <input type="text" class="form-control" value="" class="col-md-5" style="background-color:transparent;" [(ngModel)]="proyectos.programaVinculacion" name="programaVinculacion" required>
+                    <input type="text" class="form-control" value=""  style="background-color:transparent;" [(ngModel)]="proyectos.programaVinculacion" name="programaVinculacion" required>
                   </th>
                   <th colspan="1" scope="col"><strong>Alcance Territoral: </strong>
                    <select name="select" id="" class="form-control" (change)="selectalcanceTerritorial($event)" required>
@@ -131,3 +138,5 @@
       </div>
     
     </form>
+</div>
+

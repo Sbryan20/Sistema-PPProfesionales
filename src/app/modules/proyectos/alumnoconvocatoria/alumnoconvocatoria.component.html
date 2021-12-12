@@ -1,4 +1,11 @@
-<div class="card border-primary mb-3"  >
+<ng-container *ngIf="issloading">
+    <div class="bss-loader" style="margin: auto;">
+      <center>
+        <img [src]="loader" alt=""> 
+     </center>
+    </div>
+  </ng-container>
+<div class="card border-primary mb-3" *ngIf="issloading==false" >
     <div class="card-header" >Convocatoria</div>
     <div class="card-body text-primary">
             <h5 class="card-title">Listado de Solicitudes</h5>

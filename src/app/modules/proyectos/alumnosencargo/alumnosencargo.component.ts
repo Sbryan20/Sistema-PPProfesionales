@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anexo5Service } from '@data/services/api/anexo5.service';
 import { SysdateService } from '@data/services/api/sysdate.service';
@@ -20,12 +20,21 @@ function getBase64(file) {
   templateUrl: './alumnosencargo.component.html',
   styleUrls: ['./alumnosencargo.component.scss']
 })
-export class AlumnosencargoComponent implements OnInit {
+export class AlumnosencargoComponent implements OnInit,AfterViewInit {
+
+
+  loader='assets/images/progress.gif'
+  issloading=true;
+
   public anexo5:Anexo5[]=[];
   file;
 
   constructor(private activatedRoute: ActivatedRoute,private anexo5Service:Anexo5Service,private sysdateService:SysdateService) { }
-
+  ngAfterViewInit(): void {
+    setTimeout(()=>{
+      
+    },1000)
+  }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
@@ -33,6 +42,7 @@ export class AlumnosencargoComponent implements OnInit {
       this.anexo5Service.getanexo5bycedula(cedula).subscribe(data=>{
         this.anexo5=data
         console.log(data)
+        this.issloading=false; 
        
       })
     })

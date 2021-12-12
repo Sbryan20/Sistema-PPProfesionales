@@ -1,4 +1,11 @@
-<div class="row">
+<ng-container *ngIf="issloading">
+    <div class="bss-loader" style="margin: auto;">
+      <center>
+        <img [src]="loader" alt="" style="size: 50pt;"> 
+     </center>
+    </div>
+  </ng-container>
+<div class="row" *ngIf="issloading==false">
     <div class="col-12">
         <app-title-h1 text="Lista de entidades beneficiarias"></app-title-h1>
         <app-search-entity (search)="handleSearch($event)"></app-search-entity>
