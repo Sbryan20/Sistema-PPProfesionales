@@ -212,7 +212,7 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
   generate(preinforme: PreInforme) {
     console.log(preinforme)
     loadFile(
-      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/preinformes.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/preinformes1.docx',
       function (error, content) {
         
         if (error) {
