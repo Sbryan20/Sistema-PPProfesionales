@@ -91,7 +91,7 @@ export class AlumnosencargoComponent implements OnInit,AfterViewInit {
     console.log(docum)
     //Usage example:
     var file = this.dataURLtoFile(docum, 'Convocatoria.pdf');
-    console.log(file);
+    console.log(docum);
     this.file = file;
     saveAs(file, 'Convocatoria.pdf');
   }

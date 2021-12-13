@@ -20,8 +20,8 @@ export class PreinformeService {
     console.log(preinforme);
     return this.http.post<PreInforme>(this.urlEndPoint,preinforme,{headers: this.httpHeaders})
   } 
-  getpreinformeById(proyectoId?:Number):Observable<PreInforme>{
-    return this.http.get(this.urlEndPoint+"/proyecto/"+proyectoId,{headers: this.httpHeaders}).pipe(map(Response => Response as PreInforme))
+  getpreinformeById(proyectoId?:Number):Observable<PreInforme[]>{
+    return this.http.get(this.urlEndPoint+"/proyecto/"+proyectoId,{headers: this.httpHeaders}).pipe(map(Response => Response as PreInforme[]))
   }
   updatepreinforme(preinforme: PreInforme):Observable<PreInforme>{
     console.log(preinforme);

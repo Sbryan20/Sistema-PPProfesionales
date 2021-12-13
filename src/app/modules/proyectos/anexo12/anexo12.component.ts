@@ -98,7 +98,7 @@ createItemFormGroup(): FormGroup {
   anexo12:Anexo12=new Anexo12;
   obtnerdatos():Anexo12{
     this.sysdateService.getSysdate().subscribe(data => {
-      this.anexo12.fechaCapacitacion= data.fecha
+      this.anexo12.fechaCapacitacion=data.fecha
     })
     this.anexo12.idProyectoPPP=this.proyectoresponse.id;
     

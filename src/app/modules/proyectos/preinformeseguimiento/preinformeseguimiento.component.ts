@@ -44,6 +44,7 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
   public anexo1:Anexo1=new Anexo1;
   public anexo1response:Anexo1[]=[];
   public anexo3:Anexo3[]=[];
+  public preInforme:PreInforme= new PreInforme;
   public fechaElaborado;
   public fechaRevisado;
 
@@ -142,14 +143,15 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
             text: 'Datos guadados correctamente',
             confirmButtonColor: "#0c3255"   
           }) 
-          this.preinformeService.getpreinformeById(this.obtnerdatos().idProyectoPPP).subscribe(async dates=>{
+          this.preinformeService.getpreinformeById(this.obtnerdatos().idProyectoPPP).subscribe( async dates=>{
             Swal.fire(
               'informe inicial!',
               'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
               'success'
             )
-            console.log(dates[0])
-            this.generate(dates);
+            dates;
+            console.log(dates[0].nombreDirector)
+            this.generate(dates[0]);
               const { value: file } = await Swal.fire({
                 allowOutsideClick: false,
                 title: 'SELECCIONE EL PDF',
@@ -166,8 +168,8 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
                     } else {
                       getBase64(value).then(
                         data => {
-                          dates.documento=data+''
-                          this.preinformeService.updatepreinforme(dates).subscribe(datos=>{
+                          dates[0].documento=data+''
+                          this.preinformeService.updatepreinforme(dates[0]).subscribe(datos=>{
                             Swal.fire({
                               icon: 'success',
                               title: 'GUARDADO',
@@ -210,9 +212,9 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
   }
 
   generate(preinforme: PreInforme) {
-    console.log(preinforme)
+    console.log(preinforme.nombreCarrera)
     loadFile(
-      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/preinformes.docx',
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/preinforme.docx',
       function (error, content) {
         
         if (error) {
@@ -224,8 +226,10 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
           linebreaks: true,
         });
         try {
+          console.log(preinforme.nombreCarrera)
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({
+            anio:"2021",
             nombrecarrera:preinforme.nombreCarrera,
             nombreproyecto:preinforme.nombreProyecto,
             nombredirector:preinforme.nombreDirector,

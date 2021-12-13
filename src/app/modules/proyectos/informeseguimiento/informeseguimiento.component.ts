@@ -340,6 +340,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
             carreraInvolucarada:informe1.carrera,
             tb2:informe1.docentesParticipantes,
             tb3:informe1.estudiantesParticipantes,
+            tb4:informe1.actividadesInformeSeguimientoRequest,
             entidadBeneficiaria:informe1.nombreEntidadBeneficiaria,
             fechaInicioProyecot:informe1.fechaInicio,
             fechhaFinPlaneado:informe1.fechaEntrega,
@@ -352,9 +353,8 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
             situacionActualBeneficios:informe1.situacionActual,
             conclusionesResumenProyecto:informe1.conclusiones,
             obsevacionesResumenProye:informe1.observacionesInformeSeguimiento,
-            nombreCoordVincula:informe1.nombreCoordinadorVinculacion
-
-
+            nombreCoordVincula:informe1.nombreCoordinadorVinculacion,
+            anio:"2021"
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).

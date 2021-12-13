@@ -47,7 +47,7 @@ export class EstudiantesParticipantesRequest{
     cedula?:String;
     informeId?:Number;
     numeroHoras?:String;
-    nombres?:String;
+    nombre?:String;
     carrera?:String;
 }
 export class ObjetivosEspecificosInformeRequest{
