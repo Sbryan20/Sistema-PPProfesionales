@@ -116,6 +116,7 @@ eliminarActividad(actividades:ActividadesAnexo8Request){
       text: 'Eliminado guadados correctamente',
       confirmButtonColor: "#0c3255"   
     })
+    window.location.reload();  
     this.actulizar(); 
   },err=>{
     Swal.fire({
@@ -124,6 +125,7 @@ eliminarActividad(actividades:ActividadesAnexo8Request){
       text: err.error.message,
       confirmButtonColor: "#0c3255"   
     }) 
+    window.location.reload();  
   })
 }
 
@@ -225,6 +227,7 @@ ontnerDatos():Anexo8{
                           text: 'Datos guadados correctamente',
                           confirmButtonColor: "#0c3255"   
                         }) 
+                        window.location.reload();  
                       },err=>{
                         Swal.fire({
                           icon: 'warning',
@@ -232,6 +235,7 @@ ontnerDatos():Anexo8{
                           text: err.error.message,
                           confirmButtonColor: "#0c3255"   
                         }) 
+                        window.location.reload();  
                       })
                     }
                   );

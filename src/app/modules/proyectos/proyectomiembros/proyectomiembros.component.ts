@@ -67,6 +67,7 @@ export class ProyectomiembrosComponent implements OnInit,AfterViewInit {
   //BASE 64
   docum?:string
   file;
+  habilitarboton:boolean=false;
   //
 
      //Director
@@ -148,6 +149,7 @@ export class ProyectomiembrosComponent implements OnInit,AfterViewInit {
       estado:true
     });
   }
+
   ////
 
 
@@ -205,6 +207,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
     this.docentesRoles.coordinador_id=this.cedula;
     this.docentesRoles.docentes=this.docenteslist;
   }
+
   selectDirectorProyecto (event: any) { 
     console.log(event.target.value)
     this.resposableppservice.getDocenteId(event.target.value).subscribe(data=>{
@@ -252,16 +255,17 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
                     Swal.fire({
                       icon: 'success',
                       title: 'Anexo',
-                      text: 'Proyecto creado correctamente',
+                      text: 'Director correctamente',
                       confirmButtonColor: "#0c3255"   
                     }) 
                     this.resposableppservice.saverdirector(this.director).subscribe(date=>{
                       Swal.fire({
                       icon: 'success',
                       title: 'Anexo',
-                      text: 'Persona creado correctamente',
+                      text: 'Docente de apoyo correctamente',
                       confirmButtonColor: "#0c3255"   
-                    }) },err=>{
+                    }) 
+                  },err=>{
                       Swal.fire({
                         icon: 'warning',
                         title: 'Al paracer hubo un problema',

@@ -210,6 +210,7 @@ save(){
       confirmButtonColor: "#0c3255"   
     }) 
     this.router.navigate(['/panel/proyecto/informe_de_culminacion/']);
+    window.location.reload();  
   },err=>{
     Swal.fire({
       icon: 'warning',
@@ -217,6 +218,7 @@ save(){
       text: err.error.message,
       confirmButtonColor: "#0c3255"   
     }) 
+    window.location.reload();  
   })
 
 }

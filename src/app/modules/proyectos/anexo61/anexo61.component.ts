@@ -149,6 +149,7 @@ export class Anexo61Component implements OnInit,AfterViewInit {
                         title: 'Anexo',
                         text: 'Postulacion relizada espera una respuesta',
                         confirmButtonColor: "#0c3255"})
+                        window.location.reload();  
                     },err=>{
                       Swal.fire({
                         icon: 'error',
@@ -156,6 +157,7 @@ export class Anexo61Component implements OnInit,AfterViewInit {
                         text: 'Hubo un error: '+err.error.message,
                         confirmButtonColor: "#0c3255"})
                     })
+                    window.location.reload();  
                   })  
                 }
               })

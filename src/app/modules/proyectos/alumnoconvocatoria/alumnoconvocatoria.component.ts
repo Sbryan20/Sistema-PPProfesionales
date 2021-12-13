@@ -91,6 +91,7 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
 
 
   materias(id:Number){
+    this.aux2=0;
     this.anexo2services.getAnexoM(id).subscribe(data=>{
       this.anexo3service.getDocenteTitulo(data.siglasCarrera+'').subscribe(datos=>{
         for (let i = 0; i < this.maeriaslim.materias!.length; i++) {

@@ -115,7 +115,7 @@ const routes: Routes = [
       path: 'informe_de_culminacion/:cedula/:nombres',
       component: Anexo10Component
     },{
-      path: 'resgistro_de_Beneficiarios/:cedula',
+      path: 'resgistro_de_Beneficiarios/:cedula/:nombres',
       component: Anexo12Component
     },{
       path: 'resgistro_de_Beneficiarios_firmas/:cedula',

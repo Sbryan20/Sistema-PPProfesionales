@@ -30,6 +30,7 @@ export class Anexo12Component implements OnInit {
   public entidad:Ientity=new Ientity;
   public anexo5:Anexo5[]=[];
   public cedula;
+  nombre
   ////ARRAY
    addForm: FormGroup;
    rows: FormArray;
@@ -51,9 +52,11 @@ export class Anexo12Component implements OnInit {
     })
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
+      let nombre = params['nombres']
+      this.nombre=nombre;
       this.cedula=cedula;
       this.anexo12.cedulaApoyo=cedula
-      console.log(cedula)
+      console.log(nombre)
       this.anexo5Service.getanexo5bycedula(cedula).subscribe(data=>{
         this.anexo5=data;
       })
@@ -100,6 +103,8 @@ createItemFormGroup(): FormGroup {
     this.sysdateService.getSysdate().subscribe(data => {
       this.anexo12.fechaCapacitacion=data.fecha
     })
+    this.anexo12.nombreAdministrador=this.entidad.nombreAdministrador;
+    this.anexo12.nombreApoyo=this.nombre;
     this.anexo12.idProyectoPPP=this.proyectoresponse.id;
     
     this.anexo12.actividadesAnexo12=this.rows.getRawValue()
@@ -123,12 +128,14 @@ createItemFormGroup(): FormGroup {
             'Your file has been deleted.',
             'success'
           )
+          window.location.reload();  
         },err=>{
           Swal.fire(
             'No guardado!',
             'Hubo un error '+err.error.Mensaje,
             'error'
           )
+          window.location.reload();  
         })
       }
      

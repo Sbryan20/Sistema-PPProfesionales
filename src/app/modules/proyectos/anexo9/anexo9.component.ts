@@ -165,6 +165,7 @@ createItemFormGroup(): FormGroup {
                           text: 'Datos guadados correctamente',
                           confirmButtonColor: "#0c3255"   
                         }) 
+                        window.location.reload();  
                       },err=>{
                         Swal.fire({
                           icon: 'warning',
@@ -172,6 +173,7 @@ createItemFormGroup(): FormGroup {
                           text: err.error.message,
                           confirmButtonColor: "#0c3255"   
                         }) 
+                        window.location.reload();  
                       })
                     }
                   );

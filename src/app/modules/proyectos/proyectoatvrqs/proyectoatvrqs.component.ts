@@ -119,6 +119,7 @@ export class ProyectoatvrqsComponent implements OnInit,AfterViewInit {
         confirmButtonColor: "#0c3255"   
       }) 
       this.router.navigate(['/panel/proyecto/convopracticas']);
+      window.location.reload();  
     },err=>{
       Swal.fire({
         icon: 'warning',
@@ -126,6 +127,7 @@ export class ProyectoatvrqsComponent implements OnInit,AfterViewInit {
         text: err.error.message,
         confirmButtonColor: "#0c3255"   
       }) 
+      window.location.reload();  
     })
 
   }

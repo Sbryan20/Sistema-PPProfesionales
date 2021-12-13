@@ -23,7 +23,7 @@
         <input matInput [formControl]="myControl" placeholder="FILTRAR">
       </mat-form-field>
       <select (change)="selectDirectorProyecto($event)" class="form-control" style="width: 100%;" name="select">
-        <option  value="SL">SELECCIONE</option>
+        <option  value="">SELECCIONE</option>
         <option *ngFor="let item of filteredOptions  | async" [value]="item.cedula">{{item.cedula}}- -{{item.nombres_completo}}- -{{item.titulo}}</option>
       </select> 
       <br>

@@ -237,12 +237,14 @@ export class Anexo7Component implements OnInit,AfterViewInit {
             title: 'Anexo',
             text: 'Se le descargará un archivo WORD, y no se olvide de subir el archivo un ves firmado',
             confirmButtonColor: "#0c3255"})
+            window.location.reload();  
         },err=>{
           Swal.fire({
             icon: 'error',
             title: 'Anexo',
             text: 'Hubo un error: '+err.error.message,
             confirmButtonColor: "#0c3255"})
+            window.location.reload();  
         })
       }
     })

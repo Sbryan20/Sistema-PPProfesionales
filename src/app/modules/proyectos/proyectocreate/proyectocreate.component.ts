@@ -161,13 +161,15 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
         confirmButtonColor: "#0c3255"   
       }) 
       this.router.navigate(['/panel/proyecto/listar']);
+      window.location.reload();  
     },err=>{
       Swal.fire({
         icon: 'warning',
         title: 'Al paracer hubo un problema',
         text: err.error.message,
         confirmButtonColor: "#0c3255"   
-      })   
+      })  
+      window.location.reload();   
     }
     )}else{
       Swal.fire({

@@ -280,6 +280,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
                               text: 'Datos guadados correctamente',
                               confirmButtonColor: "#0c3255"   
                             }) 
+                            window.location.reload();  
                           },err=>{
                             Swal.fire({
                               icon: 'warning',
@@ -287,6 +288,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
                               text: err.error.message,
                               confirmButtonColor: "#0c3255"   
                             }) 
+                            window.location.reload();  
                           })
                         }
                       );
@@ -302,6 +304,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
               text: err.error.message,
               confirmButtonColor: "#0c3255"   
             }) 
+            window.location.reload();  
           })
         },err=>{
           Swal.fire({
@@ -310,6 +313,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
+          window.location.reload();  
         })
       }
     })
