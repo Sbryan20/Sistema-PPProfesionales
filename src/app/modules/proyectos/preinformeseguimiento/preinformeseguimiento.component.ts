@@ -17,6 +17,7 @@ import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
 
 
+
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 };
@@ -147,6 +148,7 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
               'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
               'success'
             )
+            console.log(dates[0])
             this.generate(dates);
               const { value: file } = await Swal.fire({
                 allowOutsideClick: false,
@@ -209,8 +211,8 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
 
   generate(preinforme: PreInforme) {
     console.log(preinforme)
-    loadFile( 
-      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/preinformes.docx' ,
+    loadFile(
+      'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/informe1.docx',
       function (error, content) {
         
         if (error) {
@@ -221,15 +223,18 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
           paragraphLoop: true,
           linebreaks: true,
         });
-        try { 
+        try {
+          // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({
             nombrecarrera:preinforme.nombreCarrera,
-            nombreProyecto:preinforme.nombreProyecto,
-            nombreDirector:preinforme.nombreDirector, 
-            //
-            //
-            //
-
+            nombreproyecto:preinforme.nombreProyecto,
+            nombredirector:preinforme.nombreDirector,
+            antecedentes:preinforme.antecedentes,
+            objetivosGenerales:preinforme.objetivoGeneral,
+            desarrollo:preinforme.objetivoGeneral,
+            tb:preinforme.estudianteInformeInicial,
+            nombreresponsable:preinforme.nombreElaborado,
+            nombrecoordinador:preinforme.nombreRevisado
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).
@@ -254,10 +259,12 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
         // Output the document using Data-URI
-        saveAs(out, 'informe inicial.docx');
+        saveAs(out, 'Informe seguimiento.docx');
       }
     );
   }
+
+ 
 
 
   
