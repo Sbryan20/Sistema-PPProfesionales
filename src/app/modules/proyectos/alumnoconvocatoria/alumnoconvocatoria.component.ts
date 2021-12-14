@@ -183,6 +183,7 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
     this.anexo3response.nombrecarrera=anexo2.carrera;
     this.anexo3response.nombreproyecto=anexo2.nombreProyecto;
     this.anexo3response.idProyectoPPP=anexo2.idProyectoPPP;
+    this.anexo3response.ciclo=anexo2.ciclo;
     this.anexo3response.titulo_responsable=titulo;
     this.anexo3response.nombresestudiante=this.datosalumno.primerNombre+" "+this.datosalumno.segundoNombre;
     this.anexo3response.cedula=this.cedula;

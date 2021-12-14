@@ -131,10 +131,8 @@ export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
     this.anexo5resposae.alumnos=this.rowsR.getRawValue();
     this.anexo5resposae.nombreDocenteReceptor=this.anexo1.nombreDelegado;
     this.anexo5resposae.cedulaDocenteApoyo=this.anexo1.cedulaDelegado
-    this.anexo3service.getDocenteTitulo(this.anexo1.siglasCarrera).subscribe(det=>{
-      this.anexo5resposae.nonbreDocenteEmisor=det.nombres_completo
-      this.anexo5resposae.tituloTercerN=det.titulo;
-    })
+    
+    this.anexo5resposae.nonbreDocenteEmisor
     this.sysdateService.getSysdate().subscribe(data=>{
     this.anexo5resposae.fechaEmision=data.fecha;});
     this.anexo1service.getbyCarrera(this.anexo1.siglasCarrera).subscribe(date=>{
@@ -217,6 +215,11 @@ export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
           this.dataSource=new MatTableDataSource(d.filter(datas=>datas.estado=="AN")); 
           this.issloading=false;
         })
+        this.anexo3service.getDocenteTitulo(this.anexo1.siglasCarrera).subscribe(det=>{
+          this.anexo5resposae.nonbreDocenteEmisor=det.nombres_completo
+          this.anexo5resposae.tituloTercerN=det.titulo;
+          console.log(det.nombres_completo)
+        })
       })   
     }
   }
@@ -258,6 +261,7 @@ export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
             director:anexo5.directorD,  
             nom_responsable_ppp:anexo5.nonbreDocenteEmisor,
             siglas_carrera:anexo5.siglasCarrera,
+            
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).

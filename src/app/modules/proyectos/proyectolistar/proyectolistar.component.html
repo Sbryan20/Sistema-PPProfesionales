@@ -11,17 +11,17 @@
         <div class="example-container mat-elevation-z8">
           <div class="example-header">
             <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Fitrar">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
             </mat-form-field>
           </div>
         
           <mat-table #table [dataSource]="dataSource" >
         
-            <!-- Position Column -->
+            <!-- Position Column
             <ng-container matColumnDef="id">
               <mat-header-cell *matHeaderCellDef> id. </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-            </ng-container>
+            </ng-container> -->
         
             <!-- Name Column -->
             <ng-container matColumnDef="codigo">
@@ -61,7 +61,7 @@
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="requisitoslistProyectos">
-                <mat-header-cell *matHeaderCellDef> Resquistos </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Requisitos </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                     <select class="btn btn-outline-ligth dropdown-toggle">
                         <option  matNativeControl class="" *ngFor="let carrera  of element.requisitoslistProyectos" disabled selected>{{carrera.descripcion}}</option>
@@ -70,7 +70,7 @@
               </ng-container>
                <!-- Symbol Column -->
             <ng-container matColumnDef="docenteApoyoResponse">
-              <mat-header-cell *matHeaderCellDef> Apoyo </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Docentes de Apoyo </mat-header-cell>
               <mat-cell *matCellDef="let element">
                   <select class="btn btn-outline-ligth dropdown-toggle">
                       <option  matNativeControl class="" *ngFor="let apoyo  of element.docenteApoyoResponse" disabled selected>{{apoyo.cedula}} {{apoyo.nombres}}</option>

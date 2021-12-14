@@ -56,12 +56,12 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Quitar cargo',
-      text: "Quitar a: "+`${docente.nombres}`,
+      title: 'Remover cargo',
+      text: "Remover del cargo a: "+`${docente.nombres}`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, quitar!',
-      cancelButtonText: 'No, quitar!',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -70,8 +70,8 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
             docente.estado=false;
             this.cvservice.updateCv(docente).subscribe(data=>{
               swalWithBootstrapButtons.fire(
-                'Convocado!',
-                (`${docente.nombres}`+', ya no tiene el cargo de Cordinador de Vinculacion'),
+                'Asignado',
+                (`${docente.nombres}`+` ${docente.apellidos}`+', ya no tiene el cargo de Coordinador de Vinculación'),
                 'success'
               )  
             }) 
@@ -89,7 +89,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
       ) {
         swalWithBootstrapButtons.fire(
           'Cancelado',
-          'No se relizó ningun cambio',
+          'No se relizó ningún cambio',
           'error'
         )
       }
@@ -105,12 +105,12 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Convocatoria',
-      text: "Convocar a: "+`${docente.nombres}`,
+      title: 'Asignación',
+      text: "Asignar como Coordinador de Vinculación a: "+`${docente.nombres}`  +` ${ docente.apellidos}`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, convocar!',
-      cancelButtonText: 'No, convocar!',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -120,14 +120,15 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
               docente.estado=true;
               this.cvservice.updateCv(docente).subscribe(data=>{
                 swalWithBootstrapButtons.fire(
-                  'Convocado!',
-                  (`${docente.nombres}`+', obtendra un Correo en el cual se cominicará que le ha sido combocado como Cordinadar de Vinculacion'),
+                  
+                  'Asignado',
+                  (`${docente.nombres}`+` ${docente.apellidos}`+', se enviará un correo para indicarle que ha sido asignado como Coordinador de Vinculación'),
                   'success'
                 )  
               },err=>{
                 Swal.fire({
                   icon: 'warning',
-                  title: 'Al paracer hubo un problema',
+                  title: 'Al parecer hubo un problema',
                   text: err.error.message,
                   confirmButtonColor: "#0c3255"   
                 }) 
@@ -137,14 +138,15 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
         this.cvservice.saveCv(docente).subscribe(
           data=>{
             swalWithBootstrapButtons.fire(
-              'Convocado!',
-              (`${docente.nombres}`+', obtendra un Correo en el cual se le comunicará que ha sido convocado como Cordinador de Vinculación'),
+              
+              'Asignado',
+              (`${docente.nombres}`+` ${docente.apellidos}`+', se enviará un correo para indicarle que ha sido asignado como Coordinador de Vinculación'),
               'success'
             )  
         },err=>{
           Swal.fire({
             icon: 'warning',
-            title: 'Al paracer hubo un problema',
+            title: 'Al parecer hubo un problema',
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
@@ -156,7 +158,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
       ) {
         swalWithBootstrapButtons.fire(
           'Cancelado',
-          'No se relizó ningun cambio',
+          'No se relizó ningún cambio',
           'error'
         )
       }

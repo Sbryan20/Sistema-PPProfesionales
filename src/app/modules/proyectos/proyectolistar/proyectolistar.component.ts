@@ -15,7 +15,7 @@ export class ProyectolistarComponent implements OnInit,AfterViewInit {
   issloading=true;
 
 //Filtrar
-public displayedColumns = ['id', 'codigo', 'nombre', 'carrera','nombredirector','fechaat','actividadeslistProyectos','requisitoslistProyectos','docenteApoyoResponse'];
+public displayedColumns = [ 'codigo', 'nombre', 'carrera','nombredirector','fechaat','actividadeslistProyectos','requisitoslistProyectos','docenteApoyoResponse'];
 public dataSource
 @ContentChild(MatSort) sort?: MatSort;
 public listaproyctos: Proyectos[]=[];

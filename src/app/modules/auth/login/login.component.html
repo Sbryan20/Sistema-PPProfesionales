@@ -14,7 +14,7 @@
         <fieldset class="bst-fieldset-content">
             <h1 style="text-align: center; font-size: larger;"><strong>INGRESO</strong></h1>
             <p style="text-align: center;"> Para ingresar en este aplicativo necesita
-            <br>ser miembro de la comunidad
+            <br>ser miembro de la comunidad educativa
             <br>@tecazuay.edu.ec
             <br>
             <div id="imagen">
@@ -32,15 +32,15 @@
         <fieldset class="bst-fieldset-content">
             <h1 style="text-align: center; font-size: larger;"><strong>REGISTRARSE</strong></h1>
             <p style="text-align: center;">
-              <p style="text-align: center;"> OHH!! Al paracer es nuevo.
-                <br>Para continuar debe
-                <br>ingresar su CÉDULA para su correspondiente validación
+              <p style="text-align: center;"> Al parecer es nuevo, para continuar
+                <!-- <br>Para continuar debe -->
+                <br>Ingrese su Cédula 
                 <div>
                   <form #form="ngForm" ngNativeValidate> 
                     <br>
                        <input  placeholder="Cédula de identidad" class="form-control" [(ngModel)]="userRequest.cedula" name="cedula" type="text" style="text-align: center;" pattern="[0-9]{10}" #cedula="ngModel" required/>
                    <br>
-                   <div *ngIf="!form.valid"  class="alert alert-danger">Cédula no valida</div>
+                   <div *ngIf="!form.valid"  class="alert alert-danger">Cédula no válida</div>
                    <div id="boton">
                     <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!form.valid">Continuar</button>
                   </div>

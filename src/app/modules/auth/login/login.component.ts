@@ -97,8 +97,8 @@ export class LoginComponent implements OnInit, AfterViewInit{
             if(data.rol=="DOC"){
               Swal.fire({
                 icon: 'info',
-                title: 'Sin asigacion',
-                text: data.nombrescompletos+", no forma parte de algun proceso de vinculación",
+                title: 'Sin asignación',
+                text: data.nombrescompletos+", no forma parte de ningún proceso de vinculación",
                 confirmButtonColor: "#0c3255"   
               })
             }else{

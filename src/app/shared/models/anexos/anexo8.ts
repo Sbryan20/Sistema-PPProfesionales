@@ -11,6 +11,7 @@ export class Anexo8{
     documento?:String;
     actividades?:ActividadesAnexo8Request[]
     totalHoras?:Number;
+    cedulaDirector?:String;
 }
 
 export class ActividadesAnexo8Request{

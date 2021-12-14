@@ -156,26 +156,25 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
     this.proyectoService.savePr(this.proyectos).subscribe(data=>{
       Swal.fire({
         icon: 'success',
-        title: 'Creacién de proyecto',
-        text: 'Proyecto creado correctamente',
+        title: 'Creación de proyecto',
+        text: 'Proyecto Creado Correctamente',
         confirmButtonColor: "#0c3255"   
       }) 
       this.router.navigate(['/panel/proyecto/listar']);
-      window.location.reload();  
+      // window.location.reload();  
     },err=>{
       Swal.fire({
         icon: 'warning',
-        title: 'Al paracer hubo un problema',
+        title: 'Al parecer hubo un problema',
         text: err.error.message,
         confirmButtonColor: "#0c3255"   
       })  
-      window.location.reload();   
     }
     )}else{
       Swal.fire({
         icon: 'warning',
         title: 'DATOS INCOMPLETOS',
-        text: 'SELECCIONE LOS DATOS',
+        text: 'SELECCIONE LOS DATOS CORRECTAMENTE',
         confirmButtonColor: "#0c3255"   
       })
     }  

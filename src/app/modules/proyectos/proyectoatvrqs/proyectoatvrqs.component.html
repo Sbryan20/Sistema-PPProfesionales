@@ -25,12 +25,12 @@
   </div>
 </ng-container>
 <div class="card border-primary mb-3">
-  <div class="card-header">Coordinadores de Vinculación</div>
+  <div class="card-header">Seleccione las materias necesarias</div>
   <div class="card-body text-primary">
       <div class="example-container mat-elevation-z8">
         <div class="example-header">
           <mat-form-field>
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
           </mat-form-field>
         </div>
       
@@ -55,7 +55,7 @@
           </ng-container>
           <!-- Symbol Column -->
           <ng-container matColumnDef="boton">
-            <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Agregar </mat-header-cell>
             <mat-cell *matCellDef="let element">
               <div class="col-sm-6">
                 <button  mat-raised-button color="primary" mat-raised-button color="primary"  (click)="onAddRowR(element.nombre)" *ngIf="addFormR.get('rowsR')">Agregar</button>
@@ -79,10 +79,10 @@
         <tbody>
           <tr *ngFor="let row of addFormR.get('rowsR')?.controls;let index = index;">
             <td>
-              descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+              Descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
             </td>
             <td>
-              <button mat-raised-button color="warn" (click)="onRemoveRowR(index)">QUITAR</button>
+              <button mat-raised-button color="warn" (click)="onRemoveRowR(index)">Eliminar</button>
             </td>
           </tr>
         </tbody>
@@ -100,10 +100,10 @@
         <tbody>
           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
             <td>
-              descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
+              Descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">
             </td>
             <td>
-              <button mat-raised-button color="warn" (click)="onRemoveRow(index)">QUITAR</button>
+              <button mat-raised-button color="warn" (click)="onRemoveRow(index)">Eliminar</button>
             </td>
           </tr>
         </tbody>

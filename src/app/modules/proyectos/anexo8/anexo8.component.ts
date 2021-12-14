@@ -176,13 +176,14 @@ ontnerDatos():Anexo8{
   this.anexo8.cedulaEstudiante=this.cedula;
   this.anexo8.idProyectoPPP=this.proyecto.id;
   this.anexo8.nombreDirectorProyecto=this.proyecto.nombredirector;
-  this.anexo8.nombreDocenteApoyo=""
+  this.anexo8.nombreDocenteApoyo=(this.proyecto.docenteApoyoResponse!=undefined)?this.proyecto.docenteApoyoResponse[0].nombres:"";
   this.anexo8.nombreEntidadBeneficiaria=this.edntidad.nombre;
   this.anexo8.nombreEstudiante=this.nombre;
   this.anexo8.nombreProyecto=this.proyecto.nombre;
   this.anexo8.totalHoras=this.sum;
   this.anexo8.actividades=this.rows.getRawValue();
-  this.anexo8.nombreAdminEB=this.edntidad.representante;
+  this.anexo8.nombreAdminEB=this.edntidad.nombreAdministrador;
+  this.anexo8.cedulaDirector=this.proyecto.directorProyecto;
   return this.anexo8;
 }
   guardar(){

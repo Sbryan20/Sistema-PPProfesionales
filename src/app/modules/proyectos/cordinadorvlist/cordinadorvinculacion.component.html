@@ -7,12 +7,12 @@
 </ng-container>
 <div *ngIf="issloading==false">
   <div class="card border-primary mb-3">
-    <div class="card-header">Cordinadores para Vinculación</div>
+    <div class="card-header">Seleccione Coordinador/a Vinculación</div>
     <div class="card-body text-primary">
         <div class="example-container mat-elevation-z8">
           <div class="example-header">
             <mat-form-field>
-              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
             </mat-form-field>
           </div>
         
@@ -43,22 +43,28 @@
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="carga">
-              <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Carga Laboral </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.carga}} </mat-cell>
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="estado" >
-              <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
-              <mat-cell *matCellDef="let element"> {{element.estado}} </mat-cell>
+              <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+              <mat-cell *matCellDef="let element" > <div>
+                <h5 style="color: green;" *ngIf="element.estado else asignar" > Asignado </h5>
+                <ng-template #asignar>
+                  <h5 style="color: red;">Sin asignar</h5>
+
+                </ng-template>
+              </div> </mat-cell>
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="boton">
-              <mat-header-cell *matHeaderCellDef> DAR CARGO/QUITAR CARGO </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef>  Asignar / Remover Cargo </mat-header-cell>
               <mat-cell *matCellDef="let element">
                 <div class="col-sm-6">
-                  <button  mat-raised-button color="warn" *ngIf="element.estado else button_asignar" (click)="quitarcv(element)">QUITAR CARGO</button>
+                  <button  mat-raised-button color="warn" *ngIf="element.estado else button_asignar" (click)="quitarcv(element)">Remover Cargo</button>
                   <ng-template #button_asignar>
-                      <button  mat-raised-button color="primary" (click)="guardarcv(element)" >DAR CARGO</button> 
+                      <button  mat-raised-button color="primary" (click)="guardarcv(element)" >Asignar Cargo</button> 
                   </ng-template>
               </div> </mat-cell>
             </ng-container>

@@ -98,12 +98,12 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Dar cargo',
+      title: 'Asignar Cargo',
       text: "CARGO: ",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, dar!',
-      cancelButtonText: 'No, dar!',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -116,15 +116,16 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
         this.resposableppservice.saverppp(this.responsable).subscribe(
           data=>{
             swalWithBootstrapButtons.fire(
-              'Convocado!',
-              (`${cedula}`+', resivira un Carreo el que se le convocare que a sido asigando como Resposanble PPP'),
+              
+                'Asignado',
+              (`${cedula}`+', se le enviará un correo comunicandole que ha sido asignado como Responsable de Prácticas Pre Profesionales'),
                 'success'
             )
             window.location.reload();               
         },err=>{
           Swal.fire({
             icon: 'warning',
-            title: 'Al paracer hubo un problema',
+            title: 'Al parecer hubo un problema',
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
@@ -136,7 +137,7 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
       ) {
         swalWithBootstrapButtons.fire(
           'Cancelado',
-          'No se relizó ningun cambio',
+          'No se relizó ningún cambio',
           'error'
         )
       }
@@ -152,12 +153,12 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
       buttonsStyling: false
     })
     swalWithBootstrapButtons.fire({
-      title: 'Quitar cargo',
+      title: 'Remover cargo',
       text: "CARGO: ",
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Si, quitar cargo!',
-      cancelButtonText: 'No, quitar cargo!',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
@@ -166,15 +167,15 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
         this.resposableppservice.updateppp(responsable).subscribe(
           data=>{
             swalWithBootstrapButtons.fire(
-              'Quitar Cargo!',
-              (`${responsable.cedula}`+', ha sido retirado como Responsable e Practicas Pre Prefecionales'),
+              'Remover Cargo',
+              (`${responsable.cedula}`+', ha sido retirado como Responsable de Prácticas Pre Profesionales'),
                 'success'
             )
             window.location.reload();             
         },err=>{
           Swal.fire({
             icon: 'warning',
-            title: 'Al paracer hubo un problema',
+            title: 'Al parecer hubo un problema',
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
@@ -186,7 +187,7 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
       ) {
         swalWithBootstrapButtons.fire(
           'Cancelado',
-          'No se relizó ningun cambio',
+          'No se relizó ningún cambio',
           'error'
         )
       }

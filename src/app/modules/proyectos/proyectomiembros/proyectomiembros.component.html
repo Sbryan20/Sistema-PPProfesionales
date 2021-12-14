@@ -8,7 +8,7 @@
 <div *ngIf="issloading==false">
   <table class="table table-striped table-responsive-md btn-table">
     <tr >
-      <th> <strong> ASIGNACION DE DIRECTOR Y DOCENTES DE APOYO</strong></th>
+      <th> <strong> ASIGNACIÓN DE DIRECTOR DE PROYECTO Y DOCENTES DE APOYO</strong></th>
     </tr>
     <tr >
       <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select  (change)="selectProyecto($event)" class="form-control"  style="width: 100%;" name="select">
@@ -20,10 +20,10 @@
     <td>
       <strong>SELECCIONE UN DIRECTOR DE PROYECTO</strong> 
       <mat-form-field>
-        <input matInput [formControl]="myControl" placeholder="FILTRAR">
+        <input matInput [formControl]="myControl" placeholder="Buscar...">
       </mat-form-field>
       <select (change)="selectDirectorProyecto($event)" class="form-control" style="width: 100%;" name="select">
-        <option  value="">SELECCIONE</option>
+        <option  value="">Seleccione</option>
         <option *ngFor="let item of filteredOptions  | async" [value]="item.cedula">{{item.cedula}}- -{{item.nombres_completo}}- -{{item.titulo}}</option>
       </select> 
       <br>
@@ -44,7 +44,7 @@
           <div class="example-container mat-elevation-z8">
             <div class="example-header">
               <mat-form-field>
-                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="FILRAR">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
               </mat-form-field>
             </div>
           
@@ -64,18 +64,18 @@
           
               <!-- Weight Column -->
               <ng-container matColumnDef="titulo">
-                <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
               </ng-container>
           
               <!-- Symbol Column -->
               <ng-container matColumnDef="docente_tipo_tiempo">
-                <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Carga Laboral </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.docente_tipo_tiempo}} </mat-cell>
               </ng-container>
               <!-- Symbol Column -->
               <ng-container matColumnDef="materias">
-                <mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Materias </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   <select class="btn btn-outline-ligth dropdown-toggle" >
                     <option matNativeControl class="" *ngFor="let materia of element.materias" disabled selected>{{materia.nombre}}</option>
@@ -84,7 +84,7 @@
               </ng-container>
               <!-- Symbol Column -->
               <ng-container matColumnDef="carreas">
-                <mat-header-cell *matHeaderCellDef> ASIGNADO </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Carreras </mat-header-cell>
                 <mat-cell *matCellDef="let element"> 
                   <select class="btn btn-outline-ligth dropdown-toggle">
                     <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>
@@ -93,10 +93,10 @@
               </ng-container>
               <!-- Symbol Column -->
               <ng-container matColumnDef="boton">
-                <mat-header-cell *matHeaderCellDef> ASIGNAR </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Asignar </mat-header-cell>
                 <mat-cell *matCellDef="let element">
                   <div class="col-sm-6">
-                    <button  mat-raised-button color="primary" (click)="guardar(element,'apoyo')">ASIGNAR</button>
+                    <button  mat-raised-button color="primary" (click)="guardar(element,'apoyo')">Asignar</button>
                 </div> </mat-cell>
               </ng-container>
               

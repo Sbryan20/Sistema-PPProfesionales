@@ -241,6 +241,7 @@ export class ProyectosolicitudesComponent implements OnInit,AfterViewInit {
     saveAs(file, 'Convocatoria.pdf');
   }
 dataURLtoFile(dataurl, filename) {
+  try {
     let arr = dataurl.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
       bstr = atob(arr[1]),
@@ -250,6 +251,19 @@ dataURLtoFile(dataurl, filename) {
       u8arr[n] = bstr.charCodeAt(n);
     }
     return new File([u8arr], filename, { type: mime });
+    
+  } catch (error) {
+    let arr = dataurl,
+      mime = arr,
+      bstr = atob(arr),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
+    
   }
 
 }

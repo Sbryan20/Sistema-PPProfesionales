@@ -47,14 +47,14 @@ export class UserCreateComponent implements OnInit,AfterViewInit {
        this.router.navigate(['panel/user/list'])
        Swal.fire({
         icon: 'success',
-        title: 'Exito',
-        text: 'Entidad Guardada',
+        title: 'Éxito',
+        text: 'Entidad Registrada',
         confirmButtonColor: "#0c3255"   
       })
      },err=>{
       Swal.fire({
         icon: 'warning',
-        title: 'Al paracer hubo un problema',
+        title: 'Al parecer hubo un problema',
         text: err.error.message,
         confirmButtonColor: "#0c3255"   
       }) 

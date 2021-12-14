@@ -225,24 +225,24 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
   guardardirec(docentes: Docentes,rol:String){
     console.log(docentes);
     Swal.fire({
-      title: 'Esta serguro?',
-      text: "Una ves se le asigne el rol no lo podra cambiar!",
+      title: 'Asignar Directo de Proyecto',
+      text: "Una vez se le asigne el rol no lo podrá cambiar",
       icon: 'warning',
       allowOutsideClick: false,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, deacuerdo!'
+      confirmButtonText: 'Aceptar'
     }).then(async (result) => {
       if (result.isConfirmed) {
         this.generate(this.Anexo1(docentes,rol));
         const { value: file } = await Swal.fire({
           title: 'SELECCIONE EL PDF',
-          text:'Debe subir la covocataria en tipo PDF',
+          text:'Debe subir el documento en formato PDF',
           input: 'file',
           inputAttributes: {
             'accept': 'application/pdf',
-            'aria-label': 'Debe subir la covocataria en tipo PDF'
+            'aria-label': 'Debe subir el documento en formato PDF'
           },
           inputValidator: (value) => {
             return new Promise((resolve) => {
@@ -255,20 +255,20 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
                     Swal.fire({
                       icon: 'success',
                       title: 'Anexo',
-                      text: 'Director correctamente',
+                      text: 'Director de Proyecto Registrado con éxito',
                       confirmButtonColor: "#0c3255"   
                     }) 
                     this.resposableppservice.saverdirector(this.director).subscribe(date=>{
                       Swal.fire({
                       icon: 'success',
                       title: 'Anexo',
-                      text: 'Docente de apoyo correctamente',
+                      text: 'Docente de Apoyo Registrado con éxito',
                       confirmButtonColor: "#0c3255"   
                     }) 
                   },err=>{
                       Swal.fire({
                         icon: 'warning',
-                        title: 'Al paracer hubo un problema',
+                        title: 'Al parecer hubo un problema',
                         text: err.error.message,
                         confirmButtonColor: "#0c3255"   
                       }) 
@@ -276,7 +276,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
                   },err=>{
                     Swal.fire({
                       icon: 'warning',
-                      title: 'Al paracer hubo un problema',
+                      title: 'Al parecer hubo un problema',
                       text: err.error.message,
                       confirmButtonColor: "#0c3255"   
                     }) 
@@ -294,24 +294,24 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
   guardar(docentes: Docentes,rol:String){
     this.DocenteApoyo(docentes,rol)
     Swal.fire({
-      title: 'Esta serguro?',
-      text: "Una ves se le asigne el rol no lo podra cambiar!",
+      title: 'Docente de Apoyo',
+      text: "Una vez se le asigne el rol no lo podrá cambiar",
       icon: 'warning',
       allowOutsideClick: false,
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, deacuerdo!'
+      confirmButtonText: 'Aceptar'
     }).then(async (result) => {
       if (result.isConfirmed) {
         this.generate(this.Anexo1(docentes,rol));
         const { value: file } = await Swal.fire({
           title: 'SELECCIONE EL PDF',
-          text:'Debe subir la covocataria en tipo PDF',
+          text:'Debe subir el documento en formato PDF',
           input: 'file',
           inputAttributes: {
             'accept': 'application/pdf',
-            'aria-label': 'Debe subir la covocataria en tipo PDF'
+            'aria-label': 'Debe subir el documento en formato PDF'
           },
           inputValidator: (value) => {
             return new Promise((resolve) => {
@@ -325,19 +325,19 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
                     Swal.fire({
                       icon: 'success',
                       title: 'Anexo',
-                      text: 'Proyecto creado correctamente',
+                      text: 'Docente de Apoyo Registrado con éxito',
                       confirmButtonColor: "#0c3255"   
                     }) 
                     this.resposableppservice.saverapoyo(this.docentesRoles).subscribe(date=>{
                       Swal.fire({
                       icon: 'success',
                       title: 'Anexo',
-                      text: 'Persona creado correctamente',
+                      text: 'Docente de Apoyo Registrado con éxito',
                       confirmButtonColor: "#0c3255"   
                     }) },err=>{
                       Swal.fire({
                         icon: 'warning',
-                        title: 'Al paracer hubo un problema',
+                        title: 'Al parecer hubo un problema',
                         text: err.error.message,
                         confirmButtonColor: "#0c3255"   
                       }) 
@@ -345,7 +345,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
                   },err=>{
                     Swal.fire({
                       icon: 'warning',
-                      title: 'Al paracer hubo un problema',
+                      title: 'Al parecer hubo un problema',
                       text: err.error.message,
                       confirmButtonColor: "#0c3255"   
                     }) 
@@ -417,7 +417,7 @@ public displayedColumns = ['cedula', 'nombres_completo', 'titulo', 'docente_tipo
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         });
         // Output the document using Data-URI
-        saveAs(out, 'Convocataria miembros.docx');
+        saveAs(out, 'Convocatoria miembros.docx');
       }
     );
   }

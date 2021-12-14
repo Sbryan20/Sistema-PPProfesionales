@@ -151,6 +151,7 @@ public anexo1response:Anexo1[]=[];
         this.cicl=data.ciclo;
     })
     this.anexo5Service.getDocentesApoyo(this.cedula,event.target.value).subscribe(data=>{
+      console.log(this.cedula,event.target.value)
     this.nombreDocenteapoyo=data.nombreDApoyo
     this.cedulaDocenteApoyo=data.cedulaDAapoyo
     this.correo_DocenteApoyo=data.correoDApoyo
@@ -218,7 +219,7 @@ save(){
       text: err.error.message,
       confirmButtonColor: "#0c3255"   
     }) 
-    window.location.reload();  
+   
   })
 
 }

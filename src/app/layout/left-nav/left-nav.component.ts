@@ -40,19 +40,19 @@ export class LeftNavComponent implements OnInit {
       return "AUTORIDAD";
     }
     if(rol=="CC"){
-      return "CORDINADOR/RA DE CARRERA";
+      return "COORDINADOR/A DE CARRERA";
     }
     if(rol=="CV"){
-      return "CORDINADOR/RA DE VINCULACION";
+      return "COORDINADOR/A DE VINCULACIÓN";
     }
     if(rol=="DP"){
-      return "DIRECTOR/RA DE PROYECTO";
+      return "DIRECTOR/A DE PROYECTO";
     }
     if(rol=="DA"){
       return "DOCENTE APOYO";
     }
     if(rol=="RPPP"){
-      return "RESPOSABLE DE PRACTICAS PREPROFESIONALES";
+      return "RESPONSABLE DE PRÁCTICAS PREPROFESIONALES";
     }
     if(rol=="EST"){
       return "ESTUDIANTE";
