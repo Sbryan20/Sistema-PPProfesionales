@@ -48,37 +48,33 @@
                       <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                         <td scope="col">   
                             <strong>Cedula:</strong> 
-                              <div class="form-group"> 
-                                      <td>
+                              <div class="form-group">  
                                       <input type="text" class="form-control"  [formControl]="row.get('cedula')" readonly>
-                                      </td>
+                                 
                               </div> 
                         </td>
                         
                         <td scope="col">    
                           <strong>Nombres</strong>
-                            <div class="form-group">
-                                    <td>
+                            <div class="form-group"> 
                                     <input type="text" class="form-control"  [formControl]="row.get('nombres')" readonly>
-                                    </td>
+                      
                           </div> 
                         </td>
                                     
                         <td scope="col">    
                           <strong>Carreras</strong>
-                            <div class="form-group">
-                                    <td>
+                            <div class="form-group"> 
                                     <input type="text" class="form-control"  [formControl]="row.get('carrera')" readonly>
-                                    </td>
+                
                           </div> 
                         </td>
 
                         <td scope="col"> 
                           <strong>Número de Horas</strong>
-                          <div class="form-group"> 
-                            <td> 
+                          <div class="form-group">  
                               <input type="number" style="font-size: 18px;" class="form-control" class="impnumber" [formControl]="row.get('numeroHoras')"/>
-                             </td>
+ 
                         </div>
                         </td>
                     
@@ -102,37 +98,33 @@
                 <tr *ngFor="let row of addForm1.get('rows')?.controls;let index = index;">
                   <td scope="col">   
                       <strong>Cedula:</strong> 
-                        <div class="form-group"> 
-                                <td>
+                        <div class="form-group">  
                                 <input type="text" class="form-control"  [formControl]="row.get('cedula')" readonly>
-                                </td>
+                           
                         </div> 
                   </td>
                   
                   <td scope="col">    
                     <strong>Nombres</strong>
-                      <div class="form-group">
-                              <td>
+                      <div class="form-group"> 
                               <input type="text" class="form-control"  [formControl]="row.get('nombres')" readonly>
-                              </td>
+                           
                     </div> 
                   </td>
                               
                   <td scope="col">    
                     <strong>Carreras</strong>
-                      <div class="form-group">
-                              <td>
+                      <div class="form-group"> 
                               <input type="text" class="form-control"  [formControl]="row.get('carrera')" readonly>
-                              </td>
+                            
                     </div> 
                   </td>
 
                   <td scope="col"> 
                     <strong>Número de Horas</strong>
-                    <div class="form-group"> 
-                      <td> 
+                    <div class="form-group">  
                         <input type="number" style="font-size: 18px;" class="form-control" class="impnumber" [formControl]="row.get('numeroHoras')"/>
-                       </td>
+                       
                   </div>
                   </td>
               
@@ -142,12 +134,12 @@
               <strong>Otra información:</strong>
               <tr>
                 <td colspan="4" scope="col">
-                    <strong>Situacion actual de Proyecto</strong> <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="informe1.situacionInicio" name="situacionInicio" required />
+                    <strong>Situación actual de Proyecto</strong> <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="informe1.situacionInicio" name="situacionInicio" required />
                 </td>              
             </tr>
             <tr>
                 <td colspan="4" scope="col">
-                    <strong>Situacion actual de la Entidad</strong> <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="informe1.situacionActual" name="situacionActual" required />
+                    <strong>Situación actual de la Entidad</strong> <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="informe1.situacionActual" name="situacionActual" required />
                 </td>
             </tr>
             
@@ -160,7 +152,10 @@
         <td colspan="4" scope="col " > <strong class="texto2">Informe:</strong></td>
       </tr>
       <tr>
-        <strong> Actividades</strong>
+        <td>
+
+          <strong> Actividades</strong>
+        </td>
       </tr>
       <tbody>
        
@@ -175,37 +170,29 @@
               </td>
               
               <td scope="col">    
-                <strong>Porcenteje de avance</strong>
-                  <div class="form-group">
-                          <td>
-                          <input type="number" class="form-control"  [formControl]="row.get('porcentajeCumplimiento')" >
-                          </td>
+                <strong>Porcentaje de avance:</strong>
+                  <div class="form-group"> 
+                          <input type="number" class="form-control"  [formControl]="row.get('porcentajeCumplimiento')" > 
                 </div> 
               </td>
                           
               <td scope="col">    
-                <strong>Fecha de Ejecucion</strong>
-                  <div class="form-group">
-                          <td>
-                          <input type="date" class="form-control"  [formControl]="row.get('fechaEjecucion')" readonly>
-                          </td>
+                <strong>Fecha de Ejecución:</strong>
+                  <div class="form-group"> 
+                          <input type="date" class="form-control"  [formControl]="row.get('fechaEjecucion')" readonly> 
                 </div> 
               </td>
 
               <td scope="col">    
-                <strong>Responsble</strong>
-                  <div class="form-group">
-                          <td>
-                          <input type="text" class="form-control"  [formControl]="row.get('responsableEjecucion')" readonly>
-                          </td>
+                <strong>Responsable:</strong>
+                  <div class="form-group"> 
+                          <input type="text" class="form-control"  [formControl]="row.get('responsableEjecucion')" readonly> 
                 </div> 
               </td>
               <td scope="col">    
-                <strong>observaciones</strong>
-                  <div class="form-group">
-                          <td>
-                          <input type="text" class="form-control"  [formControl]="row.get('observaciones')">
-                          </td>
+                <strong>Observaciones:</strong>
+                  <div class="form-group"> 
+                          <input type="text" class="form-control"  [formControl]="row.get('observaciones')"> 
                 </div> 
               </td>
           
@@ -219,30 +206,36 @@
     <tr>
       <td colspan="4" scope="col " > <strong class="texto2">Informe:</strong></td>
     </tr>
-    <tr>
+    <tr> 
       <td>
-        <button mat-raised-button color="primary" (click)="onAddRow3()" *ngIf="addForm3.get('rows')">Nueva Observacion</button>
-    </td>
+        <button mat-raised-button color="primary" (click)="onAddRow3()" *ngIf="addForm3.get('rows')">Nueva Observación</button>
+      </td>
+        
     </tr>
     <tbody>
      
           <tr *ngFor="let row of addForm3.get('rows')?.controls;let index = index;">
-            <td scope="col">   
+            <td colspan="5"  scope="col">   
                 <strong>Observaciones:</strong> 
-                  <div class="form-group"> 
-                          <td colspan="4" scope="col ">
-                          <input type="text" class="form-control"  [formControl]="row.get('descripcion')">
-                          </td>
-                          <td> <button mat-raised-button color="warn" (click)="onRemoveRow3(index)">ELIMINAR</button> </td>
+                  <div class="form-group">   
+                    <td scope="col">
+                      <input type="text" class="form-control"  [formControl]="row.get('descripcion')">  
+                    
+                    </td>
+                    <td  scope="col"> 
+                      <button mat-raised-button color="warn" (click)="onRemoveRow3(index)">ELIMINAR</button>  
+                    </td>
+               
+                          
                   </div> 
             </td>
         </tr>
         <tr>
-          <td>
+          <td colspan="2" scope="col">
               <strong>Fecha de Entrega</strong> <input type="date"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="informe1.fechaEntrega" name="fechaEntrega" required />
           </td>
-          <td colspan="4" scope="col">
-              <strong>Concluciones:</strong> <br> <textarea name="" id="" cols="100" rows="5" [(ngModel)]="informe1.conclusiones" name="conclusiones" required></textarea>
+          <td colspan="3" scope="col">
+              <strong>Concluciones:</strong> <br> <textarea name="" id="" cols="90" rows="5" [(ngModel)]="informe1.conclusiones" name="conclusiones" required></textarea>
           </td>
       </tr>
       <tr>

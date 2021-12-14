@@ -82,63 +82,54 @@
                         
                         <td scope="col">    
                           <strong>Actividades según planificación</strong>
-                            <div class="form-group">
-                                    <td>
+                            <div class="form-group"> 
                                     <input type="text" class="form-control"  [formControl]="row.get('actividadesPlanificacion')">
-                                    </td>
+                                  
                           </div> 
                         </td>
                                     
                         <td scope="col"> 
                           <strong>  Estudiante Responsable:</strong>
-                            <div class="form-group">
-                                    <td>
+                            <div class="form-group"> 
                                       <select  class="form-control"  style="width: 100%" name="select"  [formControl]="row.get('estudianteResponsable')" required>
                                         <option value="SL">Seleccione</option>
                                         <option *ngFor="let item of anexo5response.alumnos" [value]="item.nombreEstudiante">{{item.nombreEstudiante}}</option>
-                                    </select>
-                                    </td>
+                                    </select> 
                           </div> 
                         </td>
                         <td scope="col">  
                           <br>  
                           <strong> Fecha Planificada:</strong>
-                            <div class="form-group">
-                                    <td>
+                            <div class="form-group"> 
                                     <input type="date" class="form-control"  [formControl]="row.get('fechaPlanificacion')">
-                                    </td>
+                                   
                           </div> 
                         </td>
 
                         <td scope="col">
                           <strong>Finalizada: SI/NO:</strong> 
-                          <div>
-                            <td>
+                          <div> 
                               <select class="form-control"  style="width: 100%;" name="select" [formControl]="row.get('finalizacion')">
                                 <option value="SL">Seleccione</option>
                                 <option value="SI">SI</option>
                                 <option value="NO" selected>NO</option> 
-                            </select>
-                            </td>
+                            </select> 
                           </div>
                         </td>
 
                         <td scope="col">   
                           <br> 
                           <strong> Fecha Finalización Prevista:</strong>
-                            <div class="form-group">
-                                    <td>
-                                    <input type="date" class="form-control"  [formControl]="row.get('Finalizada')">
-                                    </td>
+                            <div class="form-group"> 
+                                    <input type="date" class="form-control"  [formControl]="row.get('Finalizada')">  
                           </div> 
                         </td>
                         <td scope="col">  
                           <br>  
                           <strong> Porcentaje de Avance:</strong>
-                            <div class="form-group">
-                                    <td>
+                            <div class="form-group"> 
                                     <input type="number" class="form-control" class="impnumber"  [formControl]="row.get('Porcentajeavance')">
-                                    </td>
+ 
                           </div> 
                         </td>
 

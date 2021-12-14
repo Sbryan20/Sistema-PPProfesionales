@@ -53,13 +53,13 @@
         
             <!-- Name Column -->
             <ng-container matColumnDef="nombres_completo">
-              <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Nombres/Apellidos </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.nombres_completo}} </mat-cell>
             </ng-container>
         
             <!-- Weight Column -->
             <ng-container matColumnDef="titulo">
-              <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Titulo </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
             </ng-container>
         
@@ -79,7 +79,7 @@
             </ng-container>
             <!-- Symbol Column -->
             <ng-container matColumnDef="carreas">
-              <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Carrera </mat-header-cell>
               <mat-cell *matCellDef="let element"> 
                 <select class="btn btn-outline-ligth dropdown-toggle">
                   <option  matNativeControl class="" *ngFor="let carrera  of element.carreas" disabled selected>{{carrera.nombrecarrera}}</option>

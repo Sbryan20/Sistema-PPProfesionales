@@ -17,7 +17,7 @@
         <input matInput [formControl]="myControl" placeholder="FILTRAR">
       </mat-form-field>
       <select (change)="selectAlumnos($event)" class="form-control" style="width: 100%;" name="select">
-        <option value="SL">SELECCION</option>
+        <option value="SL">SELECCIONE</option>
         <option *ngFor="let item of filteredOptions  | async" [value]="item.cedulaDelegado">  DOCENTE DE PROYECTO:{{item.nombreDelegado}}  PROYECTO: {{item.nombreProyecto}}    {{item.carrera}}</option>
       </select> 
     </td> 
@@ -51,13 +51,13 @@
       
           <!-- Weight Column -->
           <ng-container matColumnDef="nombresestudiante">
-            <mat-header-cell *matHeaderCellDef> NOMBRE ESTUDIANTE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> NOMBRES</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.nombresestudiante}} </mat-cell>
           </ng-container>
 
           <!-- Weight Column -->
           <ng-container matColumnDef="apellidosestudiante">
-            <mat-header-cell *matHeaderCellDef> NOMBRE ESTUDIANTE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> APELLIDOS</mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.apellidosestudiante}} </mat-cell>
           </ng-container>
           <!-- Symbol Column -->
@@ -86,10 +86,10 @@
        <tbody>
          <tr *ngFor="let row of addFormR.get('rowsR')?.controls;let index = index;">
            <td>
-            cédulaEstudiante : <input type="text" class="form-control" [formControl]="row.get('cedulaEstudiante')" readonly>
+            Cédula del Estudiante : <input type="text" class="form-control" [formControl]="row.get('cedulaEstudiante')" readonly>
            </td>
            <td>
-            nombreEstudiante : <input type="text" class="form-control" [formControl]="row.get('nombreEstudiante')" readonly>
+            Nombres/Apellidos : <input type="text" class="form-control" [formControl]="row.get('nombreEstudiante')" readonly>
            </td>
            <td>
              <button mat-raised-button color="warn" (click)="onRemoveRowR(index)">QUITAR</button>

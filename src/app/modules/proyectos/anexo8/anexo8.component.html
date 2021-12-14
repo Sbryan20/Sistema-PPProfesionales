@@ -67,37 +67,34 @@
                       <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                         <td scope="col">   
                             <strong>Fecha:</strong> 
-                              <div class="form-group"> 
-                                      <td>
-                                      <input type="date" class="form-control"  [formControl]="row.get('fecha')">
-                                      </td>
+                              <div class="form-group">  
+                                      <input type="date" class="form-control"  [formControl]="row.get('fecha')"> 
                               </div> 
                         </td>
                         
                         <td scope="col">    
-                          <strong>Descripción de Actividades</strong>
-                            <div class="form-group">
-                                    <td>
+                          <strong>Descripción de Actividades:</strong>
+                            <div class="form-group"> 
                                     <input type="text" class="form-control"  [formControl]="row.get('descripcionActividad')">
-                                    </td>
+                 
                           </div> 
                         </td>
                                     
                         <td scope="col">    
-                          <strong>Lugar</strong>
+                          <strong>Lugar:</strong>
                             <div class="form-group">
-                                    <td>
+                          
                                     <input type="text" class="form-control"  [formControl]="row.get('lugar')">
-                                    </td>
+                     
                           </div> 
                         </td>
 
                         <td scope="col"> 
-                          <strong>Número de Horas </strong>
+                          <strong>Número de Horas: </strong>
                           <div class="form-group"> 
-                            <td> 
+                       
                               <input type="number" style="font-size: 18px;" class="form-control" (keyup)="sumar()"  class="impnumber" [formControl]="row.get('numHoras')"/>
-                             </td>
+                      
                         </div>
                         </td>
 

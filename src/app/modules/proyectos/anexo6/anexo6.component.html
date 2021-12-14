@@ -64,7 +64,7 @@
                                 <option *ngFor="let item of listalm" [value]="item.cedula">  {{item.cedula}}  {{item.nombresestudiante}}  </option>
                             </select>
                           </td> 
-                          <td colspan="4" scope="col"><strong class="texto" for="periodoAcademico">PERÍODO ACADÉMICO:</strong>
+                          <td colspan="4" scope="col"><strong class="texto" for="periodoAcademico">PERIODO ACADÉMICO:</strong>
                             <br>
                              <input type="text"  class="form-control" style="background-color:transparent;font-size: 18px;" [(ngModel)]="periodoAcademico" name="periodoAcademico" required /> 
                         </td>
@@ -92,41 +92,36 @@
                    
                         <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                           <td scope="col">   
-                              <strong>ACTIVIDADES POR REALIZAR</strong> 
-                                <div class="form-group"> 
-                                        <td>
+                              <strong>ACTIVIDADES POR REALIZAR:</strong> 
+                                <div class="form-group">  
                                         <input type="text" class="form-control"  [formControl]="row.get('actividad')">
-                                        </td>
+                                
                                 </div> 
                           </td>
                           
                           <td scope="col">
                             <strong>ASIGNATURA BASE RELACIONADA:</strong> 
-                            <div>
-                              <td>
+                            <div> 
                                 <select class="form-control"  style="width: 100%;" name="select"  [formControl]="row.get('asignatura')">
                                   <option value="SL">Seleccione</option>
                                   <option *ngFor="let item of materias" [value]="item.nombre"> {{item.nombre}}  </option>
-                              </select>
-                              </td>
+                              </select> 
                             </div>
                           </td>
                                       
                           <td scope="col">    
-                            <strong>RESULTADOS DEL APRENDIZAJE</strong>
-                              <div class="form-group">
-                                      <td>
+                            <strong>RESULTADOS DEL APRENDIZAJE:</strong>
+                              <div class="form-group"> 
                                       <input type="text" class="form-control"  [formControl]="row.get('resultado')">
-                                      </td>
+                                
                             </div> 
                           </td>
   
                           <td scope="col"> 
-                            <strong>HORAS ASIGNADAS </strong>
-                            <div class="form-group"> 
-                              <td> 
+                            <strong>HORAS ASIGNADAS:</strong>
+                            <div class="form-group">  
                                 <input type="number" style="font-size: 18px;" class="form-control"  class="impnumber" (keyup)="sumar()" [formControl]="row.get('horasAsignadas')"/>
-                               </td>
+                          
                           </div>
                           </td>
   
