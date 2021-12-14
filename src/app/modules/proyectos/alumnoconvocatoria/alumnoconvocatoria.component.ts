@@ -132,11 +132,11 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
               const { value: file } = await Swal.fire({
                 allowOutsideClick: false,
                 title: 'SELECCIONE EL PDF',
-                text:'Debe subir la covocataria en tipo PDF',
+                text:'Debe subir la convocatoria en formato PDF',
                 input: 'file',
                 inputAttributes: {
                   'accept': 'application/pdf',
-                  'aria-label': 'Debe subir la covocataria en tipo PDF'
+                  'aria-label': 'Debe subir la convocatoria en formato PDF'
                 },
                 inputValidator: (value) => {
                   return new Promise((resolve) => {
@@ -149,7 +149,7 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
                           Swal.fire({
                             icon: 'success',
                             title: 'Anexo',
-                            text: 'Postulacion relizada espere una respuesta',
+                            text: 'Postulacion relizada, espere una respuesta',
                             confirmButtonColor: "#0c3255"})
                         },err=>{
                           Swal.fire({

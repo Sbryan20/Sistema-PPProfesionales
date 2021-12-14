@@ -125,7 +125,7 @@ export class ProyectosolicitudesComponent implements OnInit,AfterViewInit {
                       Swal.fire({
                         icon: 'success',
                         title: 'Anexo',
-                        text: 'Postulacion relizada espera una respuesta',
+                        text: 'Alumno Aceptado',
                         confirmButtonColor: "#0c3255"})
                     },err=>{
                       Swal.fire({
