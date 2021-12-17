@@ -37,6 +37,7 @@ function getBase64(file) {
 export class ProyectosolicitudesComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
   
   public anexo3:Anexo3[]=[];
@@ -166,12 +167,29 @@ export class ProyectosolicitudesComponent implements OnInit,AfterViewInit {
   }
 
   denegar(anexo3:Anexo3){
-    anexo3.estado="DN";
-    this.anexo3service.updatinanexo3(anexo3).subscribe(data=>{
-      console.log("Hola")
-    },err=>{
-      console.log(err.error.Mensaje)
-    });
+    Swal.fire({
+      title: 'Esta seguro de Denegar',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        anexo3.estado="DN";
+        this.anexo3service.updatinanexo3(anexo3).subscribe(data=>{
+          Swal.fire(
+            'Denegado!',
+            'El alumno no podra participar en este proceso',
+            'success'
+          )
+        },err=>{
+          console.log(err.error.Mensaje)
+        });
+      }
+    })
+   
   }
  //Docs
  generate(Anexo4: Anexo4) {

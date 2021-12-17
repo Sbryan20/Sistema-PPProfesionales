@@ -33,6 +33,7 @@ export class SocializacionComponent implements OnInit,AfterViewInit{
 
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
 
   public anexo7:Anexo7[]=[]

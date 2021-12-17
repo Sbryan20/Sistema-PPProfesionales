@@ -23,6 +23,8 @@ function getBase64(file) {
 export class SegumientoparcialfirmaComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
+  
   issloading=true;
 
   public anexo61:Anexo6_1[]=[]

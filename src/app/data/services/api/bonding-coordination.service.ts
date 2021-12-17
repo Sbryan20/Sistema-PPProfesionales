@@ -17,9 +17,11 @@ export class BondingCoordinationService {
   constructor(private http:HttpClient) { }
 
   postCreate(entidad:Ientity):Observable<Ientity>{
+    console.log(entidad);
     return this.http.post<Ientity>(this.urlEndPoint,entidad,{headers: this.httpHeaders})
   }
   putUdate(entidad:Ientity){
+    console.log(entidad);
     return this.http.put<Ientity>(this.urlEndPoint,entidad,{headers: this.httpHeaders})
   }
 

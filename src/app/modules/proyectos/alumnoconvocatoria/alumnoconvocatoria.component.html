@@ -5,31 +5,43 @@
      </center>
     </div>
   </ng-container>
-<div class="card border-primary mb-3" *ngIf="issloading==false" >
-    <div class="card-header" >Convocatorias</div>
-    <div class="card-body text-primary">
-            <h5 class="card-title">Listado de Solicitudes</h5>
-            <br> <br>
-            <div class="example-flex-container">
-                <div class="float-container" *ngFor="let anexos of anexo2">
-                        <ng-container *ngIf="anexos.siglasCarrera==carrera">
-                            <div class="card text-dark bg-light mb-3 float-container">
-                                <div class="card-header"> Proyecto: {{anexos.nombreProyecto}}</div>
-                                <div class="card-body">
-                                   <p class="card-text"> Entidad: {{anexos.entidadBeneficiaria}}</p>
-                                   <p class="card-text"> Fecha: {{anexos.fechaMaxRecepcion}}</p>
-                                   <p class="card-text"> Responsable: {{anexos.nombreResponsable}} </p>
-                              </div>
-                            <div class="card-header">
-                               <div class="example-flex-container"  >
-                                   <button type="button"   (click)="convertFile(anexos.documento)" class="btn btn-secondary">Más información</button>
-                                   <button  type="button" (click)="materias(anexos.idProyectoPPP)"  class="btn btn-danger">Postular</button>
-                               </div>
-                               </div>
-                            </div>
-                        </ng-container>
-                </div>
-            </div>
-    </div>
-</div>
+
+  <div *ngIf="issloading==false">
+    <div class="card border-primary mb-3"  *ngIf="anexo2.length!=0 ;else empy">
+      <div class="card-header" >Proyectos de Vinculación disponibles</div>
+      <div class="card-body text-primary">
+              <h5 class="card-title">Listado de proyectos de Vinculación</h5>
+              <div class="example-flex-container">
+                  <div class="float-container" *ngFor="let anexos of anexo2">
+                              <div class="card text-dark bg-light mb-3 float-container">
+                                  <div class="card-header">Proyecto: {{anexos.nombreProyecto}}</div>
+                                  <div class="card-body">
+                                     <p class="card-text">Entidad: {{anexos.entidadBeneficiaria}}</p>
+                                     <p class="card-text">Fecha: {{anexos.fechaMaxRecepcion}}</p>
+                                     <p class="card-text">Responsable: {{anexos.nombreResponsable}} </p>
+                                </div>
+                              <div class="card-header">
+                                 <div class="example-flex-container"  >
+                                     <button type="button"   (click)="convertFile(anexos.documento)" class="btn btn-secondary">Más información</button>
+                                     <button  type="button" (click)="materias(anexos.idProyectoPPP)"  class="btn btn-danger">Postular</button>
+                                 </div>
+                                 </div>
+                              </div>                       
+                  </div>
+              </div>
+      </div>
+  </div>
+  </div>
+<ng-template #empy >
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="empty" alt=""> 
+   </center>
+   <br>
+   <br>
+  <h1 style="padding-left: 32%; font-size: 60px; color: rgb(84, 167, 192); border-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >SIN RESULTADOS..</h1>
+  </div>
+</ng-template>
+
+
 

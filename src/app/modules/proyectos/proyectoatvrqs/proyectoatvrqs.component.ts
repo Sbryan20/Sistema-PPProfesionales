@@ -8,6 +8,9 @@ import { Materias } from '@shared/models/materias';
 import { Proyectos } from '@shared/models/proyecto';
 import Swal from 'sweetalert2';
 
+
+
+
 @Component({
   selector: 'app-proyectoatvrqs',
   templateUrl: './proyectoatvrqs.component.html',

@@ -23,6 +23,7 @@ function getBase64(file) {
 export class AlumnosfirmaComponent implements OnInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
 
   public anexo4:Anexo4[]=[];

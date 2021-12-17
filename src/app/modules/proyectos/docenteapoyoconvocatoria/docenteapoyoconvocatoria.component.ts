@@ -22,6 +22,7 @@ function getBase64(file) {
 export class DocenteapoyoconvocatoriaComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
   
   file;

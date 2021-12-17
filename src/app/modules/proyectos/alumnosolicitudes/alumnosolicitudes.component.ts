@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 export class AlumnosolicitudesComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
   
   public anexo3:Anexo3[]=[];

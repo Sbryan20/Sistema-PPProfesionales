@@ -52,10 +52,7 @@
                   </th>
                 </tr>
                 <tr>
-                  <td > <strong>CARRERA:</strong><select class="form-control" (change)="selectCarreta($event)" style="width: 100%;" name="select" required>
-                    <option value="" selected>Seleccione</option>
-                      <option *ngFor="let item of listacarrera" [value]="item.codigo"> {{item.codigo}}-{{item.nombre}} </option>
-                  </select></td>
+                  <td > <strong>CARRERA: {{listacarrera[0].nombre}}</strong>
                   <td colspan="3"> <strong>Estado: </strong><select class="form-control" (change)="selectEstado($event)" style="width: 100%;" name="select">
                     <option value="true">Verdadero</option>
                     <option value="false" selected>Falso</option>
@@ -81,11 +78,7 @@
                   </th>
                 </tr>
                 <tr> 
-                  <th colspan="4" scope="col"><strong>RESPONSABLE</strong>
-                    <select class="form-control" (change)="selectResposablepp($event)" style="width: 100%;" name="select" required>
-                      <option value=""selected>Seleccione</option>
-                      <option *ngFor="let resppp of resPPP"  [value]="resppp.id">{{resppp.id}}-{{resppp.cedula}}</option>
-                      </select> 
+                  <th colspan="4" scope="col"><strong>RESPONSABLE: {{resPPP.nombres_completo}}</strong>
                   </th>
                 </tr> 
                 <tr> 
@@ -105,12 +98,13 @@
                   </th>
                 </tr>
                 <tr> 
-                  <th colspan="2" scope="col"><strong>OBJETIVO GENERAL: </strong>
+                  <th colspan="1" scope="col"><strong>OBJETIVO GENERAL: </strong>
                     <textarea style="background-color:rgb(255, 255, 255);color:rgb(0, 0, 0);"  rows="3" cols="80" [(ngModel)]="proyectos.objetivoGeneral" name="objetivoGeneral" required ></textarea>
                   </th>
-                  <th colspan="2" scope="col">
+                  <th colspan="5" scope="col">
                     <tr [formGroup]="addForm"> 
                       <th  scope="col"><strong>OBJETIVOS ESPECÍFICOS: </strong>
+                        <br>
                         <button  mat-raised-button color="primary"  (click)="onAddRow()" *ngIf="addForm.get('rows')">NUEVO OBJETIVO</button>
                         <br> <br>
                           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
@@ -121,10 +115,12 @@
                               <button mat-raised-button color="warn" (click)="onRemoveRow(index)">Eliminar</button>
                             </td>
                           </tr>
-  
                       </th>
                     </tr>    
                   </th>
+                </tr>
+                <tr>
+                  
                 </tr>
                    
               </tbody>

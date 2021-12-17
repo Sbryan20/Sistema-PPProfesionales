@@ -5,27 +5,42 @@
      </center>
     </div>
   </ng-container>
-<div class="card border-primary mb-3" *ngIf="issloading==false" >
-    <div class="card-header" >INFORME DE CULMINACIÓN DEL PROYECTO</div>
-    <div class="card-body text-primary">
-            <h5 class="card-title">Listado </h5>
-            <br> <br>
-            <div class="example-flex-container">
-                <div class="float-container" *ngFor="let anexos of anexo10">
-                            <div class="card text-dark bg-light mb-3 float-container">
-                                <div class="card-body">
-                                   <p class="card-text"> Proyecto: {{anexos.nombreProyecto}}</p>
-                                   <p class="card-text"> Empresa: {{anexos.nombreEmpresa}}</p>
-                                   <p class="card-text"> Administrador: {{anexos.nombreAdministrador}} </p>
+  <div *ngIf="issloading==false">
+    <div class="card border-primary mb-3" *ngIf="anexo10.length!=0 ;else empy" >
+      <div class="card-header" >INFORME DE CULMINACIÓN DEL PROYECTO</div>
+      <div class="card-body text-primary">
+              <h5 class="card-title">Listado </h5>
+              <br> <br>
+              <div class="example-flex-container">
+                  <div class="float-container" *ngFor="let anexos of anexo10">
+                              <div class="card text-dark bg-light mb-3 float-container">
+                                  <div class="card-body">
+                                     <p class="card-text"> Proyecto: {{anexos.nombreProyecto}}</p>
+                                     <p class="card-text"> Empresa: {{anexos.nombreEmpresa}}</p>
+                                     <p class="card-text"> Administrador: {{anexos.nombreAdministrador}} </p>
+                                </div>
+                              <div class="card-header">
+                                 <div class="example-flex-container"  >
+                                     <button type="button" (click)="generate(anexos)" class="btn btn-secondary">DOCUMENTO</button>
+                                     <button type="button" (click)="modificar(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
+                                 </div>
+                                 </div>
                               </div>
-                            <div class="card-header">
-                               <div class="example-flex-container"  >
-                                   <button type="button" (click)="generate(anexos)" class="btn btn-secondary">DOCUMENTO</button>
-                                   <button type="button" (click)="modificar(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
-                               </div>
-                               </div>
-                            </div>
-                </div>
-            </div>
-    </div>
-</div>
+                  </div>
+              </div>
+      </div>
+  </div>
+
+  </div>
+
+
+<ng-template #empy >
+  <div class="bss-loader" style="margin: auto;">
+    <center>
+      <img [src]="empty" alt=""> 
+   </center>
+   <br>
+   <br>
+  <h1 style="padding-left: 32%; font-size: 60px; color: rgb(84, 167, 192); border-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >SIN RESULTADOS..</h1>
+  </div>
+</ng-template>

@@ -15,6 +15,7 @@ import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
 import { Anexo3Service } from '@data/services/api/anexo3.service';
 import { AlumnoDatos } from '@shared/models/dto/alumnodatos';
+import { ThrowStmt } from '@angular/compiler';
 
 //DOCX
 function loadFile(url, callback) {
@@ -40,6 +41,7 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
 
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
 
   public anexo2:Anexo2[]=[]
@@ -65,8 +67,11 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
       let nombre = params['nombrescompletos']
       this.nombres=nombre;
       this.cedula=cedula;
-      this.sysdateService.getCarrera(cedula).subscribe(data=>{
-        this.carrera=data.codigoCarrera;
+      this.sysdateService.getCarrera(cedula).subscribe(datas=>{
+        this.anexo2services.getAnexo2().subscribe(data=>{
+          this.anexo2=data.filter(d=>d.siglasCarrera==datas.codigoCarrera);
+          this.issloading=false;
+        })
         console.log(this.carrera)
       })
       this.materiasService.getProtectCedula(cedula).subscribe(data=>{
@@ -76,15 +81,10 @@ export class AlumnoconvocatoriaComponent implements OnInit,AfterViewInit {
       this.anexo3service.getdatosalumno(cedula).subscribe(data=>{
         this.datosalumno=data;
         console.log(this.datosalumno)
-        this.issloading=false;
       })
       
     })
-    this.anexo2services.getAnexo2().subscribe(data=>{
-      this.anexo2=data;
-      this.issloading=false;
-    })
-
+    
   }
   aux: number = 0;
   aux2: number = 0;

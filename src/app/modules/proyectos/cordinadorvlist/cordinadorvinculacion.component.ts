@@ -38,7 +38,6 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
   }
   listar(){
     this.cvservice.getCvinculacion().subscribe(data=>{
-      console.log(data)
       this.listacvinculacion=data
       this.dataSource=new MatTableDataSource(this.listacvinculacion);
       this.issloading=false; 

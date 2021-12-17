@@ -7,7 +7,7 @@
 <div class="dsc-left-nav-usr">
   <div class="dsc-left-nav-usr__avatar"  [ngStyle]="{'background-image': 'url('+foto+')'}">
   </div>
-  <h6 class="dsc-left-nav-usr__position">{{rolnombre}}</h6>
+  <h4 class="dsc-left-nav-usr__position ">{{rolnombre}}</h4>
 </div>
 
 <ng-container >
@@ -16,46 +16,76 @@
     
             <!--Autoridad-->
             <div class="list-group" *ngSwitchCase="'AUT'">
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >MANTENIMIENTO</h4>  
+              </div>  
               <a [routerLink]="['/panel/proyecto/listcv']" routerLinkActive="active" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Asignar Coordinador de Vinculación</a>
             </div>
     
             <!--estudiante-->
-            <div class="list-group" *ngSwitchCase="'EST'">     
+            <div class="list-group" *ngSwitchCase="'EST'">
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >CONVOCATORIAS</h4>  
+              </div>  
               <a [routerLink]="['/panel/proyecto/convocatoria',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Ver convocatorias Actuales</a>
+              >Postular a proyecto de Vinculación</a>
               <a [routerLink]="['/panel/proyecto/solicidudes',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Ver Solicitudes</a>
-              <a [routerLink]="['/panel/proyecto/alumno_convocatoria',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Proyectos Aceptados</a>
+              >Solicitudes Enviadas</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >INVENTARIO</h4>  
+              </div>  
               <a [routerLink]="['/panel/proyecto/resistro_de_actividades',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Registro diario de Actividades</a>
+              >Registrar de Actividades</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >DOCUMENTACION</h4>  
+              </div> 
               <a [routerLink]="['/panel/proyecto/informe_de_culminacion',persona.cedula,persona.nombrescompletos]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Informe de culminación de proyecto de Vinculación</a>
+              >Informe de culminación del proyecto de Vinculación</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;">FIRMAS</h4>  
+              </div>
+              <a [routerLink]="['/panel/proyecto/alumno_convocatoria',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
+              >Firmar la aceptación al proyecto de Vinculacion</a>
               <a [routerLink]="['/panel/proyecto/informe_de_culminacion_firmas',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
-              >Informe de culminación de proyecto de Vinculación Firmas</a>
+              >Firmar informe de culminación de proyecto de Vinculación</a>
             </div>
     
             <!--Responsable PPP -Convocatoria -->
             <div class="list-group" *ngSwitchCase="'RPPP'">
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >MANTENIMIENTO</h4>  
+              </div> 
               <a  [routerLink]="['/panel/proyecto/actrqs']" href=""  class="list-group-item list-group-item-action bg-dark text-light"
               >Asignar actividades a Proyectos</a>
-              <a  [routerLink]="['/panel/proyecto/convopracticas',persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
-              >Crear convocatorias</a>
-              <a  [routerLink]="['/panel/proyecto/ver_solicidudes',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
-              >Ver solicidudes</a>
               <a  [routerLink]="['/panel/proyecto/asigancion_docentes_a_estudiente',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
-              >Asignar docentes a estudiantes</a>
+              >Asignar estudiantes a docentes de Apoyo</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >PROYECTO</h4>  
+              </div> 
+              <a  [routerLink]="['/panel/proyecto/convopracticas',persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
+              >Crear convocatorias de Vinculación</a>
+              <a  [routerLink]="['/panel/proyecto/ver_solicidudes',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
+              >Ver solicidudes de estudiantes para Vinculación</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >PLANES</h4>  
+              </div>
               <a  [routerLink]="['/panel/proyecto/anexo6',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
               >Plan de Aprendizaje</a>
             </div>
     
             <!--Coordinador de carrear -->
             <div class="list-group" *ngSwitchCase="'CC'">
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >MANTENIMIENTO</h4>  
+              </div>
             <a [routerLink]="['/panel/proyecto/createrespon',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
-            >Asignar Responsable PPP</a>
+            >Asignar Responsable de Practicas Pre Profesionales</a>
+            <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+              <h4 style="color: black; padding-left: 10%;" >PROYECTO</h4>  
+            </div>
               <a [routerLink]="['/panel/proyecto/create',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
             >Crear Nuevo Proyecto</a>
@@ -70,71 +100,95 @@
           </div>
             <!--Coordinador de vinculacion -->
             <div class="list-group" *ngSwitchCase="'CV'">
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >MANTENIMIENTO</h4>  
+              </div>
               <a
                 [routerLink]="['/panel/user/create',persona.id]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Agregar entidad beneficiaria</a>   
+              >Crear entidad beneficiaria</a>   
               <a
                 [routerLink]="['/panel/user/list']" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Lista de Entidades</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >FIRMAS</h4>  
+              </div>
               <a
                 [routerLink]="['/panel/proyecto/plan_de_aprendizaje',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Planes de Aprendizaje</a>    
+              >Firmar plana de Aprendizaje</a>    
 
             </div>
                <!--DocenteApoyo -->
                <div class="list-group" *ngSwitchCase="'DA'">
-                <a
-                  [routerLink]="['/panel/proyecto/docentemiebros_convocatoria',persona.cedula]" routerLinkActive="active"
-                  class="list-group-item list-group-item-action bg-dark text-light"
-                >Convocatorias</a> 
+                <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                  <h4 style="color: black; padding-left: 10%;" >SEGUIMINETOS/</h4>  
+                </div>
+                <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                  <h4 style="color: black; padding-left: 10%;" >REGISTROS</h4>  
+                </div>  
                 <a  [routerLink]="['/panel/proyecto/anexo6_1',persona.cedula,persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
                 >Dar segumiento al Plan de Aprendizaje</a>
-                <a  [routerLink]="['/panel/proyecto/alumno_en_cargo',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
-                >Alumnos en Cargo</a>
                 <a [routerLink]="['/panel/proyecto/resistro_de_actividades_mensual',persona.cedula]" class="list-group-item list-group-item-action bg-dark text-light"
                 >Seguimiento Mensual</a>
                 <a
                 [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios',persona.cedula,persona.nombrescompletos]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Registro de Beneficiarios</a>
+                 >Registro de Beneficiarios</a>
+                 <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                  <h4 style="color: black; padding-left: 10%;" >FIRMAS</h4>  
+                </div>
+                <a
+                [routerLink]="['/panel/proyecto/docentemiebros_convocatoria',persona.cedula]" routerLinkActive="active"
+                 class="list-group-item list-group-item-action bg-dark text-light"
+                >Firmar convocatoria de como Apoyo de Proyecto</a> 
+                <a  [routerLink]="['/panel/proyecto/alumno_en_cargo',persona.cedula]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
+                >Firmar alumnos a Cargo</a>
               <a
                 [routerLink]="['/panel/proyecto/resgistro_de_Beneficiarios_firmas',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Registro de Beneficiarios Firmas</a>       
+              >Firmar registros de Beneficiarios </a>       
               </div>
               <!--DirectorProyecto -->
-              <div class="list-group" *ngSwitchCase="'DP'">
-                <a
-                  [routerLink]="['/panel/proyecto/docentemiebros_convocatoria',persona.cedula]" routerLinkActive="active"
-                  class="list-group-item list-group-item-action bg-dark text-light"
-                >Convocatorias</a>   
-                <a
-                  [routerLink]="['/panel/proyecto/seguimeinto_parcial_firma',persona.cedula]" routerLinkActive="active"
-                  class="list-group-item list-group-item-action bg-dark text-light"
-                >Seguimiento parcial de plan de Aprendizaje</a>   
+              <div class="list-group" *ngSwitchCase="'DP'">ç
+                <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                  <h4 style="color: black; padding-left: 10%;" >PLANIFICACION/VISTA</h4>  
+                </div> 
                 <a
                 [routerLink]="['/panel/proyecto/planificacion_de_actividades_mensual',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Planificación Mensual de Actividades</a>
-              <a
-                [routerLink]="['/panel/proyecto/socilizacion',persona.cedula]" routerLinkActive="active"
-                class="list-group-item list-group-item-action bg-dark text-light"
-              >Socialización firmada</a>
+               >Planificación Mensual de Actividades</a>
               <a
                 [routerLink]="['/panel/proyecto/vistas_de_la_intitucion',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
               >Registro de Visitas a las Instituciones</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >FIRMAS</h4>  
+              </div> 
+              <a
+              [routerLink]="['/panel/proyecto/docentemiebros_convocatoria',persona.cedula]" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+              >Firmar convocatoria de como Director de Proyecto</a> 
+              <a
+                [routerLink]="['/panel/proyecto/socilizacion',persona.cedula]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Firmar Planificación Mensual de Actividades</a>  
               <a
                 [routerLink]="['/panel/proyecto/vistas_de_la_intitucion_firma',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Firma de Registro de Visitas </a>
+              >Firmar Visitas a las Instituciones</a>
+              <a
+              [routerLink]="['/panel/proyecto/seguimeinto_parcial_firma',persona.cedula]" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+              >Firmar Seguimiento parcial de plan de Aprendizaje</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >DOCUMENTACION</h4>  
+              </div>   
               <a
               [routerLink]="['/panel/proyecto/preinforme_seguimiento',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
-              >Informe inicial</a> 
+              >Generar informe inicial</a> 
               <a
                 [routerLink]="['/panel/proyecto/informe_seguimiento',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"

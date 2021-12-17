@@ -36,6 +36,7 @@ function getBase64(file) {
 export class Anexo13extendidoComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
 
   anexo13:Anexo13[]=[]

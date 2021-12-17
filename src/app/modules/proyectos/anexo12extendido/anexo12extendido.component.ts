@@ -29,6 +29,8 @@ function getBase64(file) {
 export class Anexo12extendidoComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
+
   issloading=true;
   
   public anexo12:Anexo12[]=[];

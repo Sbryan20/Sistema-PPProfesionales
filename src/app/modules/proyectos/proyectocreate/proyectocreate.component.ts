@@ -18,6 +18,7 @@ import { ResposablepppService } from '@data/services/api/resposableppp.service';
 import { ResponsablePPP } from '@shared/models/responsableppp';
 import { CarreasDoc } from '@shared/models/dto/carrerasdo';
 import { SysdateService } from '@data/services/api/sysdate.service';
+import { Docentes } from '@shared/models/docentesfull';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -43,11 +44,11 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
   public secretaria='assets/images/Secretaria.png'  
   listacvinculacion: CordinadorVinculacion[]=[];
   proyectos:Proyectos = new Proyectos();
-  resPPP:ResponsablePPP[]=[];
   entity:Ientity[]=[];
   listacarrera:Carreras[]=[];
   nombre?:String;
   fecha;
+  resPPP:Docentes= new Docentes;
   private cedula?:string;
   public carrera?: string;
 
@@ -87,9 +88,9 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
         this.carrera=carrera.codigo;
         this.BondingCoordinationService.getEntity().subscribe(data=>this.entity=data)
         this.carreraService.getCarreras().subscribe(data=>this.listacarrera=data.filter(d=>d.codigo==carrera.codigo))
-        this.pesposablepppServiceprivate.cargarresponsables().subscribe(cres=>{
-          this.resPPP=cres.filter(d=>d.estado==true&&d.codigoCarrera==carrera.codigo)
-          console.log(this.resPPP)
+        this.pesposablepppServiceprivate.getResposable(carrera.codigo+'').subscribe(cres=>{
+          this.resPPP=cres
+          console.log(cres)
           this.issloading=false; 
         })}
     })   
@@ -123,8 +124,7 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
     this.proyectos.entidadbeneficiaria= event.target.value;
   }
   selectCarreta(event: any) {
-    this.proyectos.codigocarrera= event.target.value;
-    console.log(getRandomArbitrary(0,1000000000000))
+    
   }
   selectEstado(event: any) {
     this.proyectos.estado= event.target.value;
@@ -150,7 +150,9 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
   crearproyecto(){ 
     if(this.validacion()==false){
       this.proyectos.codigo="Proyecto "+getRandomArbitrary(0,1000000000000)
+      this.proyectos.codigocarrera= this.listacarrera[0].codigo
       this.proyectos.fechaat=this.fecha;
+      this.proyectos.responsablePPP=this.resPPP.id+'';
       this.proyectos.objetivosEspecificosProyecto=this.rows.getRawValue();
     console.log(this.proyectos)
     this.proyectoService.savePr(this.proyectos).subscribe(data=>{
@@ -161,7 +163,6 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
         confirmButtonColor: "#0c3255"   
       }) 
       this.router.navigate(['/panel/proyecto/listar']);
-      // window.location.reload();  
     },err=>{
       Swal.fire({
         icon: 'warning',
@@ -170,7 +171,7 @@ export class ProyectocreateComponent implements OnInit,AfterViewInit  {
         confirmButtonColor: "#0c3255"   
       })  
     }
-    )}else{
+  )}else{
       Swal.fire({
         icon: 'warning',
         title: 'DATOS INCOMPLETOS',

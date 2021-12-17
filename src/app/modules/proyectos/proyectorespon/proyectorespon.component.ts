@@ -19,6 +19,8 @@ import Swal from 'sweetalert2';
 export class ProyectoresponComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
+  
   issloading=true;
 
   Docs:Docentes[]=[];
@@ -115,12 +117,6 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
         console.log(this.responsable)
         this.resposableppservice.saverppp(this.responsable).subscribe(
           data=>{
-            swalWithBootstrapButtons.fire(
-              
-                'Asignado',
-              (`${cedula}`+', se le enviará un correo comunicandole que ha sido asignado como Responsable de Prácticas Pre Profesionales'),
-                'success'
-            )
             window.location.reload();               
         },err=>{
           Swal.fire({
@@ -129,7 +125,6 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
-          window.location.reload();  
         })
       } else if (
         /* Read more about handling dismissals below */
@@ -166,11 +161,6 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
         console.log(responsable)
         this.resposableppservice.updateppp(responsable).subscribe(
           data=>{
-            swalWithBootstrapButtons.fire(
-              'Remover Cargo',
-              (`${responsable.cedula}`+', ha sido retirado como Responsable de Prácticas Pre Profesionales'),
-                'success'
-            )
             window.location.reload();             
         },err=>{
           Swal.fire({
@@ -179,7 +169,6 @@ export class ProyectoresponComponent implements OnInit,AfterViewInit {
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
-          window.location.reload();  
         })
       } else if (
         /* Read more about handling dismissals below */

@@ -31,16 +31,20 @@ export class ResposablepppService {
   }
 
   saverppp(responsableppp:ResponsablePPP):Observable<ResponsablePPP>{
+    console.log(responsableppp);
     return this.http.post<ResponsablePPP>(this.urlEndPoint+"/save/responsable",responsableppp,{headers: this.httpHeaders})
   }
   saverdirector(docentesDirector:DocentesDirector):Observable<DocentesDirector>{
+    console.log(docentesDirector);
     return this.http.post<DocentesDirector>(this.urlEndPoint+"/save/director",docentesDirector,{headers: this.httpHeaders})
   }
   saverapoyo(docentesRoles:DocentesRoles):Observable<ResponsablePPP>{
+    console.log(docentesRoles);
     return this.http.post<DocentesRoles>(this.urlEndPoint+"/save/apoyo",docentesRoles,{headers: this.httpHeaders})
   }
 
   updateppp(responsableppp:ResponsablePPP):Observable<ResponsablePPP>{
+    console.log(responsableppp);
     return this.http.put<ResponsablePPP>(this.urlEndPoint+"/update/responsable",responsableppp,{headers: this.httpHeaders})
   }
   getcarrera(cedula:String):Observable<CarreasDoc[]>{

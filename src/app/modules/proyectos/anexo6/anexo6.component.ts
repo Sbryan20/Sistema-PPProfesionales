@@ -98,6 +98,7 @@ public materias:Materias[]=[]
 
   public secretaria='assets/images/Secretaria.png'  
   public ista='assets/images/ISTA.png'
+  empty='assets/images/siresultado.gif'
 
    //ArrayAntividades
    addForm: FormGroup;

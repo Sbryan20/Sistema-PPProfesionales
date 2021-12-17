@@ -14,7 +14,6 @@
       <th scope="row"> <strong>SELECCIONE UN PROYECTO: </strong><select (change)="selectProyecto($event)" class="form-control"  style="width: 100%;" name="select">
         <option value="SL">Seleccione</option>
         <option *ngFor="let item of listproyecto" [value]="item.id">{{item.id}}- -{{item.nombre}}- -{{item.carrera}}</option>
-        <option></option>
       </select>
   </tr>
 </table>
@@ -98,6 +97,7 @@
         <thead>
         </thead>
         <tbody>
+          <br>
           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
             <td>
               Descripción : <input type="text" class="form-control" [formControl]="row.get('descripcion')">

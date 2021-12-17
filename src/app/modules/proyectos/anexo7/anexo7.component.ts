@@ -85,7 +85,7 @@ export class Anexo7Component implements OnInit,AfterViewInit {
             this.onAddRow(element.descripcion+'');
           });  
           this.anexo3Service.getanexo3by(data.id).subscribe(dates=>{
-            this.anexo3=dates
+            this.anexo3=dates.filter(d=>d.estado="AN")
           })
           this.anexo1Service.getanexo1by(data.id).subscribe(datosap=>{
             this.anexo1=datosap.filter(d=>d.nombreRol=="apoyo")

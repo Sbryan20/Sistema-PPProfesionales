@@ -24,6 +24,7 @@ export class AlumnosencargoComponent implements OnInit,AfterViewInit {
 
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
 
   public anexo5:Anexo5[]=[];

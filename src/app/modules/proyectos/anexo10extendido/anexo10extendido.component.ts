@@ -29,6 +29,7 @@ function getBase64(file) {
 export class Anexo10extendidoComponent implements OnInit,AfterViewInit {
 
   loader='assets/images/progress.gif'
+  empty='assets/images/siresultado.gif'
   issloading=true;
 
   constructor(private activatedRoute: ActivatedRoute,private anexo10Service:Anexo10Service) { }
