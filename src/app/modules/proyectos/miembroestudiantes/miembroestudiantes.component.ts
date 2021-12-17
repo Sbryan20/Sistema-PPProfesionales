@@ -177,6 +177,7 @@ export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
                 } else {
                   getBase64(value).then(docx=>{
                     this.anexo5resposae.documento=docx+''
+                    console.log(this.ObtnerDatos())
                     this.anexo5Service.saveAnexo5(this.ObtnerDatos()).subscribe(data=>{
                       Swal.fire({
                         icon: 'success',

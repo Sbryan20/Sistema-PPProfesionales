@@ -79,7 +79,7 @@ const routes: Routes = [
       component: MiembroestudiantesComponent
     },
     {
-      path: 'anexo6/:cedula',
+      path: 'anexo6/:cedula/:nombre',
       component: Anexo6Component
     },{
       path: 'anexo6_1/:cedula/:nombrescompletos',

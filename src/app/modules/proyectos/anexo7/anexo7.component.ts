@@ -80,10 +80,6 @@ export class Anexo7Component implements OnInit,AfterViewInit {
       this.anexo1Service.getbyCedula(cedula).subscribe(datos=>{
         this.proyectoService.getProtectid(Number(datos[0].idProyectoPPP)).subscribe(data=>{
           this.proyecto=data;
-          data.actividadeslistProyectos?.forEach(element => {
-            this.onAddRow1(element.descripcion+'');
-            this.onAddRow(element.descripcion+'');
-          });  
           this.anexo3Service.getanexo3by(data.id).subscribe(dates=>{
             this.anexo3=dates.filter(d=>d.estado="AN")
           })
@@ -115,18 +111,18 @@ export class Anexo7Component implements OnInit,AfterViewInit {
   }
 
   //ArrayActividades
-  onAddRow(ctividadeslistProyectos:String) {
-    this.rows.push(this.createItemFormGroup(ctividadeslistProyectos));
+  onAddRow() {
+    this.rows.push(this.createItemFormGroup());
     console.log(this.rows.getRawValue())
   }
   onRemoveRow(rowIndex:number){
     this.rows.removeAt(rowIndex);
   }
 
-  createItemFormGroup(ctividadeslistProyectos:String): FormGroup {
+  createItemFormGroup(): FormGroup {
     return this.fb.group({
       resultados:null,
-      actividad:ctividadeslistProyectos,
+      actividad:null,
       nombreDocenteApoyo:null,
       cedulaDocente:null,
       numHoras:null,
@@ -136,18 +132,18 @@ export class Anexo7Component implements OnInit,AfterViewInit {
     });
   }
 
-  onAddRow1(ctividadeslistProyectos:String) {
-    this.rows1.push(this.createItemFormGroup1(ctividadeslistProyectos));
+  onAddRow1() {
+    this.rows1.push(this.createItemFormGroup1());
     console.log(this.rows1.getRawValue())
   }
   onRemoveRow1(rowIndex:number){
     this.rows1.removeAt(rowIndex);
   }
 
-  createItemFormGroup1(ctividadeslistProyectos:String): FormGroup {
+  createItemFormGroup1(): FormGroup {
     return this.fb.group({
       resultados:null,
-      actividad:ctividadeslistProyectos,
+      actividad:null,
       nombreEstudiante:null,
       cedulaEstudiante:null,
       numHoras:null,
@@ -230,7 +226,7 @@ export class Anexo7Component implements OnInit,AfterViewInit {
           'Se le descargará un archivo WORD, y no se olvide de subir el archivo un ves firmado',
           'success'
         )
-        this.generate(this.obtnerdatos(),this.proyecto)
+        this.generate(this.obtnerdatos(),this.proyecto,this.anexo3)
         this.anexo7Service.saveAnexo7(this.obtnerdatos()).subscribe(data=>{
           Swal.fire({
             icon: 'success',
@@ -253,7 +249,7 @@ export class Anexo7Component implements OnInit,AfterViewInit {
 
  
   //Docs
- generate(anexo7: Anexo7,proyecto:Proyectos) {
+ generate(anexo7: Anexo7,proyecto:Proyectos,anexo3:Anexo3[]) {
 
   loadFile(
     'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo7.docx',
@@ -277,7 +273,7 @@ export class Anexo7Component implements OnInit,AfterViewInit {
           mes_anio:anexo7.mesAnioPlanificado,
           tb:anexo7.horasDocentes,
           tb2:anexo7.horasEstudiantes,
-          es:anexo7.horasEstudiantes   
+          es:anexo3  
 
         });
       } catch (error) {

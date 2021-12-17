@@ -27,6 +27,7 @@ import * as PizZip from 'pizzip';
 import Swal from 'sweetalert2';
 import { CordinadorvinculacionService } from '@data/services/api/cordinadorvinculacion.service';
 import { Docx } from '@shared/models/dto/docemento';
+import { Proyectos } from '@shared/models/proyecto';
 
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
@@ -92,6 +93,7 @@ public materias:Materias[]=[]
     anexo3: Anexo3=new Anexo3;
     anexo1: Anexo1=new Anexo1();
     anexo1es: Anexo1=new Anexo1;
+    public proyectos:Proyectos=new Proyectos;
 //
 
   //cargar input
@@ -125,6 +127,8 @@ public materias:Materias[]=[]
     })
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
+      let nombre = params['nombre']
+      this.nombre=nombre;
       console.log(cedula)
       this.resposablepppService.getResponsableId(cedula).subscribe(data=>{
         console.log(data.codigo)
@@ -191,6 +195,10 @@ public materias:Materias[]=[]
    this.anexo2Service.getAnexoM(event.target.value).subscribe(data => {
     this.number=data.id;
     this.anexoss2=data;
+    this.proyectoService.getProtectid(Number(data.id)).subscribe(datas=>{
+      this.proyecto=datas;
+
+    });
     
    
     this.nombreResponsa=data.nombreResponsable; 
@@ -268,7 +276,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
           'Se le descargará un archivo WORD, y deberá subirlo en formato pdf',
           'success'
         )
-        this.generate(this.anexo6);
+        this.generate(this.anexo6,this.nombre);
           const { value: file } = await Swal.fire({
             allowOutsideClick: false,
             title: 'SELECCIONE EL PDF',
@@ -317,7 +325,7 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
   }
 
 
-  generate(anexo6: Anexo6) {
+  generate(anexo6: Anexo6,nombre?:String) {
 
     loadFile(
       'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo6.docx',
@@ -343,7 +351,9 @@ this.anexo3Service.getanexo3(event.target.value).subscribe(data=>{
             act:anexo6.actividades,
             director_proyeto:anexo6.nombreCoordinadorVinculacion,
             fecha:anexo6.fecha,
-            horaTotal:anexo6.totalHoras
+            cordi_proyeto:anexo6.nombreCoordinadorVinculacion,
+            horaTotal:anexo6.totalHoras,
+            resposa_apoyo:nombre
           });
         } catch (error) {
           // The error thrown here contains additional information when logged with JSON.stringify (it contains a properties object containing all suberrors).

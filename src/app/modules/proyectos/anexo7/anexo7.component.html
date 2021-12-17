@@ -71,6 +71,9 @@
                   <h1>DOCENTES PARTICIPANTES</h1>
                      <div [formGroup]="addForm">
                         <table>
+                          <tr>
+                            <td colspan="5" scope="col"> <button class="btn btn-success" (click)="onAddRow()" *ngIf="addForm.get('rows')">AGREGAR ACTIVIDADES</button></td>
+                          </tr>
                             <tbody>
                                 <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
                                     <td colspan="" scope="col "> <strong>Resultados</strong>
@@ -78,16 +81,16 @@
                                         <input type="text" class="form-control"  [formControl]="row.get('resultados')">
                                         </div> 
                                     </td>
-                                  <td colspan="" scope="col">  
-                                    <tr>
-                                    <h5><strong><center>Actividad de los docentes participantes</center></strong></h5>
-                                    <input type="text" class="form-control"  [formControl]="row.get('actividad')" disabled>
-                                   </tr>
+                                  <td colspan="" scope="col" style="width: 350px;">  <strong><center>Actividad de los docentes participantes</center></strong>
+                                    <select class="form-control" [formControl]="row.get('actividad')">
+                                      <option value="SL" >SELECCIONE</option>
+                                      <option  *ngFor="let item of proyecto.actividadeslistProyectos" [ngvalue]="item.descripcion">{{item.descripcion}}/option>
+                                    </select> 
                                 </td>
                                 <td colspan="" scope="col"> <strong><center>Docente de apoyo</center></strong>
                                   <div class="form-group"> 
                                  
-                                    <select class="form-control" [formControl]="row.get('cedulaDocente')">
+                                    <select class="form-control"  [formControl]="row.get('cedulaDocente')">
                                       <option value="SL">SELECCIONE</option>
                                       <option  *ngFor="let item of anexo1" [ngvalue]="item.cedulaDelegado-item.nombreDelegado">{{item.cedulaDelegado}}-{{item.nombreDelegado}}</option>
                                     </select> 
@@ -137,6 +140,9 @@
                   <h1>ALUMNOS PARTICIPANTES</h1>
                     <div [formGroup]="addForm1">
                        <table>
+                        <tr>
+                          <td colspan="5" scope="col"> <button class="btn btn-success" (click)="onAddRow1()" *ngIf="addForm1.get('rows1')">AGREGAR ACTIVIDADES</button></td>
+                        </tr>
                            <tbody>
                                <tr *ngFor="let row of addForm1.get('rows1')?.controls;let index = index;">
                                    <td colspan="" scope="col "> <strong>Resultados</strong>
@@ -144,11 +150,11 @@
                                        <input type="text" class="form-control"  [formControl]="row.get('resultados')"> 
                                        </div> 
                                    </td>
-                                 <td colspan="" scope="col">  
-                                   <tr>
-                                   <h5><strong><center>Actividad de los estudiantes participantes</center></strong></h5>
-                                   <input type="text" class="form-control"  [formControl]="row.get('actividad')" disabled>
-                                  </tr>
+                                 <td colspan="" scope="col" style="width: 350px;">  <strong><center>Actividad de los estudiantes participantes</center></strong>
+                                   <select class="form-control" [formControl]="row.get('actividad')">
+                                    <option value="SL">SELECCIONE</option>
+                                    <option  *ngFor="let item of proyecto.actividadeslistProyectos" [ngvalue]="item.descripcion">{{item.descripcion}}/option>
+                                  </select> 
                                </td>
                                <td colspan="" scope="col"> <strong><center>Estudiante</center></strong>
                                 <div class="form-group">  

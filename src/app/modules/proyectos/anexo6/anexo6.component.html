@@ -92,36 +92,39 @@
                     <tbody>
                      
                           <tr *ngFor="let row of addForm.get('rows')?.controls;let index = index;">
-                            <td scope="col">   
+                            <td scope="col"  style="width: 300px;">   
                                 <strong>ACTIVIDADES POR REALIZAR:</strong> 
                                   <div class="form-group">  
-                                          <input type="text" class="form-control"  [formControl]="row.get('actividad')">
+                                        <select class="form-control"  style="width: 300px;" name="select"  [formControl]="row.get('actividad')">
+                                            <option value="SL">Seleccione</option>
+                                            <option *ngFor="let item of proyectos.actividadeslistProyectos" [value]="item.descripcion"> {{item.descripcion}}  </option>
+                                      </select> 
                                   
                                   </div> 
                             </td>
                             
-                            <td scope="col">
+                            <td scope="col"  style="width: 300px;">
                               <strong>ASIGNATURA BASE RELACIONADA:</strong> 
                               <div> 
-                                  <select class="form-control"  style="width: 100%;" name="select"  [formControl]="row.get('asignatura')">
+                                  <select class="form-control"  style="width: 300px;" name="select"  [formControl]="row.get('asignatura')">
                                     <option value="SL">Seleccione</option>
                                     <option *ngFor="let item of materias" [value]="item.nombre"> {{item.nombre}}  </option>
                                 </select> 
                               </div>
                             </td>
                                         
-                            <td scope="col">    
+                            <td scope="col" style="width: 300px;">    
                               <strong>RESULTADOS DEL APRENDIZAJE:</strong>
-                                <div class="form-group"> 
-                                        <input type="text" class="form-control"  [formControl]="row.get('resultado')">
+                                <div class="form-group" style="width: 300px;"> 
+                                        <input type="text" class="form-control" style="width: 300px;"    [formControl]="row.get('resultado')">
                                   
                               </div> 
                             </td>
     
                             <td scope="col"> 
-                              <strong>HORAS ASIGNADAS:</strong>
+                              <strong>HORAS</strong>
                               <div class="form-group">  
-                                  <input type="number" style="font-size: 18px;" class="form-control"  class="impnumber" (keyup)="sumar()" [formControl]="row.get('horasAsignadas')"/>
+                                  <input type="number" style="font-size: 18px;"  class="form-control"  (keyup)="sumar()" [formControl]="row.get('horasAsignadas')"/>
                             
                             </div>
                             </td>
