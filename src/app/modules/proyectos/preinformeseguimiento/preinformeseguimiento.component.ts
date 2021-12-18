@@ -198,7 +198,6 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
                               text: err.error.message,
                               confirmButtonColor: "#0c3255"   
                             }) 
-                            window.location.reload();  
                           })
                         }
                       );
@@ -214,7 +213,6 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
               text: err.error.message,
               confirmButtonColor: "#0c3255"   
             }) 
-            window.location.reload();  
           })
         },err=>{
           Swal.fire({
@@ -223,7 +221,7 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
             text: err.error.message,
             confirmButtonColor: "#0c3255"   
           }) 
-          window.location.reload();  
+
         })
       }
     })
