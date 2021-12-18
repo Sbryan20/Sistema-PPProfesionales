@@ -33,6 +33,7 @@ import { InformeseguimientoComponent } from './informeseguimiento/informeseguimi
 import { PreinformeseguimientoComponent } from './preinformeseguimiento/preinformeseguimiento.component';
 import { Anexo8firmaComponent } from './anexo8firma/anexo8firma.component';
 import { PreinformefirmaComponent } from './preinformefirma/preinformefirma.component';
+import { InfomesegimientofirmaComponent } from './infomesegimientofirma/infomesegimientofirma.component';
 
 
 
@@ -70,7 +71,8 @@ import { PreinformefirmaComponent } from './preinformefirma/preinformefirma.comp
     InformeseguimientoComponent,
     PreinformeseguimientoComponent,
     Anexo8firmaComponent,
-    PreinformefirmaComponent
+    PreinformefirmaComponent,
+    InfomesegimientofirmaComponent
   ],
   imports: [
     CommonModule,

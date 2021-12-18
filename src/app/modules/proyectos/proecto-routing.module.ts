@@ -21,6 +21,7 @@ import { Anexo9Component } from './anexo9/anexo9.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
+import { InfomesegimientofirmaComponent } from './infomesegimientofirma/infomesegimientofirma.component';
 import { InformeseguimientoComponent } from './informeseguimiento/informeseguimiento.component';
 import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
 import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprendizajefirma.component';
@@ -143,6 +144,9 @@ const routes: Routes = [
     },{
       path: 'preinforefirma/:cedula',
       component: PreinformefirmaComponent
+    },{
+      path: 'informefirma/:cedula',
+      component: InfomesegimientofirmaComponent
     }
           
             

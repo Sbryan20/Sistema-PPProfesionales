@@ -32,7 +32,6 @@ export class Informe1{
 export class ObservacionesInformeSeguimientoRequest{
     id?:Number;
     descripcion?:String;
-    idInformeSeguimiento?:Number
 }
 export class DocentesParticipantesRequest{
     id?:Number;

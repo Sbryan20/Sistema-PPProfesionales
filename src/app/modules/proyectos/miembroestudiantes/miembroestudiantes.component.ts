@@ -177,7 +177,6 @@ export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
                 } else {
                   getBase64(value).then(docx=>{
                     this.anexo5resposae.documento=docx+''
-                    console.log(this.ObtnerDatos())
                     this.anexo5Service.saveAnexo5(this.ObtnerDatos()).subscribe(data=>{
                       Swal.fire({
                         icon: 'success',
@@ -186,12 +185,12 @@ export class MiembroestudiantesComponent implements OnInit,AfterViewInit {
                         confirmButtonColor: "#0c3255"})
                         window.location.reload();  
                     },err=>{
+                      console.log(this.ObtnerDatos())
                       Swal.fire({
                         icon: 'error',
                         title: 'Anexo',
                         text: 'Hubo un error: '+err.error.message,
                         confirmButtonColor: "#0c3255"})
-                        window.location.reload();  
                     }) 
                   })
                     

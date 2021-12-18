@@ -5,22 +5,23 @@
      </center>
     </div>
   </ng-container>
-  <div *ngIf="issloading==false" >
-    <div class="card border-primary mb-3" *ngIf="anexo13.length!=0 ;else empy" >
-      <div class="card-header" >Visitas a Instituciones</div>
+  <div  *ngIf="issloading==false">
+    <div class="card border-primary mb-3" *ngIf="informe1.length!=0 ;else empy">
+      <div class="card-header" >Planes de Aprendizaje</div>
       <div class="card-body text-primary">
-              <h5 class="card-title">Lista de documentos</h5>
+              <h5 class="card-title">Listado </h5>
               <div class="example-flex-container">
-                  <div class="float-container" *ngFor="let anexos of anexo13">
+                  <div class="float-container" *ngFor="let anexos of informe1">
                               <div class="card text-dark bg-light mb-3 float-container">
+                                  <div class="card-header"> Proyecto: {{anexos.nombreProyecto}}</div>
                                   <div class="card-body">
-                                      <p class="card-text"> Proyecto: {{anexos.proyectoId}}</p>
-                                     <p class="card-text"> Empresa: {{anexos.empresa}}</p>
-                                     <p class="card-text"> Administrador: {{anexos.representanteLegal}} </p>
+                                     <p class="card-text"> Carrera: {{anexos.carrera}}</p>
+                                     <p class="card-text"> Entidad: {{anexos.nombreEntidadBeneficiaria}} </p>
                                 </div>
                               <div class="card-header">
                                  <div class="example-flex-container"  >
-                                     <button type="button" (click)="modificar(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
+                                     <button type="button" (click)="convertFile(anexos.documento)" class="btn btn-secondary">FIRMAR DOCUMENTO</button>
+                                     <button type="button" (click)="update(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
                                  </div>
                                  </div>
                               </div>
@@ -39,4 +40,3 @@
     <h1 style="padding-left: 32%; font-size: 60px; color: rgb(84, 167, 192); border-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >SIN RESULTADOS..</h1>
     </div>
   </ng-template>
-

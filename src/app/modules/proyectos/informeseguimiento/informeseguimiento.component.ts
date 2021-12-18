@@ -232,6 +232,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
   }
 
   save(){
+ 
     Swal.fire({
       title: 'Esta seguro',
       text: "Para ello debe firmar el siguiente anexo con sus datos",
@@ -318,6 +319,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
 
 
   generate(informe1: Informe1) {
+    console.log(informe1.observacionesInformeSeguimiento)
     console.log(Informe1)
     loadFile(
       'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/informe1.docx',

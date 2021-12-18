@@ -57,6 +57,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
 import { Anexo8firmaComponent } from '@modules/proyectos/anexo8firma/anexo8firma.component';
 import { PreinformefirmaComponent } from '@modules/proyectos/preinformefirma/preinformefirma.component';
+import { InfomesegimientofirmaComponent } from '@modules/proyectos/infomesegimientofirma/infomesegimientofirma.component';
 
 
 const modules = [
@@ -108,7 +109,8 @@ const modules = [
     InformeseguimientoComponent,
     PreinformeseguimientoComponent,
     Anexo8firmaComponent,
-    PreinformefirmaComponent
+    PreinformefirmaComponent,
+    InfomesegimientofirmaComponent
   ],
   imports: [
     

@@ -27,4 +27,8 @@ export class Informe1Service {
   getoInforme1ById(proyectoId?:Number):Observable<Informe1>{
     return this.http.get(this.urlEndPoint+"/allByProyecto/"+proyectoId,{headers: this.httpHeaders}).pipe(map(Response => Response as Informe1))
   }
+
+  getAll():Observable<Informe1[]>{
+    return this.http.get(this.urlEndPoint+"/all/",{headers: this.httpHeaders}).pipe(map(Response => Response as Informe1[]))
+  }
 }

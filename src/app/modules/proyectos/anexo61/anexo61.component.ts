@@ -35,6 +35,7 @@ export class Anexo61Component implements OnInit,AfterViewInit {
 
   public anexo6:Anexo6[]=[]
   public anexo6es:Anexo6 = new Anexo6;
+  nombre?:String;
    //ArrayAntividades
    addForm: FormGroup;
    rows: FormArray;
@@ -54,6 +55,7 @@ export class Anexo61Component implements OnInit,AfterViewInit {
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
       let nombre = params['nombrescompletos']
+      this.nombre=nombre;
       console.log(cedula)
     })
     this.anexo6Service.getanexo6all().subscribe(data=>{
@@ -98,7 +100,7 @@ export class Anexo61Component implements OnInit,AfterViewInit {
   anexo61:Anexo6_1=new Anexo6_1;
   obtnerdatos():Anexo6_1{
     this.anexo61.idProyecto=this.anexo6es.proyectoId;
-    this.anexo61.nombreApoyo=this.anexo6es.nombreDocenteApoyo;
+    this.anexo61.nombreApoyo=this.nombre;
     this.anexo61.actividades=this.rows.getRawValue();
     this.anexo3Service.getDocentedirector(this.anexo6es.proyectoId).subscribe(d=>{
       this.anexo61.nombreDirector=d.nombre+" "+d.apellidos
