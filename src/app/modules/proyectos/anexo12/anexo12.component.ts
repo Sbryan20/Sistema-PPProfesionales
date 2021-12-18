@@ -92,6 +92,9 @@ createItemFormGroup(): FormGroup {
       this.proyectoresponse=data;
       this.anexo8Service.getEntidadById(data.entidadbeneficiaria).subscribe(dates=>{
         this.entidad=dates;
+        this.sysdateService.getSysdate().subscribe(data => {
+          this.anexo12.fechaCapacitacion=data.fecha
+        })
         console.log(dates)
       })
     })
@@ -100,9 +103,7 @@ createItemFormGroup(): FormGroup {
 
   anexo12:Anexo12=new Anexo12;
   obtnerdatos():Anexo12{
-    this.sysdateService.getSysdate().subscribe(data => {
-      this.anexo12.fechaCapacitacion=data.fecha
-    })
+    
     this.anexo12.nombreAdministrador=this.entidad.nombreAdministrador;
     this.anexo12.nombreApoyo=this.nombre;
     this.anexo12.idProyectoPPP=this.proyectoresponse.id;
@@ -122,10 +123,11 @@ createItemFormGroup(): FormGroup {
       confirmButtonText: 'Si,Guardar'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(this.obtnerdatos())
         this.anexo12Service.saveAnexo12(this.obtnerdatos()).subscribe(data=>{
           Swal.fire(
             'Guardado',
-            'Your file has been deleted.',
+            'Documento Guardado.',
             'success'
           )
           window.location.reload();  

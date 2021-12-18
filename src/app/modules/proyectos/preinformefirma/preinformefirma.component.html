@@ -5,19 +5,22 @@
      </center>
     </div>
   </ng-container>
-  <div *ngIf="issloading==false">
-    <div class="card border-primary mb-3" *ngIf="anexo7.length!=0 ;else empy" >
-      <div class="card-header" >Firma de Planificación Mensual</div>
+  <div  *ngIf="issloading==false">
+    <div class="card border-primary mb-3" *ngIf="preInforme.length!=0 ;else empy">
+      <div class="card-header" >Planes de Aprendizaje</div>
       <div class="card-body text-primary">
-              <h5 class="card-title">Firma de Planificación Mensual</h5>
+              <h5 class="card-title">Listado </h5>
               <div class="example-flex-container">
-                  <div class="float-container" *ngFor="let anexos of anexo7">
+                  <div class="float-container" *ngFor="let anexos of preInforme">
                               <div class="card text-dark bg-light mb-3 float-container">
+                                  <div class="card-header"> Proyecto: {{anexos.nombreProyecto}}</div>
                                   <div class="card-body">
-                                     <p class="card-text"> Entidad Beneficiaria: {{anexos.nombreEntidadBeneficiaria}}</p>
+                                     <p class="card-text"> Carrera: {{anexos.nombreCarrera}}</p>
+                                     <p class="card-text"> Documento: {{anexos.nombreElaborado}} </p>
                                 </div>
                               <div class="card-header">
                                  <div class="example-flex-container"  >
+                                     <button type="button" (click)="convertFile(anexos.documento)" class="btn btn-secondary">FIRMAR DOCUMENTO</button>
                                      <button type="button" (click)="update(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
                                  </div>
                                  </div>
@@ -37,5 +40,3 @@
     <h1 style="padding-left: 32%; font-size: 60px; color: rgb(84, 167, 192); border-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >SIN RESULTADOS..</h1>
     </div>
   </ng-template>
-
-

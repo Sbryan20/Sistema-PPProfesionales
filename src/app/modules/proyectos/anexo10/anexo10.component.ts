@@ -67,6 +67,7 @@ horasRealizadas?:String;
 fechaInicio?:Date;
 fechaFin?:Date;
 public edntidad:Ientity=new Ientity;
+public proyectos:Proyectos=new Proyectos;
 
 
 public DocenteA:DocenteApoyoDatos=new DocenteApoyoDatos;
@@ -134,6 +135,10 @@ public anexo1response:Anexo1[]=[];
       this.idproyecto=data.id
       this.director=data.nombredirector
       this.nombreproyecto=data.nombre
+      this.proyectoService.getProtectid(Number(data.id)).subscribe(datas=>{
+        this.proyectos=datas;
+  
+      });
       
       this.anexo8Service.getEntidadById(data.entidadbeneficiaria).subscribe(da=>{
         this.ciudad=da.ciudad;
@@ -202,7 +207,7 @@ public anexo1response:Anexo1[]=[];
 
 
 save(){ 
-  console.log(this.ObtenerDatos())
+  console.log(this.ObtenerDatos().descripcionEmpresa)
   this.anexo10Service.saveAnexo10(this.ObtenerDatos()).subscribe(datos=>{
     Swal.fire({
       icon: 'success',

@@ -73,6 +73,13 @@
               </div>
               <a  [routerLink]="['/panel/proyecto/anexo6',persona.cedula,persona.nombrescompletos]" href=""  class="list-group-item list-group-item-action bg-dark text-light"
               >Plan de Aprendizaje</a>
+              <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
+                <h4 style="color: black; padding-left: 10%;" >DOCUMENTACION</h4>  
+              </div>
+              <a
+              [routerLink]="['/panel/proyecto/preinforme_seguimiento',persona.nombrescompletos]" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+              >Generar informe inicial</a>  
             </div>
     
             <!--Coordinador de carrear -->
@@ -117,7 +124,11 @@
               <a
                 [routerLink]="['/panel/proyecto/plan_de_aprendizaje',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"
-              >Firmar plana de Aprendizaje</a>    
+              >Firmar plana de Aprendizaje</a>
+              <a
+                [routerLink]="['/panel/proyecto/preinforefirma',persona.nombrescompletos]" routerLinkActive="active"
+                class="list-group-item list-group-item-action bg-dark text-light"
+              >Firmar informe inicial</a>      
 
             </div>
                <!--DocenteApoyo -->
@@ -182,13 +193,14 @@
               [routerLink]="['/panel/proyecto/seguimeinto_parcial_firma',persona.cedula]" routerLinkActive="active"
               class="list-group-item list-group-item-action bg-dark text-light"
               >Firmar Seguimiento parcial de plan de Aprendizaje</a>
+              <a
+              [routerLink]="['/panel/proyecto/anexo8firma',persona.cedula]" routerLinkActive="active"
+              class="list-group-item list-group-item-action bg-dark text-light"
+              >Firmar actividades del los estudiantes</a>
               <div style="background-color: rgba(255,255,255,0.4); height: 20px;">
                 <h4 style="color: black; padding-left: 10%;" >DOCUMENTACION</h4>  
               </div>   
-              <a
-              [routerLink]="['/panel/proyecto/preinforme_seguimiento',persona.cedula]" routerLinkActive="active"
-              class="list-group-item list-group-item-action bg-dark text-light"
-              >Generar informe inicial</a> 
+
               <a
                 [routerLink]="['/panel/proyecto/informe_seguimiento',persona.cedula]" routerLinkActive="active"
                 class="list-group-item list-group-item-action bg-dark text-light"

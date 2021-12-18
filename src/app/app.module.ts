@@ -55,6 +55,8 @@ import { PreinformeseguimientoComponent } from '@modules/proyectos/preinformeseg
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSelectModule } from '@angular/material/select';
+import { Anexo8firmaComponent } from '@modules/proyectos/anexo8firma/anexo8firma.component';
+import { PreinformefirmaComponent } from '@modules/proyectos/preinformefirma/preinformefirma.component';
 
 
 const modules = [
@@ -104,7 +106,9 @@ const modules = [
     Anexo10extendidoComponent,
     Anexo13extendidoComponent,
     InformeseguimientoComponent,
-    PreinformeseguimientoComponent
+    PreinformeseguimientoComponent,
+    Anexo8firmaComponent,
+    PreinformefirmaComponent
   ],
   imports: [
     

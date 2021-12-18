@@ -11,6 +11,7 @@ export class Proyectos {
     directorProyecto?:string;
     nombreresponsable?:string
     responsablePPP?:string;
+    ceduladirector?:String;
     nombredirector?:string
     objetivoGeneral?:String;
     alcanceTerritorial?:String;

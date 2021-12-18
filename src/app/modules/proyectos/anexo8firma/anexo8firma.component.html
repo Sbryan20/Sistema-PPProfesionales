@@ -6,19 +6,22 @@
     </div>
   </ng-container>
   <div *ngIf="issloading==false">
-    <div class="card border-primary mb-3" *ngIf="anexo7.length!=0 ;else empy" >
+    <div class="card border-primary mb-3" *ngIf="anexo8.length!=0 ;else empy" >
       <div class="card-header" >Firma de Planificación Mensual</div>
       <div class="card-body text-primary">
               <h5 class="card-title">Firma de Planificación Mensual</h5>
               <div class="example-flex-container">
-                  <div class="float-container" *ngFor="let anexos of anexo7">
+                  <div class="float-container" *ngFor="let anexos of anexo8">
                               <div class="card text-dark bg-light mb-3 float-container">
                                   <div class="card-body">
+                                     <p class="card-text"> Proyecto: {{anexos.nombreProyecto}}</p>
+                                     <p class="card-text"> Estudiente: {{anexos.nombreEstudiante}}</p>
                                      <p class="card-text"> Entidad Beneficiaria: {{anexos.nombreEntidadBeneficiaria}}</p>
                                 </div>
                               <div class="card-header">
                                  <div class="example-flex-container"  >
-                                     <button type="button" (click)="update(anexos)" class="btn btn-primary">SUBIR DOCUMENTO FIRMADO</button>
+                                    <button type="button" (click)="convertFile(anexos.documento)" class="btn btn-secondary">Firmas documento</button>
+                                    <button type="button" (click)="update(anexos)" class="btn btn-primary">Subir documento</button>
                                  </div>
                                  </div>
                               </div>

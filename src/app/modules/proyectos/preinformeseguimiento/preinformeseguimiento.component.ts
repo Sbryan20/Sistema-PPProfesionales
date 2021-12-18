@@ -15,6 +15,8 @@ import { saveAs } from 'file-saver';
 import PizZipUtils from 'pizzip/utils/index.js';
 import Docxtemplater from 'docxtemplater';
 import * as PizZip from 'pizzip';
+import { CordinadorvinculacionService } from '@data/services/api/cordinadorvinculacion.service';
+import { CordinadorVinculacion } from '@shared/models/cordinadorvinculacion';
 
 
 
@@ -44,9 +46,12 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
   public anexo1:Anexo1=new Anexo1;
   public anexo1response:Anexo1[]=[];
   public anexo3:Anexo3[]=[];
+  public cordnador:CordinadorVinculacion= new CordinadorVinculacion;
+  listproyecto: Proyectos[] = [];
   public preInforme:PreInforme= new PreInforme;
   public fechaElaborado;
   public fechaRevisado;
+  nombre?:String;
 
   addForm: FormGroup;
   rows: FormArray;
@@ -54,7 +59,7 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
 
 
   constructor(private sysdateService:SysdateService, private preinformeService:PreinformeService  ,private anexo1Service:Anexo1Service, 
-    private proyectoService:ProyectoService,private anexo3Service:Anexo3Service,private activatedRoute: ActivatedRoute,
+    private proyectoService:ProyectoService,private anexo3Service:Anexo3Service,private activatedRoute: ActivatedRoute,private cordinadorvinculacionService:CordinadorvinculacionService,
     private fb: FormBuilder) {
       
       this.addForm = this.fb.group({
@@ -69,24 +74,16 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
     this.addForm.addControl('rows', this.rows); 
 
     this.activatedRoute.params.subscribe( params => {
-     let cedula = params['cedula']
-     this.anexo1Service.getbyCedula(cedula).subscribe(data=>{
-       this.anexo1=data[0]
-       this.proyectoService.getProtectid(Number(data[0].idProyectoPPP)).subscribe(datos=>{
-         this.proyecto=datos
-         this.anexo3Service.getanexo3by(datos.id).subscribe(datos3=>{
-        
-           this.anexo3=datos3.filter(d=>d.estado=="AN")
-
-           console.log(this.anexo3)
-           this.issloading=false; 
-           datos3.filter(d=>d.estado=="AN").forEach(element => {
-             this.onAddRow(element)
-       
-           }); 
-         }) 
-       })
-     })
+      let nombre = params['cedula']
+      this.nombre=nombre;
+     this.proyectoService.getProyectos().subscribe(datas => {
+      this.listproyecto = datas.filter(d=>d.nombreresponsable==nombre)
+      this.issloading=false; 
+    })
+    this.cordinadorvinculacionService.getall().subscribe(da=>{
+      this.preinforme.nombreRevisado=da.nombres+" "+da.apellidos
+    })
+    
    }) 
     this.sysdateService.getSysdate().subscribe(data => {
       this.fechaElaborado = data.fecha})
@@ -112,6 +109,23 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
       estado:anexo3?.estado,
       observaciones:null
     });
+  }
+  selectProyecto(event: any) {
+    this.proyectoService.getProtectid(Number(event.target.value)).subscribe(datos=>{
+      this.proyecto=datos
+      this.anexo3Service.getanexo3by(datos.id).subscribe(datos3=>{
+     
+        this.anexo3=datos3.filter(d=>d.estado=="AN")
+
+        console.log(this.anexo3)
+        
+        datos3.filter(d=>d.estado=="AN").forEach(element => {
+          this.onAddRow(element)
+    
+        }); 
+      }) 
+    })
+
   } 
 
   preinforme:PreInforme = new PreInforme;
@@ -121,8 +135,8 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
     this.preinforme.fechaRevisado=this.fechaRevisado;
     this.preinforme.idProyectoPPP=this.proyecto.id;
     this.preinforme.estudianteInformeInicial=this.rows.getRawValue();  
-    this.preinforme.nombreRevisado=this.anexo1.nombreCoordinador
-    this.preinforme.nombreElaborado=this.anexo1.nombreDelegado
+    
+    this.preinforme.nombreElaborado=this.nombre
     return this.preinforme;
   }
   guardarinforme(){
@@ -233,7 +247,7 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
           console.log(preinforme.nombreCarrera)
           // render the document (replace all occurences of {first_name} by John, {last_name} by Doe, ...)
           doc.render({
-            anio:"2021",
+            anio:"2021-2022",
             nombrecarrera:preinforme.nombreCarrera,
             nombreproyecto:preinforme.nombreProyecto,
             nombredirector:preinforme.nombreDirector,

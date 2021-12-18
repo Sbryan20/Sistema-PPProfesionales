@@ -52,11 +52,9 @@ export class Anexo12extendidoComponent implements OnInit,AfterViewInit {
       
     },1000)
   }
-  modificar(anexo12:Anexo12){
-    this.update(anexo12)
-    console.log(anexo12)
-  }
+ 
   async update(anexo12:Anexo12){
+    console.log(anexo12)
     const { value: file } = await Swal.fire({
       allowOutsideClick: false,
       title: 'SELECCIONE EL PDF',

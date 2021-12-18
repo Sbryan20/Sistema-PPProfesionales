@@ -84,7 +84,7 @@
                                   <td colspan="" scope="col" style="width: 350px;">  <strong><center>Actividad de los docentes participantes</center></strong>
                                     <select class="form-control" [formControl]="row.get('actividad')">
                                       <option value="SL" >SELECCIONE</option>
-                                      <option  *ngFor="let item of proyecto.actividadeslistProyectos" [ngvalue]="item.descripcion">{{item.descripcion}}/option>
+                                      <option  *ngFor="let item of proyecto.actividadeslistProyectos" [ngvalue]="item.descripcion">{{item.descripcion}}</option>
                                     </select> 
                                 </td>
                                 <td colspan="" scope="col"> <strong><center>Docente de apoyo</center></strong>
@@ -153,7 +153,7 @@
                                  <td colspan="" scope="col" style="width: 350px;">  <strong><center>Actividad de los estudiantes participantes</center></strong>
                                    <select class="form-control" [formControl]="row.get('actividad')">
                                     <option value="SL">SELECCIONE</option>
-                                    <option  *ngFor="let item of proyecto.actividadeslistProyectos" [ngvalue]="item.descripcion">{{item.descripcion}}/option>
+                                    <option  *ngFor="let item of proyecto.actividadeslistProyectos" [ngvalue]="item.descripcion">{{item.descripcion}}</option>
                                   </select> 
                                </td>
                                <td colspan="" scope="col"> <strong><center>Estudiante</center></strong>

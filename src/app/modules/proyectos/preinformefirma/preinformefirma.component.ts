@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Anexo6Service } from '@data/services/api/anexo6.service';
-import PizZipUtils from 'pizzip/utils/index.js';
-import { Anexo2 } from '@shared/models/anexos/anexo2';
-import { Anexo6 } from '@shared/models/anexos/anexo6';
+import { PreinformeService } from '@data/services/api/preinforme.service';
+import { PreInforme } from '@shared/models/informes/preinforme';
 import { saveAs } from 'file-saver';
+import PizZipUtils from 'pizzip/utils/index.js';
+import Docxtemplater from 'docxtemplater';
+import * as PizZip from 'pizzip';
 import Swal from 'sweetalert2';
+
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -15,40 +17,67 @@ function getBase64(file) {
     reader.onerror = error => reject(error);
   });
 }
+
+//DOCX
 function loadFile(url, callback) {
   PizZipUtils.getBinaryContent(url, callback);
 };
 
 @Component({
-  selector: 'app-planaprendizajefirma',
-  templateUrl: './planaprendizajefirma.component.html',
-  styleUrls: ['./planaprendizajefirma.component.scss']
+  selector: 'app-preinformefirma',
+  templateUrl: './preinformefirma.component.html',
+  styleUrls: ['./preinformefirma.component.scss']
 })
-export class PlanaprendizajefirmaComponent implements OnInit,AfterViewInit {
+export class PreinformefirmaComponent implements OnInit {
 
   loader='assets/images/progress.gif'
   empty='assets/images/siresultado.gif'
   issloading=true;
-
-  public anexo6:Anexo6[]=[]
   file;
-  constructor(private activatedRoute: ActivatedRoute,private anexo6Service:Anexo6Service) { }
+
+  preInforme:PreInforme []= []
+
+  constructor(private preinformeService:PreinformeService,private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+   
     this.activatedRoute.params.subscribe( params => {
       let cedula = params['cedula']
-      this.anexo6Service.getanexo6byvinculacion(cedula).subscribe(data=>{
-        this.anexo6=data
+      this.preinformeService.getAll().subscribe(data=>{
+        this.preInforme=data.filter(d=>d.nombreRevisado==cedula);
+        console.log(this.preInforme)
         this.issloading=false;  
       })
     })
+
   }
   ngAfterViewInit(): void {
     setTimeout(()=>{
       
     },1000)
   }
-  async update(anexo6:Anexo6){
+
+  convertFile(docum) {
+    console.log(docum)
+    //Usage example:
+    var file = this.dataURLtoFile(docum, 'Convocatoria.pdf');
+    console.log(file);
+    this.file = file;
+    saveAs(file, 'Convocatoria.pdf');
+  }
+dataURLtoFile(dataurl, filename) {
+    let arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], filename, { type: mime });
+  }
+
+  async update(preInforme:PreInforme){
     const { value: file } = await Swal.fire({
       allowOutsideClick: false,
       title: 'SELECCIONE EL PDF',
@@ -64,8 +93,8 @@ export class PlanaprendizajefirmaComponent implements OnInit,AfterViewInit {
             resolve('Es necesario que seleccione el PDF')
           } else {
             getBase64(value).then(docx=>{
-              anexo6.documento=docx+'';
-              this.anexo6Service.updateAnexo6(anexo6).subscribe(data=>{
+              preInforme.documento=docx+'';
+              this.preinformeService.updatepreinforme(preInforme).subscribe(data=>{
                 Swal.fire({
                   icon: 'success',
                   title: 'Anexo',
@@ -86,26 +115,5 @@ export class PlanaprendizajefirmaComponent implements OnInit,AfterViewInit {
 
   }
 
-
-     //convert a pdf
-     convertFile(docum) {
-      console.log(docum)
-      //Usage example:
-      var file = this.dataURLtoFile(docum, 'Convocatoria.pdf');
-      console.log(file);
-      this.file = file;
-      saveAs(file, 'Convocatoria.pdf');
-    }
-  dataURLtoFile(dataurl, filename) {
-      let arr = dataurl.split(','),
-        mime = arr[0].match(/:(.*?);/)[1],
-        bstr = atob(arr[1]),
-        n = bstr.length,
-        u8arr = new Uint8Array(n);
-      while (n--) {
-        u8arr[n] = bstr.charCodeAt(n);
-      }
-      return new File([u8arr], filename, { type: mime });
-    }
 
 }

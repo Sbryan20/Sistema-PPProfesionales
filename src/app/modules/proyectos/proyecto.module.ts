@@ -31,6 +31,8 @@ import { Anexo13Component } from './anexo13/anexo13.component';
 import { Anexo13extendidoComponent } from './anexo13extendido/anexo13extendido.component';
 import { InformeseguimientoComponent } from './informeseguimiento/informeseguimiento.component';
 import { PreinformeseguimientoComponent } from './preinformeseguimiento/preinformeseguimiento.component';
+import { Anexo8firmaComponent } from './anexo8firma/anexo8firma.component';
+import { PreinformefirmaComponent } from './preinformefirma/preinformefirma.component';
 
 
 
@@ -66,7 +68,9 @@ import { PreinformeseguimientoComponent } from './preinformeseguimiento/preinfor
     Anexo10extendidoComponent,
     Anexo13extendidoComponent,
     InformeseguimientoComponent,
-    PreinformeseguimientoComponent
+    PreinformeseguimientoComponent,
+    Anexo8firmaComponent,
+    PreinformefirmaComponent
   ],
   imports: [
     CommonModule,

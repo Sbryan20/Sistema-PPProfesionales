@@ -183,7 +183,7 @@ ontnerDatos():Anexo8{
   this.anexo8.totalHoras=this.sum;
   this.anexo8.actividades=this.rows.getRawValue();
   this.anexo8.nombreAdminEB=this.edntidad.nombreAdministrador;
-  this.anexo8.cedulaDirector=this.proyecto.directorProyecto;
+  this.anexo8.cedulaDirector=this.proyecto.ceduladirector;
   return this.anexo8;
 }
   guardar(){

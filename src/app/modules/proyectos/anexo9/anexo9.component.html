@@ -83,17 +83,20 @@
                         <td scope="col">    
                           <strong>Actividades según planificación</strong>
                             <div class="form-group"> 
-                                    <input type="text" class="form-control"  [formControl]="row.get('actividadesPlanificacion')">
+                                    <select  class="form-control"  style="width: 100%" name="select"  [formControl]="row.get('actividadesPlanificacion')" required>
+                                      <option value="SL">Seleccione</option>
+                                      <option *ngFor="let item of proyectos.actividadeslistProyectos" [Value]="item.descripcion">{{item.descripcion}}</option>
+                                  </select> 
                                   
                           </div> 
                         </td>
                                     
                         <td scope="col"> 
-                          <strong>  Estudiante Responsable:</strong>
+                          <strong>  Estudiante:</strong>
                             <div class="form-group"> 
                                       <select  class="form-control"  style="width: 100%" name="select"  [formControl]="row.get('estudianteResponsable')" required>
                                         <option value="SL">Seleccione</option>
-                                        <option *ngFor="let item of anexo5response.alumnos" [value]="item.nombreEstudiante">{{item.nombreEstudiante}}</option>
+                                        <option *ngFor="let item of anexo5response.alumnos" [Value]="item.nombreEstudiante">{{item.nombreEstudiante}}</option>
                                     </select> 
                           </div> 
                         </td>

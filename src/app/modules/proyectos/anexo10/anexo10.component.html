@@ -195,7 +195,10 @@
                         <td>   
                             <strong>ACTIVIDADES GENERALES</strong>
                               <div class="form-group"> 
-                                 <input type="text" class="form-control" style="background-color:transparent;font-size: 18px;" [formControl]="row.get('actividadesGenerales')">
+                                 <select  class="form-control"  style="width: 100%" name="select" [formControl]="row.get('actividadesGenerales')" required>
+                                  <option value="SL">Seleccione</option>
+                                  <option *ngFor="let item of proyectos.actividadeslistProyectos" [Value]="item.descripcion">{{item.descripcion}}</option>
+                              </select> 
                               </div> 
                         </td>
                         

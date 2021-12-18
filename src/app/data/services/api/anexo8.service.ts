@@ -35,5 +35,9 @@ export class Anexo8Service {
     return this.http.get(this.urlEndPoint+"/alumno/"+cedula,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo8[]))
   }
 
+  getAll():Observable<Anexo8[]>{
+    return this.http.get(this.urlEndPoint+"/all",{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo8[]))
+  }
+
 
 }

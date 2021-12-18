@@ -16,6 +16,26 @@
                        <th colspan="4" scope="col"><strong class="texto2">Datos Informativos:</strong> </th>
                    </tr> 
                    <tr> 
+                    <th colspan="4" scope="col"><strong class="texto2">Proyecto:</strong> </th>
+                  </tr>
+                  <tr style="width: 100%;"> 
+                    <th  colspan="4" scope="col">
+                      <select style="width: 100%;"
+                      (change)="selectProyecto($event)"
+                      class="form-control"
+                      style="width: 100%"
+                      name="select"
+                      required>
+                      <option value="SL" style="width: 100%;">Seleccione</option>
+                      <option *ngFor="let item of listproyecto" [value]="item.id" style="width: 100%;">
+                        {{ item.nombre }}
+                      </option>
+                    </select>
+                    </th>
+                   
+                  </tr> 
+                  <br>
+                   <tr> 
                     <td  colspan="4" scope="col">
                       <strong class="texto">NOMBRE DEL PROYECTO:<b class="texto2"> {{proyecto.nombre}}</b>  </strong> <br>
                       <strong class="texto">DIRECTOR DEL PROYECTO: <b class="texto2">{{anexo1.nombreDelegado}} </b> </strong><br>

@@ -16,6 +16,7 @@ import { Anexo6Component } from './anexo6/anexo6.component';
 import { Anexo61Component } from './anexo61/anexo61.component';
 import { Anexo7Component } from './anexo7/anexo7.component';
 import { Anexo8Component } from './anexo8/anexo8.component';
+import { Anexo8firmaComponent } from './anexo8firma/anexo8firma.component';
 import { Anexo9Component } from './anexo9/anexo9.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
@@ -23,6 +24,7 @@ import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/do
 import { InformeseguimientoComponent } from './informeseguimiento/informeseguimiento.component';
 import { MiembroestudiantesComponent } from './miembroestudiantes/miembroestudiantes.component';
 import { PlanaprendizajefirmaComponent } from './planaprendizajefirma/planaprendizajefirma.component';
+import { PreinformefirmaComponent } from './preinformefirma/preinformefirma.component';
 import { PreinformeseguimientoComponent } from './preinformeseguimiento/preinformeseguimiento.component';
 import { ProyectoatvrqsComponent } from './proyectoatvrqs/proyectoatvrqs.component';
 import { ProyectocreateComponent } from './proyectocreate/proyectocreate.component';
@@ -135,10 +137,14 @@ const routes: Routes = [
     },{
       path: 'preinforme_seguimiento/:cedula',
       component: PreinformeseguimientoComponent
+    },{
+      path: 'anexo8firma/:cedula',
+      component: Anexo8firmaComponent
+    },{
+      path: 'preinforefirma/:cedula',
+      component: PreinformefirmaComponent
     }
-    
-    
-         
+          
             
 ];
 

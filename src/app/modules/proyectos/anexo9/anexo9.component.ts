@@ -43,6 +43,7 @@ export class Anexo9Component implements OnInit,AfterViewInit{
   public proyectoselact:Proyectos = new Proyectos;
   public anexo5response:Anexo5=new Anexo5;
   public edntidad:Ientity=new Ientity;
+  public proyectos:Proyectos=new Proyectos;
   ////ARRAY
    addForm: FormGroup;
    rows: FormArray;
@@ -103,6 +104,10 @@ createItemFormGroup(): FormGroup {
           this.edntidad=da;
         })
       })
+      this.proyectoService.getProtectid(Number(datos.idProyectoPPP)).subscribe(datas=>{
+        this.proyectos=datas;
+  
+      });
     })
     
   }
