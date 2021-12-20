@@ -34,6 +34,8 @@ import { PreinformeseguimientoComponent } from './preinformeseguimiento/preinfor
 import { Anexo8firmaComponent } from './anexo8firma/anexo8firma.component';
 import { PreinformefirmaComponent } from './preinformefirma/preinformefirma.component';
 import { InfomesegimientofirmaComponent } from './infomesegimientofirma/infomesegimientofirma.component';
+import { Anexo9firmaComponent } from './anexo9firma/anexo9firma.component';
+import { Anexo10firmaComponent } from './anexo10firma/anexo10firma.component';
 
 
 
@@ -72,7 +74,9 @@ import { InfomesegimientofirmaComponent } from './infomesegimientofirma/infomese
     PreinformeseguimientoComponent,
     Anexo8firmaComponent,
     PreinformefirmaComponent,
-    InfomesegimientofirmaComponent
+    InfomesegimientofirmaComponent,
+    Anexo9firmaComponent,
+    Anexo10firmaComponent
   ],
   imports: [
     CommonModule,

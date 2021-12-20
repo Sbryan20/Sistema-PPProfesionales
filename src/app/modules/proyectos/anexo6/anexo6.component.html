@@ -62,7 +62,7 @@
                           <td colspan="3" scope="col"> <strong class="texto">ESTUDIANTE:</strong>
                               <select (change)="selectCedula($event)" class="form-control"  style="width: 100%" name="select" >
                                   <option value="SL">Seleccione</option>
-                                  <option *ngFor="let item of listalm" [value]="item.cedula">  {{item.cedula}}  {{item.nombresestudiante}}  </option>
+                                  <option *ngFor="let item of listalm" [value]="item.cedula">  {{item.cedula}}  {{item.nombresestudiante}}  {{item.apellidosestudiante}} </option>
                               </select>
                             </td> 
                             <td colspan="4" scope="col"><strong class="texto" for="periodoAcademico">PERIODO ACADÉMICO:</strong>

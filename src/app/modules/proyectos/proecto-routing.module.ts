@@ -8,6 +8,7 @@ import { AlumnosfirmaComponent } from './alumnosfirma/alumnosfirma.component';
 import { AlumnosolicitudesComponent } from './alumnosolicitudes/alumnosolicitudes.component';
 import { Anexo10Component } from './anexo10/anexo10.component';
 import { Anexo10extendidoComponent } from './anexo10extendido/anexo10extendido.component';
+import { Anexo10firmaComponent } from './anexo10firma/anexo10firma.component';
 import { Anexo12Component } from './anexo12/anexo12.component';
 import { Anexo12extendidoComponent } from './anexo12extendido/anexo12extendido.component';
 import { Anexo13Component } from './anexo13/anexo13.component';
@@ -18,6 +19,7 @@ import { Anexo7Component } from './anexo7/anexo7.component';
 import { Anexo8Component } from './anexo8/anexo8.component';
 import { Anexo8firmaComponent } from './anexo8firma/anexo8firma.component';
 import { Anexo9Component } from './anexo9/anexo9.component';
+import { Anexo9firmaComponent } from './anexo9firma/anexo9firma.component';
 import { CompracticasComponent } from './compracticas/compracticas.component';
 import { CordinadorvinculacionComponent } from './cordinadorvlist/cordinadorvinculacion.component';
 import { DocenteapoyoconvocatoriaComponent } from './docenteapoyoconvocatoria/docenteapoyoconvocatoria.component';
@@ -147,6 +149,12 @@ const routes: Routes = [
     },{
       path: 'informefirma/:cedula',
       component: InfomesegimientofirmaComponent
+    },{
+      path: 'anexo9firma/:cedula',
+      component: Anexo9firmaComponent
+    },{
+      path: 'anexo10firma/:cedula',
+      component: Anexo10firmaComponent
     }
           
             

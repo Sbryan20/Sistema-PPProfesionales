@@ -1,0 +1,42 @@
+<ng-container *ngIf="issloading">
+    <div class="bss-loader" style="margin: auto;">
+      <center>
+        <img [src]="loader" alt=""> 
+     </center>
+    </div>
+  </ng-container>
+  <div *ngIf="issloading==false">
+    <div class="card border-primary mb-3" *ngIf="anexo9.length!=0 ;else empy" >
+      <div class="card-header" >Firma de Planificación Mensual</div>
+      <div class="card-body text-primary">
+              <h5 class="card-title">Firma de Planificación Mensual</h5>
+              <div class="example-flex-container">
+                  <div class="float-container" *ngFor="let anexos of anexo9">
+                              <div class="card text-dark bg-light mb-3 float-container">
+                                  <div class="card-body">
+                                     <p class="card-text"> Proyecto: {{anexos.nombreProyecto}}</p>
+                                     <p class="card-text"> Apoyo: {{anexos.nombreApoyo}}</p>
+                                     <p class="card-text"> Entidad Beneficiaria: {{anexos.entidadBeneficiaria}}</p>
+                                </div>
+                              <div class="card-header">
+                                 <div class="example-flex-container"  >
+                                    <button type="button" (click)="convertFile(anexos.documento)" class="btn btn-secondary">Firmas documento</button>
+                                    <button type="button" (click)="update(anexos)" class="btn btn-primary">Subir documento</button>
+                                 </div>
+                                 </div>
+                              </div>
+                  </div>
+              </div>
+      </div>
+  </div>
+  </div>
+  <ng-template #empy >
+    <div class="bss-loader" style="margin: auto;">
+      <center>
+        <img [src]="empty" alt=""> 
+     </center>
+     <br>
+     <br>
+    <h1 style="padding-left: 32%; font-size: 60px; color: rgb(84, 167, 192); border-color: black; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >SIN RESULTADOS..</h1>
+    </div>
+  </ng-template>

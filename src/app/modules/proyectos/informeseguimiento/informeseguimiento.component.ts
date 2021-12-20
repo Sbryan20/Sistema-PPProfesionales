@@ -136,6 +136,7 @@ export class InformeseguimientoComponent implements OnInit,AfterViewInit {
           this.anexo9Service.getAnexo9ById(datos.id).subscribe(daticos=>{
             daticos.actividadesAnexo9?.forEach(element => {
               this.onAddRow2(element)
+              console.log(element)
             });
             
           })

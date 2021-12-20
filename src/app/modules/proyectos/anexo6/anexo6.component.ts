@@ -196,7 +196,8 @@ public materias:Materias[]=[]
     this.number=data.id;
     this.anexoss2=data;
     this.proyectoService.getProtectid(Number(data.id)).subscribe(datas=>{
-      this.proyecto=datas;
+      this.proyectos=datas;
+      console.log(datas)
 
     });
     

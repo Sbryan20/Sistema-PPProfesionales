@@ -58,6 +58,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { Anexo8firmaComponent } from '@modules/proyectos/anexo8firma/anexo8firma.component';
 import { PreinformefirmaComponent } from '@modules/proyectos/preinformefirma/preinformefirma.component';
 import { InfomesegimientofirmaComponent } from '@modules/proyectos/infomesegimientofirma/infomesegimientofirma.component';
+import { Anexo9firmaComponent } from '@modules/proyectos/anexo9firma/anexo9firma.component';
+import { Anexo10firmaComponent } from '@modules/proyectos/anexo10firma/anexo10firma.component';
 
 
 const modules = [
@@ -110,7 +112,9 @@ const modules = [
     PreinformeseguimientoComponent,
     Anexo8firmaComponent,
     PreinformefirmaComponent,
-    InfomesegimientofirmaComponent
+    InfomesegimientofirmaComponent,
+    Anexo9firmaComponent,
+    Anexo10firmaComponent
   ],
   imports: [
     

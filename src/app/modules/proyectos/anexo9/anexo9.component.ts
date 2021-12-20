@@ -196,7 +196,7 @@ createItemFormGroup(): FormGroup {
 
 
   generate(anexo9: Anexo9) {
-
+    console.log(anexo9)
     loadFile(
       'https://raw.githubusercontent.com/Sbryan20/Sistema-PPProfesionales/main/src/assets/doc/anexo9.docx',
       function (error, content) {

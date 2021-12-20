@@ -186,7 +186,7 @@ export class CompracticasComponent implements OnInit,AfterViewInit {
 
     Swal.fire({
       title: 'Esta serguro?',
-      text: "Una ves se le asigne el rol no lo podra cambiar!",
+      text: "Está seguro que decea crear convocatoria",
       icon: 'warning',
       allowOutsideClick: false,
       showCancelButton: true,
@@ -216,7 +216,7 @@ export class CompracticasComponent implements OnInit,AfterViewInit {
                   this.Anexo2Service.saveanexo2(this.Anexo2(split[0])).subscribe(data => {
                     Swal.fire({
                       icon: 'success',
-                      title: 'Se mando convocatoria de forma existosa',
+                      title: 'Convocatoria de forma existosa',
                       text: 'Exitoso',
                       confirmButtonColor: "#0c3255"
                     })

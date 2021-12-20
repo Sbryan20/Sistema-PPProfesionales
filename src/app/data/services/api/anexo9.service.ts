@@ -19,7 +19,17 @@ export class Anexo9Service {
     console.log(anexo9);
     return this.http.post<Anexo9>(this.urlEndPoint,anexo9,{headers: this.httpHeaders})
   }
+
+
+  updateAnexo9(anexo9: Anexo9):Observable<Anexo9>{
+    console.log(anexo9);
+    return this.http.put<Anexo9>(this.urlEndPoint,anexo9,{headers: this.httpHeaders})
+  }
   getAnexo9ById(proyectoId?:Number):Observable<Anexo9>{
     return this.http.get(this.urlEndPoint+"/allByProyecto/"+proyectoId,{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo9))
+  }
+
+  getAll():Observable<Anexo9[]>{
+    return this.http.get(this.urlEndPoint+"/all",{headers: this.httpHeaders}).pipe(map(Response => Response as Anexo9[]))
   }
 }

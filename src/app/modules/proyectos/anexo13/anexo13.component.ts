@@ -187,7 +187,7 @@ export class Anexo13Component implements OnInit {
             text: 'Datos guadados correctamente',
             confirmButtonColor: "#0c3255"   
           }) 
-          window.location.reload();  
+          
         },err=>{
           Swal.fire({
             icon: 'warning',
