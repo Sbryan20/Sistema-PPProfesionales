@@ -96,7 +96,6 @@ export class PreinformeseguimientoComponent implements OnInit,AfterViewInit {
 
    onAddRow(anexo3:Anexo3) {
     this.rows.push(this.createItemFormGroup(anexo3));
-    console.log(this.rows.getRawValue())
   }
   onRemoveRow(rowIndex:number){
     this.rows.removeAt(rowIndex)

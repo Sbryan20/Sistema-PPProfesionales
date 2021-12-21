@@ -9,18 +9,18 @@
   <div class="card border-primary mb-3">
     <div class="card-header">Seleccione Coordinador/a Vinculación</div>
     <div class="card-body text-primary">
+      <br>
         <div class="example-container mat-elevation-z8">
           <div class="example-header">
             <mat-form-field>
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar...">
             </mat-form-field>
           </div>
-        
           <mat-table #table [dataSource]="dataSource" matSort >
         
             <!-- Position Column -->
             <ng-container matColumnDef="cedula">
-              <mat-header-cell *matHeaderCellDef mat-sort-header="cedula"> Cédula </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef> Cédula </mat-header-cell>
               <mat-cell *matCellDef="let element"> {{element.cedula}} </mat-cell>
             </ng-container>
         
@@ -72,8 +72,10 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
           </mat-table>
+          <div>
+            <h5 style="margin-top: 10px; margin-left: 10px;">Resultados: {{tamano}}</h5>
+          </div>
         </div>
-
     </div>
 </div>
 </div>

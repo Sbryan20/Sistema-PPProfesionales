@@ -15,6 +15,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
   
   loader='assets/images/progress.gif'
   issloading=true;
+  tamano?:Number
  //Filtrar
  public displayedColumns = ['cedula', 'nombres', 'apellidos', 'titulo','carga','estado','boton'];
  public dataSource
@@ -39,6 +40,7 @@ export class CordinadorvinculacionComponent implements OnInit,AfterViewInit {
   listar(){
     this.cvservice.getCvinculacion().subscribe(data=>{
       this.listacvinculacion=data
+      this.tamano=data.length
       this.dataSource=new MatTableDataSource(this.listacvinculacion);
       this.issloading=false; 
     }) 

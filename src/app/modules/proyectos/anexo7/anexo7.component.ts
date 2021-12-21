@@ -81,7 +81,8 @@ export class Anexo7Component implements OnInit,AfterViewInit {
         this.proyectoService.getProtectid(Number(datos[0].idProyectoPPP)).subscribe(data=>{
           this.proyecto=data;
           this.anexo3Service.getanexo3by(data.id).subscribe(dates=>{
-            this.anexo3=dates.filter(d=>d.estado="AN")
+            this.anexo3=dates.filter(d=>d.estado=="AN")
+            console.log( this.anexo3)
           })
           this.anexo1Service.getanexo1by(data.id).subscribe(datosap=>{
             this.anexo1=datosap.filter(d=>d.nombreRol=="apoyo")
