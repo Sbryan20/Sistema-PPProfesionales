@@ -169,7 +169,7 @@ export class ProyectosolicitudesComponent implements OnInit,AfterViewInit {
   denegar(anexo3:Anexo3){
     Swal.fire({
       title: 'Esta seguro de Denegar',
-      text: "You won't be able to revert this!",
+      text: "Denegar al estudiente",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
